@@ -53,7 +53,25 @@ async function overpass(q, tries = 2) {
 
 /* ---------- mappa ---------- */
 const map = L.map('map', { renderer: L.canvas({ tolerance: 8 }) }).setView([43.5, -2.5], 6);
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '© OpenStreetMap' }).addTo(map);
+const BASE = {
+  'OpenStreetMap': L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+    { maxZoom: 19, referrerPolicy: 'origin', attribution: '© OpenStreetMap' }),
+  'Grigio chiaro': L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+    { maxZoom: 19, subdomains: 'abcd', attribution: '© OpenStreetMap © CARTO' }),
+  'Topografica': L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
+    { maxZoom: 17, subdomains: 'abc', attribution: '© OpenStreetMap, SRTM · © OpenTopoMap' })
+};
+let baseNow = BASE['OpenStreetMap'].addTo(map), tileOk = 0, tileErr = 0;
+// se le tessere OSM non arrivano, passa allo sfondo di riserva
+BASE['OpenStreetMap'].on('tileload', () => { tileOk++; });
+BASE['OpenStreetMap'].on('tileerror', () => {
+  tileErr++;
+  if (!tileOk && tileErr >= 4 && map.hasLayer(BASE['OpenStreetMap'])) {
+    map.removeLayer(BASE['OpenStreetMap']);
+    baseNow = BASE['Grigio chiaro'].addTo(map);
+  }
+});
+L.control.layers(BASE, null, { position: 'topright', collapsed: true }).addTo(map);
 const gOver = L.layerGroup().addTo(map), gNet = L.layerGroup().addTo(map), gRoute = L.layerGroup().addTo(map), gStops = L.layerGroup().addTo(map),
       gLodging = L.layerGroup().addTo(map), gPts = L.layerGroup().addTo(map);
 
