@@ -11,6 +11,19 @@ Sito statico per pianificare itinerari sui Cammini di Santiago, anche combinando
 
 Nessuna build: tutto gira nel browser.
 
+## Dati dei cammini: `data/cammini.geojson`
+
+Il sito legge i cammini da `data/cammini.geojson` nel repository: nessuna chiamata a OpenStreetMap dal browser, quindi niente più "Failed to fetch". Se il file manca, il sito ripiega sulle richieste dirette a Overpass.
+
+Il file si genera con GitHub Actions (GitHub scarica i dati da OSM, non il tuo telefono):
+
+1. Carica nel repository `scripts/build_geojson.py` e `.github/workflows/genera-geojson.yml` (stesse cartelle).
+2. Repository → **Settings → Actions → General → Workflow permissions** → **Read and write permissions** → Save.
+3. Scheda **Actions** → "Genera GeoJSON dei cammini" → **Run workflow**. Dopo qualche minuto compare `data/cammini.geojson`.
+4. Si aggiorna da solo il 1° di ogni mese; per forzarlo ripeti il punto 3.
+
+Da computer puoi anche eseguirlo in locale: `python3 scripts/build_geojson.py` (opzione `--broad` per la ricerca larga).
+
 ## Come si usa
 
 1. **Rete**: cerca i cammini in OSM, spunta quelli che vuoi (pulsante "Seleziona i principali" per partire) e caricali. Vengono uniti in un unico grafo; piccoli vuoti tra tratti (≤150 m) sono collegati in automatico.

@@ -1,0 +1,32 @@
+name: Genera GeoJSON dei cammini
+
+on:
+  workflow_dispatch:          # pulsante "Run workflow" nella scheda Actions
+  schedule:
+    - cron: "0 4 1 * *"       # aggiornamento automatico il 1° di ogni mese
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Scarica i cammini da OpenStreetMap
+        run: python3 scripts/build_geojson.py
+      - name: Salva nel repository
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/cammini.geojson
+          if git diff --cached --quiet; then
+            echo "Nessuna modifica"
+          else
+            git commit -m "Aggiorna data/cammini.geojson"
+            git push
+          fi

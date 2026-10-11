@@ -3,7 +3,7 @@
    routing nel browser, quote Open-Meteo. Sito statico. */
 
 const $ = s => document.querySelector(s);
-const EP = ['https://overpass-api.de/api/interpreter', 'https://overpass.kumi.systems/api/interpreter'];
+const EP = ['https://overpass-api.de/api/interpreter', 'https://overpass.kumi.systems/api/interpreter', 'https://overpass.private.coffee/api/interpreter'];
 const STEP_KM = 0.5;
 const PALETTE = ['#d6408f', '#17468c', '#2e8b57', '#8e44ad', '#c0392b', '#16a085', '#c9a000', '#5d6d7e'];
 const PRESET = /Franc[eé]s|Aragon[eé]s|Podiensis|Lemovicensis|Turonensis|Tolosana|del Norte|Primitivo|Portugu[eé]s|Ingl[eé]s|Fisterr|Finisterre|Mux[ií]a|Plata|Sanabr|Baztán|Vasco|Vézelay|Arles|Gebennensis|Camino de Santiago|Cami[nñ]o de Santiago|Camino Mozárabe|Lebaniego|Invierno|Catal[aá]n|Levante|Saint-Jacques|Compostelle/i;
@@ -30,16 +30,25 @@ function hav(p, q) {
   const x = Math.sin(dLat / 2) ** 2 + Math.cos(p.lat * r) * Math.cos(q.lat * r) * Math.sin(dLon / 2) ** 2;
   return 2 * R * Math.asin(Math.sqrt(x));
 }
-async function overpass(q) {
-  let err;
-  for (const ep of EP) {
-    try {
-      const r = await fetch(ep, { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: 'data=' + encodeURIComponent(q) });
-      if (r.ok) return await r.json();
-      err = new Error('Overpass HTTP ' + r.status);
-    } catch (e) { err = e; }
+async function overpass(q, tries = 2) {
+  const errs = [];
+  for (let t = 0; t < tries; t++) {
+    for (const ep of EP) {
+      const host = new URL(ep).host, ctl = new AbortController(), to = setTimeout(() => ctl.abort(), 110000);
+      try {
+        const r = await fetch(ep, { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: 'data=' + encodeURIComponent(q), signal: ctl.signal });
+        clearTimeout(to);
+        if (r.ok) {
+          const j = await r.json();
+          if (j.remark && /error|timed out|out of memory/i.test(j.remark) && !(j.elements && j.elements.length)) { errs.push(host + ': ' + j.remark); continue; }
+          return j;
+        }
+        errs.push(host + ': HTTP ' + r.status);
+      } catch (e) { clearTimeout(to); errs.push(host + ': ' + (e.name === 'AbortError' ? 'timeout' : e.message)); }
+    }
+    if (t < tries - 1) { status('Server OSM occupati, riprovo tra pochi secondi…'); await new Promise(r => setTimeout(r, 4000)); }
   }
-  throw err;
+  throw new Error('i server OSM non rispondono (' + errs.join('; ') + '). Riprova tra un minuto.');
 }
 
 /* ---------- mappa ---------- */
@@ -48,18 +57,43 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, att
 const gOver = L.layerGroup().addTo(map), gNet = L.layerGroup().addTo(map), gRoute = L.layerGroup().addTo(map), gStops = L.layerGroup().addTo(map),
       gLodging = L.layerGroup().addTo(map), gPts = L.layerGroup().addTo(map);
 
+/* ---------- dati statici: data/cammini.geojson (generato da GitHub Actions, senza Overpass) ---------- */
+S.geo = null;   // Map id -> {name, ref, from, to, ways}
+const geoReady = (async () => {
+  try {
+    const r = await fetch('data/cammini.geojson');
+    if (!r.ok) return false;
+    const j = await r.json(), m = new Map();
+    for (const f of j.features || []) {
+      const p = f.properties || {}, g = f.geometry; if (!g || !p.id) continue;
+      const lines = g.type === 'MultiLineString' ? g.coordinates : g.type === 'LineString' ? [g.coordinates] : [];
+      const ways = lines.map(l => l.map(([lon, lat]) => ({ lat, lon }))).filter(w => w.length > 1);
+      if (ways.length) m.set(p.id, { name: p.name || ('relazione ' + p.id), ref: p.ref || '', from: p.from || '', to: p.to || '', ways });
+    }
+    if (!m.size) return false;
+    S.geo = m; S.geoDate = j.generated || ''; return true;
+  } catch (e) { return false; }
+})();
+
 /* ---------- 1. elenco e selezione cammini ---------- */
 $('#btnList').onclick = () => searchRoutes(false);
 $('#btnListAll').onclick = () => searchRoutes(true);
 async function searchRoutes(broad) {
-  status('Cerco i cammini di Santiago in OSM…');
+  status('Cerco i cammini di Santiago…');
+  await geoReady;
+  if (S.geo && !broad) {
+    S.routes = [...S.geo].map(([id, g]) => ({ id, name: g.name, ref: g.ref, from: g.from, to: g.to })).sort((x, y) => x.name.localeCompare(y.name));
+    S.routes.forEach(r => colorOf(r.id));
+    renderRoutes(); status(S.routes.length + ' cammini (dati ' + (S.geoDate || 'locali') + '). Carico la rete sulla mappa…');
+    await showOverview(); return;
+  }
   try {
     const rx = broad
       ? 'Cami[nñ]o|Caminho|Chemin de (Saint|Compostelle)|Saint-Jacques|Via (de la Plata|Podiensis|Lemovicensis|Turonensis|Tolosana|Gebennensis)|Santiago|Compostelle|Fisterr|Finisterre|Mux[ií]a'
-      : PRESET.source;
+      : 'Franc[eé]s|Aragon[eé]s|Podiensis|Lemovicensis|Turonensis|Tolosana|del Norte|Primitivo|Portugu[eé]s|Ingl[eé]s|Fisterr|Finisterre|Mux[ií]a|de la Plata|Sanabr|Baztán|Vasco|Vézelay|Arles|Gebennensis|Camino de Santiago|Cami[nñ]o de Santiago|Mozárabe|Lebaniego|Invierno|Catal[aá]n|Levante|Saint-Jacques|Compostelle';
     // solo le relazioni "radice": si tolgono quelle che sono tappe/figlie di altre
-    const q = `[out:json][timeout:90];
-rel["type"="route"]["route"~"^(hiking|foot)$"]["name"~"${rx}",i](35,-11,51.5,10)->.all;
+    const q = `[out:json][timeout:60];
+rel["type"="route"]["route"~"^(hiking|foot)$"]["name"~"${rx}"](35,-11,51.5,10)->.all;
 (.all; - rel(r.all););
 out tags;`;
     const j = await overpass(q);
@@ -114,11 +148,16 @@ $('#btnOverview').onclick = showOverview;
 async function showOverview() {
   const list = filteredRoutes().slice(0, 400);
   if (!list.length) { status('Prima cerca i cammini in OSM.'); return; }
+  await geoReady;
+  if (S.geo) {
+    for (const r of list) { const g = S.geo.get(r.id); if (g && !S.over.has(r.id)) S.over.set(r.id, { ways: g.ways.map(decimate), layers: [] }); }
+    if (S.over.size) { const all = []; for (const o of S.over.values()) o.ways.forEach(w => all.push([w[0].lat, w[0].lon])); map.fitBounds(all); }
+  }
   const ids = list.filter(r => !S.over.has(r.id)).map(r => r.id);
   try {
-    for (let i = 0; i < ids.length; i += 5) {
-      const ch = ids.slice(i, i + 5);
-      status(`Carico la rete sulla mappa ${Math.min(i + 5, ids.length)}/${ids.length}…`);
+    for (let i = 0; i < ids.length; i += 4) {
+      const ch = ids.slice(i, i + 4);
+      status(`Carico la rete sulla mappa ${Math.min(i + 4, ids.length)}/${ids.length}…`);
       const j = await overpass(`[out:json][timeout:180];rel(id:${ch.join(',')})->.p;(.p;rel(r.p););out geom;`);
       const byId = new Map(j.elements.map(e => [e.id, e]));
       for (const id of ch) {
@@ -147,10 +186,13 @@ async function loadChosen() {
   const ids = [...S.chosen];
   if (!ids.length) { status('Seleziona almeno un cammino.'); return; }
   S.tops = [];
+  await geoReady;
+  const need = [];
+  for (const id of ids) { const g = S.geo && S.geo.get(id); if (g) S.tops.push({ id, name: g.name, ways: g.ways }); else need.push(id); }
   try {
-    for (let i = 0; i < ids.length; i += 6) {
-      const ch = ids.slice(i, i + 6);
-      status(`Scarico tracciati ${Math.min(i + 6, ids.length)}/${ids.length}…`);
+    for (let i = 0; i < need.length; i += 6) {
+      const ch = need.slice(i, i + 6);
+      status(`Scarico tracciati ${Math.min(i + 6, need.length)}/${need.length}…`);
       const j = await overpass(`[out:json][timeout:180];rel(id:${ch.join(',')})->.p;(.p;rel(r.p););out geom;`);
       const byId = new Map(j.elements.map(e => [e.id, e]));
       for (const id of ch) {
