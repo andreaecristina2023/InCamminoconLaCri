@@ -86,7 +86,7 @@ const geoReady = (async () => {
       const p = f.properties || {}, g = f.geometry; if (!g || !p.id) continue;
       const lines = g.type === 'MultiLineString' ? g.coordinates : g.type === 'LineString' ? [g.coordinates] : [];
       const ways = lines.map(l => l.map(([lon, lat]) => ({ lat, lon }))).filter(w => w.length > 1);
-      if (ways.length) m.set(p.id, { name: p.name || ('relazione ' + p.id), ref: p.ref || '', from: p.from || '', to: p.to || '', ways });
+      if (ways.length) m.set(p.id, { name: p.name || ('relazione ' + p.id), ref: p.ref || '', from: p.from || '', to: p.to || '', group: p.group || 'santiago', ways });
     }
     if (!m.size) return false;
     S.geo = m; S.geoDate = j.generated || ''; return true;
@@ -100,7 +100,7 @@ async function searchRoutes(broad) {
   status('Cerco i cammini di Santiago…');
   await geoReady;
   if (S.geo && !broad) {
-    S.routes = [...S.geo].map(([id, g]) => ({ id, name: g.name, ref: g.ref, from: g.from, to: g.to })).sort((x, y) => x.name.localeCompare(y.name));
+    S.routes = [...S.geo].map(([id, g]) => ({ id, name: g.name, ref: g.ref, from: g.from, to: g.to, group: g.group })).sort((x, y) => x.name.localeCompare(y.name));
     S.routes.forEach(r => colorOf(r.id));
     renderRoutes(); status(S.routes.length + ' cammini (dati ' + (S.geoDate || 'locali') + '). Carico la rete sulla mappa…');
     await showOverview(); return;
@@ -125,9 +125,14 @@ out tags;`;
 $('#filter').oninput = renderRoutes;
 $('#btnPreset').onclick = () => { filteredRoutes().forEach(r => S.chosen.add(r.id)); renderRoutes(); restyleOver(); status(S.chosen.size + ' cammini selezionati.'); };
 $('#btnRelId').onclick = () => { const v = +$('#relId').value; if (!v) return; if (!S.routes.find(r => r.id === v)) S.routes.push({ id: v, name: 'Relazione ' + v, ref: '', from: '', to: '' }); S.chosen.add(v); renderRoutes(); restyleOver(); };
+S.groups = new Set(['santiago']);   // gruppi visibili: santiago | francigena | italia
+document.querySelectorAll('input[data-grp]').forEach(cb => cb.onchange = () => {
+  cb.checked ? S.groups.add(cb.dataset.grp) : S.groups.delete(cb.dataset.grp);
+  renderRoutes(); showOverview();
+});
 function filteredRoutes() {
   const f = $('#filter').value.trim().toLowerCase();
-  return S.routes.filter(r => !f || S.chosen.has(r.id) || (r.name + ' ' + r.ref + ' ' + r.from + ' ' + r.to).toLowerCase().includes(f));
+  return S.routes.filter(r => (S.chosen.has(r.id) || S.groups.has(r.group || 'santiago')) && (!f || S.chosen.has(r.id) || (r.name + ' ' + r.ref + ' ' + r.from + ' ' + r.to).toLowerCase().includes(f)));
 }
 function renderRoutes() {
   const ul = $('#routeList'); ul.innerHTML = '';
@@ -169,7 +174,7 @@ async function showOverview() {
   await geoReady;
   if (S.geo) {
     for (const r of list) { const g = S.geo.get(r.id); if (g && !S.over.has(r.id)) S.over.set(r.id, { ways: g.ways.map(decimate), layers: [] }); }
-    if (S.over.size) { const all = []; for (const o of S.over.values()) o.ways.forEach(w => all.push([w[0].lat, w[0].lon])); map.fitBounds(all); }
+    const all = []; for (const r of list) { const o = S.over.get(r.id); if (o) o.ways.forEach(w => all.push([w[0].lat, w[0].lon])); } if (all.length) map.fitBounds(all);
   }
   const ids = list.filter(r => !S.over.has(r.id)).map(r => r.id);
   try {

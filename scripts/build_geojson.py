@@ -50,9 +50,10 @@ def overpass(query, tries=2):
                     headers={"User-Agent": "InCamminoConLaCri-geojson/1.0"})
                 with urllib.request.urlopen(req, timeout=100) as r:
                     j = json.load(r)
-                if j.get("elements") or "remark" not in j:
+                # "remark" = il server ha avuto un problema (timeout, memoria): risultato parziale, da scartare
+                if "remark" not in j:
                     return j
-                errs.append(f"{ep}: {j['remark']}")
+                errs.append(f"{ep}: {j['remark'][:100]}")
             except Exception as e:  # noqa: BLE001
                 errs.append(f"{ep}: {e}")
         print(f"  tentativo {t + 1}/{tries} fallito ({errs[-1][:160]}), riprovo…", file=sys.stderr, flush=True)
@@ -60,11 +61,31 @@ def overpass(query, tries=2):
     raise RuntimeError("Overpass non risponde: " + " | ".join(errs[-4:]))
 
 
-def list_roots(rx):
+JACOB = "Santiago|Xacob|Jacob|Jakob|Compostel|Jacques|Giacomo|Sant.?Iago"
+
+# gruppi di cammini: (chiave, area "sud,ovest,nord,est", regex nome, filtro network, cerca anche per descrizione)
+GROUPS = [
+    ("santiago", BBOX, None, None, True),        # regex scelta da --broad/NAMES
+    ("francigena", "39,0,52,19",
+     "Francigena|Via Romea|Romea (Germanica|Strata|Nonantolana)|Via Francigena", None, False),
+    ("italia", "36,6.5,47.2,18.8",
+     "Cammino|Via (degli Dei|Appia|Traiana|Lauretana|Micaelica|Flaminia|Postumia|Francesca|Sacra|Clodia|Aurelia|Romea|Salaria)|"
+     "Sentiero Italia|Sentiero Roma|Francesco|Benedetto|Sant.Antonio|Sant.Agostino|Dante|Assisi|Materano|Celeste|Balteo",
+     "iwn|nwn|rwn", False),
+]
+
+
+def list_roots(rx, bbox=BBOX, net=None, jacob=True):
     # query leggera (solo tag e membri); le relazioni "radice" si distinguono qui:
-    # si tolgono quelle che sono membri di un'altra relazione trovata (tappe/figlie)
+    # si tolgono quelle che sono membri di un'altra relazione trovata (tappe/figlie).
+    # Santiago: trova per nome OPPURE per descrizione/altri nomi (collegamenti, varianti, enlaces)
+    netf = f'["network"~"^({net})$"]' if net else ""
+    extra = (f'\n  rel["type"="route"]["route"~"^(hiking|foot)$"]{netf}'
+             f'[~"^(description|alt_name|official_name|old_name|name:.*|ref:name|destination|from|to)$"~"{JACOB}"]({bbox});') if jacob else ""
     q = f"""[out:json][timeout:120];
-rel["type"="route"]["route"~"^(hiking|foot)$"]["name"~"{rx}"]({BBOX});
+(
+  rel["type"="route"]["route"~"^(hiking|foot)$"]{netf}["name"~"{rx}"]({bbox});{extra}
+);
 out body;"""
     els = overpass(q)["elements"]
     children = {m["ref"] for e in els for m in e.get("members", []) if m["type"] == "relation"}
@@ -73,19 +94,24 @@ out body;"""
 
 def fetch_geom(ids):
     q = (f"[out:json][timeout:90];rel(id:{','.join(map(str, ids))})->.p;"
-         "(.p;rel(r.p););out geom;")
+         "rel(r.p)->.a;rel(r.a)->.b;rel(r.b)->.c;(.p;.a;.b;.c;);out geom;")
     return overpass(q)["elements"]
 
 
 def ways_of(parent, by_id):
-    """Tutte le linee della relazione e delle sue sotto-relazioni, senza duplicati."""
-    group = [parent] + [by_id[m["ref"]] for m in parent.get("members", [])
-                        if m["type"] == "relation" and m["ref"] in by_id]
-    out, seen, used = [], set(), set()
-    for rel in group:
+    """Tutte le linee della relazione e di tutte le sue sotto-relazioni (a qualsiasi livello), senza duplicati."""
+    group, stack, used = [], [parent], set()
+    while stack:
+        rel = stack.pop()
         if rel["id"] in used:
             continue
         used.add(rel["id"])
+        group.append(rel)
+        for m in rel.get("members", []):
+            if m["type"] == "relation" and m["ref"] in by_id:
+                stack.append(by_id[m["ref"]])
+    out, seen = [], set()
+    for rel in group:
         for m in rel.get("members", []):
             if m["type"] != "way" or not m.get("geometry"):
                 continue
@@ -106,7 +132,7 @@ def ways_of(parent, by_id):
     return out
 
 
-def make_feature(parent, by_id):
+def make_feature(parent, by_id, group="santiago"):
     lines = ways_of(parent, by_id)
     if not lines:
         return None
@@ -116,7 +142,7 @@ def make_feature(parent, by_id):
         "properties": {
             "id": parent["id"], "name": t.get("name", f"relazione {parent['id']}"),
             "ref": t.get("ref", ""), "from": t.get("from", ""), "to": t.get("to", ""),
-            "network": t.get("network", ""),
+            "network": t.get("network", ""), "v": 2, "group": group,
         },
         "geometry": {"type": "MultiLineString", "coordinates": lines},
     }
@@ -154,11 +180,27 @@ def main():
             print("File esistente non leggibile, riparto da zero:", e, flush=True)
 
     print("Cerco le relazioni…", flush=True)
-    roots = list_roots(BROAD if a.broad else NAMES)
+    roots, grp_of = [], {}
+    for key, bbox, rx, net, jac in GROUPS:
+        rx = rx or (BROAD if a.broad else NAMES)
+        try:
+            found = list_roots(rx, bbox, net, jac)
+        except TimeoutError:
+            raise
+        except Exception as e:  # noqa: BLE001
+            print(f"  gruppo {key}: ricerca fallita ({str(e)[:100]}), salto", flush=True)
+            continue
+        new = [e for e in found if e["id"] not in grp_of]
+        for e in new:
+            grp_of[e["id"]] = key
+        roots += new
+        print(f"  {key}: {len(new)} relazioni radice", flush=True)
     prio = {"iwn": 0, "nwn": 1, "rwn": 2}   # prima i percorsi a lunga distanza
-    roots.sort(key=lambda e: (prio.get(e.get("tags", {}).get("network"), 3), e["id"]))
+    gprio = {"santiago": 0, "francigena": 1, "italia": 2}
+    roots.sort(key=lambda e: (gprio[grp_of[e["id"]]], prio.get(e.get("tags", {}).get("network"), 3), e["id"]))
     ids = [e["id"] for e in roots]
-    todo = [i for i in ids if i not in feats]
+    todo = [i for i in ids if i not in feats or feats[i]["properties"].get("v") != 2
+            or feats[i]["properties"].get("group") != grp_of[i]]
     print(f"  trovate {len(ids)} relazioni radice, da scaricare {len(todo)}", flush=True)
 
     skipped = []
@@ -185,7 +227,7 @@ def main():
             by_id = {e["id"]: e for e in els}
             for rid in chunk:
                 if rid in by_id:
-                    f = make_feature(by_id[rid], by_id)
+                    f = make_feature(by_id[rid], by_id, grp_of[rid])
                     if f:
                         feats[rid] = f
             n += 1
@@ -197,6 +239,8 @@ def main():
 
     if not feats:
         sys.exit("Nessun cammino scaricato: non scrivo il file.")
+    if not skipped and time.time() < DEADLINE[0] and len(ids) > 20:
+        feats = {k: v for k, v in feats.items() if k in set(ids)}   # lavoro completo: via i residui obsoleti
     mb = save(a.out, feats)
     print(f"Scritto {a.out}: {len(feats)} cammini su {len(ids)}, {mb:.1f} MB; saltati {len(skipped)}", flush=True)
 
