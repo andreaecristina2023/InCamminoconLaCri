@@ -66,7 +66,7 @@ JACOB = "Santiago|Xacob|Jacob|Jakob|Compostel|Jacques|Giacomo|Sant.?Iago"
 # gruppi di cammini: (chiave, area "sud,ovest,nord,est", regex nome, filtro network, cerca anche per descrizione)
 GROUPS = [
     ("santiago", BBOX, None, None, True),        # regex scelta da --broad/NAMES
-    ("francigena", "39,0,52,19",
+    ("francigena", "39,-1,52.6,19",
      "Francigena|Via Romea|Romea (Germanica|Strata|Nonantolana)|Via Francigena", None, False),
     ("italia", "36,6.5,47.2,18.8",
      "Cammino|Via (degli Dei|Appia|Traiana|Lauretana|Micaelica|Flaminia|Postumia|Francesca|Sacra|Clodia|Aurelia|Romea|Salaria)|"
