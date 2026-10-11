@@ -5,7 +5,7 @@
   --fg:#23272b;
   --pink:#c2307f;        /* maglietta rosa (contrasto AA con testo bianco) */
   --pink-soft:#f3c7de;
-  --blue:#17468c;        /* blu del segnavia */
+  --blue:#1e4aa0;        /* blu del segnavia */
   --yellow:#f2c500;      /* freccia gialla */
   --grey:#b7bcc0;        /* zaino grigio */
   --line:#bfc5ca;
@@ -13,16 +13,14 @@
 *{box-sizing:border-box}
 html,body{margin:0;height:100%;font:15px/1.4 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--fg)}
 header{display:flex;align-items:center;gap:10px;padding:6px 12px;background:var(--blue);color:#fff;position:sticky;top:0;z-index:1000}
-header .logoWrap{position:relative;width:40px;height:40px;flex:none;margin-right:6px}
-header .logo{width:40px;height:40px;background:var(--pink-soft);border-radius:50%}
-header .feet{position:absolute;right:-9px;bottom:-5px;width:25px;height:25px;background:#fff;border:2px solid var(--yellow);border-radius:50%}
+header .logo{width:46px;height:46px;flex:none;margin-right:4px;filter:drop-shadow(0 1px 2px #0005)}
 header .title{line-height:1.15}
 header h1{font-size:1.05rem;margin:0}
 header .by{font-size:.72rem;opacity:.9}
-header .deco{width:26px;height:26px;flex:none;margin-left:auto}
+header .deco{width:30px;height:42px;flex:none;margin-left:auto}
 #status{font-size:.75rem;opacity:.95;max-width:38%;text-align:right}
 .stripe{height:5px;background:linear-gradient(90deg,var(--pink) 0 40%,var(--yellow) 40% 70%,var(--grey) 70%)}
-main{display:flex;flex-direction:column;height:calc(100% - 59px)}
+main{display:flex;flex-direction:column;height:calc(100% - 64px)}
 #map{height:45vh;min-height:260px;flex:none}
 #panel{flex:1;overflow:auto;padding:10px;background:var(--panel)}
 @media(min-width:900px){main{flex-direction:row}#map{height:auto;flex:1}#panel{flex:none;width:440px}}
@@ -55,14 +53,17 @@ ul{list-style:none;margin:0;padding:0}
 .stage .meta{font-size:.82rem;color:#4a5056}
 .stage ul{margin-top:6px}
 .stage li{padding:3px 0;font-size:.82rem;border-top:1px dashed var(--line)}
-canvas{width:100%;background:var(--card);border:1px solid var(--line);border-radius:10px}
+#profile{width:100%;background:var(--card);border:1px solid var(--line);border-radius:10px}
+.leaflet-container canvas{background:transparent;border:0;border-radius:0}
 footer{margin:12px 0 30px}
 .inl{width:16px;height:16px;vertical-align:-3px}
 
 /* segnaposto in mappa: conchiglia e frecce */
 .pin{display:flex;align-items:center;justify-content:center;border:2px solid #fff;box-shadow:0 1px 4px #0007}
-.pin svg{width:18px;height:18px}
+.pin svg{width:19px;height:19px}
 .pin-stop{background:var(--blue);border-radius:6px}
 .pin-end{background:var(--pink);border-radius:50%}
 .pin-start{background:var(--pink);border-radius:50%}
 .pin-via{background:#6c747b;border-radius:50%}
+
+.inl.wide{width:26px}
