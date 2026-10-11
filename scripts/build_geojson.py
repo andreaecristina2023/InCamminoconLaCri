@@ -9,7 +9,7 @@ Uso:
 
 Solo libreria standard di Python. Dati © contributori di OpenStreetMap (ODbL).
 """
-import argparse, datetime, glob, json, os, socket, sys, time, urllib.parse, urllib.request
+import argparse, datetime, glob, json, os, re, socket, sys, time, urllib.parse, urllib.request
 
 # i runner di GitHub spesso non hanno IPv6: forza IPv4
 _gai = socket.getaddrinfo
@@ -26,10 +26,13 @@ ENDPOINTS = [
 BBOX = "35,-11,51.5,10"   # Penisola iberica + Francia occidentale e meridionale
 
 NAMES = ("Franc[eé]s|Aragon[eé]s|Podiensis|Lemovicensis|Turonensis|Tolosana|del Norte|Primitivo|"
-         "Portugu[eé]s|Ingl[eé]s|Fisterr|Finisterre|Mux[ií]a|de la Plata|Sanabr|Baztán|Vasco|Vézelay|"
+         "Portugu[eé]s|Ingl[eé]s|Fisterr|Finisterre|Mux[ií]a|de la Plata|Sanabr|Baztán|Vasco|"
          "Arles|Gebennensis|Camino de Santiago|Cami[nñ]o de Santiago|Mozárabe|Lebaniego|Invierno|"
          "Catal[aá]n|Levante|Saint-Jacques|Compostelle|"
-         "Caminho (de Santiago|Portugu|Central|Interior|da Costa|Nascente|Torres)|Cami[nñ]o Portugu|Xacob|Via da Prata")
+         "Caminho (de Santiago|Portugu|Central|Interior|da Costa|Nascente|Torres)|Cami[nñ]o Portugu|Xacob|Via da Prata|"
+         "Augusta|Salvador|Vadiniense|Cam[ií] (de Sant Jaume|Jacobeu|Ignasi)|Sant Jaume|Jacobeu|V[eé]zelay|"
+         "Voie (de V[eé]zelay|de Tours|du Pi[eé]mont|des Pi[eé]monts|de Soulac|de Gen[eè]ve|du Puy|d.Arles|de Rocamadour|du Littoral|Limousine|Tolosane|Podiense)|"
+         "Pi[eé]mont Pyr[eé]n|Soulac|Rocamadour")
 BROAD = ("Cami[nñ]o|Caminho|Chemin de (Saint|Compostelle)|Saint-Jacques|"
          "Via (de la Plata|Podiensis|Lemovicensis|Turonensis|Tolosana|Gebennensis)|"
          "Santiago|Compostelle|Fisterr|Finisterre|Mux[ií]a")
@@ -75,21 +78,52 @@ GROUPS = [
 ]
 
 
-def list_roots(rx, bbox=BBOX, net=None, jacob=True):
-    # query leggera (solo tag e membri); le relazioni "radice" si distinguono qui:
-    # si tolgono quelle che sono membri di un'altra relazione trovata (tappe/figlie).
-    # Santiago: trova per nome OPPURE per descrizione/altri nomi (collegamenti, varianti, enlaces)
+REFS_FR = "^GR ?(65|653|654|655|78)([^0-9]|$)"   # GR 65 Puy, 653 Arles/Tolosana, 654 Vézelay, 655 Tours, 78 Piémont
+
+STAGE = re.compile(r"[ée]tape|etapa|tappa|stage|etappe|jornada|tramo|secci[oó]n|section|journ[ée]e|d[ií]a \d|\bleg\b", re.I)
+
+
+def pick_roots(els, rx):
+    """Relazioni 'radice'. Una figlia con nome da cammino (non da tappa) resta cammino a sé;
+    una relazione 'contenitore' (solo sotto-relazioni, almeno 2 cammini dentro) viene scartata."""
+    by = {e["id"]: e for e in els}
+    children = {m["ref"] for e in els for m in e.get("members", []) if m["type"] == "relation"}
+    try:
+        rxc = re.compile(rx, re.I)
+    except re.error:
+        rxc = None
+    promoted = set()
+    for cid in children:
+        e = by.get(cid)
+        name = (e or {}).get("tags", {}).get("name", "")
+        if e and rxc and rxc.search(name) and not STAGE.search(name):
+            promoted.add(cid)
+    out = []
+    for e in els:
+        if e["id"] in children and e["id"] not in promoted:
+            continue
+        mem = e.get("members", [])
+        kids = [m for m in mem if m["type"] == "relation" and m["ref"] in promoted]
+        if len(kids) >= 2 and not any(m["type"] == "way" for m in mem):
+            continue   # contenitore di cammini: restano i cammini al suo interno
+        out.append(e)
+    return out
+
+
+def list_roots(rx, bbox=BBOX, net=None, jacob=True, refs=None):
+    # query leggera (solo tag e membri). Santiago: trova per nome, per descrizione/altri nomi
+    # (collegamenti, varianti, enlaces) e per sigla dei GR francesi.
     netf = f'["network"~"^({net})$"]' if net else ""
     extra = (f'\n  rel["type"="route"]["route"~"^(hiking|foot)$"]{netf}'
              f'[~"^(description|alt_name|official_name|old_name|name:.*|ref:name|destination|from|to)$"~"{JACOB}"]({bbox});') if jacob else ""
+    if refs:
+        extra += f'\n  rel["type"="route"]["route"~"^(hiking|foot)$"]["ref"~"{refs}"]({bbox});'
     q = f"""[out:json][timeout:120];
 (
-  rel["type"="route"]["route"~"^(hiking|foot)$"]{netf}["name"~"{rx}"]({bbox});{extra}
+  rel["type"="route"]["route"~"^(hiking|foot)$"]{netf}["name"~"{rx}",i]({bbox});{extra}
 );
 out body;"""
-    els = overpass(q)["elements"]
-    children = {m["ref"] for e in els for m in e.get("members", []) if m["type"] == "relation"}
-    return [e for e in els if e["id"] not in children]
+    return pick_roots(overpass(q)["elements"], rx)
 
 
 def fetch_geom(ids):
@@ -207,6 +241,7 @@ def main():
     ap.add_argument("--out", default=os.path.join(os.path.dirname(__file__), "..", "data"),
                     help="cartella dei dati (un file .geojson per area)")
     ap.add_argument("--max-minutes", type=float, default=35, help="tempo massimo; poi salva quanto scaricato")
+    ap.add_argument("--ids", default="", help="ID di relazioni OSM da aggiungere (separati da virgola)")
     ap.add_argument("--fresh", action="store_true", help="ignora il file esistente e riscarica tutto")
     a = ap.parse_args()
     DEADLINE[0] = time.time() + a.max_minutes * 60
@@ -228,7 +263,7 @@ def main():
     for key, bbox, rx, net, jac in GROUPS:
         rx = rx or (BROAD if a.broad else NAMES)
         try:
-            found = list_roots(rx, bbox, net, jac)
+            found = list_roots(rx, bbox, net, jac, REFS_FR if key == "santiago" else None)
         except TimeoutError:
             raise
         except Exception as e:  # noqa: BLE001
@@ -239,6 +274,11 @@ def main():
             grp_of[e["id"]] = key
         roots += new
         print(f"  {key}: {len(new)} relazioni radice", flush=True)
+    for x in re.findall(r"\d+", a.ids or ""):
+        rid = int(x)
+        if rid not in grp_of:
+            grp_of[rid] = "santiago"
+            roots.append({"id": rid, "tags": {"network": "iwn"}})
     prio = {"iwn": 0, "nwn": 1, "rwn": 2}   # prima i percorsi a lunga distanza
     gprio = {"santiago": 0, "francigena": 1, "italia": 2}
     roots.sort(key=lambda e: (gprio[grp_of[e["id"]]], prio.get(e.get("tags", {}).get("network"), 3), e["id"]))

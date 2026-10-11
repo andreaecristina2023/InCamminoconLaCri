@@ -2,6 +2,11 @@ name: Genera GeoJSON dei cammini
 
 on:
   workflow_dispatch:          # pulsante "Run workflow" nella scheda Actions
+    inputs:
+      ids:
+        description: "ID relazioni OSM da aggiungere (opzionale, separati da virgola)"
+        required: false
+        default: ""
   schedule:
     - cron: "0 4 1 * *"       # aggiornamento automatico il 1° di ogni mese
 
@@ -18,7 +23,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: Scarica i cammini da OpenStreetMap
-        run: python3 scripts/build_geojson.py
+        run: python3 scripts/build_geojson.py --ids "${{ github.event.inputs.ids }}"
       - name: Salva nel repository
         if: always()
         run: |
