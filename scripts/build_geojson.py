@@ -42,8 +42,8 @@ def overpass(query, tries=3):
                 errs.append(f"{ep}: {j['remark']}")
             except Exception as e:  # noqa: BLE001
                 errs.append(f"{ep}: {e}")
-        print(f"  tentativo {t + 1}/{tries} fallito, riprovo…", file=sys.stderr)
-        time.sleep(10 * (t + 1))
+        print(f"  tentativo {t + 1}/{tries} fallito ({errs[-1][:160]}), riprovo…", file=sys.stderr, flush=True)
+        time.sleep(15 * (t + 1))
     raise RuntimeError("Overpass non risponde: " + " | ".join(errs[-4:]))
 
 
@@ -113,7 +113,7 @@ def main():
     ap.add_argument("--out", default=os.path.join(os.path.dirname(__file__), "..", "data", "cammini.geojson"))
     a = ap.parse_args()
 
-    print("Cerco le relazioni…")
+    print("Cerco le relazioni…", flush=True)
     roots = list_roots(BROAD if a.broad else NAMES)
     ids = sorted(e["id"] for e in roots)
     print(f"  trovate {len(ids)} relazioni radice")
@@ -122,14 +122,24 @@ def main():
     for i in range(0, len(ids), 3):
         chunk = ids[i:i + 3]
         print(f"  geometrie {min(i + 3, len(ids))}/{len(ids)}")
-        els = fetch_geom(chunk)
+        try:
+            els = fetch_geom(chunk)
+        except Exception as e:  # noqa: BLE001
+            print(f"  gruppo fallito ({str(e)[:120]}), provo uno alla volta", flush=True)
+            els = []
+            for rid in chunk:
+                try:
+                    els += fetch_geom([rid])
+                except Exception as e2:  # noqa: BLE001
+                    print(f"  SALTATO {rid}: {str(e2)[:120]}", flush=True)
+                time.sleep(5)
         by_id = {e["id"]: e for e in els}
         for rid in chunk:
             if rid in by_id:
                 f = make_feature(by_id[rid], by_id)
                 if f:
                     feats.append(f)
-        time.sleep(2)
+        time.sleep(5)
 
     if not feats:
         sys.exit("Nessun cammino scaricato: non scrivo il file.")
