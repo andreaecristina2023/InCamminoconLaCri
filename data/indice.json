@@ -5,29 +5,36 @@
    "key": "santiago-spagna",
    "label": "Cammini di Santiago · Spagna",
    "file": "santiago-spagna.geojson",
-   "count": 98,
-   "mb": 8.55
+   "count": 97,
+   "mb": 8.37
   },
   {
    "key": "santiago-francia",
    "label": "Cammini di Santiago · Francia",
    "file": "santiago-francia.geojson",
-   "count": 218,
-   "mb": 5.39
+   "count": 222,
+   "mb": 5.6
   },
   {
    "key": "santiago-portogallo",
    "label": "Cammini di Santiago · Portogallo",
    "file": "santiago-portogallo.geojson",
-   "count": 36,
-   "mb": 2.84
+   "count": 37,
+   "mb": 2.87
   },
   {
    "key": "francigena",
    "label": "Via Francigena",
    "file": "francigena.geojson",
-   "count": 21,
-   "mb": 4.01
+   "count": 5,
+   "mb": 0.55
+  },
+  {
+   "key": "italia",
+   "label": "Cammini in Italia",
+   "file": "italia.geojson",
+   "count": 16,
+   "mb": 0.42
   }
  ]
 }
