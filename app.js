@@ -6,7 +6,9 @@ const $ = s => document.querySelector(s);
 const EP = ['https://overpass-api.de/api/interpreter', 'https://overpass.kumi.systems/api/interpreter'];
 const STEP_KM = 0.5;
 const PALETTE = ['#d6408f', '#17468c', '#2e8b57', '#8e44ad', '#c0392b', '#16a085', '#c9a000', '#5d6d7e'];
-const PRESET = /Franc[eé]s|Aragon[eé]s|Podiensis|Lemovicensis|Turonensis|Tolosana|del Norte|Primitivo|Portugu[eé]s|Ingl[eé]s|Fisterr|Finisterre|Mux[ií]a|Plata|Sanabr|Baztán|Vasco|Vézelay|Arles|Gebennensis/i;
+const PRESET = /Franc[eé]s|Aragon[eé]s|Podiensis|Lemovicensis|Turonensis|Tolosana|del Norte|Primitivo|Portugu[eé]s|Ingl[eé]s|Fisterr|Finisterre|Mux[ií]a|Plata|Sanabr|Baztán|Vasco|Vézelay|Arles|Gebennensis|Camino de Santiago|Cami[nñ]o de Santiago|Camino Mozárabe|Lebaniego|Invierno|Catal[aá]n|Levante|Saint-Jacques|Compostelle/i;
+const COLOR = new Map();   // un colore diverso per ogni cammino
+const colorOf = id => { if (!COLOR.has(id)) COLOR.set(id, `hsl(${Math.floor((COLOR.size * 137.508) % 360)},68%,42%)`); return COLOR.get(id); };
 const icon = (id, cls) => L.divIcon({ className: 'pin ' + cls, html: `<svg><use href="#${id}"/></svg>`, iconSize: [26, 26], iconAnchor: [13, 13] });
 
 const S = {
@@ -41,35 +43,102 @@ async function overpass(q) {
 }
 
 /* ---------- mappa ---------- */
-const map = L.map('map', { preferCanvas: true }).setView([43.5, -2.5], 6);
+const map = L.map('map', { renderer: L.canvas({ tolerance: 8 }) }).setView([43.5, -2.5], 6);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '© OpenStreetMap' }).addTo(map);
-const gNet = L.layerGroup().addTo(map), gRoute = L.layerGroup().addTo(map), gStops = L.layerGroup().addTo(map),
+const gOver = L.layerGroup().addTo(map), gNet = L.layerGroup().addTo(map), gRoute = L.layerGroup().addTo(map), gStops = L.layerGroup().addTo(map),
       gLodging = L.layerGroup().addTo(map), gPts = L.layerGroup().addTo(map);
 
 /* ---------- 1. elenco e selezione cammini ---------- */
-$('#btnList').onclick = async () => {
-  status('Cerco i cammini in OSM…');
+$('#btnList').onclick = () => searchRoutes(false);
+$('#btnListAll').onclick = () => searchRoutes(true);
+async function searchRoutes(broad) {
+  status('Cerco i cammini di Santiago in OSM…');
   try {
+    const rx = broad
+      ? 'Cami[nñ]o|Caminho|Chemin de (Saint|Compostelle)|Saint-Jacques|Via (de la Plata|Podiensis|Lemovicensis|Turonensis|Tolosana|Gebennensis)|Santiago|Compostelle|Fisterr|Finisterre|Mux[ií]a'
+      : PRESET.source;
+    // solo le relazioni "radice": si tolgono quelle che sono tappe/figlie di altre
     const q = `[out:json][timeout:90];
-rel["type"="route"]["route"~"^(hiking|foot)$"]["name"~"Cami[nñ]o|Caminho|Chemin de (Saint|Compostelle)|Saint-Jacques|Jakobsweg|Via (de la Plata|Podiensis|Lemovicensis|Turonensis|Tolosana|Gebennensis)|Santiago|Compostelle|Fisterr|Finisterre|Mux[ií]a"](35,-11,51.5,10);
+rel["type"="route"]["route"~"^(hiking|foot)$"]["name"~"${rx}",i](35,-11,51.5,10)->.all;
+(.all; - rel(r.all););
 out tags;`;
     const j = await overpass(q);
     S.routes = j.elements.map(e => ({ id: e.id, name: e.tags.name || ('relazione ' + e.id), ref: e.tags.ref || '', from: e.tags.from || '', to: e.tags.to || '' }))
       .sort((a, b) => a.name.localeCompare(b.name));
-    renderRoutes(); status(S.routes.length + ' relazioni trovate.');
+    S.routes.forEach(r => colorOf(r.id));
+    renderRoutes(); status(S.routes.length + ' cammini trovati. Carico la rete sulla mappa…');
+    await showOverview();
   } catch (e) { status('Errore: ' + e.message); }
-};
+}
 $('#filter').oninput = renderRoutes;
-$('#btnPreset').onclick = () => { S.routes.filter(r => PRESET.test(r.name)).forEach(r => S.chosen.add(r.id)); renderRoutes(); status(S.chosen.size + ' cammini selezionati.'); };
-$('#btnRelId').onclick = () => { const v = +$('#relId').value; if (!v) return; if (!S.routes.find(r => r.id === v)) S.routes.push({ id: v, name: 'Relazione ' + v, ref: '', from: '', to: '' }); S.chosen.add(v); renderRoutes(); };
+$('#btnPreset').onclick = () => { filteredRoutes().forEach(r => S.chosen.add(r.id)); renderRoutes(); restyleOver(); status(S.chosen.size + ' cammini selezionati.'); };
+$('#btnRelId').onclick = () => { const v = +$('#relId').value; if (!v) return; if (!S.routes.find(r => r.id === v)) S.routes.push({ id: v, name: 'Relazione ' + v, ref: '', from: '', to: '' }); S.chosen.add(v); renderRoutes(); restyleOver(); };
+function filteredRoutes() {
+  const f = $('#filter').value.trim().toLowerCase();
+  return S.routes.filter(r => !f || S.chosen.has(r.id) || (r.name + ' ' + r.ref + ' ' + r.from + ' ' + r.to).toLowerCase().includes(f));
+}
 function renderRoutes() {
-  const f = $('#filter').value.trim().toLowerCase(), ul = $('#routeList'); ul.innerHTML = '';
-  S.routes.filter(r => !f || S.chosen.has(r.id) || (r.name + ' ' + r.ref + ' ' + r.from + ' ' + r.to).toLowerCase().includes(f)).slice(0, 400).forEach(r => {
+  const ul = $('#routeList'); ul.innerHTML = '';
+  filteredRoutes().slice(0, 400).forEach(r => {
     const li = document.createElement('li');
-    li.innerHTML = `<label><input type="checkbox" ${S.chosen.has(r.id) ? 'checked' : ''}> <b>${esc(r.name)}</b> ${r.ref ? '(' + esc(r.ref) + ')' : ''}<br><span class="small">${esc(r.from)}${r.to ? ' → ' + esc(r.to) : ''} · OSM ${r.id}</span></label>`;
-    li.querySelector('input').onchange = e => { e.target.checked ? S.chosen.add(r.id) : S.chosen.delete(r.id); };
+    li.innerHTML = `<label><input type="checkbox" ${S.chosen.has(r.id) ? 'checked' : ''}> <span style="color:${colorOf(r.id)}">■</span> <b>${esc(r.name)}</b> ${r.ref ? '(' + esc(r.ref) + ')' : ''}<br><span class="small">${esc(r.from)}${r.to ? ' → ' + esc(r.to) : ''} · OSM ${r.id}</span></label>`;
+    li.querySelector('input').onchange = e => { e.target.checked ? S.chosen.add(r.id) : S.chosen.delete(r.id); restyleOver(); };
     ul.appendChild(li);
   });
+}
+
+/* ---------- anteprima di tutta la rete sulla mappa (tocca una linea per selezionarla) ---------- */
+S.over = new Map();   // id -> {name, ways (semplificati), layers}
+const decimate = w => { const out = [w[0]]; let last = w[0]; for (let i = 1; i < w.length - 1; i++) if (hav(last, w[i]) >= 0.15) { out.push(w[i]); last = w[i]; } out.push(w[w.length - 1]); return out; };
+const overStyle = id => S.chosen.has(id) ? { color: colorOf(id), weight: 6, opacity: 1 } : { color: colorOf(id), weight: 3, opacity: .6 };
+function restyleOver() {
+  for (const [id, o] of S.over) (o.layers || []).forEach(l => { l.setStyle(overStyle(id)); if (S.chosen.has(id)) l.bringToFront(); });
+}
+function drawOverview(list) {
+  gOver.clearLayers();
+  for (const r of list) {
+    const o = S.over.get(r.id); if (!o) continue; o.layers = [];
+    for (const w of o.ways) {
+      const l = L.polyline(w.map(p => [p.lat, p.lon]), overStyle(r.id)).addTo(gOver);
+      l.bindTooltip(r.name, { sticky: true });
+      l.on('click', () => {
+        S.chosen.has(r.id) ? S.chosen.delete(r.id) : S.chosen.add(r.id);
+        restyleOver(); renderRoutes();
+        status(`${r.name}: ${S.chosen.has(r.id) ? 'selezionato' : 'tolto'} (${S.chosen.size} selezionati)`);
+      });
+      o.layers.push(l);
+    }
+  }
+}
+$('#btnOverview').onclick = showOverview;
+async function showOverview() {
+  const list = filteredRoutes().slice(0, 400);
+  if (!list.length) { status('Prima cerca i cammini in OSM.'); return; }
+  const ids = list.filter(r => !S.over.has(r.id)).map(r => r.id);
+  try {
+    for (let i = 0; i < ids.length; i += 5) {
+      const ch = ids.slice(i, i + 5);
+      status(`Carico la rete sulla mappa ${Math.min(i + 5, ids.length)}/${ids.length}…`);
+      const j = await overpass(`[out:json][timeout:180];rel(id:${ch.join(',')})->.p;(.p;rel(r.p););out geom;`);
+      const byId = new Map(j.elements.map(e => [e.id, e]));
+      for (const id of ch) {
+        const p = byId.get(id); if (!p) continue;
+        const ways = waysOfTop(p, byId).map(decimate);
+        if (ways.length) S.over.set(id, { ways, layers: [] });
+      }
+      drawOverview(list);
+      if (i === 0 && S.over.size) { const all = []; for (const o of S.over.values()) o.ways.forEach(w => all.push([w[0].lat, w[0].lon])); map.fitBounds(all); }
+    }
+    drawOverview(list);
+    status(`${S.over.size} cammini sulla mappa. Tocca una linea (o spunta nell'elenco) per selezionarla, poi “Carica selezionati nella rete”.`);
+  } catch (e) { status('Errore: ' + e.message); }
+}
+function waysOfTop(p, byId) {
+  const group = [p, ...(p.members || []).filter(m => m.type === 'relation').map(m => byId.get(m.ref)).filter(Boolean)];
+  const ways = [], used = new Set();
+  for (const e of group) { if (used.has(e.id)) continue; used.add(e.id);
+    for (const m of e.members || []) if (m.type === 'way' && m.geometry) { const g = m.geometry.filter(Boolean); if (g.length > 1) ways.push(g); } }
+  return ways;
 }
 
 /* ---------- carico la rete ---------- */
@@ -94,6 +163,7 @@ async function loadChosen() {
       }
     }
     if (!S.tops.length) throw new Error('nessuna geometria trovata');
+    gOver.clearLayers();
     status('Costruisco la rete…'); await new Promise(r => setTimeout(r, 20));
     buildGraph(); renderPrefs(); drawNet();
     const km = G.adj.reduce((a, l) => a + l.reduce((s, e) => s + e.w, 0), 0) / 2;
@@ -180,7 +250,7 @@ function renderPrefs() {
   const ul = $('#prefList'); ul.innerHTML = '';
   S.tops.forEach((t, i) => {
     const li = document.createElement('li');
-    li.innerHTML = `<span style="color:${PALETTE[i % PALETTE.length]}">■</span> ${esc(t.name)}
+    li.innerHTML = `<span style="color:${colorOf(t.id)}">■</span> ${esc(t.name)}
       <select><option value="">neutro</option><option value="p" ${S.pref[t.id] === 'p' ? 'selected' : ''}>preferisci</option><option value="x" ${S.pref[t.id] === 'x' ? 'selected' : ''}>evita</option></select>`;
     li.querySelector('select').onchange = e => { if (e.target.value) S.pref[t.id] = e.target.value; else delete S.pref[t.id]; drawNet(); };
     ul.appendChild(li);
@@ -191,7 +261,7 @@ function drawNet() {
   gNet.clearLayers();
   S.tops.forEach((t, i) => {
     const p = S.pref[t.id];
-    t.ways.forEach(w => L.polyline(w.map(q => [q.lat, q.lon]), { color: p === 'x' ? '#999' : PALETTE[i % PALETTE.length], weight: p === 'p' ? 4 : 2, opacity: p === 'x' ? .35 : .7, dashArray: p === 'x' ? '4 6' : null, interactive: false }).addTo(gNet));
+    t.ways.forEach(w => L.polyline(w.map(q => [q.lat, q.lon]), { color: p === 'x' ? '#999' : colorOf(t.id), weight: p === 'p' ? 4 : 2, opacity: p === 'x' ? .35 : .7, dashArray: p === 'x' ? '4 6' : null, interactive: false }).addTo(gNet));
   });
 }
 
@@ -455,7 +525,7 @@ $('#btnShare').onclick = async () => {
 
 /* ---------- avvio da link condiviso ---------- */
 (async () => {
-  const h = new URLSearchParams(location.hash.slice(1)); if (!h.get('r')) return;
+  const h = new URLSearchParams(location.hash.slice(1)); if (!h.get('r')) { searchRoutes(false); return; }
   h.get('r').split(',').filter(Boolean).forEach(x => S.chosen.add(+x));
   S.routes = [...S.chosen].map(id => ({ id, name: 'Relazione ' + id, ref: '', from: '', to: '' })); renderRoutes();
   if (h.get('k')) { S.daily = +h.get('k'); $('#kmDay').value = S.daily; $('#kmLabel').textContent = S.daily; }
