@@ -24,18 +24,38 @@ jobs:
           python-version: "3.12"
       - name: Scarica i cammini da OpenStreetMap
         run: python3 scripts/build_geojson.py --ids "${{ github.event.inputs.ids }}"
+      - name: Copia dei dati come allegato (sicurezza)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dati-cammini
+          path: data/
+          if-no-files-found: warn
       - name: Salva nel repository
         if: always()
         run: |
+          set -u
+          echo "--- contenuto di data/ ---"; ls -la data || true
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A data
           if git diff --cached --quiet; then
-            echo "Nessuna modifica"
-          else
-            git commit -m "Aggiorna dati dei cammini"
-            for i in 1 2 3 4; do
-              git pull --rebase -X theirs origin "${GITHUB_REF_NAME}" && git push && break
-              echo "Tentativo $i fallito, riprovo…"; sleep 5
-            done
+            echo "Nessuna modifica rispetto al repository: niente da salvare."
+            exit 0
           fi
+          git status --short | head -20
+          git commit -m "Aggiorna dati dei cammini"
+          for i in 1 2 3 4 5; do
+            if git push origin HEAD:"${GITHUB_REF_NAME}"; then echo "Salvato nel repository."; exit 0; fi
+            echo "Push rifiutato (tentativo $i): il repository è cambiato, rifaccio il commit sopra l'ultima versione."
+            git fetch origin "${GITHUB_REF_NAME}"
+            rm -rf /tmp/nuovidati && cp -r data /tmp/nuovidati
+            git reset --hard "origin/${GITHUB_REF_NAME}"
+            rm -rf data && cp -r /tmp/nuovidati data
+            git add -A data
+            git diff --cached --quiet && { echo "Già aggiornato."; exit 0; }
+            git commit -m "Aggiorna dati dei cammini"
+            sleep 5
+          done
+          echo "ERRORE: impossibile salvare nel repository." >&2
+          exit 1
