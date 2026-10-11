@@ -75,23 +75,45 @@ L.control.layers(BASE, null, { position: 'topright', collapsed: true }).addTo(ma
 const gOver = L.layerGroup().addTo(map), gNet = L.layerGroup().addTo(map), gRoute = L.layerGroup().addTo(map), gStops = L.layerGroup().addTo(map),
       gLodging = L.layerGroup().addTo(map), gPts = L.layerGroup().addTo(map);
 
-/* ---------- dati statici: data/cammini.geojson (generato da GitHub Actions, senza Overpass) ---------- */
-S.geo = null;   // Map id -> {name, ref, from, to, ways}
+/* ---------- dati statici: data/<area>.geojson + data/indice.json (generati da GitHub Actions, senza Overpass) ---------- */
+S.geo = new Map();   // id -> {name, ref, from, to, group, area, ways}
+S.index = null;      // elenco dei file per area
+S.geoDate = '';
+S.areas = new Set(['santiago-spagna', 'santiago-francia', 'santiago-portogallo']);   // aree visibili (e caricate)
+const loadedFiles = new Set();
+function ingest(j) {
+  for (const f of j.features || []) {
+    const p = f.properties || {}, g = f.geometry; if (!g || !p.id) continue;
+    const lines = g.type === 'MultiLineString' ? g.coordinates : g.type === 'LineString' ? [g.coordinates] : [];
+    const ways = lines.map(l => l.map(([lon, lat]) => ({ lat, lon }))).filter(w => w.length > 1);
+    if (ways.length) S.geo.set(p.id, { name: p.name || ('relazione ' + p.id), ref: p.ref || '', from: p.from || '', to: p.to || '',
+      group: p.group || 'santiago', area: p.area || p.group || 'santiago', ways });
+  }
+}
+async function loadFile(file) {
+  if (loadedFiles.has(file)) return true;
+  try {
+    const r = await fetch('data/' + file); if (!r.ok) return false;
+    ingest(await r.json()); loadedFiles.add(file); return true;
+  } catch (e) { return false; }
+}
+const loadArea = key => { const e = S.index && S.index.areas.find(x => x.key === key); return e ? loadFile(e.file) : Promise.resolve(false); };
+const loadAllAreas = () => S.index ? Promise.all(S.index.areas.map(e => loadFile(e.file))) : Promise.resolve();
 const geoReady = (async () => {
   try {
-    const r = await fetch('data/cammini.geojson');
-    if (!r.ok) return false;
-    const j = await r.json(), m = new Map();
-    for (const f of j.features || []) {
-      const p = f.properties || {}, g = f.geometry; if (!g || !p.id) continue;
-      const lines = g.type === 'MultiLineString' ? g.coordinates : g.type === 'LineString' ? [g.coordinates] : [];
-      const ways = lines.map(l => l.map(([lon, lat]) => ({ lat, lon }))).filter(w => w.length > 1);
-      if (ways.length) m.set(p.id, { name: p.name || ('relazione ' + p.id), ref: p.ref || '', from: p.from || '', to: p.to || '', group: p.group || 'santiago', ways });
-    }
-    if (!m.size) return false;
-    S.geo = m; S.geoDate = j.generated || ''; return true;
-  } catch (e) { return false; }
+    const r = await fetch('data/indice.json');
+    if (r.ok) { S.index = await r.json(); S.geoDate = S.index.generated || ''; await Promise.all([...S.areas].map(loadArea)); }
+    else await loadFile('cammini.geojson');          // vecchio file unico
+  } catch (e) { await loadFile('cammini.geojson'); }
+  return S.geo.size > 0;
 })();
+// ricostruisce l'elenco dai dati caricati (le relazioni aggiunte a mano per ID restano)
+function syncRoutes() {
+  const manual = S.routes.filter(r => !S.geo.has(r.id));
+  S.routes = [...S.geo].map(([id, g]) => ({ id, name: g.name, ref: g.ref, from: g.from, to: g.to, group: g.group, area: g.area }))
+    .sort((x, y) => x.name.localeCompare(y.name)).concat(manual);
+  S.routes.forEach(r => colorOf(r.id));
+}
 
 /* ---------- 1. elenco e selezione cammini ---------- */
 $('#btnList').onclick = () => searchRoutes(false);
@@ -99,9 +121,8 @@ $('#btnListAll').onclick = () => searchRoutes(true);
 async function searchRoutes(broad) {
   status('Cerco i cammini di Santiago…');
   await geoReady;
-  if (S.geo && !broad) {
-    S.routes = [...S.geo].map(([id, g]) => ({ id, name: g.name, ref: g.ref, from: g.from, to: g.to, group: g.group })).sort((x, y) => x.name.localeCompare(y.name));
-    S.routes.forEach(r => colorOf(r.id));
+  if (S.geo.size && !broad) {
+    syncRoutes();
     renderRoutes(); status(S.routes.length + ' cammini (dati ' + (S.geoDate || 'locali') + '). Carico la rete sulla mappa…');
     await showOverview(); return;
   }
@@ -125,14 +146,17 @@ out tags;`;
 $('#filter').oninput = renderRoutes;
 $('#btnPreset').onclick = () => { filteredRoutes().forEach(r => S.chosen.add(r.id)); renderRoutes(); restyleOver(); status(S.chosen.size + ' cammini selezionati.'); };
 $('#btnRelId').onclick = () => { const v = +$('#relId').value; if (!v) return; if (!S.routes.find(r => r.id === v)) S.routes.push({ id: v, name: 'Relazione ' + v, ref: '', from: '', to: '' }); S.chosen.add(v); renderRoutes(); restyleOver(); };
-S.groups = new Set(['santiago']);   // gruppi visibili: santiago | francigena | italia
-document.querySelectorAll('input[data-grp]').forEach(cb => cb.onchange = () => {
-  cb.checked ? S.groups.add(cb.dataset.grp) : S.groups.delete(cb.dataset.grp);
+document.querySelectorAll('input[data-grp]').forEach(cb => cb.onchange = async () => {
+  const k = cb.dataset.grp;
+  if (cb.checked) { S.areas.add(k); status('Carico i dati…'); await geoReady; await loadArea(k); syncRoutes(); }
+  else S.areas.delete(k);
   renderRoutes(); showOverview();
 });
+const areaVisible = r => S.chosen.has(r.id) || S.areas.has(r.area || 'santiago') ||
+  ((r.area === 'santiago') && [...S.areas].some(x => x.startsWith('santiago')));   // vecchio file unico
 function filteredRoutes() {
   const f = $('#filter').value.trim().toLowerCase();
-  return S.routes.filter(r => (S.chosen.has(r.id) || S.groups.has(r.group || 'santiago')) && (!f || S.chosen.has(r.id) || (r.name + ' ' + r.ref + ' ' + r.from + ' ' + r.to).toLowerCase().includes(f)));
+  return S.routes.filter(r => areaVisible(r) && (!f || S.chosen.has(r.id) || (r.name + ' ' + r.ref + ' ' + r.from + ' ' + r.to).toLowerCase().includes(f)));
 }
 function renderRoutes() {
   const ul = $('#routeList'); ul.innerHTML = '';
@@ -172,7 +196,7 @@ async function showOverview() {
   const list = filteredRoutes().slice(0, 400);
   if (!list.length) { status('Prima cerca i cammini in OSM.'); return; }
   await geoReady;
-  if (S.geo) {
+  if (S.geo.size) {
     for (const r of list) { const g = S.geo.get(r.id); if (g && !S.over.has(r.id)) S.over.set(r.id, { ways: g.ways.map(decimate), layers: [] }); }
     const all = []; for (const r of list) { const o = S.over.get(r.id); if (o) o.ways.forEach(w => all.push([w[0].lat, w[0].lon])); } if (all.length) map.fitBounds(all);
   }
@@ -595,6 +619,7 @@ $('#btnShare').onclick = async () => {
   S.routes = [...S.chosen].map(id => ({ id, name: 'Relazione ' + id, ref: '', from: '', to: '' })); renderRoutes();
   if (h.get('k')) { S.daily = +h.get('k'); $('#kmDay').value = S.daily; $('#kmLabel').textContent = S.daily; }
   (h.get('f') || '').split(',').filter(Boolean).forEach(x => { S.pref[x.slice(0, -1)] = x.slice(-1); });
+  await geoReady; await loadAllAreas();
   await loadChosen();
   (h.get('p') || '').split('~').filter(Boolean).forEach(x => { const [role, lat, lon, name] = x.split(':'); S.pts.push({ role, lat: +lat, lon: +lon, name: decodeURIComponent(name || '') }); });
   renderPts(); if (S.pts.length >= 2) computeRoute();

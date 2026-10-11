@@ -11,18 +11,27 @@ Sito statico per pianificare itinerari sui Cammini di Santiago, anche combinando
 
 Nessuna build: tutto gira nel browser.
 
-## Dati dei cammini: `data/cammini.geojson`
+## Dati dei cammini: cartella `data/`
 
-Il sito legge i cammini da `data/cammini.geojson` nel repository: nessuna chiamata a OpenStreetMap dal browser, quindi niente più "Failed to fetch". Se il file manca, il sito ripiega sulle richieste dirette a Overpass.
+Il sito legge i cammini da file statici nel repository: nessuna chiamata a OpenStreetMap dal browser, quindi niente "Failed to fetch". I dati sono divisi per area, e il sito carica solo le aree spuntate:
 
-Il file si genera con GitHub Actions (GitHub scarica i dati da OSM, non il tuo telefono):
+| File | Contenuto |
+|---|---|
+| `santiago-spagna.geojson`, `santiago-francia.geojson`, `santiago-portogallo.geojson` | cammini di Santiago (caricati all'apertura) |
+| `francigena.geojson` | Via Francigena (da Canterbury alla Puglia) |
+| `italia.geojson` | altri cammini in Italia |
+| `indice.json` | elenco dei file, creato dallo script |
+
+Un cammino di Santiago va nel file della zona in cui cade il centro del suo percorso (assegnazione approssimata).
+
+I file si generano con GitHub Actions (GitHub scarica i dati da OSM, non il tuo telefono):
 
 1. Carica nel repository `scripts/build_geojson.py` e `.github/workflows/genera-geojson.yml` (stesse cartelle).
 2. Repository → **Settings → Actions → General → Workflow permissions** → **Read and write permissions** → Save.
-3. Scheda **Actions** → "Genera GeoJSON dei cammini" → **Run workflow**. Dopo qualche minuto compare `data/cammini.geojson`.
-4. Si aggiorna da solo il 1° di ogni mese; per forzarlo ripeti il punto 3.
+3. Scheda **Actions** → "Genera GeoJSON dei cammini" → **Run workflow**. Ogni lancio dura al massimo 35 minuti e salva quanto scaricato; i lanci successivi riprendono da dove si era arrivati.
+4. Si aggiorna da solo il 1° di ogni mese.
 
-Da computer puoi anche eseguirlo in locale: `python3 scripts/build_geojson.py` (opzione `--broad` per la ricerca larga).
+Da computer: `python3 scripts/build_geojson.py` (opzioni `--broad`, `--fresh`, `--max-minutes N`, `--out cartella`).
 
 ## Come si usa
 

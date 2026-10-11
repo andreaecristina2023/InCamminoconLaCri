@@ -9,7 +9,7 @@ Uso:
 
 Solo libreria standard di Python. Dati © contributori di OpenStreetMap (ODbL).
 """
-import argparse, datetime, json, os, socket, sys, time, urllib.parse, urllib.request
+import argparse, datetime, glob, json, os, socket, sys, time, urllib.parse, urllib.request
 
 # i runner di GitHub spesso non hanno IPv6: forza IPv4
 _gai = socket.getaddrinfo
@@ -148,36 +148,80 @@ def make_feature(parent, by_id, group="santiago"):
     }
 
 
-def save(path, feats):
-    feats = sorted(feats.values(), key=lambda f: f["properties"]["name"])
-    doc = {"type": "FeatureCollection",
-           "generated": datetime.date.today().isoformat(),
-           "attribution": "© contributori di OpenStreetMap (ODbL)",
-           "features": feats}
-    os.makedirs(os.path.dirname(os.path.abspath(path)), exist_ok=True)
-    with open(path, "w", encoding="utf-8") as fh:
-        json.dump(doc, fh, ensure_ascii=False, separators=(",", ":"))
-    return os.path.getsize(path) / 1e6
+LABELS = {
+    "santiago-spagna": "Cammini di Santiago · Spagna",
+    "santiago-francia": "Cammini di Santiago · Francia",
+    "santiago-portogallo": "Cammini di Santiago · Portogallo",
+    "francigena": "Via Francigena",
+    "italia": "Cammini in Italia",
+}
+
+
+def area_of(f):
+    """File/area geografica di un cammino: i cammini di Santiago si assegnano dal centro del riquadro che li contiene."""
+    g = f["properties"].get("group", "santiago")
+    if g != "santiago":
+        return g
+    pts = [c for line in f["geometry"]["coordinates"] for c in line]
+    lons, lats = [c[0] for c in pts], [c[1] for c in pts]
+    clon, clat = (min(lons) + max(lons)) / 2, (min(lats) + max(lats)) / 2
+    if clat > 43.1 and clon > -1.7:
+        return "santiago-francia"
+    if clon < -6.3 and clat < 42.3:
+        return "santiago-portogallo"
+    return "santiago-spagna"
+
+
+def save(outdir, feats):
+    """Scrive un file per area (data/<area>.geojson) e l'indice data/indice.json."""
+    os.makedirs(outdir, exist_ok=True)
+    by_area = {}
+    for f in feats.values():
+        f["properties"]["area"] = area_of(f)
+        by_area.setdefault(f["properties"]["area"], []).append(f)
+    today = datetime.date.today().isoformat()
+    index, written = [], set()
+    for key in LABELS:
+        fl = sorted(by_area.get(key, []), key=lambda f: f["properties"]["name"])
+        if not fl:
+            continue
+        path = os.path.join(outdir, key + ".geojson")
+        doc = {"type": "FeatureCollection", "generated": today,
+               "attribution": "© contributori di OpenStreetMap (ODbL)", "features": fl}
+        with open(path, "w", encoding="utf-8") as fh:
+            json.dump(doc, fh, ensure_ascii=False, separators=(",", ":"))
+        written.add(os.path.abspath(path))
+        index.append({"key": key, "label": LABELS[key], "file": key + ".geojson",
+                      "count": len(fl), "mb": round(os.path.getsize(path) / 1e6, 2)})
+    with open(os.path.join(outdir, "indice.json"), "w", encoding="utf-8") as fh:
+        json.dump({"generated": today, "areas": index}, fh, ensure_ascii=False, indent=1)
+    for p in glob.glob(os.path.join(outdir, "*.geojson")):   # via i file vecchi (compreso cammini.geojson)
+        if os.path.abspath(p) not in written:
+            os.remove(p)
+    return sum(e["mb"] for e in index)
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--broad", action="store_true", help="ricerca larga (molte relazioni)")
-    ap.add_argument("--out", default=os.path.join(os.path.dirname(__file__), "..", "data", "cammini.geojson"))
+    ap.add_argument("--out", default=os.path.join(os.path.dirname(__file__), "..", "data"),
+                    help="cartella dei dati (un file .geojson per area)")
     ap.add_argument("--max-minutes", type=float, default=35, help="tempo massimo; poi salva quanto scaricato")
     ap.add_argument("--fresh", action="store_true", help="ignora il file esistente e riscarica tutto")
     a = ap.parse_args()
     DEADLINE[0] = time.time() + a.max_minutes * 60
 
-    # riprende dal file esistente: i cammini già presenti non si riscaricano
+    # riprende dai file esistenti: i cammini già presenti non si riscaricano
     feats = {}
-    if os.path.exists(a.out) and not a.fresh:
-        try:
-            for f in json.load(open(a.out, encoding="utf-8"))["features"]:
-                feats[f["properties"]["id"]] = f
-            print(f"Riprendo: {len(feats)} cammini già nel file", flush=True)
-        except Exception as e:  # noqa: BLE001
-            print("File esistente non leggibile, riparto da zero:", e, flush=True)
+    if not a.fresh:
+        for p in glob.glob(os.path.join(a.out, "*.geojson")):
+            try:
+                for f in json.load(open(p, encoding="utf-8"))["features"]:
+                    feats[f["properties"]["id"]] = f
+            except Exception as e:  # noqa: BLE001
+                print(f"File {p} non leggibile, lo ignoro: {e}", flush=True)
+        if feats:
+            print(f"Riprendo: {len(feats)} cammini già nei file", flush=True)
 
     print("Cerco le relazioni…", flush=True)
     roots, grp_of = [], {}
@@ -242,7 +286,7 @@ def main():
     if not skipped and time.time() < DEADLINE[0] and len(ids) > 20:
         feats = {k: v for k, v in feats.items() if k in set(ids)}   # lavoro completo: via i residui obsoleti
     mb = save(a.out, feats)
-    print(f"Scritto {a.out}: {len(feats)} cammini su {len(ids)}, {mb:.1f} MB; saltati {len(skipped)}", flush=True)
+    print(f"Scritti i file in {a.out}: {len(feats)} cammini su {len(ids)}, {mb:.1f} MB in totale; saltati {len(skipped)}", flush=True)
 
 
 if __name__ == "__main__":

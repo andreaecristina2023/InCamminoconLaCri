@@ -24,10 +24,13 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/cammini.geojson
+          git add -A data
           if git diff --cached --quiet; then
             echo "Nessuna modifica"
           else
-            git commit -m "Aggiorna data/cammini.geojson"
-            git push
+            git commit -m "Aggiorna dati dei cammini"
+            for i in 1 2 3 4; do
+              git pull --rebase -X theirs origin "${GITHUB_REF_NAME}" && git push && break
+              echo "Tentativo $i fallito, riprovo…"; sleep 5
+            done
           fi
