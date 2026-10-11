@@ -9,12 +9,19 @@ Uso:
 
 Solo libreria standard di Python. Dati © contributori di OpenStreetMap (ODbL).
 """
-import argparse, datetime, json, os, sys, time, urllib.parse, urllib.request
+import argparse, datetime, json, os, socket, sys, time, urllib.parse, urllib.request
+
+# i runner di GitHub spesso non hanno IPv6: forza IPv4
+_gai = socket.getaddrinfo
+socket.getaddrinfo = lambda h, p, f=0, *a, **k: _gai(h, p, socket.AF_INET, *a, **k)
 
 ENDPOINTS = [
     "https://overpass-api.de/api/interpreter",
+    "https://z.overpass-api.de/api/interpreter",
+    "https://lz4.overpass-api.de/api/interpreter",
     "https://overpass.kumi.systems/api/interpreter",
     "https://overpass.private.coffee/api/interpreter",
+    "https://overpass.osm.ch/api/interpreter",
 ]
 BBOX = "35,-11,51.5,10"   # Penisola iberica + Francia occidentale e meridionale
 
@@ -48,12 +55,14 @@ def overpass(query, tries=3):
 
 
 def list_roots(rx):
-    # solo le relazioni "radice": si tolgono quelle che sono tappe/figlie di altre
+    # query leggera (solo tag e membri); le relazioni "radice" si distinguono qui:
+    # si tolgono quelle che sono membri di un'altra relazione trovata (tappe/figlie)
     q = f"""[out:json][timeout:120];
-rel["type"="route"]["route"~"^(hiking|foot)$"]["name"~"{rx}"]({BBOX})->.all;
-(.all; - rel(r.all););
-out tags;"""
-    return overpass(q)["elements"]
+rel["type"="route"]["route"~"^(hiking|foot)$"]["name"~"{rx}"]({BBOX});
+out body;"""
+    els = overpass(q)["elements"]
+    children = {m["ref"] for e in els for m in e.get("members", []) if m["type"] == "relation"}
+    return [e for e in els if e["id"] not in children]
 
 
 def fetch_geom(ids):
