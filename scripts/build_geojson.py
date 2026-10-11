@@ -28,7 +28,8 @@ BBOX = "35,-11,51.5,10"   # Penisola iberica + Francia occidentale e meridionale
 NAMES = ("Franc[eé]s|Aragon[eé]s|Podiensis|Lemovicensis|Turonensis|Tolosana|del Norte|Primitivo|"
          "Portugu[eé]s|Ingl[eé]s|Fisterr|Finisterre|Mux[ií]a|de la Plata|Sanabr|Baztán|Vasco|Vézelay|"
          "Arles|Gebennensis|Camino de Santiago|Cami[nñ]o de Santiago|Mozárabe|Lebaniego|Invierno|"
-         "Catal[aá]n|Levante|Saint-Jacques|Compostelle")
+         "Catal[aá]n|Levante|Saint-Jacques|Compostelle|"
+         "Caminho (de Santiago|Portugu|Central|Interior|da Costa|Nascente|Torres)|Cami[nñ]o Portugu|Xacob|Via da Prata")
 BROAD = ("Cami[nñ]o|Caminho|Chemin de (Saint|Compostelle)|Saint-Jacques|"
          "Via (de la Plata|Podiensis|Lemovicensis|Turonensis|Tolosana|Gebennensis)|"
          "Santiago|Compostelle|Fisterr|Finisterre|Mux[ií]a")
