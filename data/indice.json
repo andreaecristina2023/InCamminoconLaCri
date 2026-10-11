@@ -5,15 +5,15 @@
    "key": "santiago-spagna",
    "label": "Cammini di Santiago · Spagna",
    "file": "santiago-spagna.geojson",
-   "count": 142,
-   "mb": 10.33
+   "count": 138,
+   "mb": 10.14
   },
   {
    "key": "santiago-francia",
    "label": "Cammini di Santiago · Francia",
    "file": "santiago-francia.geojson",
-   "count": 227,
-   "mb": 6.49
+   "count": 240,
+   "mb": 6.54
   },
   {
    "key": "santiago-portogallo",
