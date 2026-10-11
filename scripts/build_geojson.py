@@ -34,15 +34,20 @@ BROAD = ("Cami[nñ]o|Caminho|Chemin de (Saint|Compostelle)|Saint-Jacques|"
          "Santiago|Compostelle|Fisterr|Finisterre|Mux[ií]a")
 
 
-def overpass(query, tries=3):
+DEADLINE = [None]
+
+
+def overpass(query, tries=2):
     errs = []
     for t in range(tries):
         for ep in ENDPOINTS:
+            if DEADLINE[0] and time.time() > DEADLINE[0]:
+                raise TimeoutError("tempo massimo raggiunto")
             try:
                 req = urllib.request.Request(
                     ep, data=urllib.parse.urlencode({"data": query}).encode(),
                     headers={"User-Agent": "InCamminoConLaCri-geojson/1.0"})
-                with urllib.request.urlopen(req, timeout=240) as r:
+                with urllib.request.urlopen(req, timeout=100) as r:
                     j = json.load(r)
                 if j.get("elements") or "remark" not in j:
                     return j
@@ -50,7 +55,7 @@ def overpass(query, tries=3):
             except Exception as e:  # noqa: BLE001
                 errs.append(f"{ep}: {e}")
         print(f"  tentativo {t + 1}/{tries} fallito ({errs[-1][:160]}), riprovo…", file=sys.stderr, flush=True)
-        time.sleep(15 * (t + 1))
+        time.sleep(8 * (t + 1))
     raise RuntimeError("Overpass non risponde: " + " | ".join(errs[-4:]))
 
 
@@ -66,7 +71,7 @@ out body;"""
 
 
 def fetch_geom(ids):
-    q = (f"[out:json][timeout:240];rel(id:{','.join(map(str, ids))})->.p;"
+    q = (f"[out:json][timeout:90];rel(id:{','.join(map(str, ids))})->.p;"
          "(.p;rel(r.p););out geom;")
     return overpass(q)["elements"]
 
@@ -116,52 +121,83 @@ def make_feature(parent, by_id):
     }
 
 
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--broad", action="store_true", help="ricerca larga (molte relazioni)")
-    ap.add_argument("--out", default=os.path.join(os.path.dirname(__file__), "..", "data", "cammini.geojson"))
-    a = ap.parse_args()
-
-    print("Cerco le relazioni…", flush=True)
-    roots = list_roots(BROAD if a.broad else NAMES)
-    ids = sorted(e["id"] for e in roots)
-    print(f"  trovate {len(ids)} relazioni radice")
-
-    feats = []
-    for i in range(0, len(ids), 3):
-        chunk = ids[i:i + 3]
-        print(f"  geometrie {min(i + 3, len(ids))}/{len(ids)}")
-        try:
-            els = fetch_geom(chunk)
-        except Exception as e:  # noqa: BLE001
-            print(f"  gruppo fallito ({str(e)[:120]}), provo uno alla volta", flush=True)
-            els = []
-            for rid in chunk:
-                try:
-                    els += fetch_geom([rid])
-                except Exception as e2:  # noqa: BLE001
-                    print(f"  SALTATO {rid}: {str(e2)[:120]}", flush=True)
-                time.sleep(5)
-        by_id = {e["id"]: e for e in els}
-        for rid in chunk:
-            if rid in by_id:
-                f = make_feature(by_id[rid], by_id)
-                if f:
-                    feats.append(f)
-        time.sleep(5)
-
-    if not feats:
-        sys.exit("Nessun cammino scaricato: non scrivo il file.")
-    feats.sort(key=lambda f: f["properties"]["name"])
+def save(path, feats):
+    feats = sorted(feats.values(), key=lambda f: f["properties"]["name"])
     doc = {"type": "FeatureCollection",
            "generated": datetime.date.today().isoformat(),
            "attribution": "© contributori di OpenStreetMap (ODbL)",
            "features": feats}
-    os.makedirs(os.path.dirname(os.path.abspath(a.out)), exist_ok=True)
-    with open(a.out, "w", encoding="utf-8") as fh:
+    os.makedirs(os.path.dirname(os.path.abspath(path)), exist_ok=True)
+    with open(path, "w", encoding="utf-8") as fh:
         json.dump(doc, fh, ensure_ascii=False, separators=(",", ":"))
-    mb = os.path.getsize(a.out) / 1e6
-    print(f"Scritto {a.out}: {len(feats)} cammini, {mb:.1f} MB")
+    return os.path.getsize(path) / 1e6
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--broad", action="store_true", help="ricerca larga (molte relazioni)")
+    ap.add_argument("--out", default=os.path.join(os.path.dirname(__file__), "..", "data", "cammini.geojson"))
+    ap.add_argument("--max-minutes", type=float, default=35, help="tempo massimo; poi salva quanto scaricato")
+    ap.add_argument("--fresh", action="store_true", help="ignora il file esistente e riscarica tutto")
+    a = ap.parse_args()
+    DEADLINE[0] = time.time() + a.max_minutes * 60
+
+    # riprende dal file esistente: i cammini già presenti non si riscaricano
+    feats = {}
+    if os.path.exists(a.out) and not a.fresh:
+        try:
+            for f in json.load(open(a.out, encoding="utf-8"))["features"]:
+                feats[f["properties"]["id"]] = f
+            print(f"Riprendo: {len(feats)} cammini già nel file", flush=True)
+        except Exception as e:  # noqa: BLE001
+            print("File esistente non leggibile, riparto da zero:", e, flush=True)
+
+    print("Cerco le relazioni…", flush=True)
+    roots = list_roots(BROAD if a.broad else NAMES)
+    prio = {"iwn": 0, "nwn": 1, "rwn": 2}   # prima i percorsi a lunga distanza
+    roots.sort(key=lambda e: (prio.get(e.get("tags", {}).get("network"), 3), e["id"]))
+    ids = [e["id"] for e in roots]
+    todo = [i for i in ids if i not in feats]
+    print(f"  trovate {len(ids)} relazioni radice, da scaricare {len(todo)}", flush=True)
+
+    skipped = []
+    n = 0
+    try:
+        for i in range(0, len(todo), 2):
+            chunk = todo[i:i + 2]
+            print(f"  geometrie {min(i + 2, len(todo))}/{len(todo)}", flush=True)
+            try:
+                els = fetch_geom(chunk)
+            except TimeoutError:
+                raise
+            except Exception as e:  # noqa: BLE001
+                print(f"  gruppo fallito ({str(e)[:100]}), provo uno alla volta", flush=True)
+                els = []
+                for rid in chunk:
+                    try:
+                        els += fetch_geom([rid])
+                    except TimeoutError:
+                        raise
+                    except Exception as e2:  # noqa: BLE001
+                        skipped.append(rid)
+                        print(f"  SALTATO {rid}: {str(e2)[:100]}", flush=True)
+            by_id = {e["id"]: e for e in els}
+            for rid in chunk:
+                if rid in by_id:
+                    f = make_feature(by_id[rid], by_id)
+                    if f:
+                        feats[rid] = f
+            n += 1
+            if n % 10 == 0 and feats:
+                print(f"  salvataggio intermedio: {len(feats)} cammini, {save(a.out, feats):.1f} MB", flush=True)
+            time.sleep(3)
+    except TimeoutError:
+        print("Tempo massimo raggiunto: salvo quanto scaricato (rilancia per continuare).", flush=True)
+
+    if not feats:
+        sys.exit("Nessun cammino scaricato: non scrivo il file.")
+    mb = save(a.out, feats)
+    print(f"Scritto {a.out}: {len(feats)} cammini su {len(ids)}, {mb:.1f} MB; saltati {len(skipped)}", flush=True)
 
 
 if __name__ == "__main__":
