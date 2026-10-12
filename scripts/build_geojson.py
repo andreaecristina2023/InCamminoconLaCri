@@ -374,6 +374,7 @@ def main():
     print(f"  trovate {len(ids)} relazioni radice, da scaricare {len(todo)}", flush=True)
 
     skipped = []
+    timed_out = False   # True se il tempo massimo è finito prima di scaricare tutto
     n = 0
     try:
         for i in range(0, len(todo), 2):
@@ -405,6 +406,7 @@ def main():
                 print(f"  salvataggio intermedio: {len(feats)} cammini, {save(a.out, feats):.1f} MB", flush=True)
             time.sleep(3)
     except TimeoutError:
+        timed_out = True
         print("Tempo massimo raggiunto: salvo quanto scaricato (rilancia per continuare).", flush=True)
 
     if not feats:
@@ -428,6 +430,14 @@ def main():
             os.remove(p)
             print(f"Tolto il file della vecchia area: {os.path.basename(p)}", flush=True)
     print(f"Scritti i file in {a.out}: {len(feats)} cammini su {len(ids)}, {mb:.1f} MB in totale; saltati {len(skipped)}", flush=True)
+    # dice al workflow se il lavoro è finito: se no, lui si rilancia da solo (riprende da quanto già salvato)
+    complete = not failed and not skipped and not timed_out
+    print("COMPLETO: tutti i cammini sono stati scaricati." if complete
+          else "INCOMPLETO: serve un'altra corsa (riprende da dove è arrivato).", flush=True)
+    gh_out = os.environ.get("GITHUB_OUTPUT")
+    if gh_out:
+        with open(gh_out, "a", encoding="utf-8") as fh:
+            fh.write(f"complete={'true' if complete else 'false'}\n")
     if failed:
         # i dati sono salvati (niente è andato perso), ma l'Action diventa rossa così te ne accorgi
         sys.exit(f"Ricerca fallita per i gruppi: {', '.join(failed)}. Rilancia l'Action.")

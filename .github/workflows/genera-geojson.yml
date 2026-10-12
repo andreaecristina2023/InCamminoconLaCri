@@ -7,11 +7,24 @@ on:
         description: "ID relazioni OSM da aggiungere (opzionale, separati da virgola)"
         required: false
         default: ""
+      tentativo:
+        description: "Numero del tentativo (lo imposta da solo il workflow quando si rilancia; lascia 1)"
+        required: false
+        default: "1"
   schedule:
     - cron: "0 4 1 * *"       # aggiornamento automatico il 1° di ogni mese
 
 permissions:
   contents: write
+  actions: write              # serve per rilanciarsi da solo
+
+# una sola corsa alla volta: la corsa che si rilancia da sola aspetta che questa finisca
+concurrency:
+  group: genera-geojson
+  cancel-in-progress: false
+
+env:
+  MAX_TENTATIVI: "8"          # dopo tanti tentativi smette di rilanciarsi (evita cicli infiniti)
 
 jobs:
   build:
@@ -23,7 +36,10 @@ jobs:
         with:
           python-version: "3.12"
       - name: Scarica i cammini da OpenStreetMap
-        run: python3 scripts/build_geojson.py --ids "${{ github.event.inputs.ids }}"
+        id: build
+        env:
+          IDS: ${{ github.event.inputs.ids }}
+        run: python3 scripts/build_geojson.py --ids "$IDS"
       - name: Copia dei dati come allegato (sicurezza)
         if: always()
         uses: actions/upload-artifact@v4
@@ -59,3 +75,20 @@ jobs:
           done
           echo "ERRORE: impossibile salvare nel repository." >&2
           exit 1
+      # Se lo script non ha finito (tempo scaduto, server OSM che non rispondono, cammini saltati)
+      # il workflow si rilancia da solo: riparte da quanto è già stato salvato qui sopra.
+      - name: Rilancia se il lavoro non è finito
+        if: always() && steps.build.outputs.complete != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          IDS: ${{ github.event.inputs.ids }}
+          TENTATIVO: ${{ github.event.inputs.tentativo }}
+        run: |
+          n="${TENTATIVO:-1}"
+          if [ "$n" -ge "$MAX_TENTATIVI" ]; then
+            echo "Raggiunti $MAX_TENTATIVI tentativi senza finire: mi fermo. Controlla i log e rilancia a mano." >&2
+            exit 1
+          fi
+          next=$((n + 1))
+          echo "Lavoro non finito: rilancio il workflow (tentativo $next di $MAX_TENTATIVI)."
+          gh workflow run "${{ github.workflow }}" --ref "$GITHUB_REF_NAME" -f ids="$IDS" -f tentativo="$next"
