@@ -229,9 +229,11 @@ def save(outdir, feats):
                       "count": len(fl), "mb": round(os.path.getsize(path) / 1e6, 2)})
     with open(os.path.join(outdir, "indice.json"), "w", encoding="utf-8") as fh:
         json.dump({"generated": today, "areas": index}, fh, ensure_ascii=False, indent=1)
-    for p in glob.glob(os.path.join(outdir, "*.geojson")):   # via i file vecchi (compreso cammini.geojson)
-        if os.path.abspath(p) not in written:
-            os.remove(p)
+    # si toglie solo il vecchio file unico: i file delle aree non si cancellano mai da qui,
+    # altrimenti una ricerca andata male farebbe sparire un'intera area dal sito
+    legacy = os.path.abspath(os.path.join(outdir, "cammini.geojson"))
+    if os.path.exists(legacy) and legacy not in written:
+        os.remove(legacy)
     return sum(e["mb"] for e in index)
 
 
@@ -260,6 +262,7 @@ def main():
 
     print("Cerco le relazioni…", flush=True)
     roots, grp_of = [], {}
+    failed = []   # gruppi la cui ricerca è fallita: i loro cammini già salvati NON vanno toccati
     for key, bbox, rx, net, jac in GROUPS:
         rx = rx or (BROAD if a.broad else NAMES)
         try:
@@ -268,6 +271,7 @@ def main():
             raise
         except Exception as e:  # noqa: BLE001
             print(f"  gruppo {key}: ricerca fallita ({str(e)[:100]}), salto", flush=True)
+            failed.append(key)
             continue
         new = [e for e in found if e["id"] not in grp_of]
         for e in new:
@@ -323,10 +327,22 @@ def main():
 
     if not feats:
         sys.exit("Nessun cammino scaricato: non scrivo il file.")
-    if not skipped and time.time() < DEADLINE[0] and len(ids) > 20:
-        feats = {k: v for k, v in feats.items() if k in set(ids)}   # lavoro completo: via i residui obsoleti
+    # Si tolgono i cammini che OSM non elenca più SOLO se tutto è andato bene (nessuna ricerca fallita,
+    # nessun salto, tempo non scaduto) e se non ne sparirebbe una parte grande: un elenco incompleto
+    # restituito da Overpass non deve cancellare cammini buoni.
+    idset = set(ids)
+    if not skipped and not failed and time.time() < DEADLINE[0] and len(ids) > 20:
+        gone = [k for k in feats if k not in idset]
+        if len(gone) > 0.2 * len(feats):
+            print(f"ATTENZIONE: sparirebbero {len(gone)} cammini su {len(feats)}: elenco di OSM probabilmente "
+                  "incompleto, NON li tolgo.", flush=True)
+        else:
+            feats = {k: v for k, v in feats.items() if k in idset}   # via i residui obsoleti
     mb = save(a.out, feats)
     print(f"Scritti i file in {a.out}: {len(feats)} cammini su {len(ids)}, {mb:.1f} MB in totale; saltati {len(skipped)}", flush=True)
+    if failed:
+        # i dati sono salvati (niente è andato perso), ma l'Action diventa rossa così te ne accorgi
+        sys.exit(f"Ricerca fallita per i gruppi: {', '.join(failed)}. Rilancia l'Action.")
 
 
 if __name__ == "__main__":
