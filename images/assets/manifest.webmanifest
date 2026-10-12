@@ -1,7 +1,8 @@
 {
   "name": "In Cammino con La Cri",
   "short_name": "In Cammino",
-  "start_url": "../index.html",
+  "start_url": "/InCamminoconLaCri/index.html", 
+  "scope": "/InCamminoconLaCri/",
   "display": "standalone",
   "background_color": "#d5d9dd",
   "theme_color": "#1e4aa0",
