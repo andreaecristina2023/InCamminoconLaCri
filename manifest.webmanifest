@@ -1,19 +1,19 @@
 {
   "name": "In Cammino con La Cri",
   "short_name": "In Cammino",
-  "start_url": "/InCamminoconLaCri/index.html", 
+  "start_url": "/InCamminoconLaCri/index.html",
   "scope": "/InCamminoconLaCri/",
   "display": "standalone",
   "background_color": "#d5d9dd",
   "theme_color": "#1e4aa0",
   "icons": [
     {
-      "src": "icon-192.png",
+      "src": "/InCamminoconLaCri/images/assets/icon-192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "icon-512.png",
+      "src": "/InCamminoconLaCri/images/assets/icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
