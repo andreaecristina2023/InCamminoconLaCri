@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="it">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Carica cammini in JOSM</title>
+  <link rel="icon" href="images/assets/favicon/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="images/assets/favicon/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="images/assets/favicon/apple-touch-icon.png">
+  <meta name="theme-color" content="#1e4aa0">
+  <style>
+    :root {
+      --blu: #1e4aa0; --rosa: #d6408f; --sfondo: #d5d9dd; --carta: #fff; --testo: #1d2430;
+      --tenue: #5b6573; --linea: #c9d0d8; --ok: #1f7a46; --ko: #b3261e;
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body { margin: 0; background: var(--sfondo); color: var(--testo); font: 16px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+    header { background: var(--blu); color: #fff; padding: 14px 16px; border-bottom: 4px solid var(--rosa); }
+    header h1 { margin: 0; font-size: 1.25rem; }
+    header p { margin: 2px 0 0; font-size: .875rem; opacity: .85; }
+    main { max-width: 760px; margin: 0 auto; padding: 16px; }
+
+    .passi { display: flex; gap: 6px; list-style: none; margin: 0 0 14px; padding: 0; }
+    .passi li { flex: 1; text-align: center; font-size: .8rem; color: var(--tenue); padding: 6px 4px; border-bottom: 3px solid var(--linea); }
+    .passi li.fatto { color: var(--blu); border-color: var(--blu); }
+    .passi li.attivo { color: var(--testo); font-weight: 700; border-color: var(--rosa); }
+
+    .passo { display: none; background: var(--carta); border-radius: 10px; padding: 16px; box-shadow: 0 1px 3px rgba(0, 0, 0, .12); }
+    .passo.attivo { display: block; }
+    h2 { margin: 0 0 6px; font-size: 1.1rem; }
+    p.nota, .nota { color: var(--tenue); font-size: .875rem; margin: 4px 0 10px; }
+    .riga { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+    .riga.fine { justify-content: space-between; margin-top: 16px; }
+
+    button { font: inherit; padding: 9px 14px; border-radius: 8px; border: 1px solid var(--linea); background: #f3f5f7; color: var(--testo); cursor: pointer; }
+    button:hover:not(:disabled) { background: #e8ecf0; }
+    button.primario { background: var(--blu); border-color: var(--blu); color: #fff; }
+    button.primario:hover:not(:disabled) { background: #173a80; }
+    button:disabled { opacity: .45; cursor: not-allowed; }
+    button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid var(--rosa); outline-offset: 2px; }
+    input[type=text], input[type=search], select { font: inherit; padding: 8px 10px; border: 1px solid var(--linea); border-radius: 8px; width: 100%; background: #fff; }
+
+    .stato { display: inline-block; padding: 3px 10px; border-radius: 99px; font-size: .85rem; background: #eef1f4; color: var(--tenue); }
+    .stato:empty { display: none; }
+    .stato.ok { background: #dff3e7; color: var(--ok); }
+    .stato.ko { background: #fbe4e2; color: var(--ko); }
+
+    .voci { display: grid; gap: 8px; margin: 10px 0; }
+    .voce { display: flex; gap: 10px; align-items: center; padding: 10px 12px; border: 1px solid var(--linea); border-radius: 8px; cursor: pointer; }
+    .voce:hover { background: #f5f7f9; }
+    .voce input { margin: 0; accent-color: var(--blu); width: 18px; height: 18px; }
+    .voce small { color: var(--tenue); margin-left: auto; white-space: nowrap; }
+    .voce.sel { border-color: var(--blu); background: #eef3fb; }
+
+    ul.elenco { list-style: none; margin: 8px 0; padding: 0; max-height: 52vh; overflow: auto; border: 1px solid var(--linea); border-radius: 8px; }
+    ul.elenco li { padding: 7px 10px; border-bottom: 1px solid #eef1f4; }
+    ul.elenco li:last-child { border-bottom: 0; }
+    ul.elenco label { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; }
+    ul.elenco input { margin-top: 4px; accent-color: var(--blu); width: 17px; height: 17px; flex: none; }
+    ul.elenco .meta { color: var(--tenue); font-size: .8rem; }
+
+    .opz { display: grid; gap: 10px; margin: 10px 0; }
+    .opz label { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; }
+    .opz input { margin-top: 4px; accent-color: var(--blu); width: 17px; height: 17px; flex: none; }
+
+    #log { margin: 10px 0; padding: 10px; background: #12171f; color: #d6dde6; border-radius: 8px; font: .8rem/1.5 ui-monospace, Menlo, Consolas, monospace; max-height: 220px; overflow: auto; white-space: pre-wrap; }
+    #log:empty { display: none; }
+    #log .e { color: #ff9b94; }
+    #log .o { color: #86e0a8; }
+    textarea { width: 100%; min-height: 110px; font: .78rem/1.4 ui-monospace, Menlo, Consolas, monospace; border: 1px solid var(--linea); border-radius: 8px; padding: 8px; }
+    details { margin: 10px 0; }
+    summary { cursor: pointer; color: var(--blu); }
+    ol.guida { margin: 8px 0 0; padding-left: 20px; color: var(--tenue); font-size: .9rem; }
+    footer { max-width: 760px; margin: 0 auto; padding: 4px 16px 24px; color: var(--tenue); font-size: .78rem; }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Carica cammini in JOSM</h1>
+    <p>Scegli la voce, scegli i cammini, e arrivano in JOSM già pronti da correggere.</p>
+  </header>
+
+  <main>
+    <ol class="passi" id="passi">
+      <li>1 · JOSM</li>
+      <li>2 · Voce</li>
+      <li>3 · Cammini</li>
+      <li>4 · Invia</li>
+    </ol>
+
+    <!-- 1. collegamento a JOSM -->
+    <section class="passo" id="p1">
+      <h2>1 · Collega JOSM</h2>
+      <p class="nota">Serve solo per l'<b>invio diretto</b>: JOSM deve essere aperto sul tuo computer, con il controllo remoto attivo.
+        La pagina gli parla solo da questo browser, i dati non passano da nessun server. Se preferisci incollare la query a mano
+        in JOSM, salta questo passo e premi Continua.</p>
+      <div class="riga">
+        <button class="primario" id="btnJosm">Controlla JOSM</button>
+        <span class="stato" id="statoJosm">non controllato</span>
+      </div>
+      <details>
+        <summary>Come si attiva il controllo remoto</summary>
+        <ol class="guida">
+          <li>In JOSM apri <b>Preferenze</b> (tasto F12) → <b>Controllo remoto</b>.</li>
+          <li>Spunta <b>Abilita il controllo remoto</b> e lascia la porta 8111.</li>
+          <li>Abilita le voci per <b>caricare dati / oggetti</b> e per <b>importare dati da URL</b>.</li>
+          <li>Riavvia JOSM se te lo chiede. Alla prima richiesta JOSM mostra una finestra di conferma: accettala.</li>
+          <li>Usa Chrome, Edge o Firefox: Safari blocca le richieste verso il computer locale.</li>
+        </ol>
+      </details>
+      <div class="riga fine">
+        <span></span>
+        <button class="primario" data-vai="2">Continua →</button>
+      </div>
+    </section>
+
+    <!-- 2. voce -->
+    <section class="passo" id="p2">
+      <h2>2 · Che cosa vuoi caricare?</h2>
+      <p class="nota">Le voci sono le aree dei dati del sito. Oppure cerca un cammino per nome direttamente su OpenStreetMap.</p>
+      <div class="voci" id="voci"></div>
+      <div class="riga fine">
+        <button data-vai="1">← Indietro</button>
+        <button class="primario" id="btnVoce" disabled>Continua →</button>
+      </div>
+    </section>
+
+    <!-- 3. cammini (da elenco) oppure ricerca per nome -->
+    <section class="passo" id="p3">
+      <div id="p3dati">
+        <h2 id="titoloVoce">3 · Scegli i cammini</h2>
+        <div class="riga">
+          <input type="search" id="filtro" placeholder="Filtra per nome, sigla o località…" aria-label="Filtra i cammini">
+        </div>
+        <div class="riga">
+          <button id="btnTutti">Seleziona i visibili</button>
+          <button id="btnNessuno">Deseleziona tutto</button>
+          <span class="nota" id="conta"></span>
+        </div>
+        <ul class="elenco" id="elenco"></ul>
+      </div>
+      <div id="p3nome" hidden>
+        <h2>3 · Cerca per nome su OpenStreetMap</h2>
+        <p class="nota">Il nome può essere una parte (es. “Francigena” o “Romea Strata”): si cerca senza distinguere maiuscole.</p>
+        <div class="riga"><input type="text" id="nome" placeholder="Nome del cammino" aria-label="Nome del cammino"></div>
+        <div class="riga">
+          <select id="zona" aria-label="Zona di ricerca">
+            <option value="34,-11,61,32">Tutta Europa</option>
+            <option value="35.5,6.5,47.2,18.8">Italia</option>
+            <option value="35,-10,44,4.5">Spagna e Portogallo</option>
+            <option value="41,-5.5,51.5,10">Francia</option>
+            <option value="45.7,5.9,48,10.6">Svizzera</option>
+            <option value="46.3,9.5,49.1,17.2">Austria</option>
+            <option value="47.2,5.8,55.1,15.1">Germania</option>
+            <option value="49.8,-6.5,55.9,2">Inghilterra</option>
+          </select>
+        </div>
+      </div>
+      <div class="riga fine">
+        <button data-vai="2">← Indietro</button>
+        <button class="primario" id="btnCammini">Continua →</button>
+      </div>
+    </section>
+
+    <!-- 4. invio -->
+    <section class="passo" id="p4">
+      <h2>4 · Invia a JOSM</h2>
+      <p class="nota" id="riepilogo"></p>
+      <div class="opz" id="opzDati">
+        <label><input type="radio" name="livelli" value="uno" checked>
+          <span><b>Tutti in un livello</b><br><span class="nota">Un solo livello di dati con tutti i cammini scelti.</span></span></label>
+        <label><input type="radio" name="livelli" value="molti">
+          <span><b>Un livello per ogni cammino</b><br><span class="nota">Più comodo per correggerli uno alla volta (attenzione se sono tanti).</span></span></label>
+        <label><input type="checkbox" id="membri" checked>
+          <span><b>Scarica anche tutti i tratti</b><br><span class="nota">Senza questa spunta arriva solo la relazione, vuota.</span></span></label>
+      </div>
+      <div class="riga">
+        <button class="primario" id="btnInvia">Invia a JOSM</button>
+        <span class="stato" id="statoInvio"></span>
+      </div>
+      <div id="log" role="log" aria-live="polite"></div>
+      <details>
+        <summary>Se non parte: copia i comandi</summary>
+        <p class="nota">Ogni riga è un indirizzo che JOSM capisce. Incollala nella barra del browser mentre JOSM è aperto.</p>
+        <textarea id="comandi" readonly></textarea>
+        <div class="riga"><button id="btnCopia">Copia i comandi</button></div>
+      </details>
+      <details open>
+        <summary>Oppure: query Overpass da incollare in JOSM (non serve il controllo remoto)</summary>
+        <ol class="guida">
+          <li>Copia la query qui sotto.</li>
+          <li>In JOSM: <b>File → Scarica da Overpass API…</b></li>
+          <li>Incolla la query nella casella e premi <b>Scarica</b>: i cammini arrivano in un nuovo livello.</li>
+        </ol>
+        <textarea id="query" readonly style="margin-top:8px"></textarea>
+        <div class="riga"><button class="primario" id="btnCopiaQuery">Copia la query</button></div>
+      </details>
+      <div class="riga fine">
+        <button data-vai="3">← Indietro</button>
+        <span></span>
+      </div>
+    </section>
+  </main>
+
+  <footer>Dati © contributori di <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (ODbL).
+    Parla con JOSM tramite il suo <a href="https://josm.openstreetmap.de/wiki/Help/RemoteControlCommands">controllo remoto</a>.</footer>
+
+  <script>
+    'use strict';
+    const $ = s => document.querySelector(s);
+    const BASI = ['http://127.0.0.1:8111', 'https://127.0.0.1:8112'];   // porta normale e porta HTTPS di JOSM
+    const PRIMA = ['francigena', 'romea'];                               // queste voci vanno in cima all'elenco
+    const PAUSA = 450;                                                   // ms tra una richiesta e l'altra
+    const BLOCCO = 40;                                                   // relazioni per richiesta (indirizzi non troppo lunghi)
+
+    const S = { passo: 1, base: BASI[0], aree: [], voce: null, cammini: [], scelti: new Set(), indiceOk: false };
+
+    /* ---------- utilità ---------- */
+    const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    const norm = s => String(s ?? '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+    const pausa = ms => new Promise(r => setTimeout(r, ms));
+    function stato(el, testo, tipo) { el.textContent = testo; el.className = 'stato' + (tipo ? ' ' + tipo : ''); }
+    function log(t, tipo) { const d = document.createElement('div'); if (tipo) d.className = tipo; d.textContent = t; $('#log').appendChild(d); $('#log').scrollTop = 1e9; }
+
+    /* ---------- passi ---------- */
+    function vai(n) {
+      S.passo = n;
+      document.querySelectorAll('.passo').forEach((el, i) => el.classList.toggle('attivo', i + 1 === n));
+      document.querySelectorAll('#passi li').forEach((el, i) => { el.classList.toggle('attivo', i + 1 === n); el.classList.toggle('fatto', i + 1 < n); });
+      if (n === 4) preparaInvio();
+      window.scrollTo({ top: 0 });
+    }
+    document.addEventListener('click', e => { const b = e.target.closest('[data-vai]'); if (b) vai(+b.dataset.vai); });
+
+    /* ---------- 1. JOSM ---------- */
+    async function controllaJosm() {
+      stato($('#statoJosm'), 'controllo…');
+      for (const base of BASI) {
+        try {
+          const r = await fetch(base + '/version', { cache: 'no-store' });
+          const j = await r.json();
+          S.base = base; stato($('#statoJosm'), 'JOSM ' + (j.version || '') + ' collegato', 'ok'); return true;
+        } catch (e) { /* prova la risposta "cieca" qui sotto */ }
+        try {
+          await fetch(base + '/version', { mode: 'no-cors', cache: 'no-store' });
+          S.base = base; stato($('#statoJosm'), 'JOSM risponde', 'ok'); return true;
+        } catch (e) { /* prossima porta */ }
+      }
+      stato($('#statoJosm'), 'JOSM non risponde: è aperto? il controllo remoto è attivo?', 'ko');
+      return false;
+    }
+    $('#btnJosm').onclick = controllaJosm;
+
+    /* ---------- 2. voci (aree dei dati del sito) ---------- */
+    async function caricaIndice() {
+      try {
+        const r = await fetch('data/indice.json', { cache: 'no-cache' });
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        const j = await r.json();
+        S.aree = (j.areas || []).slice().sort((a, b) => {
+          const ia = PRIMA.indexOf(a.key), ib = PRIMA.indexOf(b.key);
+          return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib) || a.label.localeCompare(b.label);
+        });
+        S.indiceOk = true;
+      } catch (e) { S.aree = []; S.indiceOk = false; }
+      disegnaVoci();
+    }
+    function disegnaVoci() {
+      const box = $('#voci'); box.innerHTML = '';
+      const aggiungi = (valore, titolo, nota) => {
+        const l = document.createElement('label'); l.className = 'voce';
+        l.innerHTML = `<input type="radio" name="voce" value="${esc(valore)}"> <b>${esc(titolo)}</b><small>${esc(nota || '')}</small>`;
+        l.querySelector('input').onchange = () => {
+          S.voce = valore; $('#btnVoce').disabled = false;
+          box.querySelectorAll('.voce').forEach(x => x.classList.toggle('sel', x === l));
+        };
+        box.appendChild(l);
+      };
+      S.aree.forEach(a => aggiungi(a.key, a.label, a.count + (a.count === 1 ? ' cammino' : ' cammini')));
+      aggiungi('@nome', 'Cerca per nome su OpenStreetMap', 'qualsiasi cammino');
+      if (!S.indiceOk) {
+        const p = document.createElement('p'); p.className = 'nota';
+        p.textContent = 'I dati del sito (data/indice.json) non si sono caricati: puoi comunque cercare per nome.';
+        box.prepend(p);
+      }
+    }
+    $('#btnVoce').onclick = async () => {
+      if (S.voce === '@nome') { $('#p3dati').hidden = true; $('#p3nome').hidden = false; vai(3); return; }
+      $('#p3dati').hidden = false; $('#p3nome').hidden = true;
+      const area = S.aree.find(a => a.key === S.voce);
+      $('#titoloVoce').textContent = '3 · Scegli i cammini · ' + (area ? area.label : '');
+      $('#elenco').innerHTML = '<li class="meta">Carico l’elenco…</li>';
+      vai(3);
+      try {
+        const r = await fetch('data/' + area.file, { cache: 'no-cache' });
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        const j = await r.json();
+        S.cammini = (j.features || []).map(f => f.properties).filter(p => p && p.id)
+          .map(p => ({ id: p.id, nome: p.name || ('relazione ' + p.id), ref: p.ref || '', da: p.from || '', a: p.to || '' }))
+          .sort((x, y) => x.nome.localeCompare(y.nome) || x.id - y.id);
+      } catch (e) { S.cammini = []; $('#elenco').innerHTML = '<li class="meta">Impossibile leggere i dati: ' + esc(e.message) + '</li>'; return; }
+      S.scelti = new Set(); $('#filtro').value = ''; disegnaElenco();
+    };
+
+    /* ---------- 3. elenco cammini ---------- */
+    function visibili() {
+      const t = norm($('#filtro').value.trim());
+      return S.cammini.filter(c => !t || norm([c.nome, c.ref, c.da, c.a, c.id].join(' ')).includes(t));
+    }
+    function disegnaElenco() {
+      const ul = $('#elenco'); ul.innerHTML = '';
+      const lista = visibili();
+      lista.forEach(c => {
+        const li = document.createElement('li');
+        li.innerHTML = `<label><input type="checkbox" ${S.scelti.has(c.id) ? 'checked' : ''}>
+          <span><b>${esc(c.nome)}</b>${c.ref ? ' (' + esc(c.ref) + ')' : ''}<br>
+          <span class="meta">${esc(c.da)}${c.a ? ' → ' + esc(c.a) : ''}${c.da || c.a ? ' · ' : ''}OSM ${c.id}</span></span></label>`;
+        li.querySelector('input').onchange = e => { e.target.checked ? S.scelti.add(c.id) : S.scelti.delete(c.id); conta(); };
+        ul.appendChild(li);
+      });
+      if (!lista.length) ul.innerHTML = '<li class="meta">Nessun cammino corrisponde.</li>';
+      conta();
+    }
+    function conta() {
+      $('#conta').textContent = S.scelti.size + ' scelti su ' + S.cammini.length + ' · mostrati ' + visibili().length;
+    }
+    $('#filtro').oninput = disegnaElenco;
+    $('#btnTutti').onclick = () => { visibili().forEach(c => S.scelti.add(c.id)); disegnaElenco(); };
+    $('#btnNessuno').onclick = () => { S.scelti.clear(); disegnaElenco(); };
+    $('#btnCammini').onclick = () => {
+      if (S.voce === '@nome') { if (!$('#nome').value.trim()) { $('#nome').focus(); return; } }
+      else if (!S.scelti.size) { $('#conta').textContent = 'Scegli almeno un cammino.'; return; }
+      vai(4);
+    };
+
+    /* ---------- comandi per JOSM ---------- */
+    // https://josm.openstreetmap.de/wiki/Help/RemoteControlCommands
+    // i parametri si codificano con %20 (non "+"): è così che JOSM legge gli spazi
+    const qs = o => Object.entries(o).map(([k, v]) => k + '=' + encodeURIComponent(v)).join('&');
+    function cmdCarica(ids, nomeLivello, nuovo, membri) {
+      return S.base + '/load_object?' + qs({
+        objects: ids.map(i => 'r' + i).join(','), new_layer: String(nuovo),
+        relation_members: String(membri), layer_name: nomeLivello
+      });
+    }
+    function queryNome(nome, zona) {
+      const rx = nome.trim().replace(/[\\"]/g, '\\$&');
+      return `[out:xml][timeout:180];rel["type"="route"]["route"~"^(hiking|foot)$"]["name"~"${rx}",i](${zona});(._;>>;);out meta;`;
+    }
+    function cmdImporta(nome, zona) {
+      const url = 'https://overpass-api.de/api/interpreter?data=' + encodeURIComponent(queryNome(nome, zona));
+      return S.base + '/import?' + qs({ url, new_layer: 'true', layer_name: nome.trim() });
+    }
+    function costruisciComandi() {
+      if (S.voce === '@nome') return [cmdImporta($('#nome').value, $('#zona').value)];
+      const membri = $('#membri').checked, molti = document.querySelector('input[name=livelli]:checked').value === 'molti';
+      const area = S.aree.find(a => a.key === S.voce), scelti = S.cammini.filter(c => S.scelti.has(c.id));
+      if (molti) return scelti.map(c => cmdCarica([c.id], c.nome, true, membri));
+      const out = [];
+      for (let i = 0; i < scelti.length; i += BLOCCO) {
+        out.push(cmdCarica(scelti.slice(i, i + BLOCCO).map(c => c.id), (area ? area.label : 'Cammini'), i === 0, membri));
+      }
+      return out;
+    }
+
+    /* ---------- 4. invio ---------- */
+    function preparaInvio() {
+      const nome = S.voce === '@nome';
+      $('#opzDati').hidden = nome;
+      $('#riepilogo').textContent = nome
+        ? 'Cerca “' + $('#nome').value.trim() + '” su OpenStreetMap e carica il risultato in un nuovo livello.'
+        : S.scelti.size + (S.scelti.size === 1 ? ' cammino' : ' cammini') + ' da “' + ((S.aree.find(a => a.key === S.voce) || {}).label || '') + '”.';
+      aggiornaComandi();
+    }
+    // stessa scelta, ma come query Overpass da incollare nella finestra "Scarica da Overpass API" di JOSM
+    function costruisciQuery() {
+      if (S.voce === '@nome') return queryNome($('#nome').value, $('#zona').value);
+      const ids = S.cammini.filter(c => S.scelti.has(c.id)).map(c => c.id);
+      const corpo = $('#membri').checked ? '(._;>>;);' : '';   // >> = relazione → tratti → nodi, anche nelle sotto-relazioni
+      return `[out:xml][timeout:180];\nrel(id:${ids.join(',')});\n${corpo}\nout meta;`.replace('\n\n', '\n');
+    }
+    function aggiornaComandi() { $('#comandi').value = costruisciComandi().join('\n'); $('#query').value = costruisciQuery(); }
+    document.addEventListener('change', e => { if (e.target.matches('#opzDati input')) aggiornaComandi(); });
+
+    $('#btnInvia').onclick = async () => {
+      const cmds = costruisciComandi(), btn = $('#btnInvia');
+      $('#log').innerHTML = ''; btn.disabled = true; stato($('#statoInvio'), 'invio…');
+      let ok = 0;
+      for (let i = 0; i < cmds.length; i++) {
+        try {
+          await fetch(cmds[i], { mode: 'no-cors', cache: 'no-store' });
+          ok++; log(`✓ richiesta ${i + 1}/${cmds.length} inviata`, 'o');
+        } catch (e) {
+          log(`✗ richiesta ${i + 1}/${cmds.length} non partita: ${e.message}`, 'e');
+          log('JOSM è aperto con il controllo remoto attivo? Il browser potrebbe aver bloccato l’accesso al computer locale: prova “Copia i comandi”.', 'e');
+          break;
+        }
+        await pausa(PAUSA);
+      }
+      btn.disabled = false;
+      stato($('#statoInvio'), ok === cmds.length ? 'Fatto: guarda JOSM' : ok + ' su ' + cmds.length + ' inviate', ok === cmds.length ? 'ok' : 'ko');
+    };
+    function copiaDa(campo, bottone, etichetta) {
+      return async () => {
+        try { await navigator.clipboard.writeText($(campo).value); $(bottone).textContent = 'Copiato ✓'; }
+        catch (e) { $(campo).select(); }
+        setTimeout(() => { $(bottone).textContent = etichetta; }, 1800);
+      };
+    }
+    $('#btnCopia').onclick = copiaDa('#comandi', '#btnCopia', 'Copia i comandi');
+    $('#btnCopiaQuery').onclick = copiaDa('#query', '#btnCopiaQuery', 'Copia la query');
+
+    /* ---------- avvio ---------- */
+    vai(1); caricaIndice(); controllaJosm();
+  </script>
+</body>
+
+</html>
