@@ -32,8 +32,9 @@ NAMES = ("Franc[eé]s|Aragon[eé]s|Podiensis|Lemovicensis|Turonensis|Tolosana|de
          "Caminho (de Santiago|Portugu|Central|Interior|da Costa|Nascente|Torres)|Cami[nñ]o Portugu|Xacob|Via da Prata|"
          "Augusta|Salvador|Vadiniense|Cam[ií] (de Sant Jaume|Jacobeu|Ignasi)|Sant Jaume|Jacobeu|V[eé]zelay|"
          "Voie (de V[eé]zelay|de Tours|du Pi[eé]mont|des Pi[eé]monts|de Soulac|de Gen[eè]ve|du Puy|d.Arles|de Rocamadour|du Littoral|Limousine|Tolosane|Podiense)|"
-         "Pi[eé]mont Pyr[eé]n|Soulac|Rocamadour")
-BROAD = ("Cami[nñ]o|Caminho|Chemin de (Saint|Compostelle)|Saint-Jacques|"
+         "Pi[eé]mont Pyr[eé]n|Soulac|Rocamadour|"
+         "Jakob|Jacobus|Jacobi|Sint-Jacob|St\\.? James|Saint James")   # Germania, Austria, Svizzera, Inghilterra: il nome non contiene "Santiago"
+BROAD =("Cami[nñ]o|Caminho|Chemin de (Saint|Compostelle)|Saint-Jacques|"
          "Via (de la Plata|Podiensis|Lemovicensis|Turonensis|Tolosana|Gebennensis)|"
          "Santiago|Compostelle|Fisterr|Finisterre|Mux[ií]a")
 
@@ -69,8 +70,13 @@ JACOB = "Santiago|Xacob|Jacob|Jakob|Compostel|Jacques|Giacomo|Sant.?Iago"
 # gruppi di cammini: (chiave, area "sud,ovest,nord,est", regex nome, filtro network, cerca anche per descrizione)
 GROUPS = [
     ("santiago", BBOX, None, None, True),        # regex scelta da --broad/NAMES
-    ("francigena", "39,-1,52.6,19",
-     "Francigena|Via Romea|Romea (Germanica|Strata|Nonantolana)|Via Francigena", None, False),
+    ("santiago", "49.8,-10.7,60.9,2.0", None, None, True),   # Regno Unito e Irlanda
+    ("santiago", "45.4,10,55.5,24", None, None, True),       # Europa centrale e orientale (oltre il riquadro principale)
+    ("santiago", "51.4,2.0,55.5,10.1", None, None, True),    # Benelux e Germania nord-occidentale (il vuoto tra i riquadri sopra)
+    # Via Francigena e Via Romea sono aree a sé (non per paese): la Francigena viene prima, così un
+    # cammino che porta entrambi i nomi resta lì
+    ("francigena", "39,-1,52.6,19", "Francigena|Via Francigena", None, False),
+    ("romea", "40,5,54.5,20", "Via Romea|Romea (Germanica|Strata|Nonantolana|del Chianti)|Romea", None, False),
     ("italia", "36,6.5,47.2,18.8",
      "Cammino|Via (degli Dei|Appia|Traiana|Lauretana|Micaelica|Flaminia|Postumia|Francesca|Sacra|Clodia|Aurelia|Romea|Salaria)|"
      "Sentiero Italia|Sentiero Roma|Francesco|Benedetto|Sant.Antonio|Sant.Agostino|Dante|Assisi|Materano|Celeste|Balteo",
@@ -183,27 +189,95 @@ def make_feature(parent, by_id, group="santiago"):
 
 
 LABELS = {
-    "santiago-spagna": "Cammini di Santiago · Spagna",
-    "santiago-francia": "Cammini di Santiago · Francia",
-    "santiago-portogallo": "Cammini di Santiago · Portogallo",
+    "spagna": "Spagna",
+    "italia": "Italia",
+    "portogallo": "Portogallo",
+    "francia": "Francia",
+    "svizzera": "Svizzera",
+    "inghilterra": "Inghilterra",
+    "germania": "Germania",
+    "austria": "Austria",
     "francigena": "Via Francigena",
-    "italia": "Cammini in Italia",
+    "romea": "Via Romea",
+    "europa": "Altri paesi",
 }
+THEMES = ("francigena", "romea")   # aree per cammino, non per paese: contano il gruppo e non i contorni
+
+# Contorni GROSSOLANI dei paesi, (lon, lat): servono solo a capire in che paese cade un cammino.
+# Fuori da tutti i contorni = "europa" (Galles, Scozia, Irlanda, Belgio, Olanda, ecc.).
+# Dove i contorni si sovrappongono vale l'ordine dell'elenco: vince il primo.
+# Il paese di un cammino è quello in cui cade la maggior parte dei suoi punti.
+COUNTRIES = [
+    ("portogallo", [[(-9.5, 37.0), (-7.4, 37.2), (-7.4, 38.2), (-6.9, 39.0), (-7.2, 39.7), (-6.8, 40.3), (-6.9, 41.0),
+                     (-6.2, 41.6), (-6.6, 41.9), (-7.2, 41.9), (-8.1, 42.1), (-8.85, 41.87), (-9.0, 41.0), (-9.5, 38.7)]]),
+    ("spagna", [[(-9.3, 43.2), (-8.0, 43.8), (-1.8, 43.4), (-1.4, 43.0), (0.7, 42.8), (1.7, 42.5), (3.2, 42.4), (3.4, 41.8),
+                 (0.9, 41.0), (-0.3, 39.5), (-0.7, 38.2), (-1.9, 36.9), (-4.4, 36.6), (-5.6, 36.0), (-6.4, 36.8), (-7.4, 37.2),
+                 (-7.4, 38.2), (-6.9, 39.0), (-7.2, 39.7), (-6.8, 40.3), (-6.9, 41.0), (-6.2, 41.6), (-6.6, 41.9), (-7.2, 41.9),
+                 (-8.1, 42.1), (-8.85, 41.87), (-9.3, 43.0)],
+                [(1.1, 38.6), (4.4, 38.6), (4.4, 40.2), (1.1, 40.2)]]),          # Baleari
+    ("francia", [[(-5.1, 48.4), (-1.6, 49.7), (2.5, 51.1), (4.2, 50.0), (6.4, 49.5), (8.2, 49.0), (7.6, 47.6), (6.9, 47.35),
+                  (6.0, 46.2), (7.0, 45.9), (7.0, 44.4), (7.7, 43.8), (6.0, 43.1), (3.1, 43.2), (3.2, 42.4), (1.7, 42.5),
+                  (0.7, 42.8), (-1.4, 43.0), (-1.8, 43.4), (-1.2, 45.6), (-2.2, 47.2), (-4.5, 47.8)],
+                 [(8.5, 41.3), (9.7, 41.3), (9.7, 43.1), (8.5, 43.1)]]),          # Corsica
+    ("svizzera", [[(6.0, 46.2), (6.9, 47.35), (7.6, 47.6), (8.6, 47.8), (9.6, 47.5), (10.5, 46.9), (10.4, 46.5), (9.0, 45.8),
+                   (8.4, 46.1), (7.0, 45.9)]]),
+    ("italia", [[(7.0, 44.1), (7.0, 45.9), (8.4, 46.1), (9.0, 45.8), (10.4, 46.5), (12.2, 47.1), (13.8, 46.6), (13.9, 45.6),
+                 (13.6, 44.5), (18.7, 40.0), (18.0, 39.7), (17.2, 38.5), (16.0, 37.8), (15.6, 38.3), (15.0, 40.0), (12.0, 41.5),
+                 (10.2, 43.0), (8.8, 44.1)],
+                [(12.3, 36.6), (15.7, 36.6), (15.7, 38.3), (12.3, 38.3)],          # Sicilia
+                [(8.1, 38.8), (9.9, 38.8), (9.9, 41.3), (8.1, 41.3)]]),            # Sardegna
+    ("austria", [[(9.53, 47.05), (9.62, 47.55), (10.45, 47.55), (10.9, 47.5), (11.6, 47.58), (12.2, 47.7), (12.8, 47.65),
+                  (13.05, 47.75), (12.95, 48.1), (13.45, 48.35), (13.84, 48.77), (14.7, 48.6), (15.0, 49.0), (16.0, 48.75),
+                  (16.95, 48.6), (17.1, 48.0), (17.1, 47.7), (16.1, 46.85), (15.7, 46.7), (15.0, 46.65), (14.5, 46.4),
+                  (13.7, 46.5), (12.4, 46.7), (12.2, 47.1), (11.5, 47.0), (10.9, 46.77), (10.45, 46.85), (10.15, 46.9)]]),
+    ("germania", [[(6.0, 50.8), (6.0, 51.9), (6.7, 52.5), (7.2, 53.25), (8.0, 53.7), (8.9, 54.0), (8.6, 54.9), (9.4, 54.85),
+                   (10.0, 54.45), (10.9, 54.0), (12.0, 54.2), (13.8, 54.1), (14.2, 53.9), (14.4, 53.3), (14.55, 52.6),
+                   (14.75, 52.1), (15.0, 51.55), (14.95, 51.0), (14.3, 50.9), (13.5, 50.7), (12.2, 50.3), (12.5, 50.1),
+                   (13.0, 49.9), (12.4, 49.6), (13.2, 49.1), (13.84, 48.77), (13.45, 48.35), (12.95, 48.1), (13.05, 47.75),
+                   (12.8, 47.65), (12.2, 47.7), (11.6, 47.58), (10.9, 47.5), (10.45, 47.55), (9.62, 47.55), (9.2, 47.65),
+                   (8.6, 47.65), (7.55, 47.58), (7.58, 48.0), (7.8, 48.6), (8.2, 49.0), (7.3, 49.15), (6.4, 49.45),
+                   (6.35, 49.85), (6.2, 50.5)]]),
+    # solo l'Inghilterra (Galles e Scozia restano in "Altri paesi")
+    ("inghilterra", [[(-5.7, 50.1), (-4.2, 50.3), (-3.5, 50.2), (-1.9, 50.6), (-0.8, 50.75), (0.9, 50.85), (1.4, 51.15),
+                      (1.5, 51.4), (1.7, 52.5), (1.2, 52.95), (0.4, 53.0), (0.1, 53.5), (-0.1, 54.1), (-0.7, 54.5),
+                      (-1.2, 54.7), (-1.6, 55.3), (-2.0, 55.8), (-2.3, 55.3), (-3.0, 55.0), (-3.2, 54.95), (-3.5, 54.5),
+                      (-3.3, 54.1), (-3.0, 53.8), (-3.1, 53.4), (-2.95, 53.0), (-3.0, 52.5), (-3.0, 52.0), (-2.7, 51.6),
+                      (-2.5, 51.4), (-3.0, 51.2), (-3.6, 51.2), (-4.2, 51.2), (-4.6, 50.9)]]),
+]
+
+
+def _inside(poly, x, y):
+    ins = False
+    j = len(poly) - 1
+    for i in range(len(poly)):
+        xi, yi = poly[i]
+        xj, yj = poly[j]
+        if (yi > y) != (yj > y) and x < (xj - xi) * (y - yi) / (yj - yi) + xi:
+            ins = not ins
+        j = i
+    return ins
+
+
+def country_of(lon, lat):
+    for key, polys in COUNTRIES:
+        if any(_inside(p, lon, lat) for p in polys):
+            return key
+    return "europa"
 
 
 def area_of(f):
-    """File/area geografica di un cammino: i cammini di Santiago si assegnano dal centro del riquadro che li contiene."""
-    g = f["properties"].get("group", "santiago")
-    if g != "santiago":
-        return g
-    pts = [c for line in f["geometry"]["coordinates"] for c in line]
-    lons, lats = [c[0] for c in pts], [c[1] for c in pts]
-    clon, clat = (min(lons) + max(lons)) / 2, (min(lats) + max(lats)) / 2
-    if clat > 43.1 and clon > -1.7:
-        return "santiago-francia"
-    if clon < -6.3 and clat < 42.3:
-        return "santiago-portogallo"
-    return "santiago-spagna"
+    """Area (= file) di un cammino: Via Francigena e Via Romea per gruppo, gli altri per paese
+    (dove cade la maggior parte dei loro punti)."""
+    if f["properties"].get("group") in THEMES:
+        return f["properties"]["group"]
+    pts =[c for line in f["geometry"]["coordinates"] for c in line]
+    step = max(1, len(pts) // 80)
+    votes = {}
+    for lon, lat in pts[::step]:
+        k = country_of(lon, lat)
+        votes[k] = votes.get(k, 0) + 1
+    # a parità di voti vale l'ordine dell'elenco LABELS
+    return max(LABELS, key=lambda k: votes.get(k, 0))
 
 
 def save(outdir, feats):
@@ -250,11 +324,13 @@ def main():
 
     # riprende dai file esistenti: i cammini già presenti non si riscaricano
     feats = {}
+    absorbed = []   # file letti per intero (servono a togliere i file delle vecchie aree a fine lavoro)
     if not a.fresh:
         for p in glob.glob(os.path.join(a.out, "*.geojson")):
             try:
                 for f in json.load(open(p, encoding="utf-8"))["features"]:
                     feats[f["properties"]["id"]] = f
+                absorbed.append(p)
             except Exception as e:  # noqa: BLE001
                 print(f"File {p} non leggibile, lo ignoro: {e}", flush=True)
         if feats:
@@ -271,7 +347,7 @@ def main():
             raise
         except Exception as e:  # noqa: BLE001
             print(f"  gruppo {key}: ricerca fallita ({str(e)[:100]}), salto", flush=True)
-            failed.append(key)
+            failed.append(f"{key} {bbox}")
             continue
         new = [e for e in found if e["id"] not in grp_of]
         for e in new:
@@ -284,7 +360,13 @@ def main():
             grp_of[rid] = "santiago"
             roots.append({"id": rid, "tags": {"network": "iwn"}})
     prio = {"iwn": 0, "nwn": 1, "rwn": 2}   # prima i percorsi a lunga distanza
-    gprio = {"santiago": 0, "francigena": 1, "italia": 2}
+    gprio = {"santiago": 0, "francigena": 1, "romea": 2, "italia": 3}
+    # un cammino già scaricato che cambia solo gruppo (es. dalla Francigena alla Via Romea) non si riscarica:
+    # basta cambiargli l'etichetta
+    for i in grp_of:
+        f = feats.get(i)
+        if f and f["properties"].get("v") == 2 and f["properties"].get("group") != grp_of[i]:
+            f["properties"]["group"] = grp_of[i]
     roots.sort(key=lambda e: (gprio[grp_of[e["id"]]], prio.get(e.get("tags", {}).get("network"), 3), e["id"]))
     ids = [e["id"] for e in roots]
     todo = [i for i in ids if i not in feats or feats[i]["properties"].get("v") != 2
@@ -339,6 +421,12 @@ def main():
         else:
             feats = {k: v for k, v in feats.items() if k in idset}   # via i residui obsoleti
     mb = save(a.out, feats)
+    # i file delle vecchie aree (santiago-spagna, francigena, ...) sono già stati assorbiti in feats e
+    # riscritti nelle aree nuove: ora si tolgono, così non restano doppioni nel repository
+    for p in absorbed:
+        if os.path.basename(p)[:-len(".geojson")] not in LABELS and os.path.exists(p):
+            os.remove(p)
+            print(f"Tolto il file della vecchia area: {os.path.basename(p)}", flush=True)
     print(f"Scritti i file in {a.out}: {len(feats)} cammini su {len(ids)}, {mb:.1f} MB in totale; saltati {len(skipped)}", flush=True)
     if failed:
         # i dati sono salvati (niente è andato perso), ma l'Action diventa rossa così te ne accorgi

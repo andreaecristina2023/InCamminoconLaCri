@@ -79,7 +79,7 @@ const gOver = L.layerGroup().addTo(map), gNet = L.layerGroup().addTo(map), gRout
 S.geo = new Map();   // id -> {name, ref, from, to, group, area, ways}
 S.index = null;      // elenco dei file per area
 S.geoDate = '';
-S.areas = new Set(['santiago-spagna', 'santiago-francia', 'santiago-portogallo']);   // aree visibili (e caricate)
+S.areas = new Set(['spagna', 'portogallo', 'francia']);
 const loadedFiles = new Set();
 function ingest(j) {
   for (const f of j.features || []) {
@@ -148,12 +148,13 @@ $('#btnPreset').onclick = () => { filteredRoutes().forEach(r => S.chosen.add(r.i
 $('#btnRelId').onclick = () => { const v = +$('#relId').value; if (!v) return; if (!S.routes.find(r => r.id === v)) S.routes.push({ id: v, name: 'Relazione ' + v, ref: '', from: '', to: '' }); S.chosen.add(v); renderRoutes(); restyleOver(); };
 document.querySelectorAll('input[data-grp]').forEach(cb => cb.onchange = async () => {
   const k = cb.dataset.grp;
-  if (cb.checked) { S.areas.add(k); status('Carico i dati…'); await geoReady; await loadArea(k); syncRoutes(); }
+  if (cb.checked) { S.areas.add(k); status('Carico i dati…'); await geoReady;
+  if (!(await loadArea(k))) status('Dati di “' + k + '” non disponibili: rilancia la Action dei dati.');
+  syncRoutes(); }
   else S.areas.delete(k);
   renderRoutes(); showOverview();
 });
-const areaVisible = r => S.chosen.has(r.id) || S.areas.has(r.area || 'santiago') ||
-  ((r.area === 'santiago') && [...S.areas].some(x => x.startsWith('santiago')));   // vecchio file unico
+const areaVisible = r => S.chosen.has(r.id) || S.areas.has(r.area);
 function filteredRoutes() {
   const f = $('#filter').value.trim().toLowerCase();
   return S.routes.filter(r => areaVisible(r) && (!f || S.chosen.has(r.id) || (r.name + ' ' + r.ref + ' ' + r.from + ' ' + r.to).toLowerCase().includes(f)));
