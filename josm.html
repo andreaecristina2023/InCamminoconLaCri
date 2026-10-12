@@ -176,6 +176,13 @@
           <span><b>Un livello per ogni cammino</b><br><span class="nota">Più comodo per correggerli uno alla volta (attenzione se sono tanti).</span></span></label>
         <label><input type="checkbox" id="membri" checked>
           <span><b>Scarica anche tutti i tratti</b><br><span class="nota">Senza questa spunta arriva solo la relazione, vuota.</span></span></label>
+        <label style="align-items:center; cursor:default">
+          <span><b>Cammini per richiesta</b><br><span class="nota">Più piccolo è il gruppo, meno il server va in timeout. Se fallisce, abbassa il numero.</span></span>
+          <select id="perQuery" style="width:auto; margin-left:auto" aria-label="Cammini per richiesta">
+            <option value="3">3</option><option value="5">5</option><option value="10" selected>10</option>
+            <option value="20">20</option><option value="0">tutti insieme</option>
+          </select>
+        </label>
       </div>
       <div class="riga">
         <button class="primario" id="btnInvia">Invia a JOSM</button>
@@ -195,6 +202,11 @@
           <li>In JOSM: <b>File → Scarica da Overpass API…</b></li>
           <li>Incolla la query nella casella e premi <b>Scarica</b>: i cammini arrivano in un nuovo livello.</li>
         </ol>
+        <div class="riga">
+          <button id="qPrec" aria-label="Query precedente">←</button>
+          <span class="stato" id="qPos"></span>
+          <button id="qSucc" aria-label="Query successiva">→</button>
+        </div>
         <textarea id="query" readonly style="margin-top:8px"></textarea>
         <div class="riga"><button class="primario" id="btnCopiaQuery">Copia la query</button></div>
       </details>
@@ -216,7 +228,7 @@
     const PAUSA = 450;                                                   // ms tra una richiesta e l'altra
     const BLOCCO = 40;                                                   // relazioni per richiesta (indirizzi non troppo lunghi)
 
-    const S = { passo: 1, base: BASI[0], aree: [], voce: null, cammini: [], scelti: new Set(), indiceOk: false };
+    const S = { passo: 1, base: BASI[0], aree: [], voce: null, cammini: [], scelti: new Set(), indiceOk: false, queries: [], pagQuery: 0 };
 
     /* ---------- utilità ---------- */
     const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -359,9 +371,9 @@
       const membri = $('#membri').checked, molti = document.querySelector('input[name=livelli]:checked').value === 'molti';
       const area = S.aree.find(a => a.key === S.voce), scelti = S.cammini.filter(c => S.scelti.has(c.id));
       if (molti) return scelti.map(c => cmdCarica([c.id], c.nome, true, membri));
-      const out = [];
-      for (let i = 0; i < scelti.length; i += BLOCCO) {
-        out.push(cmdCarica(scelti.slice(i, i + BLOCCO).map(c => c.id), (area ? area.label : 'Cammini'), i === 0, membri));
+      const out = [], blocco = perRichiesta() || BLOCCO;
+      for (let i = 0; i < scelti.length; i += blocco) {
+        out.push(cmdCarica(scelti.slice(i, i + blocco).map(c => c.id), (area ? area.label : 'Cammini'), i === 0, membri));
       }
       return out;
     }
@@ -376,14 +388,31 @@
       aggiornaComandi();
     }
     // stessa scelta, ma come query Overpass da incollare nella finestra "Scarica da Overpass API" di JOSM
-    function costruisciQuery() {
-      if (S.voce === '@nome') return queryNome($('#nome').value, $('#zona').value);
+    // una query per gruppo di cammini: una richiesta enorme (es. tutta la Francigena) manda in timeout il server
+    const perRichiesta = () => +$('#perQuery').value || 0;   // 0 = tutti insieme
+    function costruisciQueries() {
+      if (S.voce === '@nome') return [queryNome($('#nome').value, $('#zona').value)];
       const ids = S.cammini.filter(c => S.scelti.has(c.id)).map(c => c.id);
-      const corpo = $('#membri').checked ? '(._;>>;);' : '';   // >> = relazione → tratti → nodi, anche nelle sotto-relazioni
-      return `[out:xml][timeout:180];\nrel(id:${ids.join(',')});\n${corpo}\nout meta;`.replace('\n\n', '\n');
+      const corpo = $('#membri').checked ? '\n(._;>>;);' : '';   // >> = relazione → tratti → nodi, anche nelle sotto-relazioni
+      const n = perRichiesta() || ids.length || 1, out = [];
+      for (let i = 0; i < ids.length; i += n) out.push(`[out:xml][timeout:180];\nrel(id:${ids.slice(i, i + n).join(',')});${corpo}\nout meta;`);
+      return out;
     }
-    function aggiornaComandi() { $('#comandi').value = costruisciComandi().join('\n'); $('#query').value = costruisciQuery(); }
-    document.addEventListener('change', e => { if (e.target.matches('#opzDati input')) aggiornaComandi(); });
+    function mostraQuery() {
+      const q = S.queries;
+      S.pagQuery = Math.max(0, Math.min(S.pagQuery, q.length - 1));
+      $('#query').value = q[S.pagQuery] || '';
+      $('#qPos').textContent = q.length > 1 ? 'Query ' + (S.pagQuery + 1) + ' di ' + q.length : '';
+      $('#qPrec').hidden = $('#qSucc').hidden = q.length < 2;
+      $('#qPrec').disabled = S.pagQuery === 0; $('#qSucc').disabled = S.pagQuery >= q.length - 1;
+    }
+    function aggiornaComandi() {
+      $('#comandi').value = costruisciComandi().join('\n');
+      S.queries = costruisciQueries(); S.pagQuery = 0; mostraQuery();
+    }
+    $('#qPrec').onclick = () => { S.pagQuery--; mostraQuery(); };
+    $('#qSucc').onclick = () => { S.pagQuery++; mostraQuery(); };
+    document.addEventListener('change', e => { if (e.target.matches('#opzDati input, #perQuery')) aggiornaComandi(); });
 
     $('#btnInvia').onclick = async () => {
       const cmds = costruisciComandi(), btn = $('#btnInvia');
