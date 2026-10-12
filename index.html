@@ -1,158 +1,243 @@
 <!doctype html>
 <html lang="it">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Pianifica il Cammino di Santiago</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
-<link rel="stylesheet" href="style.css">
-<link rel="icon" href="images/assets/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="images/assets/favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="images/assets/favicon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="images/assets/favicon-16.png">
-<link rel="apple-touch-icon" href="images/assets/apple-touch-icon.png">
-<link rel="manifest" href="images/assets/manifest.webmanifest">
-<meta name="theme-color" content="#1e4aa0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Pianifica il Cammino di Santiago</title>
+  <link rel="manifest" href="images/manifest.webmanifest">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="images/assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="images/assets/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/assets/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/assets/favicon-16.png">
+  <link rel="apple-touch-icon" href="images/assets/apple-touch-icon.png">
+  <link rel="manifest" href="images/assets/manifest.webmanifest">
+  <meta name="theme-color" content="#1e4aa0">
 </head>
+
 <body>
-<!-- simboli: conchiglia, freccia gialla, pellegrina (disegno originale) -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="arrow" viewBox="-6 -6 541 277"><path d="m 56.799027,99.129141 c 31.36468,0.792392 71.714333,1.215159 107.433683,0.898079 35.77449,-0.317079 81.63638,-3.381191 106.9376,-2.852885 25.35633,0.528258 27.12028,-5.917085 22.71045,-13.15493 -4.40978,-7.237859 -34.0657,-24.830608 -39.74329,-36.717602 -5.67762,-11.834147 1.54346,-26.626854 5.62248,-34.498676 4.13418,-7.8718422 10.91426,-12.57379672 18.907,-12.78512262 8.04789,-0.26413232 7.77228,2.32456412 29.27006,11.30584162 l 99.88191,42.370519 c 29.43538,11.992665 58.04396,21.7664 76.78559,29.479742 18.79678,7.713343 28.77394,9.509602 35.82961,16.853123 7.05568,7.34351 11.63085,17.27575 6.6147,27.20798 -4.96102,9.87943 -6.50445,11.20019 -36.43594,32.27981 -29.98664,21.07959 -112.3396,77.13336 -143.37357,94.19779 -30.97882,17.06445 -39.57793,9.1926 -42.55453,8.18883 -3.03173,-1.00378 -5.01616,-13.36627 -11.18988,-20.65695 -2.42539,-5.86426 -9.20545,-11.25302 -7.27615,-17.48711 1.92931,-6.23406 10.91425,-12.15114 18.85189,-19.86445 7.93762,-7.66052 22.71046,-19.91734 28.77392,-26.25706 6.1186,-6.33973 8.10299,-8.18882 7.66201,-11.78134 -0.38586,-3.64534 -1.21262,-8.71712 -12.73328,-8.40014 -11.46548,0.26413 -17.14309,0.26413 -49.55509,1.53205 l -145.02722,6.1284 -72.927046,2.64155 c -17.639194,1.00378 -25.797318,2.85288 -33.183731,3.43402 -7.386413,0.52826 -18.8518872,3.06421 -23.4270491,-0.73965 -4.63027964,-3.80383 -5.29175419,-16.53613 -4.18929663,-22.45321 0.16468588,-5.38876 5.51224543,-4.54348 10.85911773,-13.1021 4.299553,-6.65671 1.598495,-16.95877 5.567384,-23.82681 2.53562,-5.12463 3.141977,-7.29069 6.724938,-9.61526 3.582961,-2.324564 9.646425,-2.218906 14.166469,-3.22269 z" fill="#fcd116" stroke="#c99f00" stroke-width="2.5" stroke-linejoin="round"/></symbol>
-  <symbol id="shell" viewBox="0 0 100 100"><polygon transform="translate(50 80) rotate(-70)" points="-2.3,-13 2.3,-13 3.3,-30 -3.3,-30" fill="#ffee1f"/><polygon transform="translate(50 80) rotate(-53)" points="-2.3,-13 2.3,-13 3.3,-42 -3.3,-42" fill="#ffee1f"/><polygon transform="translate(50 80) rotate(-36)" points="-2.3,-13 2.3,-13 3.3,-52 -3.3,-52" fill="#ffee1f"/><polygon transform="translate(50 80) rotate(-18)" points="-2.3,-13 2.3,-13 3.3,-58 -3.3,-58" fill="#ffee1f"/><polygon transform="translate(50 80) rotate(0)" points="-2.3,-13 2.3,-13 3.3,-62 -3.3,-62" fill="#ffee1f"/><polygon transform="translate(50 80) rotate(18)" points="-2.3,-13 2.3,-13 3.3,-58 -3.3,-58" fill="#ffee1f"/><polygon transform="translate(50 80) rotate(36)" points="-2.3,-13 2.3,-13 3.3,-52 -3.3,-52" fill="#ffee1f"/><polygon transform="translate(50 80) rotate(53)" points="-2.3,-13 2.3,-13 3.3,-42 -3.3,-42" fill="#ffee1f"/><polygon transform="translate(50 80) rotate(70)" points="-2.3,-13 2.3,-13 3.3,-30 -3.3,-30" fill="#ffee1f"/><path d="M30 80 A20 20 0 0 1 70 80 L72 80 V87 Q61 87 50 92 Q39 87 28 87 V80 Z" fill="#ffee1f"/></symbol>
-  <symbol id="feet" viewBox="-4 -6 128 146"><g transform="translate(14 34) rotate(-7) scale(.94)"><g fill="#f08cbd" stroke="#b02a74" stroke-width="3" stroke-linejoin="round"><path d="M22 18 C36 18 44 30 43 46 C42 58 36 64 36 74 C36 86 30 94 20 94 C9 94 4 85 5 74 C6 62 2 56 1 44 C0 28 9 18 22 18 Z"/><ellipse cx="35" cy="8" rx="7.4" ry="8.4"/><ellipse cx="23.5" cy="2.2" rx="5.2" ry="6.1"/><ellipse cx="13.5" cy="4.6" rx="4.5" ry="5.3"/><ellipse cx="6" cy="11.6" rx="3.9" ry="4.7"/><ellipse cx="1.4" cy="21" rx="3.1" ry="3.8"/></g></g><g transform="translate(106 18) rotate(7) scale(-.94 .94)"><g fill="#f08cbd" stroke="#b02a74" stroke-width="3" stroke-linejoin="round"><path d="M22 18 C36 18 44 30 43 46 C42 58 36 64 36 74 C36 86 30 94 20 94 C9 94 4 85 5 74 C6 62 2 56 1 44 C0 28 9 18 22 18 Z"/><ellipse cx="35" cy="8" rx="7.4" ry="8.4"/><ellipse cx="23.5" cy="2.2" rx="5.2" ry="6.1"/><ellipse cx="13.5" cy="4.6" rx="4.5" ry="5.3"/><ellipse cx="6" cy="11.6" rx="3.9" ry="4.7"/><ellipse cx="1.4" cy="21" rx="3.1" ry="3.8"/></g></g></symbol>
-  <symbol id="hiker" viewBox="0 0 104 148">
-<path d="M48 90 L36 112 L22 134" stroke="#f3c9a4" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-<path d="M48 88 L44 98" stroke="#2c3340" stroke-width="15" stroke-linecap="round" fill="none"/>
-<ellipse cx="19" cy="138" rx="9.5" ry="5" fill="#2b2f33" transform="rotate(-20 19 138)"/>
-<g transform="translate(31 56) rotate(-10)"><rect x="-14" y="-29" width="28" height="58" rx="13" fill="#8f979d" stroke="#6f777d" stroke-width="2"/>
-<rect x="-15.5" y="-38" width="31" height="12" rx="6" fill="#cfe0ec" stroke="#8aa0b2" stroke-width="2"/>
-<rect x="-8" y="2" width="16" height="14" rx="5" fill="none" stroke="#6f777d" stroke-width="2"/></g>
-<path d="M60 44 L51 83" stroke="#d6408f" stroke-width="20" stroke-linecap="round"/>
-<path d="M53 90 L68 110 L74 133" stroke="#f3c9a4" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-<path d="M52 88 L58 98" stroke="#2c3340" stroke-width="15" stroke-linecap="round" fill="none"/>
-<ellipse cx="78" cy="137" rx="10" ry="5" fill="#2b2f33"/>
-<path d="M50 38 Q45 52 46 68" stroke="#6f777d" stroke-width="3" fill="none" stroke-linecap="round"/>
-<path d="M61 47 L76 58" stroke="#d6408f" stroke-width="9" stroke-linecap="round"/>
-<path d="M77 58 L89 52" stroke="#f3c9a4" stroke-width="6.5" stroke-linecap="round"/>
-<path d="M93 38 L74 142" stroke="#5d6670" stroke-width="3" stroke-linecap="round"/>
-<circle cx="90.5" cy="51.5" r="4" fill="#f3c9a4"/>
-<path d="M56 21 C43 12 36 22 40 36 C43 27 50 26 56 29 Z" fill="#6b3f26"/>
-<circle cx="65" cy="24" r="11" fill="#f3c9a4"/>
-<path d="M54 24 C53 11 67 7 75 12 C70 14 61 16 54 24 Z" fill="#6b3f26"/>
-<circle cx="70" cy="25" r="1.5" fill="#2b2f33"/>
-</symbol>
-  <symbol id="cross" viewBox="-4 -2 108 144"><defs><g id="cs2">
-<path d="M43 62 H57 L50 138 Z"/>
-<rect x="44" y="24" width="12" height="44"/>
-<rect x="14" y="54" width="72" height="13"/>
-<path d="M50 4 C62 12 65 24 57 32 H43 C35 24 38 12 50 4 Z"/>
-<path d="M3 60.5 C9 49 19 48 25 52 L25 69 C19 73 9 72 3 60.5 Z"/>
-<path d="M97 60.5 C91 49 81 48 75 52 L75 69 C81 73 91 72 97 60.5 Z"/>
-<circle cx="36" cy="45" r="5.5"/><circle cx="64" cy="45" r="5.5"/>
-<circle cx="36" cy="76" r="5.5"/><circle cx="64" cy="76" r="5.5"/>
-</g></defs><use href="#cs2" fill="#111" stroke="#111" stroke-width="7" stroke-linejoin="round"/><use href="#cs2" fill="#d3281c"/></symbol>
-  <symbol id="logo" viewBox="0 0 100 100"><rect width="100" height="100" rx="18" fill="#1e4aa0"/><g transform="translate(5 3) scale(.9)"><polygon transform="translate(50 80) rotate(-70)" points="-2.3,-13 2.3,-13 3.3,-30 -3.3,-30" fill="#ffee1f"/><polygon transform="translate(50 80) rotate(-53)" points="-2.3,-13 2.3,-13 3.3,-42 -3.3,-42" fill="#ffee1f"/><polygon transform="translate(50 80) rotate(-36)" points="-2.3,-13 2.3,-13 3.3,-52 -3.3,-52" fill="#ffee1f"/><polygon transform="translate(50 80) rotate(-18)" points="-2.3,-13 2.3,-13 3.3,-58 -3.3,-58" fill="#ffee1f"/><polygon transform="translate(50 80) rotate(0)" points="-2.3,-13 2.3,-13 3.3,-62 -3.3,-62" fill="#ffee1f"/><polygon transform="translate(50 80) rotate(18)" points="-2.3,-13 2.3,-13 3.3,-58 -3.3,-58" fill="#ffee1f"/><polygon transform="translate(50 80) rotate(36)" points="-2.3,-13 2.3,-13 3.3,-52 -3.3,-52" fill="#ffee1f"/><polygon transform="translate(50 80) rotate(53)" points="-2.3,-13 2.3,-13 3.3,-42 -3.3,-42" fill="#ffee1f"/><polygon transform="translate(50 80) rotate(70)" points="-2.3,-13 2.3,-13 3.3,-30 -3.3,-30" fill="#ffee1f"/><path d="M30 80 A20 20 0 0 1 70 80 L72 80 V87 Q61 87 50 92 Q39 87 28 87 V80 Z" fill="#ffee1f"/></g></symbol>
-</svg>
+  <!-- simboli: conchiglia, freccia gialla, pellegrina (disegno originale) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="arrow" viewBox="-6 -6 541 277">
+      <path
+        d="m 56.799027,99.129141 c 31.36468,0.792392 71.714333,1.215159 107.433683,0.898079 35.77449,-0.317079 81.63638,-3.381191 106.9376,-2.852885 25.35633,0.528258 27.12028,-5.917085 22.71045,-13.15493 -4.40978,-7.237859 -34.0657,-24.830608 -39.74329,-36.717602 -5.67762,-11.834147 1.54346,-26.626854 5.62248,-34.498676 4.13418,-7.8718422 10.91426,-12.57379672 18.907,-12.78512262 8.04789,-0.26413232 7.77228,2.32456412 29.27006,11.30584162 l 99.88191,42.370519 c 29.43538,11.992665 58.04396,21.7664 76.78559,29.479742 18.79678,7.713343 28.77394,9.509602 35.82961,16.853123 7.05568,7.34351 11.63085,17.27575 6.6147,27.20798 -4.96102,9.87943 -6.50445,11.20019 -36.43594,32.27981 -29.98664,21.07959 -112.3396,77.13336 -143.37357,94.19779 -30.97882,17.06445 -39.57793,9.1926 -42.55453,8.18883 -3.03173,-1.00378 -5.01616,-13.36627 -11.18988,-20.65695 -2.42539,-5.86426 -9.20545,-11.25302 -7.27615,-17.48711 1.92931,-6.23406 10.91425,-12.15114 18.85189,-19.86445 7.93762,-7.66052 22.71046,-19.91734 28.77392,-26.25706 6.1186,-6.33973 8.10299,-8.18882 7.66201,-11.78134 -0.38586,-3.64534 -1.21262,-8.71712 -12.73328,-8.40014 -11.46548,0.26413 -17.14309,0.26413 -49.55509,1.53205 l -145.02722,6.1284 -72.927046,2.64155 c -17.639194,1.00378 -25.797318,2.85288 -33.183731,3.43402 -7.386413,0.52826 -18.8518872,3.06421 -23.4270491,-0.73965 -4.63027964,-3.80383 -5.29175419,-16.53613 -4.18929663,-22.45321 0.16468588,-5.38876 5.51224543,-4.54348 10.85911773,-13.1021 4.299553,-6.65671 1.598495,-16.95877 5.567384,-23.82681 2.53562,-5.12463 3.141977,-7.29069 6.724938,-9.61526 3.582961,-2.324564 9.646425,-2.218906 14.166469,-3.22269 z"
+        fill="#fcd116" stroke="#c99f00" stroke-width="2.5" stroke-linejoin="round" />
+    </symbol>
+    <symbol id="shell" viewBox="0 0 100 100">
+      <polygon transform="translate(50 80) rotate(-70)" points="-2.3,-13 2.3,-13 3.3,-30 -3.3,-30" fill="#ffee1f" />
+      <polygon transform="translate(50 80) rotate(-53)" points="-2.3,-13 2.3,-13 3.3,-42 -3.3,-42" fill="#ffee1f" />
+      <polygon transform="translate(50 80) rotate(-36)" points="-2.3,-13 2.3,-13 3.3,-52 -3.3,-52" fill="#ffee1f" />
+      <polygon transform="translate(50 80) rotate(-18)" points="-2.3,-13 2.3,-13 3.3,-58 -3.3,-58" fill="#ffee1f" />
+      <polygon transform="translate(50 80) rotate(0)" points="-2.3,-13 2.3,-13 3.3,-62 -3.3,-62" fill="#ffee1f" />
+      <polygon transform="translate(50 80) rotate(18)" points="-2.3,-13 2.3,-13 3.3,-58 -3.3,-58" fill="#ffee1f" />
+      <polygon transform="translate(50 80) rotate(36)" points="-2.3,-13 2.3,-13 3.3,-52 -3.3,-52" fill="#ffee1f" />
+      <polygon transform="translate(50 80) rotate(53)" points="-2.3,-13 2.3,-13 3.3,-42 -3.3,-42" fill="#ffee1f" />
+      <polygon transform="translate(50 80) rotate(70)" points="-2.3,-13 2.3,-13 3.3,-30 -3.3,-30" fill="#ffee1f" />
+      <path d="M30 80 A20 20 0 0 1 70 80 L72 80 V87 Q61 87 50 92 Q39 87 28 87 V80 Z" fill="#ffee1f" />
+    </symbol>
+    <symbol id="feet" viewBox="-4 -6 128 146">
+      <g transform="translate(14 34) rotate(-7) scale(.94)">
+        <g fill="#f08cbd" stroke="#b02a74" stroke-width="3" stroke-linejoin="round">
+          <path
+            d="M22 18 C36 18 44 30 43 46 C42 58 36 64 36 74 C36 86 30 94 20 94 C9 94 4 85 5 74 C6 62 2 56 1 44 C0 28 9 18 22 18 Z" />
+          <ellipse cx="35" cy="8" rx="7.4" ry="8.4" />
+          <ellipse cx="23.5" cy="2.2" rx="5.2" ry="6.1" />
+          <ellipse cx="13.5" cy="4.6" rx="4.5" ry="5.3" />
+          <ellipse cx="6" cy="11.6" rx="3.9" ry="4.7" />
+          <ellipse cx="1.4" cy="21" rx="3.1" ry="3.8" />
+        </g>
+      </g>
+      <g transform="translate(106 18) rotate(7) scale(-.94 .94)">
+        <g fill="#f08cbd" stroke="#b02a74" stroke-width="3" stroke-linejoin="round">
+          <path
+            d="M22 18 C36 18 44 30 43 46 C42 58 36 64 36 74 C36 86 30 94 20 94 C9 94 4 85 5 74 C6 62 2 56 1 44 C0 28 9 18 22 18 Z" />
+          <ellipse cx="35" cy="8" rx="7.4" ry="8.4" />
+          <ellipse cx="23.5" cy="2.2" rx="5.2" ry="6.1" />
+          <ellipse cx="13.5" cy="4.6" rx="4.5" ry="5.3" />
+          <ellipse cx="6" cy="11.6" rx="3.9" ry="4.7" />
+          <ellipse cx="1.4" cy="21" rx="3.1" ry="3.8" />
+        </g>
+      </g>
+    </symbol>
+    <symbol id="hiker" viewBox="0 0 104 148">
+      <path d="M48 90 L36 112 L22 134" stroke="#f3c9a4" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"
+        fill="none" />
+      <path d="M48 88 L44 98" stroke="#2c3340" stroke-width="15" stroke-linecap="round" fill="none" />
+      <ellipse cx="19" cy="138" rx="9.5" ry="5" fill="#2b2f33" transform="rotate(-20 19 138)" />
+      <g transform="translate(31 56) rotate(-10)">
+        <rect x="-14" y="-29" width="28" height="58" rx="13" fill="#8f979d" stroke="#6f777d" stroke-width="2" />
+        <rect x="-15.5" y="-38" width="31" height="12" rx="6" fill="#cfe0ec" stroke="#8aa0b2" stroke-width="2" />
+        <rect x="-8" y="2" width="16" height="14" rx="5" fill="none" stroke="#6f777d" stroke-width="2" />
+      </g>
+      <path d="M60 44 L51 83" stroke="#d6408f" stroke-width="20" stroke-linecap="round" />
+      <path d="M53 90 L68 110 L74 133" stroke="#f3c9a4" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"
+        fill="none" />
+      <path d="M52 88 L58 98" stroke="#2c3340" stroke-width="15" stroke-linecap="round" fill="none" />
+      <ellipse cx="78" cy="137" rx="10" ry="5" fill="#2b2f33" />
+      <path d="M50 38 Q45 52 46 68" stroke="#6f777d" stroke-width="3" fill="none" stroke-linecap="round" />
+      <path d="M61 47 L76 58" stroke="#d6408f" stroke-width="9" stroke-linecap="round" />
+      <path d="M77 58 L89 52" stroke="#f3c9a4" stroke-width="6.5" stroke-linecap="round" />
+      <path d="M93 38 L74 142" stroke="#5d6670" stroke-width="3" stroke-linecap="round" />
+      <circle cx="90.5" cy="51.5" r="4" fill="#f3c9a4" />
+      <path d="M56 21 C43 12 36 22 40 36 C43 27 50 26 56 29 Z" fill="#6b3f26" />
+      <circle cx="65" cy="24" r="11" fill="#f3c9a4" />
+      <path d="M54 24 C53 11 67 7 75 12 C70 14 61 16 54 24 Z" fill="#6b3f26" />
+      <circle cx="70" cy="25" r="1.5" fill="#2b2f33" />
+    </symbol>
+    <symbol id="cross" viewBox="-4 -2 108 144">
+      <defs>
+        <g id="cs2">
+          <path d="M43 62 H57 L50 138 Z" />
+          <rect x="44" y="24" width="12" height="44" />
+          <rect x="14" y="54" width="72" height="13" />
+          <path d="M50 4 C62 12 65 24 57 32 H43 C35 24 38 12 50 4 Z" />
+          <path d="M3 60.5 C9 49 19 48 25 52 L25 69 C19 73 9 72 3 60.5 Z" />
+          <path d="M97 60.5 C91 49 81 48 75 52 L75 69 C81 73 91 72 97 60.5 Z" />
+          <circle cx="36" cy="45" r="5.5" />
+          <circle cx="64" cy="45" r="5.5" />
+          <circle cx="36" cy="76" r="5.5" />
+          <circle cx="64" cy="76" r="5.5" />
+        </g>
+      </defs>
+      <use href="#cs2" fill="#111" stroke="#111" stroke-width="7" stroke-linejoin="round" />
+      <use href="#cs2" fill="#d3281c" />
+    </symbol>
+    <symbol id="logo" viewBox="0 0 100 100">
+      <rect width="100" height="100" rx="18" fill="#1e4aa0" />
+      <g transform="translate(5 3) scale(.9)">
+        <polygon transform="translate(50 80) rotate(-70)" points="-2.3,-13 2.3,-13 3.3,-30 -3.3,-30" fill="#ffee1f" />
+        <polygon transform="translate(50 80) rotate(-53)" points="-2.3,-13 2.3,-13 3.3,-42 -3.3,-42" fill="#ffee1f" />
+        <polygon transform="translate(50 80) rotate(-36)" points="-2.3,-13 2.3,-13 3.3,-52 -3.3,-52" fill="#ffee1f" />
+        <polygon transform="translate(50 80) rotate(-18)" points="-2.3,-13 2.3,-13 3.3,-58 -3.3,-58" fill="#ffee1f" />
+        <polygon transform="translate(50 80) rotate(0)" points="-2.3,-13 2.3,-13 3.3,-62 -3.3,-62" fill="#ffee1f" />
+        <polygon transform="translate(50 80) rotate(18)" points="-2.3,-13 2.3,-13 3.3,-58 -3.3,-58" fill="#ffee1f" />
+        <polygon transform="translate(50 80) rotate(36)" points="-2.3,-13 2.3,-13 3.3,-52 -3.3,-52" fill="#ffee1f" />
+        <polygon transform="translate(50 80) rotate(53)" points="-2.3,-13 2.3,-13 3.3,-42 -3.3,-42" fill="#ffee1f" />
+        <polygon transform="translate(50 80) rotate(70)" points="-2.3,-13 2.3,-13 3.3,-30 -3.3,-30" fill="#ffee1f" />
+        <path d="M30 80 A20 20 0 0 1 70 80 L72 80 V87 Q61 87 50 92 Q39 87 28 87 V80 Z" fill="#ffee1f" />
+      </g>
+    </symbol>
+  </svg>
 
-<header>
-  <svg class="logo" viewBox="0 0 100 100" aria-hidden="true"><use href="#logo"/></svg>
-  <div class="title">
-    <h1>Pianifica il Cammino</h1>
-    <span class="by">In Cammino con La Cri · Viaggiatrice zaino in spalla</span>
-  </div>
-  <svg class="deco" viewBox="0 0 104 148" aria-hidden="true"><use href="#hiker"/></svg>
-  <span id="status">Pronto.</span>
-</header>
-<div class="stripe"></div>
+  <header>
+    <svg class="logo" viewBox="0 0 100 100" aria-hidden="true">
+      <use href="#logo" />
+    </svg>
+    <div class="title">
+      <h1>Pianifica il Cammino</h1>
+      <span class="by">In Cammino con La Cri · Viaggiatrice zaino in spalla</span>
+    </div>
+    <svg class="deco" viewBox="0 0 104 148" aria-hidden="true">
+      <use href="#hiker" />
+    </svg>
+    <span id="status">Pronto.</span>
+  </header>
+  <div class="stripe"></div>
 
-<main>
-  <div id="map"></div>
+  <main>
+    <div id="map"></div>
 
-  <section id="panel">
+    <section id="panel">
 
-    <details open id="s1">
-      <summary>1 · Costruisci la rete di cammini</summary>
-      <p class="small">Spunta i cammini da includere (anche quelli francesi: Podiensis, Lemovicensis, Turonensis, Tolosana…). Verranno uniti in un'unica rete.</p>
-      <div class="row small">
-        <label><input type="checkbox" data-grp="santiago-spagna" checked> Santiago · Spagna</label>
-        <label><input type="checkbox" data-grp="santiago-francia" checked> Santiago · Francia</label>
-        <label><input type="checkbox" data-grp="santiago-portogallo" checked> Santiago · Portogallo</label>
-        <label><input type="checkbox" data-grp="francigena"> Via Francigena</label>
-        <label><input type="checkbox" data-grp="italia"> Cammini in Italia</label>
-      </div>
-      <div class="row"><input id="filter" type="search" placeholder="Filtra (es. Francés, Podiensis, Norte…)"></div>
-      <div class="row">
-        <button id="btnList">Cerca cammini di Santiago</button>
-        <button id="btnListAll">Cerca anche altri (molti)</button>
-        <button id="btnOverview">🗺️ Mostra sulla mappa</button>
-        <button id="btnPreset">Seleziona tutti</button>
-      </div>
-      <p class="small">All'apertura vedi i cammini di Santiago sulla mappa, ognuno di un colore. <b>Tocca una linea</b> (o spunta nell'elenco) per selezionarla: diventa più spessa.</p>
-      <ul id="routeList"></ul>
-      <div class="row small">
-        Aggiungi per ID relazione OSM:
-        <input id="relId" type="number" placeholder="es. 1234567" style="width:9em">
-        <button id="btnRelId">Aggiungi</button>
-      </div>
-      <div class="row"><button id="btnLoad" class="primary">Carica selezionati nella rete</button></div>
-    </details>
+      <details open id="s1">
+        <summary>1 · Costruisci la rete di cammini</summary>
+        <p class="small">Spunta i cammini da includere (anche quelli francesi: Podiensis, Lemovicensis, Turonensis,
+          Tolosana…). Verranno uniti in un'unica rete.</p>
+        <div class="row small">
+          <label><input type="checkbox" data-grp="santiago-spagna" checked> Santiago · Spagna</label>
+          <label><input type="checkbox" data-grp="santiago-francia" checked> Santiago · Francia</label>
+          <label><input type="checkbox" data-grp="santiago-portogallo" checked> Santiago · Portogallo</label>
+          <label><input type="checkbox" data-grp="francigena"> Via Francigena</label>
+          <label><input type="checkbox" data-grp="italia"> Cammini in Italia</label>
+        </div>
+        <div class="row"><input id="filter" type="search" placeholder="Filtra (es. Francés, Podiensis, Norte…)"></div>
+        <div class="row">
+          <button id="btnList">Cerca cammini di Santiago</button>
+          <button id="btnListAll">Cerca anche altri (molti)</button>
+          <button id="btnOverview">🗺️ Mostra sulla mappa</button>
+          <button id="btnPreset">Seleziona tutti</button>
+        </div>
+        <p class="small">All'apertura vedi i cammini di Santiago sulla mappa, ognuno di un colore. <b>Tocca una
+            linea</b> (o spunta nell'elenco) per selezionarla: diventa più spessa.</p>
+        <ul id="routeList"></ul>
+        <div class="row small">
+          Aggiungi per ID relazione OSM:
+          <input id="relId" type="number" placeholder="es. 1234567" style="width:9em">
+          <button id="btnRelId">Aggiungi</button>
+        </div>
+        <div class="row"><button id="btnLoad" class="primary">Carica selezionati nella rete</button></div>
+      </details>
 
-    <details id="s2">
-      <summary>2 · Varianti: preferisci o evita</summary>
-      <p class="small">Per ogni cammino caricato puoi preferirlo (il percorso lo seguirà volentieri) o evitarlo del tutto. Poi ricalcola.</p>
-      <ul id="prefList"></ul>
-      <div class="row"><button id="btnReroute" class="primary">Applica e ricalcola</button></div>
-    </details>
+      <details id="s2">
+        <summary>2 · Varianti: preferisci o evita</summary>
+        <p class="small">Per ogni cammino caricato puoi preferirlo (il percorso lo seguirà volentieri) o evitarlo del
+          tutto. Poi ricalcola.</p>
+        <ul id="prefList"></ul>
+        <div class="row"><button id="btnReroute" class="primary">Applica e ricalcola</button></div>
+      </details>
 
-    <details id="s3">
-      <summary>3 · Itinerario: partenza, tappe intermedie, arrivo</summary>
-      <div class="row">
-        <input id="place" type="search" placeholder="Cerca località (es. Le Puy-en-Velay)">
-      </div>
-      <div class="row">
-        <button data-add="start">+ Partenza</button>
-        <button data-add="via">+ Via</button>
-        <button data-add="end">+ Arrivo</button>
-      </div>
-      <div class="row small">Oppure tocca la mappa:
-        <button data-pick="start">📍 Partenza</button>
-        <button data-pick="via">➕ Via</button>
-        <button data-pick="end">🏁 Arrivo</button>
-      </div>
-      <ul id="ptList"></ul>
-      <div class="row">
-        <button id="btnRoute" class="primary">Calcola percorso</button>
-        <button id="btnFlip">⇄ Inverti</button>
-        <button id="btnClear">Azzera punti</button>
-      </div>
-      <div class="row">
-        <label>Km al giorno: <b id="kmLabel">25</b></label>
-        <input id="kmDay" type="range" min="10" max="45" value="25" step="1">
-      </div>
-      <div class="row small" id="totals"></div>
-    </details>
+      <details id="s3">
+        <summary>3 · Itinerario: partenza, tappe intermedie, arrivo</summary>
+        <div class="row">
+          <input id="place" type="search" placeholder="Cerca località (es. Le Puy-en-Velay)">
+        </div>
+        <div class="row">
+          <button data-add="start">+ Partenza</button>
+          <button data-add="via">+ Via</button>
+          <button data-add="end">+ Arrivo</button>
+        </div>
+        <div class="row small">Oppure tocca la mappa:
+          <button data-pick="start">📍 Partenza</button>
+          <button data-pick="via">➕ Via</button>
+          <button data-pick="end">🏁 Arrivo</button>
+        </div>
+        <ul id="ptList"></ul>
+        <div class="row">
+          <button id="btnRoute" class="primary">Calcola percorso</button>
+          <button id="btnFlip">⇄ Inverti</button>
+          <button id="btnClear">Azzera punti</button>
+        </div>
+        <div class="row">
+          <label>Km al giorno: <b id="kmLabel">25</b></label>
+          <input id="kmDay" type="range" min="10" max="45" value="25" step="1">
+        </div>
+        <div class="row small" id="totals"></div>
+      </details>
 
-    <section id="result" hidden>
-      <h2>Tappe</h2>
-      <canvas id="profile" height="140"></canvas>
-      <div id="stages"></div>
-      <div class="row">
-        <button id="btnGpx">Scarica GPX</button>
-        <button id="btnCsv">Scarica CSV</button>
-        <button id="btnShare">Copia link</button>
-      </div>
+      <section id="result" hidden>
+        <h2>Tappe</h2>
+        <canvas id="profile" height="140"></canvas>
+        <div id="stages"></div>
+        <div class="row">
+          <button id="btnGpx">Scarica GPX</button>
+          <button id="btnCsv">Scarica CSV</button>
+          <button id="btnShare">Copia link</button>
+        </div>
+      </section>
+
+      <footer class="small">
+        <b>In Cammino con La Cri</b> · Viaggiatrice zaino in spalla. <svg class="inl" viewBox="-4 -6 128 146">
+          <use href="#feet" />
+        </svg><svg class="inl wide" viewBox="-6 -6 541 277">
+          <use href="#arrow" />
+        </svg><svg class="inl" viewBox="0 0 100 100">
+          <use href="#shell" />
+        </svg><svg class="inl" viewBox="-4 -2 108 144">
+          <use href="#cross" />
+        </svg><br>
+        Tracciati, località e alloggi: © contributori di <a
+          href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (ODbL).
+        Ricerca località: Nominatim. Quote: <a href="https://open-meteo.com/">Open-Meteo</a> (dati Copernicus), stimate.
+        Gli ostelli sono quelli presenti in OSM: verifica sempre apertura e prezzi. I link "Gronze" aprono una ricerca
+        sul sito.
+      </footer>
     </section>
+  </main>
 
-    <footer class="small">
-      <b>In Cammino con La Cri</b> · Viaggiatrice zaino in spalla. <svg class="inl" viewBox="-4 -6 128 146"><use href="#feet"/></svg><svg class="inl wide" viewBox="-6 -6 541 277"><use href="#arrow"/></svg><svg class="inl" viewBox="0 0 100 100"><use href="#shell"/></svg><svg class="inl" viewBox="-4 -2 108 144"><use href="#cross"/></svg><br>
-      Tracciati, località e alloggi: © contributori di <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (ODbL).
-      Ricerca località: Nominatim. Quote: <a href="https://open-meteo.com/">Open-Meteo</a> (dati Copernicus), stimate.
-      Gli ostelli sono quelli presenti in OSM: verifica sempre apertura e prezzi. I link "Gronze" aprono una ricerca sul sito.
-    </footer>
-  </section>
-</main>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-<script src="app.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script src="app.js"></script>
 </body>
+
 </html>
