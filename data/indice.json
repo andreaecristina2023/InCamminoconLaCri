@@ -12,8 +12,8 @@
    "key": "italia",
    "label": "Italia",
    "file": "italia.geojson",
-   "count": 12,
-   "mb": 0.5
+   "count": 27,
+   "mb": 1.62
   },
   {
    "key": "portogallo",
@@ -33,22 +33,29 @@
    "key": "svizzera",
    "label": "Svizzera",
    "file": "svizzera.geojson",
-   "count": 52,
-   "mb": 0.98
+   "count": 72,
+   "mb": 1.53
+  },
+  {
+   "key": "inghilterra",
+   "label": "Inghilterra",
+   "file": "inghilterra.geojson",
+   "count": 4,
+   "mb": 0.18
   },
   {
    "key": "germania",
    "label": "Germania",
    "file": "germania.geojson",
-   "count": 122,
-   "mb": 7.16
+   "count": 158,
+   "mb": 9.27
   },
   {
    "key": "austria",
    "label": "Austria",
    "file": "austria.geojson",
-   "count": 10,
-   "mb": 0.95
+   "count": 15,
+   "mb": 1.31
   },
   {
    "key": "francigena",
@@ -61,15 +68,15 @@
    "key": "romea",
    "label": "Via Romea",
    "file": "romea.geojson",
-   "count": 45,
-   "mb": 2.15
+   "count": 30,
+   "mb": 1.03
   },
   {
    "key": "europa",
    "label": "Altri paesi",
    "file": "europa.geojson",
-   "count": 18,
-   "mb": 2.64
+   "count": 23,
+   "mb": 2.77
   }
  ]
 }
