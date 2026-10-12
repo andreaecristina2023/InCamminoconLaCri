@@ -5,8 +5,8 @@
    "key": "spagna",
    "label": "Spagna",
    "file": "spagna.geojson",
-   "count": 18,
-   "mb": 3.12
+   "count": 20,
+   "mb": 3.33
   },
   {
    "key": "italia",
@@ -26,8 +26,8 @@
    "key": "francia",
    "label": "Francia",
    "file": "francia.geojson",
-   "count": 28,
-   "mb": 0.85
+   "count": 29,
+   "mb": 0.91
   },
   {
    "key": "svizzera",
@@ -40,15 +40,15 @@
    "key": "germania",
    "label": "Germania",
    "file": "germania.geojson",
-   "count": 70,
-   "mb": 4.71
+   "count": 113,
+   "mb": 6.82
   },
   {
    "key": "austria",
    "label": "Austria",
    "file": "austria.geojson",
-   "count": 4,
-   "mb": 0.31
+   "count": 10,
+   "mb": 0.95
   },
   {
    "key": "francigena",
@@ -68,8 +68,8 @@
    "key": "europa",
    "label": "Altri paesi",
    "file": "europa.geojson",
-   "count": 15,
-   "mb": 2.34
+   "count": 17,
+   "mb": 2.58
   }
  ]
 }
