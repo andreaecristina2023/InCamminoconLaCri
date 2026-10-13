@@ -2,81 +2,39 @@
  "generated": "2026-10-13",
  "areas": [
   {
-   "key": "spagna",
-   "label": "Spagna",
-   "file": "spagna.geojson",
-   "count": 103,
-   "mb": 10.2
+   "key": "santiago-spagna",
+   "label": "Cammini di Santiago · Spagna",
+   "file": "santiago-spagna.geojson",
+   "count": 119,
+   "mb": 10.19
   },
   {
-   "key": "italia",
-   "label": "Italia",
-   "file": "italia.geojson",
-   "count": 12,
-   "mb": 0.5
+   "key": "santiago-francia",
+   "label": "Cammini di Santiago · Francia",
+   "file": "santiago-francia.geojson",
+   "count": 513,
+   "mb": 23.63
   },
   {
-   "key": "portogallo",
-   "label": "Portogallo",
-   "file": "portogallo.geojson",
-   "count": 12,
-   "mb": 1.77
-  },
-  {
-   "key": "francia",
-   "label": "Francia",
-   "file": "francia.geojson",
-   "count": 78,
-   "mb": 2.56
-  },
-  {
-   "key": "svizzera",
-   "label": "Svizzera",
-   "file": "svizzera.geojson",
-   "count": 87,
-   "mb": 2.03
-  },
-  {
-   "key": "inghilterra",
-   "label": "Inghilterra",
-   "file": "inghilterra.geojson",
-   "count": 46,
-   "mb": 1.46
-  },
-  {
-   "key": "germania",
-   "label": "Germania",
-   "file": "germania.geojson",
-   "count": 234,
-   "mb": 12.67
-  },
-  {
-   "key": "austria",
-   "label": "Austria",
-   "file": "austria.geojson",
-   "count": 18,
-   "mb": 1.61
+   "key": "santiago-portogallo",
+   "label": "Cammini di Santiago · Portogallo",
+   "file": "santiago-portogallo.geojson",
+   "count": 26,
+   "mb": 2.68
   },
   {
    "key": "francigena",
    "label": "Via Francigena",
    "file": "francigena.geojson",
+   "count": 97,
+   "mb": 6.14
+  },
+  {
+   "key": "italia",
+   "label": "Cammini in Italia",
+   "file": "italia.geojson",
    "count": 46,
-   "mb": 3.72
-  },
-  {
-   "key": "romea",
-   "label": "Via Romea",
-   "file": "romea.geojson",
-   "count": 45,
-   "mb": 2.15
-  },
-  {
-   "key": "europa",
-   "label": "Altri paesi",
-   "file": "europa.geojson",
-   "count": 84,
-   "mb": 4.11
+   "mb": 4.96
   }
  ]
 }
