@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-12",
+ "generated": "2026-10-13",
  "areas": [
   {
    "key": "spagna",
@@ -12,8 +12,8 @@
    "key": "italia",
    "label": "Italia",
    "file": "italia.geojson",
-   "count": 27,
-   "mb": 1.62
+   "count": 12,
+   "mb": 0.5
   },
   {
    "key": "portogallo",
@@ -40,22 +40,22 @@
    "key": "inghilterra",
    "label": "Inghilterra",
    "file": "inghilterra.geojson",
-   "count": 17,
-   "mb": 0.78
+   "count": 41,
+   "mb": 1.25
   },
   {
    "key": "germania",
    "label": "Germania",
    "file": "germania.geojson",
-   "count": 173,
-   "mb": 9.87
+   "count": 187,
+   "mb": 10.52
   },
   {
    "key": "austria",
    "label": "Austria",
    "file": "austria.geojson",
-   "count": 17,
-   "mb": 1.47
+   "count": 18,
+   "mb": 1.61
   },
   {
    "key": "francigena",
@@ -68,15 +68,15 @@
    "key": "romea",
    "label": "Via Romea",
    "file": "romea.geojson",
-   "count": 30,
-   "mb": 1.03
+   "count": 45,
+   "mb": 2.15
   },
   {
    "key": "europa",
    "label": "Altri paesi",
    "file": "europa.geojson",
-   "count": 32,
-   "mb": 3.14
+   "count": 79,
+   "mb": 4.01
   }
  ]
 }
