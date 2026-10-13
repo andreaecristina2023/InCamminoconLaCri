@@ -2,25 +2,11 @@
  "generated": "2026-10-13",
  "areas": [
   {
-   "key": "santiago-spagna",
-   "label": "Cammini di Santiago · Spagna",
-   "file": "santiago-spagna.geojson",
-   "count": 119,
-   "mb": 10.19
-  },
-  {
    "key": "santiago-francia",
    "label": "Cammini di Santiago · Francia",
    "file": "santiago-francia.geojson",
-   "count": 513,
-   "mb": 23.63
-  },
-  {
-   "key": "santiago-portogallo",
-   "label": "Cammini di Santiago · Portogallo",
-   "file": "santiago-portogallo.geojson",
-   "count": 26,
-   "mb": 2.68
+   "count": 56,
+   "mb": 0.98
   },
   {
    "key": "francigena",
@@ -33,8 +19,8 @@
    "key": "italia",
    "label": "Cammini in Italia",
    "file": "italia.geojson",
-   "count": 388,
-   "mb": 13.25
+   "count": 536,
+   "mb": 16.36
   }
  ]
 }
