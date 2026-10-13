@@ -26,15 +26,15 @@
    "key": "francigena",
    "label": "Via Francigena",
    "file": "francigena.geojson",
-   "count": 97,
-   "mb": 6.14
+   "count": 110,
+   "mb": 7.06
   },
   {
    "key": "italia",
    "label": "Cammini in Italia",
    "file": "italia.geojson",
-   "count": 46,
-   "mb": 4.96
+   "count": 135,
+   "mb": 7.49
   }
  ]
 }
