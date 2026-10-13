@@ -13,25 +13,23 @@ Nessuna build: tutto gira nel browser.
 
 ## Dati dei cammini: cartella `data/`
 
-Il sito legge i cammini da file statici nel repository: nessuna chiamata a OpenStreetMap dal browser, quindi niente "Failed to fetch". I dati sono divisi per area, e il sito carica solo le aree spuntate:
+Il sito legge i cammini da file statici nel repository, uno per area (i nomi coincidono con le caselle dell'area nel sito): `spagna`, `portogallo`, `francia`, `italia`, `svizzera`, `inghilterra`, `germania`, `austria`, `francigena`, `romea`, `europa` (altri paesi), più `indice.json` e `candidati.json`. Il paese di un cammino è quello in cui cade la maggior parte del suo percorso.
 
-| File | Contenuto |
-|---|---|
-| `santiago-spagna.geojson`, `santiago-francia.geojson`, `santiago-portogallo.geojson` | cammini di Santiago (caricati all'apertura) |
-| `francigena.geojson` | Via Francigena (da Canterbury alla Puglia) |
-| `italia.geojson` | altri cammini in Italia |
-| `indice.json` | elenco dei file, creato dallo script |
+I file si generano con GitHub Actions: scheda **Actions** → "Genera GeoJSON dei cammini" → **Run workflow**. Si aggiorna da solo il 1° di ogni mese.
 
-Un cammino di Santiago va nel file della zona in cui cade il centro del suo percorso (assegnazione approssimata).
+**Sicurezza dei dati**
+- Lo script non toglie mai un cammino già scaricato. Se un download fallisce, resta la versione precedente.
+- Una ricerca su OSM fallita o parziale aggiunge cammini, ma non ne toglie.
+- Prima di ogni salvataggio, `scripts/controlla_dati.py` confronta i dati con l'ultimo commit. Se manca anche un solo cammino, il salvataggio viene bloccato.
+- Due esecuzioni della Action non possono girare insieme.
 
-I file si generano con GitHub Actions (GitHub scarica i dati da OSM, non il tuo telefono):
+**Opzioni di "Run workflow"**
+- *ID relazioni*: aggiunge relazioni OSM a mano.
+- *Commit da cui recuperare*: rimette i cammini presenti in un vecchio commit (es. `b329b1c`).
+- *Rifai la ricerca*: cerca su OSM i cammini nuovi.
+- *Pulisci* (raro): toglie i cammini spariti da OSM, al massimo il 15%.
 
-1. Carica nel repository `scripts/build_geojson.py` e `.github/workflows/genera-geojson.yml` (stesse cartelle).
-2. Repository → **Settings → Actions → General → Workflow permissions** → **Read and write permissions** → Save.
-3. Scheda **Actions** → "Genera GeoJSON dei cammini" → **Run workflow**. Ogni lancio dura al massimo 35 minuti e salva quanto scaricato; i lanci successivi riprendono da dove si era arrivati.
-4. Si aggiorna da solo il 1° di ogni mese.
-
-Da computer: `python3 scripts/build_geojson.py` (opzioni `--broad`, `--fresh`, `--max-minutes N`, `--out cartella`).
+Da computer: `python3 scripts/build_geojson.py` (opzioni `--refresh`, `--recupera COMMIT`, `--offline`, `--ids`, `--max-minutes N`, `--aggiorna-giorni N`).
 
 ## Come si usa
 

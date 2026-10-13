@@ -1,15 +1,20 @@
 #!/usr/bin/env python3
 """
-Genera data/cammini.geojson con i cammini di Santiago presi da OpenStreetMap (Overpass API).
+Scarica da OpenStreetMap (Overpass API) i cammini e li salva in data/<area>.geojson + data/indice.json.
+
+Regola principale: lo script NON TOGLIE MAI un cammino già scaricato e non cancella file con dati
+che non siano già stati copiati altrove. Se un download fallisce, resta la versione precedente.
 
 Uso:
-    python3 scripts/build_geojson.py              # cammini principali (consigliato)
-    python3 scripts/build_geojson.py --broad      # ricerca larga (molte relazioni)
-    python3 scripts/build_geojson.py --out altro.geojson
+    python3 scripts/build_geojson.py                    # riprende da dove era rimasto
+    python3 scripts/build_geojson.py --refresh          # rifà anche la ricerca dei cammini su OSM
+    python3 scripts/build_geojson.py --recupera b329b1c # recupera i cammini persi da un vecchio commit
+    python3 scripts/build_geojson.py --ids 123,456      # aggiunge relazioni OSM a mano
+    python3 scripts/build_geojson.py --pulisci          # (raro) toglie i cammini non più presenti su OSM
 
 Solo libreria standard di Python. Dati © contributori di OpenStreetMap (ODbL).
 """
-import argparse, datetime, glob, json, os, re, socket, sys, time, urllib.parse, urllib.request
+import argparse, datetime, glob, json, os, re, socket, subprocess, sys, time, urllib.parse, urllib.request
 
 # i runner di GitHub spesso non hanno IPv6: forza IPv4
 _gai = socket.getaddrinfo
@@ -23,7 +28,11 @@ ENDPOINTS = [
     "https://overpass.private.coffee/api/interpreter",
     "https://overpass.osm.ch/api/interpreter",
 ]
-BBOX = "35,-11,51.5,10"   # Penisola iberica + Francia occidentale e meridionale
+TODAY = datetime.date.today().isoformat()
+DEADLINE = [None]
+VERSION = 2
+
+# ---------------------------------------------------------------- ricerca dei cammini
 
 NAMES = ("Franc[eé]s|Aragon[eé]s|Podiensis|Lemovicensis|Turonensis|Tolosana|del Norte|Primitivo|"
          "Portugu[eé]s|Ingl[eé]s|Fisterr|Finisterre|Mux[ií]a|de la Plata|Sanabr|Baztán|Vasco|"
@@ -36,9 +45,25 @@ NAMES = ("Franc[eé]s|Aragon[eé]s|Podiensis|Lemovicensis|Turonensis|Tolosana|de
 BROAD = ("Cami[nñ]o|Caminho|Chemin de (Saint|Compostelle)|Saint-Jacques|"
          "Via (de la Plata|Podiensis|Lemovicensis|Turonensis|Tolosana|Gebennensis)|"
          "Santiago|Compostelle|Fisterr|Finisterre|Mux[ií]a")
+JACOB = "Santiago|Xacob|Jacob|Jakob|Compostel|Jacques|Giacomo|Sant.?Iago"
+NORD = "Jakobs?weg|Jakobusweg|Jakobspilger|Via Jacobi|St\\.? ?James|Saint James|Chemin de Saint-Jacques|Camino Ingl"
+REFS_FR = "^GR ?(65|653|654|655|78)([^0-9]|$)"   # GR 65 Puy, 653 Arles/Tolosana, 654 Vézelay, 655 Tours, 78 Piémont
 
+# unità di ricerca: (nome, gruppo, riquadro "sud,ovest,nord,est", regex nome, filtro network, cerca anche per descrizione, sigle)
+SEARCHES = [
+    ("santiago", "santiago", "35,-11,51.5,10", None, None, True, REFS_FR),   # regex da --broad/NAMES
+    ("santiago-nord", "santiago", "45.5,-6,56,17.5", NORD, None, False, None),
+    ("francigena", "francigena", "39,-1,52.6,19",
+     "Francigena|Via Romea|Romea (Germanica|Strata|Nonantolana)|Via Francigena", None, False, None),
+    ("italia", "italia", "36,6.5,47.2,18.8",
+     "Cammino|Via (degli Dei|Appia|Traiana|Lauretana|Micaelica|Flaminia|Postumia|Francesca|Sacra|Clodia|Aurelia|Romea|Salaria)|"
+     "Sentiero Italia|Sentiero Roma|Francesco|Benedetto|Sant.Antonio|Sant.Agostino|Dante|Assisi|Materano|Celeste|Balteo",
+     "iwn|nwn|rwn", False, None),
+]
+GPRIO = {"santiago": 0, "francigena": 1, "italia": 2}
+NPRIO = {"iwn": 0, "nwn": 1, "rwn": 2}   # prima i percorsi a lunga distanza
 
-DEADLINE = [None]
+STAGE = re.compile(r"[ée]tape|etapa|tappa|stage|etappe|jornada|tramo|secci[oó]n|section|journ[ée]e|d[ií]a \d|\bleg\b", re.I)
 
 
 def overpass(query, tries=2):
@@ -50,7 +75,7 @@ def overpass(query, tries=2):
             try:
                 req = urllib.request.Request(
                     ep, data=urllib.parse.urlencode({"data": query}).encode(),
-                    headers={"User-Agent": "InCamminoConLaCri-geojson/1.0"})
+                    headers={"User-Agent": "InCamminoConLaCri-geojson/2.0"})
                 with urllib.request.urlopen(req, timeout=100) as r:
                     j = json.load(r)
                 # "remark" = il server ha avuto un problema (timeout, memoria): risultato parziale, da scartare
@@ -62,25 +87,6 @@ def overpass(query, tries=2):
         print(f"  tentativo {t + 1}/{tries} fallito ({errs[-1][:160]}), riprovo…", file=sys.stderr, flush=True)
         time.sleep(8 * (t + 1))
     raise RuntimeError("Overpass non risponde: " + " | ".join(errs[-4:]))
-
-
-JACOB = "Santiago|Xacob|Jacob|Jakob|Compostel|Jacques|Giacomo|Sant.?Iago"
-
-# gruppi di cammini: (chiave, area "sud,ovest,nord,est", regex nome, filtro network, cerca anche per descrizione)
-GROUPS = [
-    ("santiago", BBOX, None, None, True),        # regex scelta da --broad/NAMES
-    ("francigena", "39,-1,52.6,19",
-     "Francigena|Via Romea|Romea (Germanica|Strata|Nonantolana)|Via Francigena", None, False),
-    ("italia", "36,6.5,47.2,18.8",
-     "Cammino|Via (degli Dei|Appia|Traiana|Lauretana|Micaelica|Flaminia|Postumia|Francesca|Sacra|Clodia|Aurelia|Romea|Salaria)|"
-     "Sentiero Italia|Sentiero Roma|Francesco|Benedetto|Sant.Antonio|Sant.Agostino|Dante|Assisi|Materano|Celeste|Balteo",
-     "iwn|nwn|rwn", False),
-]
-
-
-REFS_FR = "^GR ?(65|653|654|655|78)([^0-9]|$)"   # GR 65 Puy, 653 Arles/Tolosana, 654 Vézelay, 655 Tours, 78 Piémont
-
-STAGE = re.compile(r"[ée]tape|etapa|tappa|stage|etappe|jornada|tramo|secci[oó]n|section|journ[ée]e|d[ií]a \d|\bleg\b", re.I)
 
 
 def pick_roots(els, rx):
@@ -110,15 +116,13 @@ def pick_roots(els, rx):
     return out
 
 
-def list_roots(rx, bbox=BBOX, net=None, jacob=True, refs=None):
-    # query leggera (solo tag e membri). Santiago: trova per nome, per descrizione/altri nomi
-    # (collegamenti, varianti, enlaces) e per sigla dei GR francesi.
+def list_roots(rx, bbox, net=None, jacob=False, refs=None):
     netf = f'["network"~"^({net})$"]' if net else ""
     extra = (f'\n  rel["type"="route"]["route"~"^(hiking|foot)$"]{netf}'
              f'[~"^(description|alt_name|official_name|old_name|name:.*|ref:name|destination|from|to)$"~"{JACOB}"]({bbox});') if jacob else ""
     if refs:
         extra += f'\n  rel["type"="route"]["route"~"^(hiking|foot)$"]["ref"~"{refs}"]({bbox});'
-    q = f"""[out:json][timeout:120];
+    q = f"""[out:json][timeout:150];
 (
   rel["type"="route"]["route"~"^(hiking|foot)$"]{netf}["name"~"{rx}",i]({bbox});{extra}
 );
@@ -166,7 +170,7 @@ def ways_of(parent, by_id):
     return out
 
 
-def make_feature(parent, by_id, group="santiago"):
+def make_feature(parent, by_id, group):
     lines = ways_of(parent, by_id)
     if not lines:
         return None
@@ -176,193 +180,362 @@ def make_feature(parent, by_id, group="santiago"):
         "properties": {
             "id": parent["id"], "name": t.get("name", f"relazione {parent['id']}"),
             "ref": t.get("ref", ""), "from": t.get("from", ""), "to": t.get("to", ""),
-            "network": t.get("network", ""), "v": 2, "group": group,
+            "network": t.get("network", ""), "v": VERSION, "group": group, "dl": TODAY,
         },
         "geometry": {"type": "MultiLineString", "coordinates": lines},
     }
 
 
+# ---------------------------------------------------------------- aree (devono coincidere con data-grp in index.html)
+
 LABELS = {
-    "santiago-spagna": "Cammini di Santiago · Spagna",
-    "santiago-francia": "Cammini di Santiago · Francia",
-    "santiago-portogallo": "Cammini di Santiago · Portogallo",
-    "francigena": "Via Francigena",
-    "italia": "Cammini in Italia",
+    "spagna": "Spagna", "portogallo": "Portogallo", "francia": "Francia", "italia": "Italia",
+    "svizzera": "Svizzera", "inghilterra": "Inghilterra", "germania": "Germania", "austria": "Austria",
+    "francigena": "Via Francigena", "romea": "Via Romea", "europa": "Altri paesi",
 }
+
+# contorni approssimati (lon, lat): bastano per capire in che paese sta la maggior parte di un cammino.
+# L'ordine conta: al primo contorno che contiene il punto ci si ferma.
+_PT = [(-9.6, 42.2), (-8.2, 42.15), (-6.2, 41.95), (-6.9, 41.0), (-6.9, 40.0), (-7.0, 39.6), (-7.3, 39.0),
+       (-7.0, 38.2), (-7.5, 37.5), (-7.4, 37.0), (-9.0, 36.8), (-9.7, 38.5), (-9.7, 40.0)]
+_ES = [(-9.5, 43.9), (-1.8, 43.4), (0.7, 42.85), (3.3, 42.45), (3.5, 41.8), (0.5, 40.5), (-0.3, 39.0),
+       (-2.1, 36.6), (-5.6, 35.9), (-7.4, 37.0), (-7.5, 37.5), (-7.0, 38.2), (-7.3, 39.0), (-7.0, 39.6),
+       (-6.9, 40.0), (-6.9, 41.0), (-6.2, 41.95), (-8.2, 42.15), (-9.6, 42.2)]
+_CH = [(6.0, 46.15), (6.9, 47.45), (8.6, 47.8), (9.6, 47.55), (10.5, 46.9), (10.1, 46.2), (9.0, 45.8),
+       (8.4, 46.3), (7.0, 45.85)]
+_AT = [(9.5, 47.55), (9.6, 47.05), (10.5, 46.85), (12.2, 47.0), (12.4, 46.7), (13.7, 46.5), (14.6, 46.4),
+       (16.1, 46.8), (16.5, 47.4), (17.2, 48.0), (16.9, 48.75), (15.0, 49.05), (13.8, 48.8), (13.0, 48.3),
+       (12.9, 47.6), (10.5, 47.5)]
+_DE = [(6.0, 51.0), (6.1, 50.1), (6.4, 49.5), (8.2, 49.0), (7.6, 47.6), (8.6, 47.8), (9.6, 47.55), (10.5, 47.5),
+       (12.9, 47.6), (13.0, 48.3), (13.8, 48.8), (12.1, 50.3), (14.8, 50.9), (14.6, 52.6), (14.2, 53.9),
+       (11.0, 54.5), (9.0, 54.9), (8.5, 53.6), (7.0, 53.4), (6.7, 52.3), (6.0, 51.9)]
+_FR = [(-4.9, 48.5), (-1.6, 49.75), (1.6, 50.95), (2.5, 51.1), (4.2, 49.95), (5.8, 49.5), (8.2, 49.0), (7.6, 47.6),
+       (6.0, 46.15), (7.0, 45.85), (6.6, 45.1), (7.0, 44.2), (7.6, 43.8), (6.0, 43.0), (3.2, 43.3), (3.2, 42.4),
+       (1.7, 42.5), (0.7, 42.85), (-1.8, 43.4), (-1.5, 44.0), (-1.3, 45.5), (-2.3, 47.1), (-4.9, 47.8)]
+_IT = [(6.6, 45.1), (7.0, 45.85), (8.4, 46.3), (9.0, 45.8), (10.1, 46.2), (10.5, 46.85), (12.2, 47.0), (12.4, 46.7),
+       (13.7, 46.5), (13.8, 45.6), (12.4, 44.9), (13.6, 43.5), (15.9, 42.0), (16.3, 41.95), (18.7, 40.3),
+       (18.6, 39.7), (17.0, 39.0),
+       (16.6, 38.0), (15.6, 37.9), (15.6, 40.0), (12.0, 41.6), (10.5, 43.0), (9.5, 44.1), (7.6, 43.8), (7.0, 44.2)]
+_SIC = [(12.3, 38.25), (15.7, 38.35), (15.2, 36.6), (12.3, 37.5)]
+_SAR = [(8.0, 41.3), (9.9, 41.3), (9.8, 38.9), (8.3, 38.8)]
+_GB = [(-5.9, 49.9), (1.9, 50.9), (1.9, 52.9), (0.1, 53.7), (-1.5, 55.1), (-2.0, 55.85), (-3.1, 55.05),
+       (-3.5, 54.0), (-3.0, 53.45), (-4.8, 53.45), (-5.4, 51.7), (-3.0, 51.25), (-5.9, 50.4)]
+COUNTRIES = [("portogallo", _PT), ("spagna", _ES), ("svizzera", _CH), ("austria", _AT), ("germania", _DE),
+             ("francia", _FR), ("italia", _IT), ("italia", _SIC), ("italia", _SAR), ("inghilterra", _GB)]
+ROMEA = re.compile(r"\bRomea\b", re.I)
+FRANCIGENA = re.compile(r"Francigena", re.I)
+
+
+def _inside(x, y, poly):
+    ins, j = False, len(poly) - 1
+    for i in range(len(poly)):
+        xi, yi = poly[i]
+        xj, yj = poly[j]
+        if (yi > y) != (yj > y) and x < (xj - xi) * (y - yi) / (yj - yi) + xi:
+            ins = not ins
+        j = i
+    return ins
+
+
+def country_of(f):
+    pts = [c for line in f["geometry"]["coordinates"] for c in line]
+    step = max(1, len(pts) // 400)
+    votes = {}
+    for x, y in pts[::step]:
+        k = next((k for k, p in COUNTRIES if _inside(x, y, p)), "europa")
+        votes[k] = votes.get(k, 0) + 1
+    return max(votes, key=votes.get) if votes else "europa"
 
 
 def area_of(f):
-    """File/area geografica di un cammino: i cammini di Santiago si assegnano dal centro del riquadro che li contiene."""
-    g = f["properties"].get("group", "santiago")
-    if g != "santiago":
-        return g
-    pts = [c for line in f["geometry"]["coordinates"] for c in line]
-    lons, lats = [c[0] for c in pts], [c[1] for c in pts]
-    clon, clat = (min(lons) + max(lons)) / 2, (min(lats) + max(lats)) / 2
-    if clat > 43.1 and clon > -1.7:
-        return "santiago-francia"
-    if clon < -6.3 and clat < 42.3:
-        return "santiago-portogallo"
-    return "santiago-spagna"
+    p = f["properties"]
+    name = p.get("name", "")
+    if ROMEA.search(name):
+        return "romea"
+    if p.get("group") == "francigena" or FRANCIGENA.search(name):
+        return "francigena"
+    return country_of(f)
 
 
-def save(outdir, feats):
-    """Scrive un file per area (data/<area>.geojson) e l'indice data/indice.json."""
-    os.makedirs(outdir, exist_ok=True)
+# ---------------------------------------------------------------- lettura e scrittura sicure
+
+def read_json(path):
+    with open(path, encoding="utf-8") as fh:
+        return json.load(fh)
+
+
+def write_atomic(path, text):
+    """Scrive su un file temporaneo e poi lo sostituisce: un errore a metà non rovina il file vecchio."""
+    tmp = path + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as fh:
+        fh.write(text)
+        fh.flush()
+        os.fsync(fh.fileno())
+    os.replace(tmp, path)
+
+
+def load_features(outdir):
+    """Tutti i cammini presenti nei file .geojson. Se un file non si legge, si ferma tutto (non si rischia di sovrascriverlo)."""
+    feats, per_file = {}, {}
+    for p in sorted(glob.glob(os.path.join(outdir, "*.geojson"))):
+        try:
+            fl = read_json(p)["features"]
+        except Exception as e:  # noqa: BLE001
+            sys.exit(f"ERRORE: il file {p} non è leggibile ({e}). Mi fermo per non perdere dati.")
+        per_file[p] = {f["properties"]["id"] for f in fl}
+        for f in fl:
+            old = feats.get(f["properties"]["id"])
+            if not old or f["properties"].get("dl", "") >= old["properties"].get("dl", ""):
+                feats[f["properties"]["id"]] = f
+    return feats, per_file
+
+
+def features_from_git(ref, outdir):
+    """Cammini contenuti nei file .geojson di un vecchio commit (per recuperare quelli persi)."""
+    rel = os.path.relpath(outdir, git_root(outdir)).replace(os.sep, "/")
+    names = subprocess.run(["git", "ls-tree", "--name-only", ref, rel + "/"], cwd=git_root(outdir),
+                           capture_output=True, text=True, check=True).stdout.split()
+    out = {}
+    for n in names:
+        if not n.endswith(".geojson"):
+            continue
+        raw = subprocess.run(["git", "show", f"{ref}:{n}"], cwd=git_root(outdir), capture_output=True, check=True).stdout
+        for f in json.loads(raw.decode("utf-8"))["features"]:
+            out[f["properties"]["id"]] = f
+        print(f"  {ref}:{n}: letto", flush=True)
+    return out
+
+
+def git_root(path):
+    return subprocess.run(["git", "rev-parse", "--show-toplevel"], cwd=path, capture_output=True,
+                          text=True, check=True).stdout.strip()
+
+
+def save(outdir, feats, old_files):
+    """Un file per area + indice. Riscrive solo i file cambiati. Un vecchio file si toglie
+    soltanto se TUTTI i suoi cammini sono già nei file nuovi."""
     by_area = {}
     for f in feats.values():
         f["properties"]["area"] = area_of(f)
         by_area.setdefault(f["properties"]["area"], []).append(f)
-    today = datetime.date.today().isoformat()
-    index, written = [], set()
+    idx_path = os.path.join(outdir, "indice.json")
+    try:
+        old_idx = {e["key"]: e for e in read_json(idx_path).get("areas", [])}
+    except Exception:  # noqa: BLE001
+        old_idx = {}
+    index, written, changed = [], {}, False
     for key in LABELS:
-        fl = sorted(by_area.get(key, []), key=lambda f: f["properties"]["name"])
+        fl = sorted(by_area.get(key, []), key=lambda f: (f["properties"]["name"], f["properties"]["id"]))
         if not fl:
             continue
         path = os.path.join(outdir, key + ".geojson")
-        doc = {"type": "FeatureCollection", "generated": today,
-               "attribution": "© contributori di OpenStreetMap (ODbL)", "features": fl}
-        with open(path, "w", encoding="utf-8") as fh:
-            json.dump(doc, fh, ensure_ascii=False, separators=(",", ":"))
-        written.add(os.path.abspath(path))
-        index.append({"key": key, "label": LABELS[key], "file": key + ".geojson",
-                      "count": len(fl), "mb": round(os.path.getsize(path) / 1e6, 2)})
-    with open(os.path.join(outdir, "indice.json"), "w", encoding="utf-8") as fh:
-        json.dump({"generated": today, "areas": index}, fh, ensure_ascii=False, indent=1)
-    for p in glob.glob(os.path.join(outdir, "*.geojson")):   # via i file vecchi (compreso cammini.geojson)
-        if os.path.abspath(p) not in written:
+        doc = {"type": "FeatureCollection", "attribution": "© contributori di OpenStreetMap (ODbL)", "features": fl}
+        text = json.dumps(doc, ensure_ascii=False, separators=(",", ":"))
+        try:
+            same = open(path, encoding="utf-8").read() == text
+        except OSError:
+            same = False
+        if not same:
+            write_atomic(path, text)
+            changed = True
+        written[os.path.abspath(path)] = {f["properties"]["id"] for f in fl}
+        upd = old_idx.get(key, {}).get("updated", TODAY) if same else TODAY
+        index.append({"key": key, "label": LABELS[key], "file": key + ".geojson", "count": len(fl),
+                      "mb": round(os.path.getsize(path) / 1e6, 2), "updated": upd})
+    all_new = set().union(*written.values()) if written else set()
+    for p, ids in old_files.items():   # file vecchi (es. santiago-spagna.geojson): via solo se già copiati
+        ap = os.path.abspath(p)
+        if ap in written or not os.path.exists(p):
+            continue
+        if ids <= all_new:
             os.remove(p)
-    return sum(e["mb"] for e in index)
+            changed = True
+            print(f"  {os.path.basename(p)}: tutti i suoi {len(ids)} cammini sono nei file nuovi, lo tolgo", flush=True)
+        else:
+            print(f"  ATTENZIONE: tengo {os.path.basename(p)} ({len(ids - all_new)} cammini non copiati)", flush=True)
+    if changed or not os.path.exists(idx_path):
+        write_atomic(idx_path, json.dumps({"generated": TODAY, "areas": index}, ensure_ascii=False, indent=1))
+    return sum(e["mb"] for e in index), changed
 
+
+# ---------------------------------------------------------------- candidati (elenco dei cammini da scaricare)
 
 CAND = "candidati.json"
 
 
+def load_candidates(path):
+    """Formato: {"generated", "searches": {nome: data}, "roots": [{id, name, network, group}]}"""
+    try:
+        c = read_json(path)
+    except FileNotFoundError:
+        return {}, {}
+    except Exception as e:  # noqa: BLE001
+        print(f"Elenco candidati non leggibile ({e}): lo ricostruisco dai cammini già scaricati", flush=True)
+        return {}, {}
+    roots = {r["id"]: r for r in c.get("roots", [])}
+    searches = c.get("searches") or {}
+    if not searches and c.get("generated"):   # vecchio formato: data unica
+        searches = {s[0]: c["generated"] for s in SEARCHES}
+    return roots, searches
+
+
+def save_candidates(path, roots, searches):
+    rl = sorted(roots.values(), key=lambda r: r["id"])
+    write_atomic(path, json.dumps({"generated": TODAY, "searches": searches, "roots": rl},
+                                  ensure_ascii=False, separators=(",", ":")))
+
+
+def search_all(broad, roots, searches, only_old_days=None):
+    """Rifà la ricerca su OSM. I risultati si AGGIUNGONO all'elenco: una ricerca fallita o parziale non toglie nulla."""
+    complete, found_ids = True, set()
+    for name, group, bbox, rx, net, jac, refs in SEARCHES:
+        last = searches.get(name)
+        if only_old_days is not None and last and \
+                (datetime.date.today() - datetime.date.fromisoformat(last)).days < only_old_days:
+            continue
+        rx = rx or (BROAD if broad else NAMES)
+        try:
+            found = list_roots(rx, bbox, net, jac, refs)
+        except TimeoutError:
+            raise
+        except Exception as e:  # noqa: BLE001
+            print(f"  ricerca {name}: fallita ({str(e)[:120]}), tengo l'elenco precedente", flush=True)
+            complete = False
+            continue
+        new = 0
+        found_ids.update(e["id"] for e in found)
+        for e in found:
+            if e["id"] not in roots:
+                new += 1
+                roots[e["id"]] = {"id": e["id"], "name": e.get("tags", {}).get("name", ""),
+                                  "network": e.get("tags", {}).get("network", ""), "group": group}
+        searches[name] = TODAY
+        print(f"  ricerca {name}: {len(found)} relazioni radice, {new} nuove; esempi: "
+              + "; ".join((e.get("tags", {}).get("name") or str(e["id"]))[:40] for e in found[:6]), flush=True)
+    return complete, found_ids
+
+
+# ---------------------------------------------------------------- main
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--broad", action="store_true", help="ricerca larga (molte relazioni)")
-    ap.add_argument("--out", default=os.path.join(os.path.dirname(__file__), "..", "data"),
-                    help="cartella dei dati (un file .geojson per area)")
+    ap.add_argument("--out", default=os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "data"),
+                    help="cartella dei dati")
     ap.add_argument("--max-minutes", type=float, default=25, help="tempo massimo del lotto; poi salva quanto scaricato")
     ap.add_argument("--ids", default="", help="ID di relazioni OSM da aggiungere (separati da virgola)")
-    ap.add_argument("--fresh", action="store_true", help="ignora i file esistenti e riscarica tutto")
-    ap.add_argument("--refresh", action="store_true", help="rifà la ricerca dei candidati (altrimenti usa data/candidati.json)")
-    ap.add_argument("--solo-elenco", action="store_true", help="salva solo l'elenco dei candidati e termina")
+    ap.add_argument("--refresh", action="store_true", help="rifà la ricerca dei cammini su OSM")
+    ap.add_argument("--aggiorna-giorni", type=int, default=90,
+                    help="riscarica i cammini scaricati da più di N giorni (0 = mai)")
+    ap.add_argument("--recupera", default="", help="commit git da cui recuperare i cammini mancanti")
+    ap.add_argument("--pulisci", action="store_true",
+                    help="toglie i cammini non più trovati su OSM (solo se tutte le ricerche riescono)")
+    ap.add_argument("--offline", action="store_true", help="niente rete: riorganizza solo i file esistenti")
     a = ap.parse_args()
+    a.out = os.path.abspath(a.out)
     DEADLINE[0] = time.time() + a.max_minutes * 60
     os.makedirs(a.out, exist_ok=True)
 
-    # riprende dai file esistenti: i cammini già presenti non si riscaricano
-    feats = {}
-    if not a.fresh:
-        for p in glob.glob(os.path.join(a.out, "*.geojson")):
-            try:
-                for f in json.load(open(p, encoding="utf-8"))["features"]:
-                    feats[f["properties"]["id"]] = f
-            except Exception as e:  # noqa: BLE001
-                print(f"File {p} non leggibile, lo ignoro: {e}", flush=True)
-        if feats:
-            print(f"Riprendo: {len(feats)} cammini già nei file", flush=True)
+    feats, old_files = load_features(a.out)
+    print(f"Nei file: {len(feats)} cammini", flush=True)
 
-    # candidati: dal file salvato (se recente) oppure con la ricerca su OSM
+    if a.recupera:
+        rec = features_from_git(a.recupera, a.out)
+        added = [k for k in rec if k not in feats]
+        for k in added:
+            feats[k] = rec[k]
+        print(f"Recupero da {a.recupera}: {len(rec)} cammini letti, {len(added)} aggiunti perché mancavano", flush=True)
+
     cpath = os.path.join(a.out, CAND)
-    roots, grp_of = [], {}
-    if os.path.exists(cpath) and not (a.refresh or a.fresh):
-        try:
-            c = json.load(open(cpath, encoding="utf-8"))
-            age = (datetime.date.today() - datetime.date.fromisoformat(c["generated"])).days
-            if age <= 30 and c.get("roots"):
-                for r in c["roots"]:
-                    roots.append({"id": r["id"], "tags": {"name": r.get("name", ""), "network": r.get("network", "")}})
-                    grp_of[r["id"]] = r["group"]
-                print(f"Uso i {len(roots)} candidati salvati il {c['generated']} (--refresh per rifare la ricerca)", flush=True)
-        except Exception as e:  # noqa: BLE001
-            print("Elenco candidati non leggibile, rifaccio la ricerca:", e, flush=True)
-    if not roots:
-        print("Cerco le relazioni…", flush=True)
-        for key, bbox, rx, net, jac in GROUPS:
-            rx = rx or (BROAD if a.broad else NAMES)
-            try:
-                found = list_roots(rx, bbox, net, jac, REFS_FR if key == "santiago" else None)
-            except TimeoutError:
-                raise
-            except Exception as e:  # noqa: BLE001
-                print(f"  gruppo {key}: ricerca fallita ({str(e)[:100]}), salto", flush=True)
-                continue
-            new = [e for e in found if e["id"] not in grp_of]
-            for e in new:
-                grp_of[e["id"]] = key
-            roots += new
-            print(f"  {key}: {len(new)} relazioni radice; esempi: "
-                  + "; ".join((e.get("tags", {}).get("name") or str(e["id"]))[:40] for e in new[:8]), flush=True)
-        if roots:
-            with open(cpath, "w", encoding="utf-8") as fh:
-                json.dump({"generated": datetime.date.today().isoformat(),
-                           "roots": [{"id": e["id"], "name": e.get("tags", {}).get("name", ""),
-                                      "network": e.get("tags", {}).get("network", ""), "group": grp_of[e["id"]]}
-                                     for e in roots]}, fh, ensure_ascii=False, separators=(",", ":"))
-            print(f"Elenco dei candidati salvato in {cpath}", flush=True)
-    if a.solo_elenco:
-        print("COMPLETATO (solo elenco)", flush=True)
-        return
-
+    roots, searches = load_candidates(cpath)
+    for k, f in feats.items():   # ogni cammino già scaricato è anche un candidato
+        if k not in roots:
+            p = f["properties"]
+            roots[k] = {"id": k, "name": p.get("name", ""), "network": p.get("network", ""),
+                        "group": p.get("group", "santiago")}
     for x in re.findall(r"\d+", a.ids or ""):
-        rid = int(x)
-        if rid not in grp_of:
-            grp_of[rid] = "santiago"
-            roots.append({"id": rid, "tags": {"network": "iwn"}})
-    prio = {"iwn": 0, "nwn": 1, "rwn": 2}   # prima i percorsi a lunga distanza
-    gprio = {"santiago": 0, "francigena": 1, "italia": 2}
-    roots.sort(key=lambda e: (gprio[grp_of[e["id"]]], prio.get(e.get("tags", {}).get("network"), 3), e["id"]))
-    ids = [e["id"] for e in roots]
-    todo = [i for i in ids if i not in feats or feats[i]["properties"].get("v") != 2
-            or feats[i]["properties"].get("group") != grp_of[i]]
-    print(f"  {len(ids)} candidati, già scaricati {len(ids) - len(todo)}, da scaricare {len(todo)}", flush=True)
+        roots.setdefault(int(x), {"id": int(x), "name": "", "network": "iwn", "group": "santiago"})
 
-    skipped = []
-    size, i, last_save, timed_out = 4, 0, time.time(), False
+    timed_out, complete_search, found_ids, skipped = False, False, set(), []
     try:
-        while i < len(todo):
-            chunk = todo[i:i + size]
-            print(f"  geometrie {i + len(chunk)}/{len(todo)} (gruppo da {len(chunk)})", flush=True)
-            try:
-                els = fetch_geom(chunk)
-                size = min(size + 1, 8)          # il server risponde: si prova con gruppi più grandi
-            except TimeoutError:
-                raise
-            except Exception as e:  # noqa: BLE001
-                size = max(1, size // 2)         # in difficoltà: gruppi più piccoli
-                print(f"  gruppo fallito ({str(e)[:100]}), provo uno alla volta", flush=True)
-                els = []
+        if not a.offline:
+            print("Ricerca dei cammini su OSM…", flush=True)
+            complete_search, found_ids = search_all(a.broad, roots, searches, None if a.refresh else 30)
+        save_candidates(cpath, roots, searches)
+
+        if not a.offline:
+            old = (datetime.date.today() - datetime.timedelta(days=a.aggiorna_giorni)).isoformat() \
+                if a.aggiorna_giorni > 0 else ""
+            order = sorted(roots.values(), key=lambda r: (GPRIO.get(r["group"], 3), NPRIO.get(r.get("network"), 3), r["id"]))
+            missing = [r["id"] for r in order if r["id"] not in feats
+                       or feats[r["id"]]["properties"].get("v") != VERSION]
+            stale = [r["id"] for r in order if r["id"] in feats and r["id"] not in missing and old
+                     and feats[r["id"]]["properties"].get("dl", "") < old]
+            todo = missing + stale
+            print(f"  {len(roots)} candidati: da scaricare {len(missing)}, da aggiornare {len(stale)}", flush=True)
+
+            size, i, last_save = 4, 0, time.time()
+            while i < len(todo):
+                chunk = todo[i:i + size]
+                print(f"  geometrie {i + len(chunk)}/{len(todo)} (gruppo da {len(chunk)})", flush=True)
+                try:
+                    els = fetch_geom(chunk)
+                    size = min(size + 1, 8)          # il server risponde: gruppi più grandi
+                except TimeoutError:
+                    raise
+                except Exception as e:  # noqa: BLE001
+                    size = max(1, size // 2)         # in difficoltà: gruppi più piccoli
+                    print(f"  gruppo fallito ({str(e)[:100]}), provo uno alla volta", flush=True)
+                    els = []
+                    for rid in chunk:
+                        try:
+                            els += fetch_geom([rid])
+                        except TimeoutError:
+                            raise
+                        except Exception as e2:  # noqa: BLE001
+                            skipped.append(rid)
+                            print(f"  SALTATO {rid}: {str(e2)[:100]}", flush=True)
+                by_id = {e["id"]: e for e in els}
                 for rid in chunk:
-                    try:
-                        els += fetch_geom([rid])
-                    except TimeoutError:
-                        raise
-                    except Exception as e2:  # noqa: BLE001
-                        skipped.append(rid)
-                        print(f"  SALTATO {rid}: {str(e2)[:100]}", flush=True)
-            by_id = {e["id"]: e for e in els}
-            for rid in chunk:
-                if rid in by_id:
-                    f = make_feature(by_id[rid], by_id, grp_of[rid])
-                    if f:
-                        feats[rid] = f
-            i += len(chunk)
-            if feats and time.time() - last_save > 120:
-                print(f"  salvataggio intermedio: {len(feats)} cammini, {save(a.out, feats):.1f} MB", flush=True)
-                last_save = time.time()
-            time.sleep(1)
+                    if rid in by_id:
+                        f = make_feature(by_id[rid], by_id, roots[rid]["group"])
+                        if f:   # se il nuovo download è vuoto, resta la versione vecchia
+                            feats[rid] = f
+                i += len(chunk)
+                if time.time() - last_save > 180:
+                    mb, _ = save(a.out, feats, old_files)
+                    print(f"  salvataggio intermedio: {len(feats)} cammini, {mb:.1f} MB", flush=True)
+                    last_save = time.time()
+                time.sleep(1)
     except TimeoutError:
         timed_out = True
         print("Tempo del lotto finito: salvo quanto scaricato.", flush=True)
+        save_candidates(cpath, roots, searches)
+
+    if a.pulisci:
+        if complete_search and a.refresh and not timed_out:
+            # tiene solo i cammini ritrovati in questa ricerca (più quelli aggiunti a mano con --ids)
+            keep = found_ids | {int(x) for x in re.findall(r"\d+", a.ids or "")}
+            gone = [k for k in feats if k not in keep]
+            if len(gone) > 0.15 * max(1, len(feats)):
+                print(f"PULIZIA ANNULLATA: toglierebbe {len(gone)} cammini su {len(feats)}, troppi.", flush=True)
+            else:
+                for k in gone:
+                    del feats[k]
+                    roots.pop(k, None)
+                save_candidates(cpath, roots, searches)
+                print(f"Pulizia: tolti {len(gone)} cammini", flush=True)
+        else:
+            print("Pulizia saltata: serve --refresh con tutte le ricerche riuscite.", flush=True)
 
     if not feats:
-        sys.exit("Nessun cammino scaricato: non scrivo il file.")
-    if not timed_out and not skipped and len(ids) > 20:
-        feats = {k: v for k, v in feats.items() if k in set(ids)}   # lavoro completo: via i residui obsoleti
-    mb = save(a.out, feats)
-    print(f"Scritti i file in {a.out}: {len(feats)} cammini su {len(ids)}, {mb:.1f} MB in totale; saltati {len(skipped)}", flush=True)
+        sys.exit("Nessun cammino: non scrivo nulla.")
+    mb, changed = save(a.out, feats, old_files)
+    counts = {}
+    for f in feats.values():
+        counts[f["properties"]["area"]] = counts.get(f["properties"]["area"], 0) + 1
+    print(f"Dati in {a.out}: {len(feats)} cammini, {mb:.1f} MB; saltati {len(skipped)}; "
+          + ", ".join(f"{k} {v}" for k, v in sorted(counts.items())), flush=True)
     print("COMPLETATO" if not timed_out else "INCOMPLETO: servono altri lotti", flush=True)
 
 

@@ -7,11 +7,28 @@ on:
         description: "ID relazioni OSM da aggiungere (opzionale, separati da virgola)"
         required: false
         default: ""
+      recupera:
+        description: "Commit da cui recuperare cammini persi (opzionale, es. b329b1c)"
+        required: false
+        default: ""
+      refresh:
+        description: "Rifai la ricerca dei cammini su OSM"
+        type: boolean
+        default: false
+      pulisci:
+        description: "Togli i cammini non più presenti su OSM (raro)"
+        type: boolean
+        default: false
   schedule:
     - cron: "0 4 1 * *"       # aggiornamento automatico il 1° di ogni mese
 
 permissions:
   contents: write
+
+# mai due esecuzioni insieme: la seconda aspetta che la prima finisca
+concurrency:
+  group: genera-geojson
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -19,39 +36,34 @@ jobs:
     timeout-minutes: 340
     steps:
       - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0       # serve la cronologia per "recupera" e per il controllo
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
       - name: Scarica i cammini da OpenStreetMap (a lotti, con salvataggio dopo ogni lotto)
         env:
           IDS: ${{ github.event.inputs.ids }}
+          RECUPERA: ${{ github.event.inputs.recupera }}
+          REFRESH: ${{ github.event.inputs.refresh }}
+          PULISCI: ${{ github.event.inputs.pulisci }}
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          salva() {
-            git add -A data
-            if git diff --cached --quiet; then echo "Nessuna modifica da salvare."; return 0; fi
-            git commit -q -m "Aggiorna dati dei cammini"
-            for t in 1 2 3 4 5; do
-              if git push -q origin HEAD:"${GITHUB_REF_NAME}"; then echo "Salvato nel repository."; return 0; fi
-              echo "Push rifiutato (tentativo $t): rifaccio il commit sopra l'ultima versione."
-              git fetch -q origin "${GITHUB_REF_NAME}"
-              rm -rf /tmp/nuovidati && cp -r data /tmp/nuovidati
-              git reset -q --hard "origin/${GITHUB_REF_NAME}"
-              rm -rf data && cp -r /tmp/nuovidati data
-              git add -A data
-              git diff --cached --quiet && return 0
-              git commit -q -m "Aggiorna dati dei cammini"
-              sleep 5
-            done
-            echo "ERRORE: impossibile salvare nel repository." >&2
-            return 1
-          }
+          ARGS=(--max-minutes 20 --ids "${IDS:-}")
+          CHECK=""
+          if [ "${PULISCI:-false}" = "true" ]; then ARGS+=(--pulisci --refresh); CHECK="--pulisci"; fi
+          if [ -n "${RECUPERA:-}" ]; then
+            echo "=== Recupero da ${RECUPERA} ==="
+            python3 -u scripts/build_geojson.py --offline --recupera "${RECUPERA}" || exit 1
+            bash scripts/salva_dati.sh || exit 1
+          fi
           for lotto in 1 2 3 4 5 6 7 8 9 10 11 12; do
             echo "=== Lotto $lotto ==="
-            python3 -u scripts/build_geojson.py --max-minutes 20 --ids "${IDS:-}" 2>&1 | tee lotto.log || true
-            salva || true
+            EXTRA=()
+            if [ "$lotto" = "1" ] && [ "${REFRESH:-false}" = "true" ]; then EXTRA=(--refresh); fi
+            python3 -u scripts/build_geojson.py "${ARGS[@]}" "${EXTRA[@]}" 2>&1 | tee lotto.log
+            bash scripts/salva_dati.sh $CHECK || { echo "Salvataggio bloccato: mi fermo."; exit 1; }
             if grep -q "^COMPLETATO" lotto.log; then echo "Tutto scaricato."; break; fi
+            if grep -q "^ERRORE" lotto.log; then echo "Errore nello script: mi fermo."; exit 1; fi
           done
       - name: Copia dei dati come allegato (sicurezza)
         if: always()
@@ -60,31 +72,3 @@ jobs:
           name: dati-cammini
           path: data/
           if-no-files-found: warn
-      - name: Salva nel repository
-        if: always()
-        run: |
-          set -u
-          echo "--- contenuto di data/ ---"; ls -la data || true
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A data
-          if git diff --cached --quiet; then
-            echo "Nessuna modifica rispetto al repository: niente da salvare."
-            exit 0
-          fi
-          git status --short | head -20
-          git commit -m "Aggiorna dati dei cammini"
-          for i in 1 2 3 4 5; do
-            if git push origin HEAD:"${GITHUB_REF_NAME}"; then echo "Salvato nel repository."; exit 0; fi
-            echo "Push rifiutato (tentativo $i): il repository è cambiato, rifaccio il commit sopra l'ultima versione."
-            git fetch origin "${GITHUB_REF_NAME}"
-            rm -rf /tmp/nuovidati && cp -r data /tmp/nuovidati
-            git reset --hard "origin/${GITHUB_REF_NAME}"
-            rm -rf data && cp -r /tmp/nuovidati data
-            git add -A data
-            git diff --cached --quiet && { echo "Già aggiornato."; exit 0; }
-            git commit -m "Aggiorna dati dei cammini"
-            sleep 5
-          done
-          echo "ERRORE: impossibile salvare nel repository." >&2
-          exit 1
