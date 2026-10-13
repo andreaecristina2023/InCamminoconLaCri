@@ -7,39 +7,52 @@ on:
         description: "ID relazioni OSM da aggiungere (opzionale, separati da virgola)"
         required: false
         default: ""
-      tentativo:
-        description: "Numero del tentativo (lo imposta da solo il workflow quando si rilancia; lascia 1)"
-        required: false
-        default: "1"
   schedule:
     - cron: "0 4 1 * *"       # aggiornamento automatico il 1° di ogni mese
 
 permissions:
   contents: write
-  actions: write              # serve per rilanciarsi da solo
-
-# una sola corsa alla volta: la corsa che si rilancia da sola aspetta che questa finisca
-concurrency:
-  group: genera-geojson
-  cancel-in-progress: false
-
-env:
-  MAX_TENTATIVI: "8"          # dopo tanti tentativi smette di rilanciarsi (evita cicli infiniti)
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 55
+    timeout-minutes: 340
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
-      - name: Scarica i cammini da OpenStreetMap
-        id: build
+      - name: Scarica i cammini da OpenStreetMap (a lotti, con salvataggio dopo ogni lotto)
         env:
           IDS: ${{ github.event.inputs.ids }}
-        run: python3 scripts/build_geojson.py --ids "$IDS"
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          salva() {
+            git add -A data
+            if git diff --cached --quiet; then echo "Nessuna modifica da salvare."; return 0; fi
+            git commit -q -m "Aggiorna dati dei cammini"
+            for t in 1 2 3 4 5; do
+              if git push -q origin HEAD:"${GITHUB_REF_NAME}"; then echo "Salvato nel repository."; return 0; fi
+              echo "Push rifiutato (tentativo $t): rifaccio il commit sopra l'ultima versione."
+              git fetch -q origin "${GITHUB_REF_NAME}"
+              rm -rf /tmp/nuovidati && cp -r data /tmp/nuovidati
+              git reset -q --hard "origin/${GITHUB_REF_NAME}"
+              rm -rf data && cp -r /tmp/nuovidati data
+              git add -A data
+              git diff --cached --quiet && return 0
+              git commit -q -m "Aggiorna dati dei cammini"
+              sleep 5
+            done
+            echo "ERRORE: impossibile salvare nel repository." >&2
+            return 1
+          }
+          for lotto in 1 2 3 4 5 6 7 8 9 10 11 12; do
+            echo "=== Lotto $lotto ==="
+            python3 -u scripts/build_geojson.py --max-minutes 20 --ids "${IDS:-}" 2>&1 | tee lotto.log || true
+            salva || true
+            if grep -q "^COMPLETATO" lotto.log; then echo "Tutto scaricato."; break; fi
+          done
       - name: Copia dei dati come allegato (sicurezza)
         if: always()
         uses: actions/upload-artifact@v4
@@ -75,20 +88,3 @@ jobs:
           done
           echo "ERRORE: impossibile salvare nel repository." >&2
           exit 1
-      # Se lo script non ha finito (tempo scaduto, server OSM che non rispondono, cammini saltati)
-      # il workflow si rilancia da solo: riparte da quanto è già stato salvato qui sopra.
-      - name: Rilancia se il lavoro non è finito
-        if: always() && steps.build.outputs.complete != 'true'
-        env:
-          GH_TOKEN: ${{ github.token }}
-          IDS: ${{ github.event.inputs.ids }}
-          TENTATIVO: ${{ github.event.inputs.tentativo }}
-        run: |
-          n="${TENTATIVO:-1}"
-          if [ "$n" -ge "$MAX_TENTATIVI" ]; then
-            echo "Raggiunti $MAX_TENTATIVI tentativi senza finire: mi fermo. Controlla i log e rilancia a mano." >&2
-            exit 1
-          fi
-          next=$((n + 1))
-          echo "Lavoro non finito: rilancio il workflow (tentativo $next di $MAX_TENTATIVI)."
-          gh workflow run "${{ github.workflow }}" --ref "$GITHUB_REF_NAME" -f ids="$IDS" -f tentativo="$next"
