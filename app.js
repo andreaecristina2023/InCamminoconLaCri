@@ -439,7 +439,52 @@ function resample(line) {
 }
 
 /* ---------- località e alloggi ---------- */
+// prima i file statici data/alloggi/<area>.json (generati dalla Action "Genera ostelli"), poi Overpass come riserva
+const KIND_IT = { P: 'Albergue/accoglienza pellegrini', O: 'Ostello', R: 'Rifugio', B: 'Pensione/B&B', H: 'Hotel', C: 'Campeggio' };
+let alloggiIndex;
+const alloggiFiles = new Map();
+async function loadPOIStatic() {
+  if (alloggiIndex === undefined) {
+    try { const r = await fetch('data/alloggi/indice.json'); alloggiIndex = r.ok ? await r.json() : null; } catch (e) { alloggiIndex = null; }
+  }
+  if (!alloggiIndex) return false;
+  const keys = new Set([...S.chosen].map(id => S.geo.get(id)).filter(Boolean).map(g => g.area));
+  const files = alloggiIndex.aree.filter(a => keys.has(a.key));
+  if (!files.length) return false;
+  status('Carico località e ostelli…');
+  const data = await Promise.all(files.map(a => {
+    if (!alloggiFiles.has(a.file)) alloggiFiles.set(a.file, fetch('data/alloggi/' + a.file).then(r => r.ok ? r.json() : null).catch(() => null));
+    return alloggiFiles.get(a.file);
+  }));
+  // griglia dei punti del percorso per trovare in fretta il più vicino
+  const grid = new Map(), G = 0.05, gk = (la, lo) => Math.floor(la / G) + ',' + Math.floor(lo / G);
+  S.samples.forEach((p, i) => { const k = gk(p.lat, p.lon); if (!grid.has(k)) grid.set(k, []); grid.get(k).push(i); });
+  const nearest = (la, lo) => {
+    let bi = -1, bd = 1e9; const a = Math.floor(la / G), b = Math.floor(lo / G);
+    for (let x = a - 1; x <= a + 1; x++) for (let y = b - 1; y <= b + 1; y++) for (const i of grid.get(x + ',' + y) || []) {
+      const d = hav({ lat: la, lon: lo }, S.samples[i]); if (d < bd) { bd = d; bi = i; } }
+    return [bi, bd];
+  };
+  const seenP = new Set(), seenL = new Set(), places = [], lodging = [];
+  for (const d of data) {
+    if (!d) continue;
+    for (const p of d.luoghi) {
+      if (seenP.has(p.id)) continue; seenP.add(p.id);
+      const [i, off] = nearest(p.la, p.lo); if (i < 0 || off > 2.5) continue;
+      places.push({ name: p.n, type: p.t, lat: p.la, lon: p.lo, i, d: S.samples[i].d, off, cc: p.cc, region: p.re });
+    }
+    for (const h of d.alloggi) {
+      if (seenL.has(h.id)) continue; seenL.add(h.id);
+      const [i, off] = nearest(h.la, h.lo); if (i < 0 || off > 1.8) continue;
+      lodging.push({ name: h.n || '(senza nome)', kind: KIND_IT[h.k] || h.k, k: h.k, lat: h.la, lon: h.lo, i, d: S.samples[i].d, off,
+        tags: { phone: h.tel, website: h.web && !/^https?:/.test(h.web) ? 'https://' + h.web : h.web, beds: h.letti, fee: h.prezzo, opening_hours: h.orari } });
+    }
+  }
+  S.places = places; S.lodging = lodging;
+  return true;
+}
 async function loadPOI() {
+  if (await loadPOIStatic()) return;
   const step = Math.max(2, Math.round(1 / STEP_KM));
   const pts = []; for (let i = 0; i < S.samples.length; i += step) pts.push(S.samples[i]);
   pts.push(S.samples[S.samples.length - 1]);

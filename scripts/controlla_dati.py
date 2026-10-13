@@ -37,3 +37,34 @@ if lost and "--pulisci" not in sys.argv:
     print("BLOCCATO: mancherebbero questi cammini (id OSM): " + ", ".join(map(str, sorted(lost)[:50])), file=sys.stderr)
     sys.exit(1)
 print("OK")
+
+# ---------------------------------------------------------------- ostelli (data/alloggi)
+# un file di area non deve sparire e non deve perdere più del 30% degli alloggi; la copia grezza
+# non deve perdere riquadri
+problems = []
+for n in subprocess.run(["git", "ls-tree", "--name-only", "HEAD", "data/alloggi/"],
+                        capture_output=True, text=True).stdout.split():
+    if not n.endswith(".json") or n.endswith(("indice.json", "riepilogo.json")):
+        continue
+    old = json.loads(subprocess.run(["git", "show", f"HEAD:{n}"], capture_output=True, check=True).stdout.decode("utf-8"))
+    if not os.path.exists(n):
+        problems.append(f"{n} sparito")
+        continue
+    try:
+        new = json.load(open(n, encoding="utf-8"))
+    except Exception as e:  # noqa: BLE001
+        problems.append(f"{n} non leggibile ({e})")
+        continue
+    if n.endswith("_celle.json"):
+        lost_cells = set(old) - set(new)
+        if lost_cells:
+            problems.append(f"{n}: persi {len(lost_cells)} riquadri")
+    else:
+        a, b = len(old.get("alloggi", [])), len(new.get("alloggi", []))
+        print(f"Controllo ostelli {n}: prima {a}, adesso {b}")
+        if a >= 20 and b < a * 0.7:
+            problems.append(f"{n}: alloggi scesi da {a} a {b}")
+if problems and "--pulisci" not in sys.argv:
+    print("BLOCCATO: " + "; ".join(problems), file=sys.stderr)
+    sys.exit(1)
+print("OK ostelli")

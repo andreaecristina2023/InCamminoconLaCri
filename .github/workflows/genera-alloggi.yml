@@ -1,0 +1,57 @@
+name: Genera ostelli e località
+
+on:
+  workflow_dispatch:          # pulsante "Run workflow" nella scheda Actions
+    inputs:
+      aree:
+        description: "Solo queste aree (opzionale, es. spagna,francia). Vuoto = tutte"
+        required: false
+        default: ""
+      vecchio:
+        description: "Riscarica i riquadri più vecchi di N giorni (0 = riscarica tutto)"
+        required: false
+        default: "25"
+  schedule:
+    - cron: "0 4 3 * *"       # il 3 di ogni mese, dopo l'aggiornamento dei cammini
+
+permissions:
+  contents: write
+
+# stesso gruppo della Action dei cammini: non girano mai insieme
+concurrency:
+  group: dati-sito
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Scarica località e alloggi da OpenStreetMap (a lotti, con salvataggio dopo ogni lotto)
+        env:
+          AREE: ${{ github.event.inputs.aree }}
+          VECCHIO: ${{ github.event.inputs.vecchio }}
+          DATI_DIR: data/alloggi
+          MESSAGGIO: Aggiorna ostelli e località
+        run: |
+          for lotto in $(seq 1 14); do
+            echo "=== Lotto $lotto ==="
+            python3 -u scripts/build_alloggi.py --max-minutes 20 --vecchio "${VECCHIO:-25}" --aree "${AREE:-}" 2>&1 | tee lotto.log
+            bash scripts/salva_dati.sh || { echo "Salvataggio bloccato: mi fermo."; exit 1; }
+            if grep -q "^COMPLETATO" lotto.log; then echo "Tutto scaricato."; break; fi
+            if grep -q "^ERRORE" lotto.log; then echo "Errore nello script: mi fermo."; exit 1; fi
+            if grep -q "Troppi errori di fila" lotto.log; then echo "Overpass non risponde: riprovo tra 5 minuti."; sleep 300; fi
+          done
+      - name: Copia dei dati come allegato (sicurezza)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dati-ostelli
+          path: data/alloggi/
+          if-no-files-found: warn

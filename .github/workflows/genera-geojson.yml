@@ -27,7 +27,7 @@ permissions:
 
 # mai due esecuzioni insieme: la seconda aspetta che la prima finisca
 concurrency:
-  group: genera-geojson
+  group: dati-sito          # condiviso con "Genera ostelli": mai insieme
   cancel-in-progress: false
 
 jobs:

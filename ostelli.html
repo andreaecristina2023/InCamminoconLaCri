@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Ostelli lungo i cammini · In Cammino con La Cri</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="images/assets/favicon/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="images/assets/favicon/favicon.ico" sizes="any">
+  <meta name="theme-color" content="#1e4aa0">
+  <style>
+    .k{display:inline-block;min-width:1.9em;padding:0 4px;border-radius:6px;text-align:center;font-size:.78rem;font-weight:600;color:#fff}
+    .kP{background:var(--pink)} .kO{background:var(--blue)} .kR{background:#6b4f2a} .kB{background:#2e8b57} .kH{background:#5d6d7e} .kC{background:#c9a000}
+    .k0{background:transparent;color:#9aa1a7;font-weight:400}
+    table{width:100%;border-collapse:collapse;font-size:.85rem;background:var(--card);border-radius:10px;overflow:hidden}
+    th,td{padding:4px 6px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+    th{position:sticky;top:0;background:#dde1e5;cursor:pointer;user-select:none;font-weight:600;color:var(--blue)}
+    td.n,th.n{text-align:right;white-space:nowrap}
+    tr.place:hover{background:#fff;cursor:pointer}
+    tr.sel{background:var(--pink-soft)!important}
+    select,input[type=search]{font:inherit;padding:5px 8px;border:1px solid var(--grey);border-radius:8px;background:#fafbfc;max-width:100%}
+    .tot{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+    .tot div{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:6px 10px;min-width:92px}
+    .tot b{display:block;font-size:1.15rem;color:var(--blue)}
+    .lod{margin:4px 0 0;padding-left:16px;font-size:.8rem}
+    .lod li{margin:2px 0}
+    .muted{color:#7b8288}
+    nav.tabs{display:flex;gap:6px;margin-bottom:6px}
+    nav.tabs a{padding:4px 10px;border-radius:8px;background:var(--card);border:1px solid var(--line);text-decoration:none}
+    nav.tabs a.on{background:var(--blue);color:#fff;border-color:var(--blue)}
+  </style>
+</head>
+<body>
+  <header>
+    <img class="logo" src="images/assets/favicon/icon-192.png" alt="In Cammino con La Cri">
+    <div class="title">
+      <h1>Ostelli lungo i cammini</h1>
+      <span class="by">In Cammino con La Cri · Viaggiatrice zaino in spalla</span>
+    </div>
+    <span id="status" style="margin-left:auto">Carico…</span>
+  </header>
+  <div class="stripe"></div>
+  <main>
+    <div id="map"></div>
+    <section id="panel">
+      <nav class="tabs"><a href="index.html">← Pianificatore</a><a class="on" href="ostelli.html">Ostelli</a></nav>
+      <div class="row">
+        <select id="fStato"><option value="">Tutti gli stati</option></select>
+        <select id="fReg"><option value="">Tutte le regioni</option></select>
+        <select id="fArea"><option value="">Tutti i gruppi di cammini</option></select>
+      </div>
+      <div class="row"><input id="fQ" type="search" placeholder="Cerca un paese…" style="flex:1"></div>
+      <div class="row small" id="fKinds"></div>
+      <div class="row small">
+        <label><input type="checkbox" id="fOnly" checked> solo paesi con almeno un alloggio dei tipi scelti</label>
+      </div>
+      <div class="tot" id="tot"></div>
+      <h2 id="hReg">Per regione</h2>
+      <table id="tReg"></table>
+      <h2>Paesi <span class="small" id="cnt"></span></h2>
+      <table id="tPl"></table>
+      <div class="row"><button id="more" hidden>Mostra altri</button></div>
+      <footer class="small">
+        Alloggi e località: © contributori di <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (ODbL).
+        Stati e regioni: Natural Earth. Sono solo gli alloggi presenti in OSM entro 1,5 km dai cammini: ne mancano
+        sicuramente, e apertura e prezzi vanno sempre verificati. <span id="gen"></span>
+      </footer>
+    </section>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script>
+  'use strict';
+  const $ = s => document.querySelector(s);
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const ORDER = ['P', 'O', 'R', 'B', 'H', 'C'];
+  const COL = { P: '#c2307f', O: '#1e4aa0', R: '#6b4f2a', B: '#2e8b57', H: '#5d6d7e', C: '#c9a000' };
+  const SHORT = { P: 'Pellegrini', O: 'Ostelli', R: 'Rifugi', B: 'B&B', H: 'Hotel', C: 'Campeggi' };
+  const map = L.map('map', { preferCanvas: true }).setView([43.5, 2], 5);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' }).addTo(map);
+  const layer = L.layerGroup().addTo(map);
+  let ROWS = [], TIPI = {}, INDEX = null, shown = 300, sortKey = 'tot', sortDir = -1, selId = null;
+  const kinds = new Set(['P', 'O', 'R']);   // di default: quelli che contano per un pellegrino
+  const areaFiles = new Map();
+
+  const nk = (r, set = kinds) => ORDER.reduce((a, k) => a + (set.has(k) ? (r.c[k] || 0) : 0), 0);
+  const badge = (k, v) => `<span class="k ${v ? 'k' + k : 'k0'}" title="${esc(TIPI[k] || k)}">${v || '·'}</span>`;
+
+  function filtered() {
+    const st = $('#fStato').value, re = $('#fReg').value, ar = $('#fArea').value, q = $('#fQ').value.trim().toLowerCase();
+    return ROWS.filter(r => (!st || r.stato === st) && (!re || r.re === re) && (!ar || r.aree.includes(ar)) &&
+      (!q || r.n.toLowerCase().includes(q)) && (!$('#fOnly').checked || nk(r) > 0));
+  }
+
+  function render() {
+    const list = filtered();
+    // totali
+    const t = {}; ORDER.forEach(k => t[k] = 0);
+    list.forEach(r => ORDER.forEach(k => t[k] += r.c[k] || 0));
+    $('#tot').innerHTML = `<div><b>${list.length.toLocaleString('it')}</b>paesi</div>` +
+      ORDER.filter(k => kinds.has(k)).map(k => `<div><b style="color:${COL[k]}">${t[k].toLocaleString('it')}</b>${esc(TIPI[k] || k)}</div>`).join('');
+    // per regione (o per stato, se non è scelto uno stato)
+    const byState = !$('#fStato').value;
+    $('#hReg').textContent = byState ? 'Per stato' : 'Per regione';
+    const g = new Map();
+    list.forEach(r => {
+      const key = byState ? r.stato || '(sconosciuto)' : r.re || '(sconosciuta)';
+      const o = g.get(key) || { n: 0, c: {} }; o.n++; ORDER.forEach(k => o.c[k] = (o.c[k] || 0) + (r.c[k] || 0)); g.set(key, o);
+    });
+    $('#tReg').innerHTML = `<tr><th>${byState ? 'Stato' : 'Regione'}</th><th class="n">Paesi</th>${ORDER.filter(k => kinds.has(k)).map(k => `<th class="n">${SHORT[k]}</th>`).join('')}</tr>` +
+      [...g].sort((a, b) => nk(b[1]) - nk(a[1])).map(([name, o]) =>
+        `<tr class="place" data-g="${esc(name)}"><td>${esc(name)}</td><td class="n">${o.n}</td>${ORDER.filter(k => kinds.has(k)).map(k => `<td class="n">${o.c[k] || 0}</td>`).join('')}</tr>`).join('');
+    // paesi
+    const val = r => sortKey === 'tot' ? nk(r) : sortKey === 'n' ? r.n : sortKey === 're' ? (r.re + r.n) : (r.c[sortKey] || 0);
+    list.sort((a, b) => { const x = val(a), y = val(b); return (x < y ? -1 : x > y ? 1 : 0) * sortDir; });
+    $('#cnt').textContent = `(${list.length.toLocaleString('it')}${list.length > shown ? ', i primi ' + shown : ''})`;
+    const head = `<tr><th data-s="n">Paese</th><th data-s="re">Regione</th><th class="n" data-s="tot">Tot.</th>${ORDER.filter(k => kinds.has(k)).map(k => `<th class="n" data-s="${k}">${SHORT[k]}</th>`).join('')}</tr>`;
+    $('#tPl').innerHTML = head + list.slice(0, shown).map(r =>
+      `<tr class="place${r.id === selId ? ' sel' : ''}" data-id="${r.id}"><td>${esc(r.n)} <span class="muted small">${esc(r.t === 'city' ? 'città' : r.t === 'town' ? 'cittadina' : r.t === 'hamlet' ? 'frazione' : '')}</span></td>` +
+      `<td class="small">${esc(r.re)}${r.pr && r.pr !== r.re ? ' · ' + esc(r.pr) : ''}</td><td class="n"><b>${nk(r)}</b></td>${ORDER.filter(k => kinds.has(k)).map(k => `<td class="n">${badge(k, r.c[k] || 0)}</td>`).join('')}</tr>`).join('');
+    $('#more').hidden = list.length <= shown;
+    // mappa
+    layer.clearLayers();
+    list.forEach(r => {
+      const n = nk(r), top = ORDER.find(k => kinds.has(k) && r.c[k]) || 'B';
+      L.circleMarker([r.la, r.lo], { radius: n ? Math.min(3 + Math.sqrt(n) * 2, 14) : 2, color: '#fff', weight: 1,
+        fillColor: n ? COL[top] : '#9aa1a7', fillOpacity: .85 }).on('click', () => select(r, false)).addTo(layer);
+    });
+  }
+
+  async function areaData(key) {
+    if (!areaFiles.has(key)) {
+      const e = INDEX.aree.find(a => a.key === key);
+      areaFiles.set(key, fetch('data/alloggi/' + e.file).then(r => r.json()).then(d => {
+        const byId = new Map(d.luoghi.map(p => [p.id, p])); return { d, byId };
+      }));
+    }
+    return areaFiles.get(key);
+  }
+
+  async function select(r, zoom = true) {
+    selId = r.id;
+    document.querySelectorAll('tr.sel').forEach(x => x.classList.remove('sel'));
+    const tr = document.querySelector(`tr[data-id="${r.id}"]`); if (tr) tr.classList.add('sel');
+    if (zoom) map.setView([r.la, r.lo], Math.max(map.getZoom(), 12));
+    const pop = L.popup({ maxWidth: 320 }).setLatLng([r.la, r.lo]).setContent(`<b>${esc(r.n)}</b><br><span class="small">${esc(r.re)}, ${esc(r.stato)}</span><br>carico gli alloggi…`).openOn(map);
+    try {
+      const { d, byId } = await areaData(r.aree[0]);
+      const p = byId.get(r.id); if (!p) throw new Error('non trovato');
+      const items = p.a.map(i => d.alloggi[i]).sort((x, y) => ORDER.indexOf(x.k) - ORDER.indexOf(y.k));
+      pop.setContent(`<b>${esc(r.n)}</b><br><span class="small">${esc(r.re)}, ${esc(r.stato)}</span>` +
+        (items.length ? `<ul class="lod">${items.map(a => `<li>${badge(a.k, 1).replace('>1<', '>' + a.k + '<')} ${esc(a.n || '(senza nome)')}` +
+          (a.letti ? ` · ${esc(a.letti)} posti` : '') + (a.tel ? ` · <a href="tel:${esc(a.tel.split(/[;,]/)[0])}">${esc(a.tel.split(/[;,]/)[0])}</a>` : '') +
+          (a.web ? ` · <a href="${esc(/^https?:/.test(a.web) ? a.web : 'https://' + a.web)}" target="_blank" rel="noopener">sito</a>` : '') + '</li>').join('')}</ul>` : '<br>Nessun alloggio in OSM.') +
+        `<div class="small"><a href="https://www.google.com/search?q=${encodeURIComponent('site:gronze.com ' + r.n)}" target="_blank" rel="noopener">cerca su Gronze</a> · <a href="https://www.openstreetmap.org/node/${r.id}" target="_blank" rel="noopener">OSM</a></div>`);
+    } catch (e) { pop.setContent(`<b>${esc(r.n)}</b><br>Dettagli non disponibili.`); }
+  }
+
+  function options(sel, values, keep) {
+    const cur = sel.value, first = sel.options[0].outerHTML;
+    sel.innerHTML = first + values.map(v => `<option>${esc(v)}</option>`).join('');
+    sel.value = keep && values.includes(cur) ? cur : '';
+  }
+
+  function refreshRegions() {
+    const st = $('#fStato').value;
+    options($('#fReg'), [...new Set(ROWS.filter(r => !st || r.stato === st).map(r => r.re).filter(Boolean))].sort((a, b) => a.localeCompare(b)), true);
+  }
+
+  (async () => {
+    try {
+      const [ix, rp] = await Promise.all([fetch('data/alloggi/indice.json'), fetch('data/alloggi/riepilogo.json')]);
+      if (!ix.ok || !rp.ok) throw new Error('i dati degli ostelli non ci sono ancora');
+      INDEX = await ix.json(); const R = await rp.json();
+      ROWS = R.luoghi; TIPI = R.tipi || INDEX.tipi;
+      let DN = null; try { DN = new Intl.DisplayNames(['it'], { type: 'region' }); } catch (e) { }
+      ROWS.forEach(r => { if (DN && /^[A-Z]{2}$/.test(r.cc || '')) try { r.stato = DN.of(r.cc); } catch (e) { } });
+      $('#gen').textContent = `Aggiornato al ${R.generated}.`;
+      options($('#fStato'), [...new Set(ROWS.map(r => r.stato).filter(Boolean))].sort((a, b) => a.localeCompare(b)));
+      $('#fArea').innerHTML = $('#fArea').options[0].outerHTML + INDEX.aree.map(a => `<option value="${esc(a.key)}">${esc(a.label)}</option>`).join('');
+      refreshRegions();
+      $('#fKinds').innerHTML = 'Tipi: ' + ORDER.map(k => `<label><input type="checkbox" data-k="${k}"${kinds.has(k) ? ' checked' : ''}> ${badge(k, k)} ${esc(TIPI[k] || k)}</label>`).join(' ');
+      $('#status').textContent = `${ROWS.length.toLocaleString('it')} paesi lungo i cammini`;
+      render();
+      const pts = filtered(); if (pts.length) map.fitBounds(pts.map(r => [r.la, r.lo]));
+    } catch (e) {
+      $('#status').textContent = 'Dati non disponibili';
+      $('#tot').innerHTML = `<div>Mancano i dati degli ostelli (${esc(e.message)}). Vanno generati con la Action “Genera ostelli e località” su GitHub.</div>`;
+    }
+  })();
+
+  $('#fStato').onchange = () => { refreshRegions(); shown = 300; render(); };
+  ['#fReg', '#fArea', '#fOnly'].forEach(s => $(s).onchange = () => { shown = 300; render(); });
+  let qT; $('#fQ').oninput = () => { clearTimeout(qT); qT = setTimeout(() => { shown = 300; render(); }, 200); };
+  $('#fKinds').onchange = e => { const k = e.target.dataset.k; if (!k) return; e.target.checked ? kinds.add(k) : kinds.delete(k); render(); };
+  $('#more').onclick = () => { shown += 300; render(); };
+  $('#tPl').onclick = e => {
+    const th = e.target.closest('th'); if (th) { const s = th.dataset.s; sortDir = s === sortKey ? -sortDir : (s === 'n' || s === 're' ? 1 : -1); sortKey = s; render(); return; }
+    const tr = e.target.closest('tr[data-id]'); if (tr) { const r = ROWS.find(x => String(x.id) === tr.dataset.id); if (r) select(r); }
+  };
+  $('#tReg').onclick = e => {
+    const tr = e.target.closest('tr[data-g]'); if (!tr) return;
+    if (!$('#fStato').value) { $('#fStato').value = tr.dataset.g; refreshRegions(); } else $('#fReg').value = tr.dataset.g;
+    shown = 300; render(); const pts = filtered(); if (pts.length) map.fitBounds(pts.map(r => [r.la, r.lo]));
+  };
+  </script>
+</body>
+</html>

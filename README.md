@@ -51,3 +51,16 @@ Da computer: `python3 scripts/build_geojson.py` (opzioni `--refresh`, `--recuper
 - Caricare molti cammini lunghi può richiedere un minuto o più; Overpass può rifiutare richieste pesanti, riprova dopo un po'.
 - Gli alloggi sono quelli mappati in OSM: verifica sempre apertura e prezzi.
 - Un backend (cache dei dati, itinerari salvati, prezzi) è il passo successivo, non è necessario per questa versione.
+
+## Ostelli e località (`data/alloggi/`)
+
+La Action **“Genera ostelli e località”** (scheda *Actions* → *Run workflow*) scarica da OpenStreetMap le località e gli
+alloggi entro 1,5 km dai tracciati e li salva in `data/alloggi/`: un file per area, `riepilogo.json` (per stato,
+regione e paese) e `_celle.json` (copia grezza per riquadri, serve a riprendere). Gira anche da sola il 3 di ogni mese,
+dopo i cammini; le due Action non girano mai insieme.
+
+- La prima volta ci mette qualche ora (≈2.200 riquadri): lavora a lotti e salva dopo ogni lotto, quindi se si ferma basta rilanciarla.
+- Tipi di alloggio: accoglienza pellegrini (albergue, gîte, ostello del pellegrino…), ostello, rifugio, pensione/B&B, hotel, campeggio.
+- Stato e regione di ogni paese vengono da `scripts/regioni-europa.json` (Natural Earth, rigenerabile con `scripts/prepara_regioni.py`).
+- Controllo di sicurezza: un file di area non può sparire né perdere più del 30% degli alloggi, altrimenti non si salva.
+- La pagina `ostelli.html` mostra i conteggi; il pianificatore usa questi file per le tappe e passa a Overpass solo se mancano.
