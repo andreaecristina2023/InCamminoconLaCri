@@ -324,14 +324,24 @@ function buildGraph() {
     let prev = -1;
     for (const p of w) { const id = nodeId(p); if (prev >= 0) addEdge(prev, id, hav(G.nodes[prev], G.nodes[id]), t.id); prev = id; }
   }
-  // collega piccoli vuoti tra estremi di tratti (≤150 m), con penalità
-  for (let u = 0; u < G.nodes.length; u++) {
-    if (G.adj[u].length !== 1) continue;
-    const n = G.nodes[u], cx = Math.floor(n.lat / CELL), cy = Math.floor(n.lon / CELL);
-    let best = -1, bd = 0.15;
-    for (let dx = -1; dx <= 1; dx++) for (let dy = -1; dy <= 1; dy++) {
+  // cuce i piccoli strappi (frequenti in OSM): dalla fine di un tratto al punto più vicino entro 500 m
+  // che NON sia già raggiungibile da lì a piedi lungo la rete (altrimenti si cucirebbe il tratto con sé stesso)
+  const GAP = 0.5;
+  const local = u => {   // nodi raggiungibili da u entro ~1,2 km lungo la rete
+    const dist = new Map([[u, 0]]), q = [u];
+    while (q.length) {
+      const x = q.shift(), dx = dist.get(x);
+      for (const e of G.adj[x]) { const nd = dx + e.w; if (nd <= GAP * 2.4 && !(dist.get(e.v) <= nd)) { dist.set(e.v, nd); q.push(e.v); } }
+    }
+    return dist;
+  };
+  const ends = []; for (let u = 0; u < G.nodes.length; u++) if (G.adj[u].length === 1) ends.push(u);
+  for (const u of ends) {
+    const n = G.nodes[u], cx = Math.floor(n.lat / CELL), cy = Math.floor(n.lon / CELL), near = local(u);
+    let best = -1, bd = GAP;
+    for (let dx = -3; dx <= 3; dx++) for (let dy = -4; dy <= 4; dy++) {
       for (const v of G.grid.get((cx + dx) + ',' + (cy + dy)) || []) {
-        if (v === u || G.adj[u].some(e => e.v === v)) continue;
+        if (near.has(v)) continue;
         const d = hav(n, G.nodes[v]); if (d < bd) { bd = d; best = v; }
       }
     }

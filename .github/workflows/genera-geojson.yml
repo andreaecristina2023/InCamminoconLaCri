@@ -65,6 +65,11 @@ jobs:
             if grep -q "^COMPLETATO" lotto.log; then echo "Tutto scaricato."; break; fi
             if grep -q "^ERRORE" lotto.log; then echo "Errore nello script: mi fermo."; exit 1; fi
           done
+      - name: Controllo dei buchi nei cammini principali (risultato in data/verifica.json)
+        if: success()
+        run: |
+          python3 -u scripts/verifica_cammini.py | tee verifica.log
+          MESSAGGIO="Controllo dei buchi nei cammini" bash scripts/salva_dati.sh || echo "Controllo non salvato (non grave)."
       - name: Copia dei dati come allegato (sicurezza)
         if: always()
         uses: actions/upload-artifact@v4
