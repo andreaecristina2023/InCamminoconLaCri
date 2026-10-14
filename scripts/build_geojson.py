@@ -112,8 +112,10 @@ SEMPRE = [409737,
           9581839,    # Augustine Camino (Kent)
           4515009,    # Saint Cuthbert's Way (Melrose - Lindisfarne)
           14612088,   # Whithorn Way (Glasgow - Whithorn)
-          238293]     # Saint Kevin's Way (Hollywood - Glendalough)
-SEARCH_VER = 9   # da aumentare quando cambiano NAMES, SEARCHES o pick_roots
+          238293,     # Saint Kevin's Way (Hollywood - Glendalough)
+          9204501,    # Via Romea (Germanica) completa, super-percorso: Stade - Austria (Fernpass, Innsbruck) - Roma
+          16908565]   # Romea Strata, super-percorso (Tallinn - Roma)
+SEARCH_VER = 10   # da aumentare quando cambiano NAMES, SEARCHES o pick_roots
 
 GPRIO = {"santiago": 0, "francigena": 1, "isole": 2, "italia": 2, "trekking": 4}
 NPRIO = {"iwn": 0, "nwn": 1, "rwn": 2}   # prima i percorsi a lunga distanza

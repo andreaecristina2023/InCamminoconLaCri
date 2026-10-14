@@ -45,7 +45,7 @@ def base_name(n):
     """Come baseName() in app.js: toglie tappa/tratto dal nome."""
     b = (n or "").strip()
     b = re.sub(r"[\s\-–:,.(]*\b(tappa|tapa|[ée]tape|etapa|stage|etappe|abschnitt|tratto|tramo|section|secci[oó]n|variante)"
-               r"\b\.?\s*[\dIVX]+[a-z]?\b.*$", "", b, flags=re.I)
+               r"\b\.?\s*[A-Z]{0,6}[\dIVX]+[a-z]*\b.*$", "", b, flags=re.I)
     b = re.sub(r"\s*[-–:]\s*\d+[a-z]?\b.*$", "", b, flags=re.I)
     for sep, rx in ((",", r"\s[-–]\s|\sà\s|\sa\s"), (":", r"[-–]|\sà\s|\sa\s")):
         c = b.find(sep)

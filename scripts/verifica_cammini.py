@@ -78,6 +78,8 @@ C = [
     ("Francia", "Via Francigena (Francia e Svizzera)", [("Arras", 50.290, 2.780), ("Reims", 49.258, 4.032), ("Besançon", 47.238, 6.024),
         ("Losanna", 46.520, 6.630), ("Gran San Bernardo", 45.869, 7.170)]),
     ("Regno Unito", "Via Francigena (Inghilterra)", [("Canterbury", 51.280, 1.080), ("Dover", 51.126, 1.313)]),
+    ("Austria", "Via Romea Germanica (Austria)", [("Augusta", 48.366, 10.894), ("Füssen", 47.570, 10.700),
+        ("Reutte", 47.488, 10.719), ("Innsbruck", 47.269, 11.404), ("Brennero", 47.002, 11.505), ("Bolzano", 46.498, 11.354)]),
     ("Italia", "Via degli Dei", [("Bologna", 44.494, 11.343), ("Firenze", 43.769, 11.256)]),
     ("Italia", "Via di Francesco", [("La Verna", 43.707, 11.930), ("Assisi", 43.070, 12.617), ("Rieti", 42.404, 12.860),
         ("Roma", 41.902, 12.457)]),
