@@ -41,13 +41,16 @@ NAMES = ("Franc[eé]s|Aragon[eé]s|Podiensis|Lemovicensis|Turonensis|Tolosana|de
          "Caminho (de Santiago|Portugu|Central|Interior|da Costa|Nascente|Torres)|Cami[nñ]o Portugu|Xacob|Via da Prata|"
          "Augusta|Salvador|Vadiniense|Cam[ií] (de Sant Jaume|Jacobeu|Ignasi)|Sant Jaume|Jacobeu|V[eé]zelay|"
          "Voie (de V[eé]zelay|de Tours|du Pi[eé]mont|des Pi[eé]monts|de Soulac|de Gen[eè]ve|du Puy|d.Arles|de Rocamadour|du Littoral|Limousine|Tolosane|Podiense)|"
-         "Pi[eé]mont Pyr[eé]n|Soulac|Rocamadour")
+         "Pi[eé]mont Pyr[eé]n|Soulac|Rocamadour|"
+         "[Cc]hemin (du Puy|d.Arles|de V[eé]zelay|de Tours|de Paris|de Saint-Jacques|de Compostelle|de Cluny|de Rocamadour)|"
+         "GR[ -]?(65|653|654|655|78)([^0-9]|$)|Via Podiensis|Via Lemovicensis|Via Turonensis|Via Tolosana|Via Gebennensis|"
+         "Jacquaire|Jacquet|Saint-Jacques-de-Compostelle")
 BROAD = ("Cami[nñ]o|Caminho|Chemin de (Saint|Compostelle)|Saint-Jacques|"
          "Via (de la Plata|Podiensis|Lemovicensis|Turonensis|Tolosana|Gebennensis)|"
          "Santiago|Compostelle|Fisterr|Finisterre|Mux[ií]a")
 JACOB = "Santiago|Xacob|Jacob|Jakob|Compostel|Jacques|Giacomo|Sant.?Iago"
 NORD = "Jakobs?weg|Jakobusweg|Jakobspilger|Via Jacobi|St\\.? ?James|Saint James|Chemin de Saint-Jacques|Camino Ingl"
-REFS_FR = "^GR ?(65|653|654|655|78)([^0-9]|$)"   # GR 65 Puy, 653 Arles/Tolosana, 654 Vézelay, 655 Tours, 78 Piémont
+REFS_FR = "^GR[ -]?(65|653|654|655|78)([^0-9]|$)"   # GR 65 Puy, 653 Arles/Tolosana, 654 Vézelay, 655 Tours, 78 Piémont
 
 # unità di ricerca: (nome, gruppo, riquadro "sud,ovest,nord,est", regex nome, filtro network, cerca anche per descrizione, sigle)
 SEARCHES = [
@@ -60,6 +63,11 @@ SEARCHES = [
      "Sentiero Italia|Sentiero Roma|Francesco|Benedetto|Sant.Antonio|Sant.Agostino|Dante|Assisi|Materano|Celeste|Balteo",
      "iwn|nwn|rwn", False, None),
 ]
+# cammini principali da includere sempre, anche se nomi o struttura in OSM sfuggono alla ricerca
+# (409737 = "GR-65 - Le chemin du Puy", Via Podiensis)
+SEMPRE = [409737]
+SEARCH_VER = 3   # da aumentare quando cambiano NAMES, SEARCHES o pick_roots
+
 GPRIO = {"santiago": 0, "francigena": 1, "italia": 2}
 NPRIO = {"iwn": 0, "nwn": 1, "rwn": 2}   # prima i percorsi a lunga distanza
 
@@ -102,7 +110,9 @@ def pick_roots(els, rx):
     for cid in children:
         e = by.get(cid)
         name = (e or {}).get("tags", {}).get("name", "")
-        if e and rxc and rxc.search(name) and not STAGE.search(name):
+        ref = (e or {}).get("tags", {}).get("ref", "")
+        if e and not STAGE.search(name) and ((rxc and rxc.search(name)) or re.search(REFS_FR, ref, re.I)
+                                              or re.search(JACOB, name, re.I)):
             promoted.add(cid)
     out = []
     for e in els:
@@ -376,12 +386,15 @@ def load_candidates(path):
     searches = c.get("searches") or {}
     if not searches and c.get("generated"):   # vecchio formato: data unica
         searches = {s[0]: c["generated"] for s in SEARCHES}
+    if c.get("ricerca") != SEARCH_VER:        # i criteri di ricerca sono cambiati: si rifanno tutte le ricerche
+        print("Criteri di ricerca aggiornati: rifaccio la ricerca dei cammini", flush=True)
+        searches = {}
     return roots, searches
 
 
 def save_candidates(path, roots, searches):
     rl = sorted(roots.values(), key=lambda r: r["id"])
-    write_atomic(path, json.dumps({"generated": TODAY, "searches": searches, "roots": rl},
+    write_atomic(path, json.dumps({"generated": TODAY, "ricerca": SEARCH_VER, "searches": searches, "roots": rl},
                                   ensure_ascii=False, separators=(",", ":")))
 
 
@@ -453,7 +466,7 @@ def main():
             p = f["properties"]
             roots[k] = {"id": k, "name": p.get("name", ""), "network": p.get("network", ""),
                         "group": p.get("group", "santiago")}
-    for x in re.findall(r"\d+", a.ids or ""):
+    for x in SEMPRE + [int(v) for v in re.findall(r"\d+", a.ids or "")]:
         roots.setdefault(int(x), {"id": int(x), "name": "", "network": "iwn", "group": "santiago"})
 
     timed_out, complete_search, found_ids, skipped = False, False, set(), []

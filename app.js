@@ -8,7 +8,20 @@ const STEP_KM = 0.5;
 const PALETTE = ['#d6408f', '#17468c', '#2e8b57', '#8e44ad', '#c0392b', '#16a085', '#c9a000', '#5d6d7e'];
 const PRESET = /Franc[eé]s|Aragon[eé]s|Podiensis|Lemovicensis|Turonensis|Tolosana|del Norte|Primitivo|Portugu[eé]s|Ingl[eé]s|Fisterr|Finisterre|Mux[ií]a|Plata|Sanabr|Baztán|Vasco|Vézelay|Arles|Gebennensis|Camino de Santiago|Cami[nñ]o de Santiago|Camino Mozárabe|Lebaniego|Invierno|Catal[aá]n|Levante|Saint-Jacques|Compostelle/i;
 const COLOR = new Map();   // un colore diverso per ogni cammino
-const colorOf = id => { if (!COLOR.has(id)) COLOR.set(id, `hsl(${Math.floor((COLOR.size * 137.508) % 360)},68%,42%)`); return COLOR.get(id); };
+// stesso nome = stesso colore (i tratti di uno stesso cammino si riconoscono come un'unica linea)
+// nome del cammino senza la parte "tappa 3" o ", Nevers - Sancoins"
+const baseName = n => {
+  let b = String(n || '').trim()
+    .replace(/[\s\-–:,.(]*\b(tappa|tapa|[ée]tape|etapa|stage|etappe|abschnitt|tratto|tramo|section|secci[oó]n|variante)\b\.?\s*[\dIVX]+[a-z]?\b.*$/i, '')
+    .replace(/(\S+)\s+\d+[a-z]?$/i, (m, w) => /^(GR|GRP|PR|SL|E|HRP|VA)$/i.test(w) ? m : w);
+  const c = b.indexOf(',');
+  if (c > 3 && /\s[-–]\s|\sà\s|\sa\s/.test(b.slice(c))) b = b.slice(0, c);
+  return b.trim() || String(n || '').trim();
+};
+const nameKey = id => { const g = typeof S !== 'undefined' && S.geo && S.geo.get(id); return g ? 'n:' + baseName(g.name).toLowerCase() : id; };
+const colorOf = id => { const k = nameKey(id); if (!COLOR.has(k)) COLOR.set(k, `hsl(${Math.floor((COLOR.size * 137.508) % 360)},68%,42%)`); return COLOR.get(k); };
+// tutti gli id dei tratti con lo stesso nome
+const sameName = id => { const k = nameKey(id); return typeof k === 'string' && k.startsWith('n:') ? S.routes.filter(r => nameKey(r.id) === k).map(r => r.id) : [id]; };
 const icon = (id, cls) => L.divIcon({ className: 'pin ' + cls, html: `<svg><use href="#${id}"/></svg>`, iconSize: [26, 26], iconAnchor: [13, 13] });
 
 const S = {
@@ -143,7 +156,7 @@ out tags;`;
     await showOverview();
   } catch (e) { status('Errore: ' + e.message); }
 }
-$('#filter').oninput = renderRoutes;
+$('#filter').oninput = () => { listLimit = 150; renderRoutes(); };
 $('#btnPreset').onclick = () => { filteredRoutes().forEach(r => S.chosen.add(r.id)); renderRoutes(); restyleOver(); status(S.chosen.size + ' cammini selezionati.'); };
 $('#btnRelId').onclick = () => { const v = +$('#relId').value; if (!v) return; if (!S.routes.find(r => r.id === v)) S.routes.push({ id: v, name: 'Relazione ' + v, ref: '', from: '', to: '' }); S.chosen.add(v); renderRoutes(); restyleOver(); };
 document.querySelectorAll('input[data-grp]').forEach(cb => cb.onchange = async () => {
@@ -159,14 +172,32 @@ function filteredRoutes() {
   const f = $('#filter').value.trim().toLowerCase();
   return S.routes.filter(r => areaVisible(r) && (!f || S.chosen.has(r.id) || (r.name + ' ' + r.ref + ' ' + r.from + ' ' + r.to).toLowerCase().includes(f)));
 }
+// l'elenco raggruppa i pezzi con lo stesso nome (es. 25 tratti del "Chemin du Piémont Pyrénéen")
+let listLimit = 150;
 function renderRoutes() {
   const ul = $('#routeList'); ul.innerHTML = '';
-  filteredRoutes().slice(0, 400).forEach(r => {
+  const groups = new Map();
+  for (const r of filteredRoutes()) {
+    const k = String(nameKey(r.id));
+    if (!groups.has(k)) groups.set(k, { name: baseName(r.name), items: [] });
+    groups.get(k).items.push(r);
+  }
+  const list = [...groups.values()].sort((a, b) => a.name.localeCompare(b.name));
+  list.slice(0, listLimit).forEach(g => {
+    const r = g.items[0], n = g.items.length, sel = g.items.filter(x => S.chosen.has(x.id)).length;
     const li = document.createElement('li');
-    li.innerHTML = `<label><input type="checkbox" ${S.chosen.has(r.id) ? 'checked' : ''}> <span style="color:${colorOf(r.id)}">■</span> <b>${esc(r.name)}</b> ${r.ref ? '(' + esc(r.ref) + ')' : ''}<br><span class="small">${esc(r.from)}${r.to ? ' → ' + esc(r.to) : ''} · OSM ${r.id}</span></label>`;
-    li.querySelector('input').onchange = e => { e.target.checked ? S.chosen.add(r.id) : S.chosen.delete(r.id); restyleOver(); };
+    const sub = n > 1 ? `${n} tratti` : `${esc(r.from)}${r.to ? ' → ' + esc(r.to) : ''} · OSM ${r.id}`;
+    li.innerHTML = `<label><input type="checkbox" ${sel === n ? 'checked' : ''}> <span style="color:${colorOf(r.id)}">■</span> <b>${esc(g.name)}</b> ${r.ref && n === 1 ? '(' + esc(r.ref) + ')' : ''}<br><span class="small">${sub}</span></label>`;
+    const cb = li.querySelector('input'); cb.indeterminate = sel > 0 && sel < n;
+    cb.onchange = e => { g.items.forEach(x => e.target.checked ? S.chosen.add(x.id) : S.chosen.delete(x.id)); restyleOver(); };
     ul.appendChild(li);
   });
+  if (list.length > listLimit) {
+    const li = document.createElement('li');
+    li.innerHTML = `<button>Mostra altri (${list.length - listLimit})</button>`;
+    li.querySelector('button').onclick = () => { listLimit += 300; renderRoutes(); };
+    ul.appendChild(li);
+  }
 }
 
 /* ---------- anteprima di tutta la rete sulla mappa (tocca una linea per selezionarla) ---------- */
@@ -184,7 +215,7 @@ function drawOverview(list) {
       const l = L.polyline(w.map(p => [p.lat, p.lon]), overStyle(r.id)).addTo(gOver);
       l.bindTooltip(r.name, { sticky: true });
       l.on('click', () => {
-        S.chosen.has(r.id) ? S.chosen.delete(r.id) : S.chosen.add(r.id);
+        const on = !S.chosen.has(r.id); sameName(r.id).forEach(id => on ? S.chosen.add(id) : S.chosen.delete(id));
         restyleOver(); renderRoutes();
         status(`${r.name}: ${S.chosen.has(r.id) ? 'selezionato' : 'tolto'} (${S.chosen.size} selezionati)`);
       });
@@ -194,12 +225,12 @@ function drawOverview(list) {
 }
 $('#btnOverview').onclick = showOverview;
 async function showOverview() {
-  const list = filteredRoutes().slice(0, 400);
+  const list = filteredRoutes();
   if (!list.length) { status('Prima cerca i cammini in OSM.'); return; }
   await geoReady;
   if (S.geo.size) {
     for (const r of list) { const g = S.geo.get(r.id); if (g && !S.over.has(r.id)) S.over.set(r.id, { ways: g.ways.map(decimate), layers: [] }); }
-    const all = []; for (const r of list) { const o = S.over.get(r.id); if (o) o.ways.forEach(w => all.push([w[0].lat, w[0].lon])); } if (all.length) map.fitBounds(all);
+    if (!S.overFitted) { const all = []; for (const r of list) { const o = S.over.get(r.id); if (o) o.ways.forEach(w => all.push([w[0].lat, w[0].lon])); } if (all.length) { map.fitBounds(all); S.overFitted = true; } }
   }
   const ids = list.filter(r => !S.over.has(r.id)).map(r => r.id);
   try {
