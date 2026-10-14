@@ -9,12 +9,66 @@
       "fonte": "Tappe di Gronze (Coimbra - Penacova via Lorvão - Mortágua - Tondela - Viseu); tracciato approssimato calcolato con BRouter",
       "gpx": "coimbra-farminhao.gpx",
       "tappe": [
-        ["Coimbra (Sé Velha)", 40.2088, -8.4270],
-        ["Lorvão", 40.2591, -8.3165],
-        ["Penacova", 40.2700, -8.2810],
-        ["Mortágua", 40.3963, -8.2354],
-        ["Tondela", 40.5170, -8.0820],
-        ["Farminhão (inizio del tracciato OSM)", 40.60411, -8.03225]
+        [
+          "Coimbra (Sé Velha)",
+          40.2088,
+          -8.427
+        ],
+        [
+          "Lorvão",
+          40.2591,
+          -8.3165
+        ],
+        [
+          "Penacova",
+          40.27,
+          -8.281
+        ],
+        [
+          "Mortágua",
+          40.3963,
+          -8.2354
+        ],
+        [
+          "Tondela",
+          40.517,
+          -8.082
+        ],
+        [
+          "Farminhão (inizio del tracciato OSM)",
+          40.60411,
+          -8.03225
+        ]
+      ]
+    },
+    {
+      "id": -1002,
+      "nome": "Camino Mozárabe (Don Benito - Medellín - Torrefresneda - Mérida)",
+      "unisci_a": "Camino Mozárabe",
+      "group": "santiago",
+      "fonte": "Tappe di Gronze (etapa 25 Campanario - Don Benito, 26 Don Benito - Torrefresneda, 27 Torrefresneda - Mérida); tracciato approssimato calcolato con BRouter",
+      "gpx": "mozarabe-medellin.gpx",
+      "tappe": [
+        [
+          "Don Benito (fine del tracciato OSM)",
+          38.95835,
+          -5.88234
+        ],
+        [
+          "Medellín",
+          38.9634,
+          -5.958
+        ],
+        [
+          "Torrefresneda",
+          38.9845,
+          -6.101
+        ],
+        [
+          "Mérida (Plaza de España)",
+          38.916,
+          -6.3437
+        ]
       ]
     }
   ]
