@@ -36,7 +36,7 @@ VERSION = 2
 
 NAMES = ("Franc[eé]s|Aragon[eé]s|Podiensis|Lemovicensis|Turonensis|Tolosana|del Norte|Primitivo|"
          "Portugu[eé]s|Ingl[eé]s|Fisterr|Finisterre|Mux[ií]a|de la Plata|Sanabr|Baztán|Vasco|"
-         "Arles|Gebennensis|Camino de Santiago|Cami[nñ]o de Santiago|Mozárabe|Lebaniego|Invierno|"
+         "Arles|Gebennensis|Camino de Santiago|Cami[nñ]o de Santiago|Mozárabe|Lebaniego|Invi?erno|"
          "Catal[aá]n|Levante|Saint-Jacques|Compostelle|"
          "Caminho (de Santiago|Portugu|Central|Interior|da Costa|Nascente|Torres)|Cami[nñ]o Portugu|Xacob|Via da Prata|"
          "Augusta|Salvador|Vadiniense|Cam[ií] (de Sant Jaume|Jacobeu|Ignasi)|Sant Jaume|Jacobeu|V[eé]zelay|"
@@ -65,8 +65,12 @@ SEARCHES = [
 ]
 # cammini principali da includere sempre, anche se nomi o struttura in OSM sfuggono alla ricerca
 # (409737 = "GR-65 - Le chemin du Puy", Via Podiensis)
-SEMPRE = [409737]
-SEARCH_VER = 3   # da aumentare quando cambiano NAMES, SEARCHES o pick_roots
+SEMPRE = [409737,
+          2163573,    # Camiño Francés (super-percorso: contiene anche le tappe 02 e 05)
+          138227,     # Via Podiensis / Voie du Puy (super-percorso)
+          1868399,    # Camiño de Inverno
+          19298101]   # Camino Primitivo
+SEARCH_VER = 4   # da aumentare quando cambiano NAMES, SEARCHES o pick_roots
 
 GPRIO = {"santiago": 0, "francigena": 1, "italia": 2}
 NPRIO = {"iwn": 0, "nwn": 1, "rwn": 2}   # prima i percorsi a lunga distanza
@@ -114,6 +118,13 @@ def pick_roots(els, rx):
         if e and not STAGE.search(name) and ((rxc and rxc.search(name)) or re.search(REFS_FR, ref, re.I)
                                               or re.search(JACOB, name, re.I)):
             promoted.add(cid)
+    # un super-percorso che ha anche linee proprie (es. Camiño Francés) è il cammino: le sue figlie non si ripetono
+    covered = set()
+    for e in els:
+        mem = e.get("members", [])
+        if e.get("tags", {}).get("type") == "superroute" and any(m["type"] == "way" for m in mem):
+            covered |= {m["ref"] for m in mem if m["type"] == "relation"}
+    promoted -= covered
     out = []
     for e in els:
         if e["id"] in children and e["id"] not in promoted:
@@ -128,13 +139,13 @@ def pick_roots(els, rx):
 
 def list_roots(rx, bbox, net=None, jacob=False, refs=None):
     netf = f'["network"~"^({net})$"]' if net else ""
-    extra = (f'\n  rel["type"="route"]["route"~"^(hiking|foot)$"]{netf}'
+    extra = (f'\n  rel["type"~"^(route|superroute)$"]["route"~"^(hiking|foot)$"]{netf}'
              f'[~"^(description|alt_name|official_name|old_name|name:.*|ref:name|destination|from|to)$"~"{JACOB}"]({bbox});') if jacob else ""
     if refs:
-        extra += f'\n  rel["type"="route"]["route"~"^(hiking|foot)$"]["ref"~"{refs}"]({bbox});'
+        extra += f'\n  rel["type"~"^(route|superroute)$"]["route"~"^(hiking|foot)$"]["ref"~"{refs}"]({bbox});'
     q = f"""[out:json][timeout:150];
 (
-  rel["type"="route"]["route"~"^(hiking|foot)$"]{netf}["name"~"{rx}",i]({bbox});{extra}
+  rel["type"~"^(route|superroute)$"]["route"~"^(hiking|foot)$"]{netf}["name"~"{rx}",i]({bbox});{extra}
 );
 out body;"""
     return pick_roots(overpass(q)["elements"], rx)

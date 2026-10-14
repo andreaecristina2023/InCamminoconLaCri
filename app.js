@@ -13,12 +13,19 @@ const COLOR = new Map();   // un colore diverso per ogni cammino
 const baseName = n => {
   let b = String(n || '').trim()
     .replace(/[\s\-–:,.(]*\b(tappa|tapa|[ée]tape|etapa|stage|etappe|abschnitt|tratto|tramo|section|secci[oó]n|variante)\b\.?\s*[\dIVX]+[a-z]?\b.*$/i, '')
+    .replace(/\s*[-–:]\s*\d+[a-z]?\b.*$/i, '')
     .replace(/(\S+)\s+\d+[a-z]?$/i, (m, w) => /^(GR|GRP|PR|SL|E|HRP|VA)$/i.test(w) ? m : w);
-  const c = b.indexOf(',');
-  if (c > 3 && /\s[-–]\s|\sà\s|\sa\s/.test(b.slice(c))) b = b.slice(0, c);
+  for (const [sep, rx] of [[',', /\s[-–]\s|\sà\s|\sa\s/], [':', /[-–]|\sà\s|\sa\s/]]) {
+    const c = b.indexOf(sep);
+    if (c > 3 && rx.test(b.slice(c))) b = b.slice(0, c);
+  }
+  b = b.replace(/(\S+)\s+\d+[a-z]?$/i, (m, w) => /^(GR|GRP|PR|SL|E|HRP|VA)$/i.test(w) ? m : w);
   return b.trim() || String(n || '').trim();
 };
-const nameKey = id => { const g = typeof S !== 'undefined' && S.geo && S.geo.get(id); return g ? 'n:' + baseName(g.name).toLowerCase() : id; };
+// chiave senza accenti e con le grafie galiziane/portoghesi unificate (Camiño = Caminho = Camino)
+const normName = n => baseName(n).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+  .replace(/\bcami(n|nh)o\b/g, 'camino').replace(/\s+/g, ' ').trim();
+const nameKey = id => { const g = typeof S !== 'undefined' && S.geo && S.geo.get(id); return g ? 'n:' + normName(g.name) : id; };
 const colorOf = id => { const k = nameKey(id); if (!COLOR.has(k)) COLOR.set(k, `hsl(${Math.floor((COLOR.size * 137.508) % 360)},68%,42%)`); return COLOR.get(k); };
 // tutti gli id dei tratti con lo stesso nome
 const sameName = id => { const k = nameKey(id); return typeof k === 'string' && k.startsWith('n:') ? S.routes.filter(r => nameKey(r.id) === k).map(r => r.id) : [id]; };
