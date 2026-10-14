@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-13",
+ "generated": "2026-10-14",
  "areas": [
   {
    "key": "spagna",
@@ -31,7 +31,7 @@
    "file": "italia.geojson",
    "count": 535,
    "mb": 16.45,
-   "updated": "2026-10-13"
+   "updated": "2026-10-14"
   },
   {
    "key": "svizzera",
