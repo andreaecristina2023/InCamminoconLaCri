@@ -56,6 +56,21 @@ ISOLE = ("Pilgrim|Camino|(St\\.?|Saint) ?James|Saint James|Way of St|Saints.? Wa
          "(St\\.?|Saint) ?Andrews Way|(St\\.?|Saint) ?Hilda|(St\\.?|Saint) ?Oswald|(St\\.?|Saint) ?Ninian|(St\\.?|Saint) ?Conan|(St\\.?|Saint) ?Aidan|(St\\.?|Saint) ?Winefride|"
          "Whithorn|Walsingham|T[oó]char|Cos[aá]n na Naomh|B[oó]thar na Naomh|Lough Derg|Croagh Patrick|"
          "Pererin|Two Saints|Augustine")
+# trekking a lunga percorrenza (non di pellegrinaggio), in tutta l'Europa occidentale e centrale
+TREK = ("Sentiero Italia|Cammino d.Italia|Alta Via|Grande Traversata|Via Alpina|Tour du Mont.?Blanc|Tour of (the )?Mont Blanc|"
+        "Tour (du )?Mont.?Rose|Tour Monte Rosa|Tour des Combins|Haute Route|Grande Escursione Appenninica|Sentiero Frassati|"
+        "Selvaggio Blu|Alpe.?Adria|Via Dinarica|Sentiero della Pace|Via degli Abati|Sentiero Azzurro|Via Spluga|"
+        "West Highland Way|West Island Way|Great Glen Way|Rob Roy Way|Speyside Way|Southern Upland Way|John Muir Way|"
+        "Fife Coastal Path|Cape Wrath|Pennine Way|Coast to Coast|Hadrian.s Wall|Offa.s Dyke|Cotswold Way|South Downs Way|"
+        "North Downs Way|Thames Path|South West Coast Path|Wales Coast Path|Pembrokeshire Coast|Cleveland Way|Dales Way|"
+        "Cumbria Way|Glynd.r.s Way|Kerry Way|Wicklow Way|Dingle Way|Beara Way|Sheep.s Head Way|Causeway Coast|Ulster Way|"
+        "Burren Way|Rota Vicentina|Fisherman.?s Trail|Via Algarviana|Grande Rota|Senda Pirenaica|Transcant[aá]brica|"
+        "GR ?(5|10|11|20|7|1|34|92|54|58)( |$|[^0-9])|Kungsleden|Rennsteig|Westweg|Malerweg|Rheinsteig|Eifelsteig|"
+        "Rothaarsteig|Hermannsweg|Goldsteig|Walserweg|Via Engiadina|Trans.?Swiss Trail|Alpenpassroute|Jura.?H[oö]henweg")
+# trekking da includere sempre
+SEMPRE_TREK = [1021025,   # Sentiero Italia CAI (~7.700 km, regioni e tappe annidate)
+               16287,     # West Highland Way
+               1756633]   # West Island Way (Bute)
 # nomi da NON considerare cammini anche se la ricerca li trova (es. "King Charles" contiene "arles")
 ESCLUDI = re.compile(r"England Coast Path|King Charles III|Wales Coast Path", re.I)
 REFS_FR = "^GR[ -]?(65|653|654|655|78)([^0-9]|$)"   # GR 65 Puy, 653 Arles/Tolosana, 654 Vézelay, 655 Tours, 78 Piémont
@@ -67,6 +82,7 @@ SEARCHES = [
     ("francigena", "francigena", "39,-1,52.6,19",
      "Francigena|Via Romea|Romea (Germanica|Strata|Nonantolana)|Via Francigena", None, False, None),
     ("isole", "isole", "49.8,-11,61,2", ISOLE, None, False, None),
+    ("trekking", "trekking", "35,-11,61,20", TREK, "iwn|nwn|rwn", False, None),
     ("italia", "italia", "36,6.5,47.2,18.8",
      "Cammino|Via (degli Dei|Appia|Traiana|Lauretana|Micaelica|Flaminia|Postumia|Francesca|Sacra|Clodia|Aurelia|Romea|Salaria)|"
      "Sentiero Italia|Sentiero Roma|Francesco|Benedetto|Sant.Antonio|Sant.Agostino|Dante|Assisi|Materano|Celeste|Balteo",
@@ -97,9 +113,9 @@ SEMPRE = [409737,
           4515009,    # Saint Cuthbert's Way (Melrose - Lindisfarne)
           14612088,   # Whithorn Way (Glasgow - Whithorn)
           238293]     # Saint Kevin's Way (Hollywood - Glendalough)
-SEARCH_VER = 8   # da aumentare quando cambiano NAMES, SEARCHES o pick_roots
+SEARCH_VER = 9   # da aumentare quando cambiano NAMES, SEARCHES o pick_roots
 
-GPRIO = {"santiago": 0, "francigena": 1, "isole": 2, "italia": 2}
+GPRIO = {"santiago": 0, "francigena": 1, "isole": 2, "italia": 2, "trekking": 4}
 NPRIO = {"iwn": 0, "nwn": 1, "rwn": 2}   # prima i percorsi a lunga distanza
 
 STAGE = re.compile(r"[ée]tape|etapa|tappa|stage|etappe|jornada|tramo|secci[oó]n|section|journ[ée]e|d[ií]a \d|\bleg\b", re.I)
@@ -239,7 +255,7 @@ def make_feature(parent, by_id, group):
 LABELS = {
     "spagna": "Spagna", "portogallo": "Portogallo", "francia": "Francia", "italia": "Italia",
     "svizzera": "Svizzera", "inghilterra": "Regno Unito", "irlanda": "Irlanda", "germania": "Germania", "austria": "Austria",
-    "francigena": "Via Francigena", "romea": "Via Romea", "europa": "Altri paesi",
+    "francigena": "Via Francigena", "romea": "Via Romea", "trekking": "Trekking a lunga percorrenza", "europa": "Altri paesi",
 }
 
 # contorni approssimati (lon, lat): bastano per capire in che paese sta la maggior parte di un cammino.
@@ -348,6 +364,8 @@ def area_of(f):
         return "romea"
     if p.get("group") == "francigena" or FRANCIGENA.search(name):
         return "francigena"
+    if p.get("group") == "trekking":
+        return "trekking"
     return country_of(f)
 
 
@@ -558,6 +576,8 @@ def main():
             p = f["properties"]
             roots[k] = {"id": k, "name": p.get("name", ""), "network": p.get("network", ""),
                         "group": p.get("group", "santiago")}
+    for x in SEMPRE_TREK:
+        roots.setdefault(int(x), {"id": int(x), "name": "", "network": "nwn", "group": "trekking"})
     for x in SEMPRE + [int(v) for v in re.findall(r"\d+", a.ids or "")]:
         roots.setdefault(int(x), {"id": int(x), "name": "", "network": "iwn", "group": "santiago"})
 

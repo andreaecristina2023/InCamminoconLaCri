@@ -104,6 +104,7 @@ function renderFamTabs() {
   const box = $('#famTabs'); box.innerHTML = '';
   for (const f of S.famiglie) {
     const n = S.cat.filter(c => c.fam === f.key && c.km >= MIN_KM).length;
+    if (!n) continue;   // famiglia ancora senza dati (es. appena aggiunta)
     const b = document.createElement('button');
     b.textContent = `${f.label} (${n})`; b.className = f.key === S.fam ? 'on' : '';
     b.onclick = () => { S.fam = f.key; listLimit = 80; renderFamTabs(); renderPaesi(); renderRoutes(); drawOverview(); };

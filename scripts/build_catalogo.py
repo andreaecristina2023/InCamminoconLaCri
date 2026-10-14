@@ -22,7 +22,7 @@ TOL = 0.0015          # semplificazione della panoramica (~150 m: basta per vede
 
 AREA_LABEL = {"spagna": "Spagna", "portogallo": "Portogallo", "francia": "Francia", "italia": "Italia",
               "svizzera": "Svizzera", "inghilterra": "Regno Unito", "irlanda": "Irlanda", "germania": "Germania",
-              "austria": "Austria", "europa": "Altri paesi"}
+              "austria": "Austria", "europa": "Altri paesi", "trekking": ""}
 
 # cammini fatti di relazioni con nomi diversi: nome nel catalogo -> nomi delle relazioni che lo compongono
 COMPOSTI = {
@@ -37,6 +37,7 @@ FAMIGLIE = [  # (chiave, etichetta) nell'ordine in cui compaiono nel sito
     ("romea", "Vie Romee"),
     ("italia", "Cammini italiani"),
     ("isole", "Gran Bretagna e Irlanda"),
+    ("trekking", "Trekking a lunga percorrenza"),
 ]
 
 
@@ -171,7 +172,7 @@ def famiglia(feats):
     areas = [f["properties"].get("area", "") for f in feats]
     if "romea" in areas:
         return "romea"
-    for g in ("francigena", "isole", "italia"):
+    for g in ("trekking", "francigena", "isole", "italia"):
         if g in groups:
             return g
     if all(a in ("inghilterra", "irlanda") for a in areas):

@@ -76,3 +76,6 @@ scarica solo il suo file in `data/cammini/<nome>.json`, con tutti i tratti, di q
 - I tratti con lo stesso nome (tappe, varianti numerate, Camino/Camiño/Caminho) diventano un solo cammino; i cammini
   fatti di relazioni con nomi diversi (es. Portoghese Interior = Caminho do Interior + Xabrés por Verín) sono in `COMPOSTI`.
 - `scripts/verifica_cammini.py` controlla i buchi nei cammini principali (risultato in `data/verifica.json`).
+- Famiglia **Trekking a lunga percorrenza**: ricerca dedicata (`TREK` in `build_geojson.py`: Sentiero Italia, Alte Vie,
+  Via Alpina, TMB, GR 5/10/11/20, West Highland Way, Pennine Way, Kerry Way, Rota Vicentina, Rennsteig…), file
+  `data/trekking.geojson`; quelli da includere sempre sono in `SEMPRE_TREK`.
