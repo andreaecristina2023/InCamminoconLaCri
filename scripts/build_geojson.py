@@ -41,7 +41,7 @@ NAMES = ("Franc[eé]s|Aragon[eé]s|Podiensis|Lemovicensis|Turonensis|Tolosana|de
          "Caminho (de Santiago|Portugu|Central|Interior|da Costa|Nascente|Torres)|Cami[nñ]o Portugu|Xacob|Via da Prata|"
          "Augusta|Salvador|Vadiniense|Cam[ií] (de Sant Jaume|Jacobeu|Ignasi)|Sant Jaume|Jacobeu|V[eé]zelay|"
          "Voie (de V[eé]zelay|de Tours|du Pi[eé]mont|des Pi[eé]monts|de Soulac|de Gen[eè]ve|du Puy|d.Arles|de Rocamadour|du Littoral|Limousine|Tolosane|Podiense)|"
-         "Pi[eé]mont Pyr[eé]n|Soulac|Rocamadour|"
+         "Pi[eé]mont Pyr[eé]n|Soulac|Rocamadour|Xabr[eé]s|"
          "[Cc]hemin (du Puy|d.Arles|de V[eé]zelay|de Tours|de Paris|de Saint-Jacques|de Compostelle|de Cluny|de Rocamadour)|"
          "GR[ -]?(65|653|654|655|78)([^0-9]|$)|Via Podiensis|Via Lemovicensis|Via Turonensis|Via Tolosana|Via Gebennensis|"
          "Jacquaire|Jacquet|Saint-Jacques-de-Compostelle")
@@ -69,8 +69,17 @@ SEMPRE = [409737,
           2163573,    # Camiño Francés (super-percorso: contiene anche le tappe 02 e 05)
           138227,     # Via Podiensis / Voie du Puy (super-percorso)
           1868399,    # Camiño de Inverno
-          19298101]   # Camino Primitivo
-SEARCH_VER = 4   # da aumentare quando cambiano NAMES, SEARCHES o pick_roots
+          19298101,   # Camino Primitivo
+          7542876,    # Camiño Xabrés por Verín (Portoghese Interior: Verín -> Laza)
+          19001007,   # Camino del Norte (internazionale, intero)
+          241329,     # Vía de la Plata (internazionale)
+          1106898,    # Voie Limousine / Via Lemovicensis
+          6026933,    # Via Turonensis
+          389715,     # Voie d'Arles / Via Tolosana
+          11813130,   # La voie d'Arles
+          14900298,   # Voie de Vézelay (GR 654)
+          2289173]    # Via Gebennensis
+SEARCH_VER = 5   # da aumentare quando cambiano NAMES, SEARCHES o pick_roots
 
 GPRIO = {"santiago": 0, "francigena": 1, "italia": 2}
 NPRIO = {"iwn": 0, "nwn": 1, "rwn": 2}   # prima i percorsi a lunga distanza
