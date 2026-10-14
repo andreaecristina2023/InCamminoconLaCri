@@ -422,7 +422,7 @@
      "da": "Zafra",
      "a": "Mérida",
      "linea_aria": 55,
-     "km": 62,
+     "km": 63,
      "esito": "ok"
     },
     {
@@ -574,19 +574,34 @@
     },
     {
      "da": "Castuera",
+     "a": "Don Benito",
+     "linea_aria": 38,
+     "km": 42,
+     "esito": "ok"
+    },
+    {
+     "da": "Don Benito",
      "a": "Medellín",
-     "linea_aria": 45,
-     "km": 51,
+     "linea_aria": 8,
+     "km": 9,
      "esito": "ok"
     },
     {
      "da": "Medellín",
+     "a": "Torrefresneda",
+     "linea_aria": 13,
+     "km": 18,
+     "esito": "ok"
+    },
+    {
+     "da": "Torrefresneda",
      "a": "Mérida",
-     "linea_aria": 34,
-     "esito": "GIRO LUNGHISSIMO (oltre 3 volte la linea d'aria)"
+     "linea_aria": 22,
+     "km": 28,
+     "esito": "ok"
     }
    ],
-   "problemi": 1
+   "problemi": 0
   },
   {
    "stato": "Portogallo",
@@ -725,6 +740,34 @@
    "stato": "Portogallo",
    "cammino": "Camino Portugués Interior",
    "tratti": [
+    {
+     "da": "Coimbra",
+     "a": "Penacova",
+     "linea_aria": 14,
+     "km": 24,
+     "esito": "ok"
+    },
+    {
+     "da": "Penacova",
+     "a": "Mortágua",
+     "linea_aria": 15,
+     "km": 22,
+     "esito": "ok"
+    },
+    {
+     "da": "Mortágua",
+     "a": "Tondela",
+     "linea_aria": 19,
+     "km": 30,
+     "esito": "ok"
+    },
+    {
+     "da": "Tondela",
+     "a": "Viseu",
+     "linea_aria": 21,
+     "km": 32,
+     "esito": "ok"
+    },
     {
      "da": "Viseu",
      "a": "Lamego",
@@ -1107,7 +1150,7 @@
      "da": "Losanna",
      "a": "Gran San Bernardo",
      "linea_aria": 83,
-     "km": 135,
+     "km": 133,
      "esito": "ok"
     }
    ],
@@ -1126,6 +1169,45 @@
     }
    ],
    "problemi": 0
+  },
+  {
+   "stato": "Austria",
+   "cammino": "Via Romea Germanica (Austria)",
+   "tratti": [
+    {
+     "da": "Augusta",
+     "a": "Füssen",
+     "linea_aria": 90,
+     "esito": "FUORI RETE: Füssen"
+    },
+    {
+     "da": "Füssen",
+     "a": "Reutte",
+     "linea_aria": 9,
+     "esito": "FUORI RETE: Füssen, Reutte"
+    },
+    {
+     "da": "Reutte",
+     "a": "Innsbruck",
+     "linea_aria": 57,
+     "esito": "FUORI RETE: Reutte"
+    },
+    {
+     "da": "Innsbruck",
+     "a": "Brennero",
+     "linea_aria": 31,
+     "km": 45,
+     "esito": "ok"
+    },
+    {
+     "da": "Brennero",
+     "a": "Bolzano",
+     "linea_aria": 57,
+     "km": 100,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 3
   },
   {
    "stato": "Italia",
@@ -1219,7 +1301,7 @@
      "da": "Treib",
      "a": "Flüeli-Ranft",
      "linea_aria": 28,
-     "km": 40,
+     "km": 38,
      "esito": "ok"
     },
     {
@@ -1413,10 +1495,11 @@
      "da": "Hollywood",
      "a": "Glendalough",
      "linea_aria": 20,
-     "esito": "FUORI RETE: Hollywood, Glendalough"
+     "km": 26,
+     "esito": "ok"
     }
    ],
-   "problemi": 1
+   "problemi": 0
   },
   {
    "stato": "Irlanda",
