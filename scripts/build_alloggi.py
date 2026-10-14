@@ -189,13 +189,13 @@ node["place"~"{PLACE_RX}"]["name"]({bb})->.p;
  nwr["name"~"{NAME_RX}",i]["tourism"]({bb});
  nwr["name"~"{NAME_RX}",i]["building"]({bb});
  nwr["name"~"{NAME_RX}",i]["amenity"~"^(shelter|social_facility|place_of_worship)$"]({bb});)->.l;
-.p out tags;
-.l out tags center;"""
+.p out body;
+.l out center;"""
     j = overpass(q)
     places, lodging = [], []
     for e in j.get("elements", []):
         t = e.get("tags") or {}
-        if e["type"] == "node" and "place" in t and "tourism" not in t:
+        if e["type"] == "node" and "place" in t and "tourism" not in t and "lat" in e:
             far = RADIUS.get(t["place"], 1.5) + LODGE_KM
             if corr.dist(e["lat"], e["lon"], far) > max(far, PLACE_KM):
                 continue
@@ -203,7 +203,7 @@ node["place"~"{PLACE_RX}"]["name"]({bb})->.p;
                            t.get("name:it") or ""])
             continue
         c = e if e["type"] == "node" else e.get("center")
-        if not c:
+        if not c or "lat" not in c or "lon" not in c:
             continue
         if t.get("amenity") in ("restaurant", "bar", "cafe", "fast_food"):
             continue
@@ -438,6 +438,10 @@ def main():
                 time.sleep(1)
             except TimeoutError:
                 break
+            except (KeyError, TypeError, ValueError, AttributeError, IndexError) as e:
+                write_json(CACHE, cache)
+                print(f"ERRORE nello script sul riquadro {k}: {type(e).__name__}: {e}", flush=True)
+                sys.exit(1)
             except Exception as e:  # noqa: BLE001
                 fails += 1
                 streak += 1
@@ -447,6 +451,9 @@ def main():
                     break
         write_json(CACHE, cache)
 
+    if not any(k in cache for k in need):
+        print("ERRORE: nessun riquadro scaricato, non scrivo i file del sito (restano quelli di prima).", flush=True)
+        sys.exit(1)
     print("Costruisco i file del sito…", flush=True)
     index = build_outputs(areas, cache, Regions())
     index["riquadri"] = {"totali": len(need), "scaricati": sum(1 for k in need if k in cache)}

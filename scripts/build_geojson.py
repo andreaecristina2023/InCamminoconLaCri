@@ -36,7 +36,7 @@ VERSION = 2
 
 NAMES = ("Franc[eé]s|Aragon[eé]s|Podiensis|Lemovicensis|Turonensis|Tolosana|del Norte|Primitivo|"
          "Portugu[eé]s|Ingl[eé]s|Fisterr|Finisterre|Mux[ií]a|de la Plata|Sanabr|Baztán|Vasco|"
-         "Arles|Gebennensis|Camino de Santiago|Cami[nñ]o de Santiago|Mozárabe|Lebaniego|Invi?erno|"
+         "d.Arles|Arlatensis|Gebennensis|Camino de Santiago|Cami[nñ]o de Santiago|Mozárabe|Lebaniego|Invi?erno|"
          "Catal[aá]n|Levante|Saint-Jacques|Compostelle|"
          "Caminho (de Santiago|Portugu|Central|Interior|da Costa|Nascente|Torres)|Cami[nñ]o Portugu|Xacob|Via da Prata|"
          "Augusta|Salvador|Vadiniense|Cam[ií] (de Sant Jaume|Jacobeu|Ignasi)|Sant Jaume|Jacobeu|V[eé]zelay|"
@@ -50,6 +50,14 @@ BROAD = ("Cami[nñ]o|Caminho|Chemin de (Saint|Compostelle)|Saint-Jacques|"
          "Santiago|Compostelle|Fisterr|Finisterre|Mux[ií]a")
 JACOB = "Santiago|Xacob|Jacob|Jakob|Compostel|Jacques|Giacomo|Sant.?Iago"
 NORD = "Jakobs?weg|Jakobusweg|Jakobspilger|Via Jacobi|St\\.? ?James|Saint James|Chemin de Saint-Jacques|Camino Ingl"
+# cammini di pellegrinaggio di Gran Bretagna e Irlanda (anche Scozia, Galles, Irlanda del Nord)
+ISOLE = ("Pilgrim|Camino|St\\.? ?James|Saint James|Way of St|Saints.? Way|St\\.? ?Cuthbert|St\\.? ?Michael|"
+         "St\\.? ?Kevin|St\\.? ?Finbarr|St\\.? ?Declan|St\\.? ?Patrick|St\\.? ?Brigid|St\\.? ?Columba|"
+         "St\\.? ?Andrews Way|St\\.? ?Hilda|St\\.? ?Oswald|St\\.? ?Ninian|St\\.? ?Conan|St\\.? ?Aidan|St\\.? ?Winefride|"
+         "Whithorn|Walsingham|T[oó]char|Cos[aá]n na Naomh|B[oó]thar na Naomh|Lough Derg|Croagh Patrick|"
+         "Pererin|Two Saints|Augustine")
+# nomi da NON considerare cammini anche se la ricerca li trova (es. "King Charles" contiene "arles")
+ESCLUDI = re.compile(r"England Coast Path|King Charles III|Wales Coast Path", re.I)
 REFS_FR = "^GR[ -]?(65|653|654|655|78)([^0-9]|$)"   # GR 65 Puy, 653 Arles/Tolosana, 654 Vézelay, 655 Tours, 78 Piémont
 
 # unità di ricerca: (nome, gruppo, riquadro "sud,ovest,nord,est", regex nome, filtro network, cerca anche per descrizione, sigle)
@@ -58,6 +66,7 @@ SEARCHES = [
     ("santiago-nord", "santiago", "45.5,-6,56,17.5", NORD, None, False, None),
     ("francigena", "francigena", "39,-1,52.6,19",
      "Francigena|Via Romea|Romea (Germanica|Strata|Nonantolana)|Via Francigena", None, False, None),
+    ("isole", "isole", "49.8,-11,61,2", ISOLE, None, False, None),
     ("italia", "italia", "36,6.5,47.2,18.8",
      "Cammino|Via (degli Dei|Appia|Traiana|Lauretana|Micaelica|Flaminia|Postumia|Francesca|Sacra|Clodia|Aurelia|Romea|Salaria)|"
      "Sentiero Italia|Sentiero Roma|Francesco|Benedetto|Sant.Antonio|Sant.Agostino|Dante|Assisi|Materano|Celeste|Balteo",
@@ -81,10 +90,14 @@ SEMPRE = [409737,
           2289173,    # Via Gebennensis
           7164214,    # Camino de Levante (super-percorso, Castilla y León, GR 239)
           19556718, 19552606, 19552607, 19552806,   # GR 239 tappe 24-27: Arévalo - Medina - Toro - Zamora
-          3624753]    # Camino de Santiago de Levante (Valencia - El Toboso)
-SEARCH_VER = 6   # da aumentare quando cambiano NAMES, SEARCHES o pick_roots
+          3624753,    # Camino de Santiago de Levante (Valencia - El Toboso)
+          15764571,   # St James' Way (Reading - Southampton, verso Santiago)
+          20446772,   # Pilgrims' Way
+          7776868,    # Fife Pilgrim Way
+          9581839]    # Augustine Camino (Kent)
+SEARCH_VER = 7   # da aumentare quando cambiano NAMES, SEARCHES o pick_roots
 
-GPRIO = {"santiago": 0, "francigena": 1, "italia": 2}
+GPRIO = {"santiago": 0, "francigena": 1, "isole": 2, "italia": 2}
 NPRIO = {"iwn": 0, "nwn": 1, "rwn": 2}   # prima i percorsi a lunga distanza
 
 STAGE = re.compile(r"[ée]tape|etapa|tappa|stage|etappe|jornada|tramo|secci[oó]n|section|journ[ée]e|d[ií]a \d|\bleg\b", re.I)
@@ -223,7 +236,7 @@ def make_feature(parent, by_id, group):
 
 LABELS = {
     "spagna": "Spagna", "portogallo": "Portogallo", "francia": "Francia", "italia": "Italia",
-    "svizzera": "Svizzera", "inghilterra": "Inghilterra", "germania": "Germania", "austria": "Austria",
+    "svizzera": "Svizzera", "inghilterra": "Regno Unito", "irlanda": "Irlanda", "germania": "Germania", "austria": "Austria",
     "francigena": "Via Francigena", "romea": "Via Romea", "europa": "Altri paesi",
 }
 
@@ -270,12 +283,58 @@ def _inside(x, y, poly):
     return ins
 
 
+# stato -> area del sito (gli altri stati vanno in "europa")
+CC_AREA = {"ES": "spagna", "AD": "spagna", "PT": "portogallo", "FR": "francia", "MC": "francia",
+           "IT": "italia", "SM": "italia", "VA": "italia", "CH": "svizzera", "LI": "svizzera",
+           "AT": "austria", "DE": "germania", "GB": "inghilterra", "IM": "inghilterra", "JE": "inghilterra",
+           "GG": "inghilterra", "IE": "irlanda"}
+_NE = [None]
+
+
+def _ne():
+    """Confini veri degli stati (scripts/regioni-europa.json, Natural Earth), raggruppati per stato."""
+    if _NE[0] is None:
+        path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "regioni-europa.json")
+        by = {}
+        try:
+            for a in json.load(open(path, encoding="utf-8"))["aree"]:
+                for r in a["rings"]:
+                    xs, ys = [p[0] for p in r], [p[1] for p in r]
+                    by.setdefault(a["cc"], []).append(((min(xs), min(ys), max(xs), max(ys)), r))
+        except Exception:  # noqa: BLE001
+            by = {}
+        _NE[0] = by
+    return _NE[0]
+
+
+_CC_MEMO = {}
+
+
+def _cc_at(x, y):
+    k = (round(x, 2), round(y, 2))
+    if k not in _CC_MEMO:
+        hit = ""
+        for cc, rings in _ne().items():
+            if any(b[0] <= x <= b[2] and b[1] <= y <= b[3] and _inside(x, y, r) for b, r in rings):
+                hit = cc
+                break
+        _CC_MEMO[k] = hit
+    return _CC_MEMO[k]
+
+
 def country_of(f):
     pts = [c for line in f["geometry"]["coordinates"] for c in line]
     step = max(1, len(pts) // 400)
     votes = {}
+    use_ne = bool(_ne())
     for x, y in pts[::step]:
-        k = next((k for k, p in COUNTRIES if _inside(x, y, p)), "europa")
+        if use_ne:
+            cc = _cc_at(x, y)
+            if not cc:
+                continue   # in mare o su un confine semplificato: non vota
+            k = CC_AREA.get(cc, "europa")
+        else:   # riserva: contorni approssimati
+            k = next((k for k, p in COUNTRIES if _inside(x, y, p)), "europa")
         votes[k] = votes.get(k, 0) + 1
     return max(votes, key=votes.get) if votes else "europa"
 
@@ -440,6 +499,7 @@ def search_all(broad, roots, searches, only_old_days=None):
             continue
         new = 0
         found_ids.update(e["id"] for e in found)
+        found = [e for e in found if not ESCLUDI.search(e.get("tags", {}).get("name", ""))]
         for e in found:
             if e["id"] not in roots:
                 new += 1
@@ -474,6 +534,11 @@ def main():
 
     feats, old_files = load_features(a.out)
     print(f"Nei file: {len(feats)} cammini", flush=True)
+    tolti = [k for k, f in feats.items() if ESCLUDI.search(f["properties"].get("name", ""))]
+    for k in tolti:
+        del feats[k]
+    if tolti:
+        print(f"Tolti {len(tolti)} percorsi che non sono cammini (es. sentieri costieri inglesi)", flush=True)
 
     if a.recupera:
         rec = features_from_git(a.recupera, a.out)
@@ -484,6 +549,8 @@ def main():
 
     cpath = os.path.join(a.out, CAND)
     roots, searches = load_candidates(cpath)
+    for k in [k for k, r in roots.items() if ESCLUDI.search(r.get("name", ""))]:
+        del roots[k]
     for k, f in feats.items():   # ogni cammino già scaricato è anche un candidato
         if k not in roots:
             p = f["properties"]

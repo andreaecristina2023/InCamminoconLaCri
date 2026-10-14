@@ -13,8 +13,16 @@ root = subprocess.run(["git", "rev-parse", "--show-toplevel"], capture_output=Tr
 os.chdir(root)
 
 
+sys.path.insert(0, os.path.join(root, "scripts"))
+try:
+    from build_geojson import ESCLUDI   # percorsi tolti apposta perché non sono cammini
+except Exception:  # noqa: BLE001
+    ESCLUDI = None
+
+
 def ids_of(text):
-    return {f["properties"]["id"] for f in json.loads(text)["features"]}
+    return {f["properties"]["id"] for f in json.loads(text)["features"]
+            if not (ESCLUDI and ESCLUDI.search(f["properties"].get("name", "")))}
 
 
 before = set()
