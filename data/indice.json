@@ -5,32 +5,32 @@
    "key": "spagna",
    "label": "Spagna",
    "file": "spagna.geojson",
-   "count": 103,
-   "mb": 10.17,
-   "updated": "2026-10-13"
+   "count": 147,
+   "mb": 10.95,
+   "updated": "2026-10-14"
   },
   {
    "key": "portogallo",
    "label": "Portogallo",
    "file": "portogallo.geojson",
-   "count": 15,
-   "mb": 1.96,
-   "updated": "2026-10-13"
+   "count": 23,
+   "mb": 2.16,
+   "updated": "2026-10-14"
   },
   {
    "key": "francia",
    "label": "Francia",
    "file": "francia.geojson",
-   "count": 76,
-   "mb": 2.53,
-   "updated": "2026-10-13"
+   "count": 135,
+   "mb": 3.39,
+   "updated": "2026-10-14"
   },
   {
    "key": "italia",
    "label": "Italia",
    "file": "italia.geojson",
-   "count": 535,
-   "mb": 16.45,
+   "count": 601,
+   "mb": 17.23,
    "updated": "2026-10-14"
   },
   {
@@ -45,25 +45,25 @@
    "key": "inghilterra",
    "label": "Inghilterra",
    "file": "inghilterra.geojson",
-   "count": 53,
-   "mb": 1.63,
-   "updated": "2026-10-13"
+   "count": 57,
+   "mb": 1.78,
+   "updated": "2026-10-14"
   },
   {
    "key": "germania",
    "label": "Germania",
    "file": "germania.geojson",
-   "count": 234,
-   "mb": 12.72,
-   "updated": "2026-10-13"
+   "count": 270,
+   "mb": 13.1,
+   "updated": "2026-10-14"
   },
   {
    "key": "austria",
    "label": "Austria",
    "file": "austria.geojson",
-   "count": 20,
-   "mb": 1.63,
-   "updated": "2026-10-13"
+   "count": 26,
+   "mb": 1.87,
+   "updated": "2026-10-14"
   },
   {
    "key": "francigena",
@@ -85,9 +85,9 @@
    "key": "europa",
    "label": "Altri paesi",
    "file": "europa.geojson",
-   "count": 77,
-   "mb": 3.95,
-   "updated": "2026-10-13"
+   "count": 85,
+   "mb": 4.02,
+   "updated": "2026-10-14"
   }
  ]
 }
