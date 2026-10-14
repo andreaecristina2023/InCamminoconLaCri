@@ -74,6 +74,7 @@ jobs:
       - name: Controllo dei buchi nei cammini principali (risultato in data/verifica.json)
         if: success()
         run: |
+          python3 -u scripts/geocodifica_tappe.py --max-minutes 20 || echo "Coordinate delle tappe: errore, uso quelle già trovate."
           python3 -u scripts/verifica_cammini.py | tee verifica.log
           MESSAGGIO="Controllo dei buchi nei cammini" bash scripts/salva_dati.sh || echo "Controllo non salvato (non grave)."
       - name: Copia dei dati come allegato (sicurezza)

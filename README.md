@@ -85,3 +85,11 @@ scarica solo il suo file in `data/cammini/<nome>.json`, con tutti i tratti, di q
 Per i pezzi di cammino che su OpenStreetMap non esistono come percorso (es. Portoghese Interior Coimbra - Farminhão):
 si indicano le tappe e `scripts/build_manuali.py` calcola il tracciato con BRouter su strade e sentieri OSM (approssimato,
 segnalato nel sito con ⚠), oppure usa un GPX messo in `data/manuali/`. Il tratto viene unito al cammino indicato in `unisci_a`.
+
+## Controllo dei buchi con le tappe di Gronze
+
+`scripts/tappe_gronze.json` contiene le tappe ufficiali di [Gronze](https://www.gronze.com) di 36 cammini (Spagna,
+Portogallo, Francia, Francigena, ViaJacobi). `scripts/geocodifica_tappe.py` ne trova le coordinate con Nominatim
+(cercando solo nella zona del cammino e scegliendo la sequenza di paesi più coerente; risultati in `data/tappe_coord.json`,
+correzioni a mano con `"coord"`). `scripts/verifica_cammini.py` controlla poi ogni tappa sulla rete: città fuori rete,
+tratti non collegati, giri troppo lunghi. Tutto gira nella Action dei cammini; il risultato è in `data/verifica.json`.

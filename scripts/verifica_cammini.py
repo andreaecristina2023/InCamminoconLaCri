@@ -219,8 +219,29 @@ def main():
         pass
     nb = net.bridge()
     print(f"Rete: {n} cammini, {len(net.pos)} nodi, {nb} piccoli strappi cuciti\n", flush=True)
+    # tappe ufficiali di Gronze (con coordinate trovate da geocodifica_tappe.py): sostituiscono le città scelte a mano
+    lista, battelli, senza_coord = list(C), {}, {}
+    try:
+        g = json.load(open(os.path.join(ROOT, "scripts", "tappe_gronze.json"), encoding="utf-8"))["cammini"]
+        coord = json.load(open(os.path.join(ROOT, "data", "tappe_coord.json"), encoding="utf-8")).get("tappe", {})
+    except (OSError, ValueError):
+        g, coord = [], {}
+    if g and coord:
+        gl = []
+        for c in g:
+            z = ",".join(map(str, c["zona"]))
+            towns = [(t, *coord[f"{t}|{z}"]) for t in c["tappe"] if f"{t}|{z}" in coord]
+            senza_coord[c["nome"]] = [t for t in c["tappe"] if f"{t}|{z}" not in coord]
+            battelli[c["nome"]] = {tuple(b) for b in c.get("battello", [])}
+            if len(towns) >= 2:
+                gl.append((c["stato"], c["nome"], towns))
+        coperti = ("Camino", "Vía de la Plata", "Via Podiensis", "Via Tolosana", "Via Lemovicensis", "Via Turonensis",
+                   "Via Gebennensis", "Via Francigena (Italia)", "ViaJacobi")
+        lista = gl + [x for x in C if not x[1].startswith(coperti)]
+        print(f"Tappe di Gronze: {len(gl)} cammini, {sum(len(x[2]) for x in gl)} tappe con coordinate\n", flush=True)
+
     out, problems = [], 0
-    for stato, nome, towns in C:
+    for stato, nome, towns in lista:
         if want and not any(w in nome.lower() for w in want):
             continue
         legs, snaps = [], []
@@ -231,7 +252,10 @@ def main():
         for (a, b), (sa, sb) in zip(zip(towns, towns[1:]), zip(snaps, snaps[1:])):
             crow = hav(a[1:], b[1:])
             leg = {"da": a[0], "a": b[0], "linea_aria": round(crow)}
-            if sa[0] is None or sa[1] > SNAP_KM or sb[0] is None or sb[1] > SNAP_KM:
+            if (a[0], b[0]) in battelli.get(nome, ()):
+                leg["esito"] = "ok"
+                leg["nota"] = "in battello"
+            elif sa[0] is None or sa[1] > SNAP_KM or sb[0] is None or sb[1] > SNAP_KM:
                 far = [x[0] for x, s in ((a, sa), (b, sb)) if s[0] is None or s[1] > SNAP_KM]
                 leg["esito"] = "FUORI RETE: " + ", ".join(far)
             else:
@@ -253,7 +277,10 @@ def main():
             if leg["esito"] != "ok":
                 km = f"{leg['km']} km" if "km" in leg else "—"
                 print(f"    {leg['da']} → {leg['a']}: {leg['esito']} ({km}, in linea d'aria {leg['linea_aria']} km)")
-        out.append({"stato": stato, "cammino": nome, "tratti": legs, "problemi": len(bad)})
+        if senza_coord.get(nome):
+            print(f"    (coordinate non trovate per: {', '.join(senza_coord[nome])})")
+        out.append({"stato": stato, "cammino": nome, "tratti": legs, "problemi": len(bad),
+                    **({"senza_coordinate": senza_coord[nome]} if senza_coord.get(nome) else {})})
     print(f"\nTotale: {problems} tratti con problemi su {sum(len(c['tratti']) for c in out)}")
     if not want:
         with open(os.path.join(ROOT, "data", "verifica.json"), "w", encoding="utf-8") as f:
