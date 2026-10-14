@@ -1,0 +1,128 @@
+{
+ "generated": "2026-10-14",
+ "fonte": "© contributori di OpenStreetMap (ODbL)",
+ "tipi": {
+  "P": "Accoglienza pellegrini",
+  "O": "Ostello",
+  "R": "Rifugio",
+  "B": "Pensione / B&B",
+  "H": "Hotel",
+  "C": "Campeggio"
+ },
+ "aree": [
+  {
+   "key": "spagna",
+   "label": "Spagna",
+   "file": "spagna.json",
+   "luoghi": 0,
+   "con_alloggio": 0,
+   "alloggi": 0,
+   "tipi": {},
+   "mb": 0.0
+  },
+  {
+   "key": "portogallo",
+   "label": "Portogallo",
+   "file": "portogallo.json",
+   "luoghi": 0,
+   "con_alloggio": 0,
+   "alloggi": 0,
+   "tipi": {},
+   "mb": 0.0
+  },
+  {
+   "key": "francia",
+   "label": "Francia",
+   "file": "francia.json",
+   "luoghi": 0,
+   "con_alloggio": 0,
+   "alloggi": 0,
+   "tipi": {},
+   "mb": 0.0
+  },
+  {
+   "key": "italia",
+   "label": "Italia",
+   "file": "italia.json",
+   "luoghi": 0,
+   "con_alloggio": 0,
+   "alloggi": 0,
+   "tipi": {},
+   "mb": 0.0
+  },
+  {
+   "key": "svizzera",
+   "label": "Svizzera",
+   "file": "svizzera.json",
+   "luoghi": 0,
+   "con_alloggio": 0,
+   "alloggi": 0,
+   "tipi": {},
+   "mb": 0.0
+  },
+  {
+   "key": "inghilterra",
+   "label": "Inghilterra",
+   "file": "inghilterra.json",
+   "luoghi": 0,
+   "con_alloggio": 0,
+   "alloggi": 0,
+   "tipi": {},
+   "mb": 0.0
+  },
+  {
+   "key": "germania",
+   "label": "Germania",
+   "file": "germania.json",
+   "luoghi": 0,
+   "con_alloggio": 0,
+   "alloggi": 0,
+   "tipi": {},
+   "mb": 0.0
+  },
+  {
+   "key": "austria",
+   "label": "Austria",
+   "file": "austria.json",
+   "luoghi": 0,
+   "con_alloggio": 0,
+   "alloggi": 0,
+   "tipi": {},
+   "mb": 0.0
+  },
+  {
+   "key": "francigena",
+   "label": "Via Francigena",
+   "file": "francigena.json",
+   "luoghi": 0,
+   "con_alloggio": 0,
+   "alloggi": 0,
+   "tipi": {},
+   "mb": 0.0
+  },
+  {
+   "key": "romea",
+   "label": "Via Romea",
+   "file": "romea.json",
+   "luoghi": 0,
+   "con_alloggio": 0,
+   "alloggi": 0,
+   "tipi": {},
+   "mb": 0.0
+  },
+  {
+   "key": "europa",
+   "label": "Altri paesi",
+   "file": "europa.json",
+   "luoghi": 0,
+   "con_alloggio": 0,
+   "alloggi": 0,
+   "tipi": {},
+   "mb": 0.0
+  }
+ ],
+ "riquadri": {
+  "totali": 2395,
+  "scaricati": 0
+ }
+}
