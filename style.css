@@ -67,3 +67,11 @@ footer{margin:12px 0 30px}
 .pin-via{background:#6c747b;border-radius:50%}
 
 .inl.wide{width:26px}
+.tabs{gap:4px}
+.tabs button{font-size:.8rem;padding:4px 8px;border-radius:14px}
+.tabs button.on{background:var(--blue);color:#fff;border-color:var(--blue)}
+#fPaese{font:inherit;padding:5px 8px;border:1px solid var(--grey);border-radius:8px;background:#fafbfc}
+#routeList{list-style:none;padding:0;margin:6px 0;max-height:42vh;overflow:auto}
+#routeList li{padding:4px 2px;border-bottom:1px solid var(--line)}
+#routeList li:hover{background:#fff}
+#chosenBox{background:var(--pink-soft);border-radius:8px;padding:4px 8px}

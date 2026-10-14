@@ -64,3 +64,15 @@ dopo i cammini; le due Action non girano mai insieme.
 - Stato e regione di ogni paese vengono da `scripts/regioni-europa.json` (Natural Earth, rigenerabile con `scripts/prepara_regioni.py`).
 - Controllo di sicurezza: un file di area non può sparire né perdere più del 30% degli alloggi, altrimenti non si salva.
 - La pagina `ostelli.html` mostra i conteggi; il pianificatore usa questi file per le tappe e passa a Overpass solo se mancano.
+
+## Catalogo per nome (`data/catalogo.json`, `data/panoramica.json`, `data/cammini/`)
+
+Il sito non carica più i file per stato. All'apertura scarica solo il **catalogo** (elenco dei cammini per nome,
+famiglia, paesi e km) e la **panoramica** (tutti i cammini semplificati, circa 1,5 MB). Quando si sceglie un cammino
+scarica solo il suo file in `data/cammini/<nome>.json`, con tutti i tratti, di qualunque paese.
+
+- Lo genera `scripts/build_catalogo.py` dai file per stato (che restano l'archivio dei dati), senza scaricare nulla;
+  la Action dei cammini lo rifà a ogni aggiornamento.
+- I tratti con lo stesso nome (tappe, varianti numerate, Camino/Camiño/Caminho) diventano un solo cammino; i cammini
+  fatti di relazioni con nomi diversi (es. Portoghese Interior = Caminho do Interior + Xabrés por Verín) sono in `COMPOSTI`.
+- `scripts/verifica_cammini.py` controlla i buchi nei cammini principali (risultato in `data/verifica.json`).

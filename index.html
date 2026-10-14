@@ -140,41 +140,22 @@
 
       <div class="row small"><a href="ostelli.html">🛏️ Ostelli e paesi lungo i cammini, stato per stato →</a></div>
       <details open id="s1">
-        <summary>1 · Costruisci la rete di cammini</summary>
-        <p class="small">Spunta i cammini da includere (anche quelli francesi: Podiensis, Lemovicensis, Turonensis,
-          Tolosana…). Verranno uniti in un'unica rete.</p>
-        <div class="row small">
-          <label><input type="checkbox" data-grp="spagna" checked> Spagna</label>
-          <label><input type="checkbox" data-grp="italia"> Italia</label>
-          <label><input type="checkbox" data-grp="portogallo" checked> Portogallo</label>
-          <label><input type="checkbox" data-grp="francia" checked> Francia</label>
-          <label><input type="checkbox" data-grp="svizzera"> Svizzera</label>
-          <label><input type="checkbox" data-grp="inghilterra"> Regno Unito</label>
-          <label><input type="checkbox" data-grp="irlanda"> Irlanda</label>
-          <label><input type="checkbox" data-grp="germania"> Germania</label>
-          <label><input type="checkbox" data-grp="austria"> Austria</label>
-          <label><input type="checkbox" data-grp="francigena"> Via Francigena</label>
-          <label><input type="checkbox" data-grp="romea"> Via Romea</label>
-          <label><input type="checkbox" data-grp="europa"> Altri paesi</label>
-        </div>
-        <div class="row"><input id="filter" type="search" placeholder="Filtra (es. Francés, Podiensis, Norte…)"></div>
+        <summary>1 · Scegli i cammini</summary>
+        <p class="small">Tocca un cammino sulla mappa o spuntalo nell'elenco: puoi sceglierne più d'uno e
+          verranno uniti in un'unica rete. Si scaricano solo i cammini scelti.</p>
+        <div class="row tabs" id="famTabs"></div>
         <div class="row">
-          <button id="btnList">Cerca cammini di Santiago</button>
-          <button id="btnListAll">Cerca anche altri (molti)</button>
-          <button id="btnOverview">🗺️ Mostra sulla mappa</button>
-          <button id="btnPreset">Seleziona tutti</button>
+          <input id="filter" type="search" placeholder="Cerca per nome (es. Francés, Interior, Podiensis…)" style="flex:1;min-width:12em">
+          <select id="fPaese"><option value="">Tutti i paesi</option></select>
         </div>
-        <p class="small">All'apertura vedi i cammini di Santiago sulla mappa, ognuno di un colore. <b>Tocca una
-            linea</b> (o spunta nell'elenco) per selezionarla: diventa più spessa.</p>
+        <div class="row small"><label><input type="checkbox" id="fBrevi"> mostra anche i percorsi brevi (sotto 30 km)</label></div>
         <ul id="routeList"></ul>
-        <div class="row small">
-          Aggiungi per ID relazione OSM:
-          <input id="relId" type="number" placeholder="es. 1234567" style="width:9em">
-          <button id="btnRelId">Aggiungi</button>
+        <div class="row small" id="chosenBox"></div>
+        <div class="row">
+          <button id="btnLoad" class="primary">Carica i cammini scelti</button>
+          <button id="btnClearSel">Deseleziona tutti</button>
         </div>
-        <div class="row"><button id="btnLoad" class="primary">Carica selezionati nella rete</button></div>
       </details>
-
       <details id="s2">
         <summary>2 · Varianti: preferisci o evita</summary>
         <p class="small">Per ogni cammino caricato puoi preferirlo (il percorso lo seguirà volentieri) o evitarlo del

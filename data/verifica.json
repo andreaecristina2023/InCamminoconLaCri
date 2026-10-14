@@ -1,0 +1,1461 @@
+{
+ "generated": "2026-10-14",
+ "cammini": [
+  {
+   "stato": "Spagna",
+   "cammino": "Camino Francés",
+   "tratti": [
+    {
+     "da": "Saint-Jean-Pied-de-Port",
+     "a": "Roncisvalle",
+     "linea_aria": 18,
+     "km": 24,
+     "esito": "ok"
+    },
+    {
+     "da": "Roncisvalle",
+     "a": "Pamplona",
+     "linea_aria": 34,
+     "km": 42,
+     "esito": "ok"
+    },
+    {
+     "da": "Pamplona",
+     "a": "Logroño",
+     "linea_aria": 76,
+     "km": 94,
+     "esito": "ok"
+    },
+    {
+     "da": "Logroño",
+     "a": "Burgos",
+     "linea_aria": 104,
+     "km": 120,
+     "esito": "ok"
+    },
+    {
+     "da": "Burgos",
+     "a": "Sahagún",
+     "linea_aria": 110,
+     "km": 124,
+     "esito": "ok"
+    },
+    {
+     "da": "Sahagún",
+     "a": "León",
+     "linea_aria": 51,
+     "km": 55,
+     "esito": "ok"
+    },
+    {
+     "da": "León",
+     "a": "Astorga",
+     "linea_aria": 43,
+     "km": 49,
+     "esito": "ok"
+    },
+    {
+     "da": "Astorga",
+     "a": "Ponferrada",
+     "linea_aria": 45,
+     "km": 52,
+     "esito": "ok"
+    },
+    {
+     "da": "Ponferrada",
+     "a": "Sarria",
+     "linea_aria": 72,
+     "km": 89,
+     "esito": "ok"
+    },
+    {
+     "da": "Sarria",
+     "a": "Santiago",
+     "linea_aria": 93,
+     "km": 115,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Spagna",
+   "cammino": "Camino del Norte",
+   "tratti": [
+    {
+     "da": "Irún",
+     "a": "San Sebastián",
+     "linea_aria": 16,
+     "km": 26,
+     "esito": "ok"
+    },
+    {
+     "da": "San Sebastián",
+     "a": "Bilbao",
+     "linea_aria": 77,
+     "km": 126,
+     "esito": "ok"
+    },
+    {
+     "da": "Bilbao",
+     "a": "Santander",
+     "linea_aria": 74,
+     "km": 123,
+     "esito": "ok"
+    },
+    {
+     "da": "Santander",
+     "a": "Ribadesella",
+     "linea_aria": 101,
+     "km": 141,
+     "esito": "ok"
+    },
+    {
+     "da": "Ribadesella",
+     "a": "Gijón",
+     "linea_aria": 49,
+     "km": 64,
+     "esito": "ok"
+    },
+    {
+     "da": "Gijón",
+     "a": "Avilés",
+     "linea_aria": 21,
+     "km": 28,
+     "esito": "ok"
+    },
+    {
+     "da": "Avilés",
+     "a": "Ribadeo",
+     "linea_aria": 90,
+     "km": 126,
+     "esito": "ok"
+    },
+    {
+     "da": "Ribadeo",
+     "a": "Mondoñedo",
+     "linea_aria": 29,
+     "km": 36,
+     "esito": "ok"
+    },
+    {
+     "da": "Mondoñedo",
+     "a": "Arzúa",
+     "linea_aria": 86,
+     "km": 119,
+     "esito": "ok"
+    },
+    {
+     "da": "Arzúa",
+     "a": "Santiago",
+     "linea_aria": 32,
+     "km": 39,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Spagna",
+   "cammino": "Camino Primitivo",
+   "tratti": [
+    {
+     "da": "Oviedo",
+     "a": "Tineo",
+     "linea_aria": 46,
+     "km": 68,
+     "esito": "ok"
+    },
+    {
+     "da": "Tineo",
+     "a": "Grandas de Salime",
+     "linea_aria": 40,
+     "km": 60,
+     "esito": "ok"
+    },
+    {
+     "da": "Grandas de Salime",
+     "a": "Lugo",
+     "linea_aria": 60,
+     "km": 80,
+     "esito": "ok"
+    },
+    {
+     "da": "Lugo",
+     "a": "Melide",
+     "linea_aria": 39,
+     "km": 47,
+     "esito": "ok"
+    },
+    {
+     "da": "Melide",
+     "a": "Santiago",
+     "linea_aria": 43,
+     "km": 53,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Spagna",
+   "cammino": "Camino Inglés",
+   "tratti": [
+    {
+     "da": "Ferrol",
+     "a": "Betanzos",
+     "linea_aria": 23,
+     "km": 47,
+     "esito": "ok"
+    },
+    {
+     "da": "Betanzos",
+     "a": "Santiago",
+     "linea_aria": 52,
+     "km": 64,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Spagna",
+   "cammino": "Camino de Fisterra",
+   "tratti": [
+    {
+     "da": "Santiago",
+     "a": "Negreira",
+     "linea_aria": 16,
+     "km": 21,
+     "esito": "ok"
+    },
+    {
+     "da": "Negreira",
+     "a": "Fisterra",
+     "linea_aria": 43,
+     "km": 65,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Spagna",
+   "cammino": "Camino Aragonés",
+   "tratti": [
+    {
+     "da": "Somport",
+     "a": "Jaca",
+     "linea_aria": 25,
+     "km": 30,
+     "esito": "ok"
+    },
+    {
+     "da": "Jaca",
+     "a": "Arrés",
+     "linea_aria": 20,
+     "km": 23,
+     "esito": "ok"
+    },
+    {
+     "da": "Arrés",
+     "a": "Ruesta",
+     "linea_aria": 22,
+     "km": 28,
+     "esito": "ok"
+    },
+    {
+     "da": "Ruesta",
+     "a": "Sangüesa",
+     "linea_aria": 19,
+     "km": 25,
+     "esito": "ok"
+    },
+    {
+     "da": "Sangüesa",
+     "a": "Monreal",
+     "linea_aria": 23,
+     "km": 27,
+     "esito": "ok"
+    },
+    {
+     "da": "Monreal",
+     "a": "Puente la Reina",
+     "linea_aria": 25,
+     "km": 31,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Spagna",
+   "cammino": "Camino del Salvador",
+   "tratti": [
+    {
+     "da": "León",
+     "a": "Cabanillas",
+     "linea_aria": 11,
+     "km": 13,
+     "esito": "ok"
+    },
+    {
+     "da": "Cabanillas",
+     "a": "La Robla",
+     "linea_aria": 11,
+     "km": 14,
+     "esito": "ok"
+    },
+    {
+     "da": "La Robla",
+     "a": "Pola de Lena",
+     "linea_aria": 43,
+     "km": 62,
+     "esito": "ok"
+    },
+    {
+     "da": "Pola de Lena",
+     "a": "Oviedo",
+     "linea_aria": 23,
+     "km": 31,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Spagna",
+   "cammino": "Camino Vasco del Interior",
+   "tratti": [
+    {
+     "da": "Irún",
+     "a": "Vitoria",
+     "linea_aria": 90,
+     "km": 132,
+     "esito": "ok"
+    },
+    {
+     "da": "Vitoria",
+     "a": "Burgos",
+     "linea_aria": 101,
+     "km": 122,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Spagna",
+   "cammino": "Camino de Madrid",
+   "tratti": [
+    {
+     "da": "Madrid",
+     "a": "Segovia",
+     "linea_aria": 69,
+     "km": 98,
+     "esito": "ok"
+    },
+    {
+     "da": "Segovia",
+     "a": "Sahagún",
+     "linea_aria": 175,
+     "km": 219,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Spagna",
+   "cammino": "Camino de Invierno",
+   "tratti": [
+    {
+     "da": "Ponferrada",
+     "a": "O Barco",
+     "linea_aria": 35,
+     "km": 51,
+     "esito": "ok"
+    },
+    {
+     "da": "O Barco",
+     "a": "Monforte de Lemos",
+     "linea_aria": 45,
+     "km": 76,
+     "esito": "ok"
+    },
+    {
+     "da": "Monforte de Lemos",
+     "a": "Chantada",
+     "linea_aria": 23,
+     "km": 30,
+     "esito": "ok"
+    },
+    {
+     "da": "Chantada",
+     "a": "Lalín",
+     "linea_aria": 28,
+     "km": 47,
+     "esito": "ok"
+    },
+    {
+     "da": "Lalín",
+     "a": "Santiago",
+     "linea_aria": 43,
+     "km": 57,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Spagna",
+   "cammino": "Vía de la Plata",
+   "tratti": [
+    {
+     "da": "Sevilla",
+     "a": "Zafra",
+     "linea_aria": 121,
+     "km": 148,
+     "esito": "ok"
+    },
+    {
+     "da": "Zafra",
+     "a": "Mérida",
+     "linea_aria": 55,
+     "km": 62,
+     "esito": "ok"
+    },
+    {
+     "da": "Mérida",
+     "a": "Cáceres",
+     "linea_aria": 62,
+     "km": 74,
+     "esito": "ok"
+    },
+    {
+     "da": "Cáceres",
+     "a": "Salamanca",
+     "linea_aria": 176,
+     "km": 217,
+     "esito": "ok"
+    },
+    {
+     "da": "Salamanca",
+     "a": "Zamora",
+     "linea_aria": 60,
+     "km": 68,
+     "esito": "ok"
+    },
+    {
+     "da": "Zamora",
+     "a": "Benavente",
+     "linea_aria": 56,
+     "km": 70,
+     "esito": "ok"
+    },
+    {
+     "da": "Benavente",
+     "a": "Astorga",
+     "linea_aria": 59,
+     "km": 71,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Spagna",
+   "cammino": "Camino Sanabrés",
+   "tratti": [
+    {
+     "da": "Granja de Moreruela",
+     "a": "Puebla de Sanabria",
+     "linea_aria": 79,
+     "km": 115,
+     "esito": "ok"
+    },
+    {
+     "da": "Puebla de Sanabria",
+     "a": "A Gudiña",
+     "linea_aria": 42,
+     "km": 54,
+     "esito": "ok"
+    },
+    {
+     "da": "A Gudiña",
+     "a": "Laza",
+     "linea_aria": 26,
+     "km": 34,
+     "esito": "ok"
+    },
+    {
+     "da": "Laza",
+     "a": "Ourense",
+     "linea_aria": 45,
+     "km": 55,
+     "esito": "ok"
+    },
+    {
+     "da": "Ourense",
+     "a": "Santiago",
+     "linea_aria": 82,
+     "km": 106,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Spagna",
+   "cammino": "Camino de Levante",
+   "tratti": [
+    {
+     "da": "Valencia",
+     "a": "Albacete",
+     "linea_aria": 138,
+     "km": 232,
+     "esito": "ok"
+    },
+    {
+     "da": "Albacete",
+     "a": "Toledo",
+     "linea_aria": 209,
+     "km": 242,
+     "esito": "ok"
+    },
+    {
+     "da": "Toledo",
+     "a": "Ávila",
+     "linea_aria": 106,
+     "km": 136,
+     "esito": "ok"
+    },
+    {
+     "da": "Ávila",
+     "a": "Medina del Campo",
+     "linea_aria": 75,
+     "km": 86,
+     "esito": "ok"
+    },
+    {
+     "da": "Medina del Campo",
+     "a": "Zamora",
+     "linea_aria": 73,
+     "km": 96,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Spagna",
+   "cammino": "Camino Mozárabe",
+   "tratti": [
+    {
+     "da": "Granada",
+     "a": "Córdoba",
+     "linea_aria": 131,
+     "km": 164,
+     "esito": "ok"
+    },
+    {
+     "da": "Córdoba",
+     "a": "Alcaracejos",
+     "linea_aria": 58,
+     "km": 71,
+     "esito": "ok"
+    },
+    {
+     "da": "Alcaracejos",
+     "a": "Castuera",
+     "linea_aria": 63,
+     "km": 73,
+     "esito": "ok"
+    },
+    {
+     "da": "Castuera",
+     "a": "Medellín",
+     "linea_aria": 45,
+     "km": 51,
+     "esito": "ok"
+    },
+    {
+     "da": "Medellín",
+     "a": "Mérida",
+     "linea_aria": 34,
+     "esito": "GIRO LUNGHISSIMO (oltre 3 volte la linea d'aria)"
+    }
+   ],
+   "problemi": 1
+  },
+  {
+   "stato": "Portogallo",
+   "cammino": "Camino Portugués Central",
+   "tratti": [
+    {
+     "da": "Lisboa",
+     "a": "Santarém",
+     "linea_aria": 70,
+     "km": 93,
+     "esito": "ok"
+    },
+    {
+     "da": "Santarém",
+     "a": "Tomar",
+     "linea_aria": 47,
+     "km": 62,
+     "esito": "ok"
+    },
+    {
+     "da": "Tomar",
+     "a": "Coimbra",
+     "linea_aria": 68,
+     "km": 94,
+     "esito": "ok"
+    },
+    {
+     "da": "Coimbra",
+     "a": "Porto",
+     "linea_aria": 105,
+     "km": 128,
+     "esito": "ok"
+    },
+    {
+     "da": "Porto",
+     "a": "Barcelos",
+     "linea_aria": 43,
+     "km": 54,
+     "esito": "ok"
+    },
+    {
+     "da": "Barcelos",
+     "a": "Ponte de Lima",
+     "linea_aria": 27,
+     "km": 34,
+     "esito": "ok"
+    },
+    {
+     "da": "Ponte de Lima",
+     "a": "Tui",
+     "linea_aria": 32,
+     "km": 38,
+     "esito": "ok"
+    },
+    {
+     "da": "Tui",
+     "a": "Pontevedra",
+     "linea_aria": 43,
+     "km": 54,
+     "esito": "ok"
+    },
+    {
+     "da": "Pontevedra",
+     "a": "Padrón",
+     "linea_aria": 34,
+     "km": 40,
+     "esito": "ok"
+    },
+    {
+     "da": "Padrón",
+     "a": "Santiago",
+     "linea_aria": 18,
+     "km": 25,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Portogallo",
+   "cammino": "Camino Portugués da Costa",
+   "tratti": [
+    {
+     "da": "Porto",
+     "a": "Vila do Conde",
+     "linea_aria": 26,
+     "km": 28,
+     "esito": "ok"
+    },
+    {
+     "da": "Vila do Conde",
+     "a": "Viana do Castelo",
+     "linea_aria": 39,
+     "km": 50,
+     "esito": "ok"
+    },
+    {
+     "da": "Viana do Castelo",
+     "a": "Caminha",
+     "linea_aria": 20,
+     "km": 27,
+     "esito": "ok"
+    },
+    {
+     "da": "Caminha",
+     "a": "A Guarda",
+     "linea_aria": 4,
+     "km": 6,
+     "esito": "ok"
+    },
+    {
+     "da": "A Guarda",
+     "a": "Baiona",
+     "linea_aria": 24,
+     "km": 32,
+     "esito": "ok"
+    },
+    {
+     "da": "Baiona",
+     "a": "Vigo",
+     "linea_aria": 17,
+     "km": 27,
+     "esito": "ok"
+    },
+    {
+     "da": "Vigo",
+     "a": "Redondela",
+     "linea_aria": 10,
+     "km": 15,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Portogallo",
+   "cammino": "Camino Portugués Interior",
+   "tratti": [
+    {
+     "da": "Viseu",
+     "a": "Lamego",
+     "linea_aria": 50,
+     "km": 78,
+     "esito": "ok"
+    },
+    {
+     "da": "Lamego",
+     "a": "Vila Real",
+     "linea_aria": 23,
+     "km": 39,
+     "esito": "ok"
+    },
+    {
+     "da": "Vila Real",
+     "a": "Chaves",
+     "linea_aria": 54,
+     "km": 66,
+     "esito": "ok"
+    },
+    {
+     "da": "Chaves",
+     "a": "Verín",
+     "linea_aria": 22,
+     "km": 29,
+     "esito": "ok"
+    },
+    {
+     "da": "Verín",
+     "a": "Xunqueira de Ambía",
+     "linea_aria": 38,
+     "km": 80,
+     "esito": "ok"
+    },
+    {
+     "da": "Xunqueira de Ambía",
+     "a": "Ourense",
+     "linea_aria": 19,
+     "km": 23,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Francia",
+   "cammino": "Via Podiensis (Le Puy)",
+   "tratti": [
+    {
+     "da": "Le Puy-en-Velay",
+     "a": "Conques",
+     "linea_aria": 127,
+     "km": 206,
+     "esito": "ok"
+    },
+    {
+     "da": "Conques",
+     "a": "Figeac",
+     "linea_aria": 29,
+     "km": 47,
+     "esito": "ok"
+    },
+    {
+     "da": "Figeac",
+     "a": "Cahors",
+     "linea_aria": 50,
+     "km": 90,
+     "esito": "ok"
+    },
+    {
+     "da": "Cahors",
+     "a": "Moissac",
+     "linea_aria": 47,
+     "km": 76,
+     "esito": "ok"
+    },
+    {
+     "da": "Moissac",
+     "a": "Lectoure",
+     "linea_aria": 42,
+     "km": 53,
+     "esito": "ok"
+    },
+    {
+     "da": "Lectoure",
+     "a": "Navarrenx",
+     "linea_aria": 131,
+     "km": 211,
+     "esito": "ok"
+    },
+    {
+     "da": "Navarrenx",
+     "a": "Saint-Jean-Pied-de-Port",
+     "linea_aria": 42,
+     "km": 66,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Francia",
+   "cammino": "Via Tolosana (Arles)",
+   "tratti": [
+    {
+     "da": "Arles",
+     "a": "Montpellier",
+     "linea_aria": 61,
+     "km": 95,
+     "esito": "ok"
+    },
+    {
+     "da": "Montpellier",
+     "a": "Castres",
+     "linea_aria": 132,
+     "km": 236,
+     "esito": "ok"
+    },
+    {
+     "da": "Castres",
+     "a": "Toulouse",
+     "linea_aria": 64,
+     "km": 131,
+     "esito": "ok"
+    },
+    {
+     "da": "Toulouse",
+     "a": "Auch",
+     "linea_aria": 69,
+     "km": 97,
+     "esito": "ok"
+    },
+    {
+     "da": "Auch",
+     "a": "Oloron-Sainte-Marie",
+     "linea_aria": 109,
+     "km": 162,
+     "esito": "ok"
+    },
+    {
+     "da": "Oloron-Sainte-Marie",
+     "a": "Somport",
+     "linea_aria": 45,
+     "km": 63,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Francia",
+   "cammino": "Via Lemovicensis (Vézelay)",
+   "tratti": [
+    {
+     "da": "Vézelay",
+     "a": "Nevers",
+     "linea_aria": 69,
+     "km": 101,
+     "esito": "ok"
+    },
+    {
+     "da": "Nevers",
+     "a": "Limoges",
+     "linea_aria": 194,
+     "km": 308,
+     "esito": "ok"
+    },
+    {
+     "da": "Limoges",
+     "a": "Périgueux",
+     "linea_aria": 84,
+     "km": 117,
+     "esito": "ok"
+    },
+    {
+     "da": "Périgueux",
+     "a": "Mont-de-Marsan",
+     "linea_aria": 173,
+     "km": 252,
+     "esito": "ok"
+    },
+    {
+     "da": "Mont-de-Marsan",
+     "a": "Ostabat",
+     "linea_aria": 84,
+     "km": 114,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Francia",
+   "cammino": "Via Turonensis (Tours)",
+   "tratti": [
+    {
+     "da": "Parigi",
+     "a": "Orléans",
+     "linea_aria": 111,
+     "km": 148,
+     "esito": "ok"
+    },
+    {
+     "da": "Orléans",
+     "a": "Tours",
+     "linea_aria": 108,
+     "km": 144,
+     "esito": "ok"
+    },
+    {
+     "da": "Tours",
+     "a": "Poitiers",
+     "linea_aria": 94,
+     "km": 141,
+     "esito": "ok"
+    },
+    {
+     "da": "Poitiers",
+     "a": "Saintes",
+     "linea_aria": 119,
+     "km": 187,
+     "esito": "ok"
+    },
+    {
+     "da": "Saintes",
+     "a": "Bordeaux",
+     "linea_aria": 101,
+     "km": 142,
+     "esito": "ok"
+    },
+    {
+     "da": "Bordeaux",
+     "a": "Dax",
+     "linea_aria": 131,
+     "km": 178,
+     "esito": "ok"
+    },
+    {
+     "da": "Dax",
+     "a": "Ostabat",
+     "linea_aria": 50,
+     "km": 77,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Francia",
+   "cammino": "Via Gebennensis (Ginevra)",
+   "tratti": [
+    {
+     "da": "Ginevra",
+     "a": "Le Puy-en-Velay",
+     "linea_aria": 218,
+     "km": 357,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Italia",
+   "cammino": "Via Francigena (Italia)",
+   "tratti": [
+    {
+     "da": "Gran San Bernardo",
+     "a": "Aosta",
+     "linea_aria": 18,
+     "km": 28,
+     "esito": "ok"
+    },
+    {
+     "da": "Aosta",
+     "a": "Ivrea",
+     "linea_aria": 53,
+     "km": 84,
+     "esito": "ok"
+    },
+    {
+     "da": "Ivrea",
+     "a": "Vercelli",
+     "linea_aria": 45,
+     "km": 66,
+     "esito": "ok"
+    },
+    {
+     "da": "Vercelli",
+     "a": "Pavia",
+     "linea_aria": 59,
+     "km": 79,
+     "esito": "ok"
+    },
+    {
+     "da": "Pavia",
+     "a": "Piacenza",
+     "linea_aria": 45,
+     "km": 68,
+     "esito": "ok"
+    },
+    {
+     "da": "Piacenza",
+     "a": "Fidenza",
+     "linea_aria": 36,
+     "km": 53,
+     "esito": "ok"
+    },
+    {
+     "da": "Fidenza",
+     "a": "Pontremoli",
+     "linea_aria": 56,
+     "km": 90,
+     "esito": "ok"
+    },
+    {
+     "da": "Pontremoli",
+     "a": "Lucca",
+     "linea_aria": 77,
+     "km": 128,
+     "esito": "ok"
+    },
+    {
+     "da": "Lucca",
+     "a": "San Gimignano",
+     "linea_aria": 60,
+     "km": 82,
+     "esito": "ok"
+    },
+    {
+     "da": "San Gimignano",
+     "a": "Siena",
+     "linea_aria": 29,
+     "km": 50,
+     "esito": "ok"
+    },
+    {
+     "da": "Siena",
+     "a": "Viterbo",
+     "linea_aria": 118,
+     "km": 167,
+     "esito": "ok"
+    },
+    {
+     "da": "Viterbo",
+     "a": "Roma",
+     "linea_aria": 64,
+     "km": 96,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Francia",
+   "cammino": "Via Francigena (Francia e Svizzera)",
+   "tratti": [
+    {
+     "da": "Arras",
+     "a": "Reims",
+     "linea_aria": 146,
+     "km": 228,
+     "esito": "ok"
+    },
+    {
+     "da": "Reims",
+     "a": "Besançon",
+     "linea_aria": 269,
+     "km": 460,
+     "esito": "ok"
+    },
+    {
+     "da": "Besançon",
+     "a": "Losanna",
+     "linea_aria": 92,
+     "km": 165,
+     "esito": "ok"
+    },
+    {
+     "da": "Losanna",
+     "a": "Gran San Bernardo",
+     "linea_aria": 83,
+     "km": 135,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Regno Unito",
+   "cammino": "Via Francigena (Inghilterra)",
+   "tratti": [
+    {
+     "da": "Canterbury",
+     "a": "Dover",
+     "linea_aria": 24,
+     "km": 32,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Italia",
+   "cammino": "Via degli Dei",
+   "tratti": [
+    {
+     "da": "Bologna",
+     "a": "Firenze",
+     "linea_aria": 81,
+     "km": 125,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Italia",
+   "cammino": "Via di Francesco",
+   "tratti": [
+    {
+     "da": "La Verna",
+     "a": "Assisi",
+     "linea_aria": 90,
+     "km": 166,
+     "esito": "ok"
+    },
+    {
+     "da": "Assisi",
+     "a": "Rieti",
+     "linea_aria": 77,
+     "km": 139,
+     "esito": "ok"
+    },
+    {
+     "da": "Rieti",
+     "a": "Roma",
+     "linea_aria": 65,
+     "km": 104,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Italia",
+   "cammino": "Cammino di San Benedetto",
+   "tratti": [
+    {
+     "da": "Norcia",
+     "a": "Subiaco",
+     "linea_aria": 97,
+     "km": 178,
+     "esito": "ok"
+    },
+    {
+     "da": "Subiaco",
+     "a": "Montecassino",
+     "linea_aria": 77,
+     "km": 123,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Svizzera",
+   "cammino": "ViaJacobi (Rorschach - Brunnen)",
+   "tratti": [
+    {
+     "da": "Rorschach",
+     "a": "Einsiedeln",
+     "linea_aria": 68,
+     "km": 94,
+     "esito": "ok"
+    },
+    {
+     "da": "Einsiedeln",
+     "a": "Brunnen",
+     "linea_aria": 18,
+     "km": 25,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Svizzera",
+   "cammino": "ViaJacobi (Treib - Ginevra, dopo il battello)",
+   "tratti": [
+    {
+     "da": "Treib",
+     "a": "Flüeli-Ranft",
+     "linea_aria": 28,
+     "km": 40,
+     "esito": "ok"
+    },
+    {
+     "da": "Flüeli-Ranft",
+     "a": "Brienz",
+     "linea_aria": 22,
+     "km": 33,
+     "esito": "ok"
+    },
+    {
+     "da": "Brienz",
+     "a": "Berna",
+     "linea_aria": 50,
+     "km": 90,
+     "esito": "ok"
+    },
+    {
+     "da": "Berna",
+     "a": "Friburgo",
+     "linea_aria": 27,
+     "km": 52,
+     "esito": "ok"
+    },
+    {
+     "da": "Friburgo",
+     "a": "Losanna",
+     "linea_aria": 52,
+     "km": 74,
+     "esito": "ok"
+    },
+    {
+     "da": "Losanna",
+     "a": "Ginevra",
+     "linea_aria": 51,
+     "km": 75,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Germania",
+   "cammino": "Jakobsweg Norimberga - Costanza",
+   "tratti": [
+    {
+     "da": "Norimberga",
+     "a": "Rothenburg",
+     "linea_aria": 65,
+     "km": 100,
+     "esito": "ok"
+    },
+    {
+     "da": "Rothenburg",
+     "a": "Ulma",
+     "linea_aria": 110,
+     "km": 173,
+     "esito": "ok"
+    },
+    {
+     "da": "Ulma",
+     "a": "Costanza",
+     "linea_aria": 102,
+     "km": 159,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Germania",
+   "cammino": "Jakobsweg Colonia - Treviri",
+   "tratti": [
+    {
+     "da": "Colonia",
+     "a": "Treviri",
+     "linea_aria": 133,
+     "km": 240,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Austria",
+   "cammino": "Jakobsweg Austria",
+   "tratti": [
+    {
+     "da": "Vienna",
+     "a": "Melk",
+     "linea_aria": 77,
+     "km": 132,
+     "esito": "ok"
+    },
+    {
+     "da": "Melk",
+     "a": "Salisburgo",
+     "linea_aria": 177,
+     "km": 262,
+     "esito": "ok"
+    },
+    {
+     "da": "Salisburgo",
+     "a": "Innsbruck",
+     "linea_aria": 137,
+     "km": 188,
+     "esito": "ok"
+    },
+    {
+     "da": "Innsbruck",
+     "a": "Feldkirch",
+     "linea_aria": 136,
+     "km": 189,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Regno Unito",
+   "cammino": "St James' Way",
+   "tratti": [
+    {
+     "da": "Reading",
+     "a": "Southampton",
+     "linea_aria": 68,
+     "km": 105,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Regno Unito",
+   "cammino": "Pilgrims' Way",
+   "tratti": [
+    {
+     "da": "Winchester",
+     "a": "Canterbury",
+     "linea_aria": 168,
+     "esito": "NON COLLEGATO"
+    }
+   ],
+   "problemi": 1
+  },
+  {
+   "stato": "Regno Unito",
+   "cammino": "St Cuthbert's Way",
+   "tratti": [
+    {
+     "da": "Melrose",
+     "a": "Lindisfarne",
+     "linea_aria": 58,
+     "esito": "FUORI RETE: Melrose, Lindisfarne"
+    }
+   ],
+   "problemi": 1
+  },
+  {
+   "stato": "Regno Unito",
+   "cammino": "Whithorn Way",
+   "tratti": [
+    {
+     "da": "Glasgow",
+     "a": "Whithorn",
+     "linea_aria": 126,
+     "esito": "NON COLLEGATO"
+    }
+   ],
+   "problemi": 1
+  },
+  {
+   "stato": "Regno Unito",
+   "cammino": "St Andrews Way",
+   "tratti": [
+    {
+     "da": "Edimburgo",
+     "a": "St Andrews",
+     "linea_aria": 49,
+     "esito": "FUORI RETE: Edimburgo"
+    }
+   ],
+   "problemi": 1
+  },
+  {
+   "stato": "Regno Unito",
+   "cammino": "North Wales Pilgrim's Way",
+   "tratti": [
+    {
+     "da": "Basingwerk",
+     "a": "Aberdaron",
+     "linea_aria": 114,
+     "esito": "FUORI RETE: Aberdaron"
+    }
+   ],
+   "problemi": 1
+  },
+  {
+   "stato": "Irlanda",
+   "cammino": "St Kevin's Way",
+   "tratti": [
+    {
+     "da": "Hollywood",
+     "a": "Glendalough",
+     "linea_aria": 20,
+     "esito": "FUORI RETE: Hollywood, Glendalough"
+    }
+   ],
+   "problemi": 1
+  },
+  {
+   "stato": "Irlanda",
+   "cammino": "St Finbarr's Way",
+   "tratti": [
+    {
+     "da": "Drimoleague",
+     "a": "Gougane Barra",
+     "linea_aria": 20,
+     "km": 39,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Irlanda",
+   "cammino": "Tóchar Phádraig",
+   "tratti": [
+    {
+     "da": "Ballintubber",
+     "a": "Croagh Patrick",
+     "linea_aria": 25,
+     "km": 30,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  }
+ ]
+}

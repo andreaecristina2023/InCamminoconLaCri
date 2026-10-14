@@ -6,29 +6,8 @@ const $ = s => document.querySelector(s);
 const EP = ['https://overpass-api.de/api/interpreter', 'https://overpass.kumi.systems/api/interpreter', 'https://overpass.private.coffee/api/interpreter'];
 const STEP_KM = 0.5;
 const PALETTE = ['#d6408f', '#17468c', '#2e8b57', '#8e44ad', '#c0392b', '#16a085', '#c9a000', '#5d6d7e'];
-const PRESET = /Franc[eé]s|Aragon[eé]s|Podiensis|Lemovicensis|Turonensis|Tolosana|del Norte|Primitivo|Portugu[eé]s|Ingl[eé]s|Fisterr|Finisterre|Mux[ií]a|Plata|Sanabr|Baztán|Vasco|Vézelay|Arles|Gebennensis|Camino de Santiago|Cami[nñ]o de Santiago|Camino Mozárabe|Lebaniego|Invierno|Catal[aá]n|Levante|Saint-Jacques|Compostelle/i;
 const COLOR = new Map();   // un colore diverso per ogni cammino
-// stesso nome = stesso colore (i tratti di uno stesso cammino si riconoscono come un'unica linea)
-// nome del cammino senza la parte "tappa 3" o ", Nevers - Sancoins"
-const baseName = n => {
-  let b = String(n || '').trim()
-    .replace(/[\s\-–:,.(]*\b(tappa|tapa|[ée]tape|etapa|stage|etappe|abschnitt|tratto|tramo|section|secci[oó]n|variante)\b\.?\s*[\dIVX]+[a-z]?\b.*$/i, '')
-    .replace(/\s*[-–:]\s*\d+[a-z]?\b.*$/i, '')
-    .replace(/(\S+)\s+\d+[a-z]?$/i, (m, w) => /^(GR|GRP|PR|SL|E|HRP|VA)$/i.test(w) ? m : w);
-  for (const [sep, rx] of [[',', /\s[-–]\s|\sà\s|\sa\s/], [':', /[-–]|\sà\s|\sa\s/]]) {
-    const c = b.indexOf(sep);
-    if (c > 3 && rx.test(b.slice(c))) b = b.slice(0, c);
-  }
-  b = b.replace(/(\S+)\s+\d+[a-z]?$/i, (m, w) => /^(GR|GRP|PR|SL|E|HRP|VA)$/i.test(w) ? m : w);
-  return b.trim() || String(n || '').trim();
-};
-// chiave senza accenti e con le grafie galiziane/portoghesi unificate (Camiño = Caminho = Camino)
-const normName = n => baseName(n).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
-  .replace(/\bcami(n|nh)o\b/g, 'camino').replace(/\s+/g, ' ').trim();
-const nameKey = id => { const g = typeof S !== 'undefined' && S.geo && S.geo.get(id); return g ? 'n:' + normName(g.name) : id; };
-const colorOf = id => { const k = nameKey(id); if (!COLOR.has(k)) COLOR.set(k, `hsl(${Math.floor((COLOR.size * 137.508) % 360)},68%,42%)`); return COLOR.get(k); };
-// tutti gli id dei tratti con lo stesso nome
-const sameName = id => { const k = nameKey(id); return typeof k === 'string' && k.startsWith('n:') ? S.routes.filter(r => nameKey(r.id) === k).map(r => r.id) : [id]; };
+const colorOf = id => { if (!COLOR.has(id)) COLOR.set(id, `hsl(${Math.floor((COLOR.size * 137.508) % 360)},68%,42%)`); return COLOR.get(id); };
 const icon = (id, cls) => L.divIcon({ className: 'pin ' + cls, html: `<svg><use href="#${id}"/></svg>`, iconSize: [26, 26], iconAnchor: [13, 13] });
 
 const S = {
@@ -95,212 +74,141 @@ L.control.layers(BASE, null, { position: 'topright', collapsed: true }).addTo(ma
 const gOver = L.layerGroup().addTo(map), gNet = L.layerGroup().addTo(map), gRoute = L.layerGroup().addTo(map), gStops = L.layerGroup().addTo(map),
       gLodging = L.layerGroup().addTo(map), gPts = L.layerGroup().addTo(map);
 
-/* ---------- dati statici: data/<area>.geojson + data/indice.json (generati da GitHub Actions, senza Overpass) ---------- */
-S.geo = new Map();   // id -> {name, ref, from, to, group, area, ways}
-S.index = null;      // elenco dei file per area
-S.geoDate = '';
-S.areas = new Set(['spagna', 'portogallo', 'francia']);
-const loadedFiles = new Set();
-function ingest(j) {
-  for (const f of j.features || []) {
-    const p = f.properties || {}, g = f.geometry; if (!g || !p.id) continue;
-    const lines = g.type === 'MultiLineString' ? g.coordinates : g.type === 'LineString' ? [g.coordinates] : [];
-    const ways = lines.map(l => l.map(([lon, lat]) => ({ lat, lon }))).filter(w => w.length > 1);
-    if (ways.length) S.geo.set(p.id, { name: p.name || ('relazione ' + p.id), ref: p.ref || '', from: p.from || '', to: p.to || '',
-      group: p.group || 'santiago', area: p.area || p.group || 'santiago', ways });
-  }
-}
-async function loadFile(file) {
-  if (loadedFiles.has(file)) return true;
-  try {
-    const r = await fetch('data/' + file); if (!r.ok) return false;
-    ingest(await r.json()); loadedFiles.add(file); return true;
-  } catch (e) { return false; }
-}
-const loadArea = key => { const e = S.index && S.index.areas.find(x => x.key === key); return e ? loadFile(e.file) : Promise.resolve(false); };
-const loadAllAreas = () => S.index ? Promise.all(S.index.areas.map(e => loadFile(e.file))) : Promise.resolve();
-const geoReady = (async () => {
-  try {
-    const r = await fetch('data/indice.json');
-    if (r.ok) { S.index = await r.json(); S.geoDate = S.index.generated || ''; await Promise.all([...S.areas].map(loadArea)); }
-    else await loadFile('cammini.geojson');          // vecchio file unico
-  } catch (e) { await loadFile('cammini.geojson'); }
-  return S.geo.size > 0;
-})();
-// ricostruisce l'elenco dai dati caricati (le relazioni aggiunte a mano per ID restano)
-function syncRoutes() {
-  const manual = S.routes.filter(r => !S.geo.has(r.id));
-  S.routes = [...S.geo].map(([id, g]) => ({ id, name: g.name, ref: g.ref, from: g.from, to: g.to, group: g.group, area: g.area }))
-    .sort((x, y) => x.name.localeCompare(y.name)).concat(manual);
-  S.routes.forEach(r => colorOf(r.id));
-}
+/* ---------- catalogo dei cammini per nome (data/catalogo.json, data/panoramica.json, data/cammini/<slug>.json) ----------
+   All'apertura si scaricano solo il catalogo e la panoramica semplificata (pochi MB in tutto);
+   i tracciati completi di un cammino si scaricano solo quando lo si sceglie. */
+S.cat = [];              // [{slug, nome, fam, paesi, aree, km, n, ids, bbox}]
+S.bySlug = new Map();
+S.fam = 'santiago';      // famiglia mostrata nell'elenco
+S.pano = new Map();      // slug -> linee semplificate [[ [lat,lon], ... ], ...]
+S.over = new Map();      // slug -> layer sulla mappa
+const fullCache = new Map();
+const MIN_KM = 30;       // i percorsi più brevi si vedono solo spuntando "anche i brevi"
 
-/* ---------- 1. elenco e selezione cammini ---------- */
-$('#btnList').onclick = () => searchRoutes(false);
-$('#btnListAll').onclick = () => searchRoutes(true);
-async function searchRoutes(broad) {
-  status('Cerco i cammini di Santiago…');
-  await geoReady;
-  if (S.geo.size && !broad) {
-    syncRoutes();
-    renderRoutes(); status(S.routes.length + ' cammini (dati ' + (S.geoDate || 'locali') + '). Carico la rete sulla mappa…');
-    await showOverview(); return;
-  }
+const catReady = (async () => {
   try {
-    const rx = broad
-      ? 'Cami[nñ]o|Caminho|Chemin de (Saint|Compostelle)|Saint-Jacques|Via (de la Plata|Podiensis|Lemovicensis|Turonensis|Tolosana|Gebennensis)|Santiago|Compostelle|Fisterr|Finisterre|Mux[ií]a'
-      : 'Franc[eé]s|Aragon[eé]s|Podiensis|Lemovicensis|Turonensis|Tolosana|del Norte|Primitivo|Portugu[eé]s|Ingl[eé]s|Fisterr|Finisterre|Mux[ií]a|de la Plata|Sanabr|Baztán|Vasco|Vézelay|Arles|Gebennensis|Camino de Santiago|Cami[nñ]o de Santiago|Mozárabe|Lebaniego|Invierno|Catal[aá]n|Levante|Saint-Jacques|Compostelle';
-    // solo le relazioni "radice": si tolgono quelle che sono tappe/figlie di altre
-    const q = `[out:json][timeout:60];
-rel["type"="route"]["route"~"^(hiking|foot)$"]["name"~"${rx}"](35,-11,51.5,10)->.all;
-(.all; - rel(r.all););
-out tags;`;
-    const j = await overpass(q);
-    S.routes = j.elements.map(e => ({ id: e.id, name: e.tags.name || ('relazione ' + e.id), ref: e.tags.ref || '', from: e.tags.from || '', to: e.tags.to || '' }))
-      .sort((a, b) => a.name.localeCompare(b.name));
-    S.routes.forEach(r => colorOf(r.id));
-    renderRoutes(); status(S.routes.length + ' cammini trovati. Carico la rete sulla mappa…');
-    await showOverview();
-  } catch (e) { status('Errore: ' + e.message); }
+    status('Carico l\'elenco dei cammini…');
+    const [c, p] = await Promise.all([fetch('data/catalogo.json'), fetch('data/panoramica.json')]);
+    if (!c.ok || !p.ok) throw new Error('catalogo non trovato');
+    const cj = await c.json(), pj = await p.json();
+    S.cat = cj.cammini; S.famiglie = cj.famiglie; S.catDate = cj.generated;
+    S.cat.forEach(x => { S.bySlug.set(x.slug, x); colorOf(x.slug); });
+    pj.cammini.forEach(x => S.pano.set(x.s, x.l.map(l => l.map(([lon, lat]) => [lat, lon]))));
+    renderFamTabs(); renderPaesi(); renderRoutes(); drawOverview();
+    status(`${S.cat.length} cammini (dati del ${S.catDate}). Tocca una linea o spunta nell'elenco.`);
+    return true;
+  } catch (e) { status('Elenco dei cammini non disponibile: ' + e.message); return false; }
+})();
+
+function renderFamTabs() {
+  const box = $('#famTabs'); box.innerHTML = '';
+  for (const f of S.famiglie) {
+    const n = S.cat.filter(c => c.fam === f.key && c.km >= MIN_KM).length;
+    const b = document.createElement('button');
+    b.textContent = `${f.label} (${n})`; b.className = f.key === S.fam ? 'on' : '';
+    b.onclick = () => { S.fam = f.key; listLimit = 80; renderFamTabs(); renderPaesi(); renderRoutes(); drawOverview(); };
+    box.appendChild(b);
+  }
 }
-$('#filter').oninput = () => { listLimit = 150; renderRoutes(); };
-$('#btnPreset').onclick = () => { filteredRoutes().forEach(r => S.chosen.add(r.id)); renderRoutes(); restyleOver(); status(S.chosen.size + ' cammini selezionati.'); };
-$('#btnRelId').onclick = () => { const v = +$('#relId').value; if (!v) return; if (!S.routes.find(r => r.id === v)) S.routes.push({ id: v, name: 'Relazione ' + v, ref: '', from: '', to: '' }); S.chosen.add(v); renderRoutes(); restyleOver(); };
-document.querySelectorAll('input[data-grp]').forEach(cb => cb.onchange = async () => {
-  const k = cb.dataset.grp;
-  if (cb.checked) { S.areas.add(k); status('Carico i dati…'); await geoReady;
-  if (!(await loadArea(k))) status('Dati di “' + k + '” non disponibili: rilancia la Action dei dati.');
-  syncRoutes(); }
-  else S.areas.delete(k);
-  renderRoutes(); showOverview();
-});
-const areaVisible = r => S.chosen.has(r.id) || S.areas.has(r.area);
+function renderPaesi() {
+  const sel = $('#fPaese'), cur = sel.value;
+  const paesi = [...new Set(S.cat.filter(c => c.fam === S.fam).flatMap(c => c.paesi))].sort((a, b) => a.localeCompare(b));
+  sel.innerHTML = '<option value="">Tutti i paesi</option>' + paesi.map(p => `<option${p === cur ? ' selected' : ''}>${esc(p)}</option>`).join('');
+}
+const plain = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/\bcami(n|nh)o\b/g, 'camino');
 function filteredRoutes() {
-  const f = $('#filter').value.trim().toLowerCase();
-  return S.routes.filter(r => areaVisible(r) && (!f || S.chosen.has(r.id) || (r.name + ' ' + r.ref + ' ' + r.from + ' ' + r.to).toLowerCase().includes(f)));
+  const f = plain($('#filter').value.trim()), paese = $('#fPaese').value, brevi = $('#fBrevi').checked;
+  return S.cat.filter(c => S.chosen.has(c.slug) || (
+    (f ? true : c.fam === S.fam) && (brevi || c.km >= MIN_KM || f) && (!paese || c.paesi.includes(paese)) &&
+    (!f || plain(c.nome).includes(f))));
 }
-// l'elenco raggruppa i pezzi con lo stesso nome (es. 25 tratti del "Chemin du Piémont Pyrénéen")
-let listLimit = 150;
+let listLimit = 80;
 function renderRoutes() {
   const ul = $('#routeList'); ul.innerHTML = '';
-  const groups = new Map();
-  for (const r of filteredRoutes()) {
-    const k = String(nameKey(r.id));
-    if (!groups.has(k)) groups.set(k, { name: baseName(r.name), items: [] });
-    groups.get(k).items.push(r);
-  }
-  const list = [...groups.values()].sort((a, b) => a.name.localeCompare(b.name));
-  list.slice(0, listLimit).forEach(g => {
-    const r = g.items[0], n = g.items.length, sel = g.items.filter(x => S.chosen.has(x.id)).length;
+  const f = plain($('#filter').value.trim());
+  const score = c => { if (!f) return 0; const n = plain(c.nome); return n.startsWith(f) ? 3 : new RegExp('\\b' + f.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b').test(n) ? 2 : 1; };
+  const list = filteredRoutes().sort((a, b) => (S.chosen.has(b.slug) - S.chosen.has(a.slug)) || score(b) - score(a) || b.km - a.km);
+  list.slice(0, listLimit).forEach(c => {
     const li = document.createElement('li');
-    const sub = n > 1 ? `${n} tratti` : `${esc(r.from)}${r.to ? ' → ' + esc(r.to) : ''} · OSM ${r.id}`;
-    li.innerHTML = `<label><input type="checkbox" ${sel === n ? 'checked' : ''}> <span style="color:${colorOf(r.id)}">■</span> <b>${esc(g.name)}</b> ${r.ref && n === 1 ? '(' + esc(r.ref) + ')' : ''}<br><span class="small">${sub}</span></label>`;
-    const cb = li.querySelector('input'); cb.indeterminate = sel > 0 && sel < n;
-    cb.onchange = e => { g.items.forEach(x => e.target.checked ? S.chosen.add(x.id) : S.chosen.delete(x.id)); restyleOver(); };
+    li.innerHTML = `<label><input type="checkbox" ${S.chosen.has(c.slug) ? 'checked' : ''}> <span style="color:${colorOf(c.slug)}">■</span> <b>${esc(c.nome)}</b>` +
+      `<br><span class="small">${c.km} km · ${esc(c.paesi.join(', ') || '—')}${c.n > 1 ? ` · ${c.n} tratti OSM` : ''}</span></label>`;
+    li.querySelector('input').onchange = e => toggle(c.slug, e.target.checked);
+    li.onmouseenter = () => highlight(c.slug, true); li.onmouseleave = () => highlight(c.slug, false);
     ul.appendChild(li);
   });
   if (list.length > listLimit) {
     const li = document.createElement('li');
     li.innerHTML = `<button>Mostra altri (${list.length - listLimit})</button>`;
-    li.querySelector('button').onclick = () => { listLimit += 300; renderRoutes(); };
+    li.querySelector('button').onclick = () => { listLimit += 200; renderRoutes(); };
     ul.appendChild(li);
   }
+  if (!list.length) ul.innerHTML = '<li class="small">Nessun cammino con questi filtri.</li>';
+  const ch = [...S.chosen].map(s => S.bySlug.get(s)).filter(Boolean);
+  $('#chosenBox').innerHTML = ch.length ? `<b>Scelti:</b> ${ch.map(c => esc(c.nome)).join(' · ')} <span class="small">(${ch.reduce((a, c) => a + c.km, 0)} km di tracciati)</span>` : 'Nessun cammino scelto.';
+}
+function toggle(slug, on) {
+  on ? S.chosen.add(slug) : S.chosen.delete(slug);
+  restyleOver(); renderRoutes();
+}
+$('#filter').oninput = () => { listLimit = 80; renderRoutes(); drawOverview(); };
+$('#fPaese').onchange = () => { listLimit = 80; renderRoutes(); drawOverview(); };
+$('#fBrevi').onchange = () => { listLimit = 80; renderRoutes(); drawOverview(); };
+$('#btnClearSel').onclick = () => { S.chosen.clear(); restyleOver(); renderRoutes(); };
+
+/* ---------- panoramica sulla mappa (linee semplificate; tocca una linea per sceglierla) ---------- */
+const overStyle = slug => S.chosen.has(slug) ? { color: colorOf(slug), weight: 6, opacity: 1 } : { color: colorOf(slug), weight: 2.5, opacity: .55 };
+function restyleOver() { for (const [slug, l] of S.over) { l.setStyle(overStyle(slug)); if (S.chosen.has(slug)) l.bringToFront(); } }
+function highlight(slug, on) { const l = S.over.get(slug); if (l) { l.setStyle(on ? { weight: 7, opacity: 1 } : overStyle(slug)); if (on) l.bringToFront(); } }
+function drawOverview() {
+  gOver.clearLayers(); S.over.clear();
+  for (const c of filteredRoutes()) {
+    const lines = S.pano.get(c.slug); if (!lines || !lines.length) continue;
+    const l = L.polyline(lines, overStyle(c.slug)).addTo(gOver);
+    l.bindTooltip(`${c.nome} · ${c.km} km`, { sticky: true });
+    l.on('click', () => { toggle(c.slug, !S.chosen.has(c.slug)); status(`${c.nome}: ${S.chosen.has(c.slug) ? 'scelto' : 'tolto'} (${S.chosen.size} scelti)`); });
+    S.over.set(c.slug, l);
+  }
+  restyleOver();
+  if (!S.overFitted && S.over.size) { map.fitBounds(L.featureGroup([...S.over.values()]).getBounds()); S.overFitted = true; }
 }
 
-/* ---------- anteprima di tutta la rete sulla mappa (tocca una linea per selezionarla) ---------- */
-S.over = new Map();   // id -> {name, ways (semplificati), layers}
-const decimate = w => { const out = [w[0]]; let last = w[0]; for (let i = 1; i < w.length - 1; i++) if (hav(last, w[i]) >= 0.15) { out.push(w[i]); last = w[i]; } out.push(w[w.length - 1]); return out; };
-const overStyle = id => S.chosen.has(id) ? { color: colorOf(id), weight: 6, opacity: 1 } : { color: colorOf(id), weight: 3, opacity: .6 };
-function restyleOver() {
-  for (const [id, o] of S.over) (o.layers || []).forEach(l => { l.setStyle(overStyle(id)); if (S.chosen.has(id)) l.bringToFront(); });
+/* ---------- carico i cammini scelti (solo i loro file) ---------- */
+async function fullOf(slug) {
+  if (!fullCache.has(slug)) fullCache.set(slug, fetch('data/cammini/' + slug + '.json').then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }));
+  return fullCache.get(slug);
 }
-function drawOverview(list) {
-  gOver.clearLayers();
-  for (const r of list) {
-    const o = S.over.get(r.id); if (!o) continue; o.layers = [];
-    for (const w of o.ways) {
-      const l = L.polyline(w.map(p => [p.lat, p.lon]), overStyle(r.id)).addTo(gOver);
-      l.bindTooltip(r.name, { sticky: true });
-      l.on('click', () => {
-        const on = !S.chosen.has(r.id); sameName(r.id).forEach(id => on ? S.chosen.add(id) : S.chosen.delete(id));
-        restyleOver(); renderRoutes();
-        status(`${r.name}: ${S.chosen.has(r.id) ? 'selezionato' : 'tolto'} (${S.chosen.size} selezionati)`);
-      });
-      o.layers.push(l);
-    }
-  }
-}
-$('#btnOverview').onclick = showOverview;
-async function showOverview() {
-  const list = filteredRoutes();
-  if (!list.length) { status('Prima cerca i cammini in OSM.'); return; }
-  await geoReady;
-  if (S.geo.size) {
-    for (const r of list) { const g = S.geo.get(r.id); if (g && !S.over.has(r.id)) S.over.set(r.id, { ways: g.ways.map(decimate), layers: [] }); }
-    if (!S.overFitted) { const all = []; for (const r of list) { const o = S.over.get(r.id); if (o) o.ways.forEach(w => all.push([w[0].lat, w[0].lon])); } if (all.length) { map.fitBounds(all); S.overFitted = true; } }
-  }
-  const ids = list.filter(r => !S.over.has(r.id)).map(r => r.id);
-  try {
-    for (let i = 0; i < ids.length; i += 4) {
-      const ch = ids.slice(i, i + 4);
-      status(`Carico la rete sulla mappa ${Math.min(i + 4, ids.length)}/${ids.length}…`);
-      const j = await overpass(`[out:json][timeout:180];rel(id:${ch.join(',')})->.p;(.p;rel(r.p););out geom;`);
-      const byId = new Map(j.elements.map(e => [e.id, e]));
-      for (const id of ch) {
-        const p = byId.get(id); if (!p) continue;
-        const ways = waysOfTop(p, byId).map(decimate);
-        if (ways.length) S.over.set(id, { ways, layers: [] });
-      }
-      drawOverview(list);
-      if (i === 0 && S.over.size) { const all = []; for (const o of S.over.values()) o.ways.forEach(w => all.push([w[0].lat, w[0].lon])); map.fitBounds(all); }
-    }
-    drawOverview(list);
-    status(`${S.over.size} cammini sulla mappa. Tocca una linea (o spunta nell'elenco) per selezionarla, poi “Carica selezionati nella rete”.`);
-  } catch (e) { status('Errore: ' + e.message); }
-}
-function waysOfTop(p, byId) {
-  const group = [p, ...(p.members || []).filter(m => m.type === 'relation').map(m => byId.get(m.ref)).filter(Boolean)];
-  const ways = [], used = new Set();
-  for (const e of group) { if (used.has(e.id)) continue; used.add(e.id);
-    for (const m of e.members || []) if (m.type === 'way' && m.geometry) { const g = m.geometry.filter(Boolean); if (g.length > 1) ways.push(g); } }
-  return ways;
-}
-
-/* ---------- carico la rete ---------- */
 $('#btnLoad').onclick = loadChosen;
 async function loadChosen() {
-  const ids = [...S.chosen];
-  if (!ids.length) { status('Seleziona almeno un cammino.'); return; }
+  await catReady;
+  const slugs = [...S.chosen].filter(s => S.bySlug.has(s));
+  if (!slugs.length) { status('Scegli almeno un cammino.'); return; }
   S.tops = [];
-  await geoReady;
-  const need = [];
-  for (const id of ids) { const g = S.geo && S.geo.get(id); if (g) S.tops.push({ id, name: g.name, ways: g.ways }); else need.push(id); }
   try {
-    for (let i = 0; i < need.length; i += 6) {
-      const ch = need.slice(i, i + 6);
-      status(`Scarico tracciati ${Math.min(i + 6, need.length)}/${need.length}…`);
-      const j = await overpass(`[out:json][timeout:180];rel(id:${ch.join(',')})->.p;(.p;rel(r.p););out geom;`);
-      const byId = new Map(j.elements.map(e => [e.id, e]));
-      for (const id of ch) {
-        const p = byId.get(id); if (!p) continue;
-        const group = [p, ...(p.members || []).filter(m => m.type === 'relation').map(m => byId.get(m.ref)).filter(Boolean)];
-        const ways = [], used = new Set();
-        for (const e of group) { if (used.has(e.id)) continue; used.add(e.id);
-          for (const m of e.members || []) if (m.type === 'way' && m.geometry) { const g = m.geometry.filter(Boolean); if (g.length > 1) ways.push(g); } }
-        if (ways.length) S.tops.push({ id, name: (p.tags && p.tags.name) || ('relazione ' + id), ways });
+    let done = 0;
+    status(`Scarico ${slugs.length} cammini…`);
+    const all = await Promise.all(slugs.map(async s => { const j = await fullOf(s); status(`Scarico i cammini ${++done}/${slugs.length}…`); return [s, j]; }));
+    for (const [slug, j] of all) {
+      const ways = [];
+      for (const f of j.features || []) {
+        const g = f.geometry; if (!g) continue;
+        const lines = g.type === 'MultiLineString' ? g.coordinates : g.type === 'LineString' ? [g.coordinates] : [];
+        for (const l of lines) { const w = l.map(([lon, lat]) => ({ lat, lon })); if (w.length > 1) ways.push(w); }
       }
+      if (ways.length) S.tops.push({ id: slug, name: S.bySlug.get(slug).nome, ways });
     }
-    if (!S.tops.length) throw new Error('nessuna geometria trovata');
-    gOver.clearLayers();
+    if (!S.tops.length) throw new Error('nessun tracciato trovato');
+    gOver.clearLayers(); S.over.clear();
     status('Costruisco la rete…'); await new Promise(r => setTimeout(r, 20));
     buildGraph(); renderPrefs(); drawNet();
     const km = G.adj.reduce((a, l) => a + l.reduce((s, e) => s + e.w, 0), 0) / 2;
-    status(`Rete: ${S.tops.length} cammini, ~${km.toFixed(0)} km, ${G.nodes.length} nodi. Ora scegli partenza e arrivo.`);
+    status(`Rete: ${S.tops.length} cammini, ~${km.toFixed(0)} km. Ora scegli partenza e arrivo.`);
     $('#s3').open = true; $('#s1').open = false;
-    const all = []; S.tops.forEach(t => t.ways.forEach(w => all.push(w[0])));
-    map.fitBounds(all.map(p => [p.lat, p.lon]));
-  } catch (e) { status('Errore: ' + e.message); }
+    const pts = []; S.tops.forEach(t => t.ways.forEach(w => pts.push([w[0].lat, w[0].lon])));
+    map.fitBounds(pts);
+  } catch (e) { status('Errore nel caricare i cammini: ' + e.message); }
 }
+// per tornare a scegliere: riapre la panoramica
+$('#s1').addEventListener('toggle', () => { if ($('#s1').open && !S.over.size && S.cat.length) drawOverview(); });
 
 /* ---------- grafo ---------- */
 const CELL = 0.002;
@@ -496,7 +404,7 @@ async function loadPOIStatic() {
     try { const r = await fetch('data/alloggi/indice.json'); alloggiIndex = r.ok ? await r.json() : null; } catch (e) { alloggiIndex = null; }
   }
   if (!alloggiIndex) return false;
-  const keys = new Set([...S.chosen].map(id => S.geo.get(id)).filter(Boolean).map(g => g.area));
+  const keys = new Set(S.tops.flatMap(t => (S.bySlug.get(t.id) || { aree: [] }).aree));
   const files = alloggiIndex.aree.filter(a => keys.has(a.key));
   if (!files.length) return false;
   status('Carico località e ostelli…');
@@ -708,12 +616,15 @@ $('#btnShare').onclick = async () => {
 
 /* ---------- avvio da link condiviso ---------- */
 (async () => {
-  const h = new URLSearchParams(location.hash.slice(1)); if (!h.get('r')) { searchRoutes(false); return; }
-  h.get('r').split(',').filter(Boolean).forEach(x => S.chosen.add(+x));
-  S.routes = [...S.chosen].map(id => ({ id, name: 'Relazione ' + id, ref: '', from: '', to: '' })); renderRoutes();
+  const h = new URLSearchParams(location.hash.slice(1)); if (!h.get('r')) return;
+  if (!(await catReady)) return;
+  for (const x of h.get('r').split(',').filter(Boolean)) {
+    if (S.bySlug.has(x)) S.chosen.add(x);
+    else if (/^\d+$/.test(x)) { const c = S.cat.find(c => c.ids.includes(+x)); if (c) S.chosen.add(c.slug); }   // vecchi link con id OSM
+  }
+  renderRoutes(); restyleOver();
   if (h.get('k')) { S.daily = +h.get('k'); $('#kmDay').value = S.daily; $('#kmLabel').textContent = S.daily; }
   (h.get('f') || '').split(',').filter(Boolean).forEach(x => { S.pref[x.slice(0, -1)] = x.slice(-1); });
-  await geoReady; await loadAllAreas();
   await loadChosen();
   (h.get('p') || '').split('~').filter(Boolean).forEach(x => { const [role, lat, lon, name] = x.split(':'); S.pts.push({ role, lat: +lat, lon: +lon, name: decodeURIComponent(name || '') }); });
   renderPts(); if (S.pts.length >= 2) computeRoute();
