@@ -78,8 +78,11 @@ SEMPRE = [409737,
           389715,     # Voie d'Arles / Via Tolosana
           11813130,   # La voie d'Arles
           14900298,   # Voie de Vézelay (GR 654)
-          2289173]    # Via Gebennensis
-SEARCH_VER = 5   # da aumentare quando cambiano NAMES, SEARCHES o pick_roots
+          2289173,    # Via Gebennensis
+          7164214,    # Camino de Levante (super-percorso, Castilla y León, GR 239)
+          19556718, 19552606, 19552607, 19552806,   # GR 239 tappe 24-27: Arévalo - Medina - Toro - Zamora
+          3624753]    # Camino de Santiago de Levante (Valencia - El Toboso)
+SEARCH_VER = 6   # da aumentare quando cambiano NAMES, SEARCHES o pick_roots
 
 GPRIO = {"santiago": 0, "francigena": 1, "italia": 2}
 NPRIO = {"iwn": 0, "nwn": 1, "rwn": 2}   # prima i percorsi a lunga distanza
