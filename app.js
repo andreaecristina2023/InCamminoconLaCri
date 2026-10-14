@@ -132,7 +132,8 @@ function renderRoutes() {
   list.slice(0, listLimit).forEach(c => {
     const li = document.createElement('li');
     li.innerHTML = `<label><input type="checkbox" ${S.chosen.has(c.slug) ? 'checked' : ''}> <span style="color:${colorOf(c.slug)}">■</span> <b>${esc(c.nome)}</b>` +
-      `<br><span class="small">${c.km} km · ${esc(c.paesi.join(', ') || '—')}${c.n > 1 ? ` · ${c.n} tratti OSM` : ''}</span></label>`;
+      `<br><span class="small">${c.km} km · ${esc(c.paesi.join(', ') || '—')}${c.n > 1 ? ` · ${c.n} tratti OSM` : ''}</span>` +
+      (c.approx ? `<br><span class="small" title="Tratto che su OpenStreetMap non esiste: calcolato su strade e sentieri passando dalle tappe ufficiali">⚠ tracciato approssimato: ${esc(c.approx.join(', '))}</span>` : '') + `</label>`;
     li.querySelector('input').onchange = e => toggle(c.slug, e.target.checked);
     li.onmouseenter = () => highlight(c.slug, true); li.onmouseleave = () => highlight(c.slug, false);
     ul.appendChild(li);

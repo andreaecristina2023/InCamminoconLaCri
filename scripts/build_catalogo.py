@@ -212,9 +212,18 @@ def main():
         tot = sum(votes.values()) or 1
         return {k for k, v in votes.items() if v / tot >= 0.03 or v >= 12}
 
+    from build_geojson import country_of
     feats = []
     for p in sorted(glob.glob(os.path.join(DATA, "*.geojson"))):
         feats += json.load(open(p, encoding="utf-8"))["features"]
+    manuali = []   # tratti aggiunti a mano (build_manuali.py), che OSM non ha come percorso
+    try:
+        manuali = json.load(open(os.path.join(DATA, "manuali.json"), encoding="utf-8"))["features"]
+    except (OSError, ValueError):
+        pass
+    for f in manuali:
+        f["properties"]["area"] = country_of(f)
+    feats += manuali
     # paesi attraversati da ogni tracciato (Francigena e Romee sono file "per cammino", non per stato)
     for f in feats:
         f["_paesi"] = paesi_di(f) or {AREA_LABEL.get(f["properties"].get("area", ""), "Altri paesi")}
@@ -231,6 +240,19 @@ def main():
         got = [norm_name(x) for x in parts if norm_name(x) in by]
         if len(got) >= 2:
             by["composto:" + nome] = [f for k in got for f in by.pop(k)]
+    # i tratti aggiunti a mano si uniscono al cammino indicato in "unisci_a"
+    for f in manuali:
+        dest = f["properties"].get("unisci_a", "")
+        if not dest:
+            continue
+        own = norm_name(f["properties"]["name"])
+        for k in ("composto:" + dest, norm_name(dest)):
+            if k in by and k != own:
+                by[k].append(f)
+                by[own] = [x for x in by.get(own, []) if x is not f]
+                if not by[own]:
+                    del by[own]
+                break
 
     os.makedirs(OUT_DIR, exist_ok=True)
     cat, pano, used = [], [], set()
@@ -266,7 +288,9 @@ def main():
             f.pop("_paesi", None)
         write_if_changed(os.path.join(OUT_DIR, sl + ".json"),
                          {"type": "FeatureCollection", "attribution": "© contributori di OpenStreetMap (ODbL)", "features": fl})
-        cat.append({"slug": sl, "nome": nome, "fam": famiglia(fl), "paesi": paesi,
+        approx = [f["properties"].get("from", "") + " - " + f["properties"].get("to", "") for f in fl
+                  if f["properties"].get("manuale") and "BRouter" in f["properties"].get("origine", "")]
+        cat.append({"slug": sl, "nome": nome, "fam": famiglia(fl), "paesi": paesi, **({"approx": approx} if approx else {}),
                     "aree": sorted({f["properties"].get("area", "") for f in fl}), "km": round(km), "n": len(fl),
                     "ids": sorted(f["properties"]["id"] for f in fl),
                     "bbox": [round(min(xs), 3), round(min(ys), 3), round(max(xs), 3), round(max(ys), 3)]})

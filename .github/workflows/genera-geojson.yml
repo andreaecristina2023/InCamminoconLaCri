@@ -68,6 +68,7 @@ jobs:
       - name: Catalogo dei cammini per nome (catalogo, panoramica leggera, un file per cammino)
         if: success()
         run: |
+          python3 -u scripts/build_manuali.py || echo "Tratti aggiunti a mano: errore, tengo la versione precedente."
           python3 -u scripts/build_catalogo.py
           MESSAGGIO="Aggiorna catalogo dei cammini" bash scripts/salva_dati.sh || { echo "Catalogo non salvato."; exit 1; }
       - name: Controllo dei buchi nei cammini principali (risultato in data/verifica.json)

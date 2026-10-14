@@ -1,0 +1,3 @@
+Qui si possono mettere i GPX dei tratti che su OpenStreetMap non esistono come percorso (vedi scripts/tratti_manuali.json).
+Se il file indicato in "gpx" c'è (es. coimbra-farminhao.gpx), si usa quello al posto del tracciato calcolato con BRouter.
+Usare solo GPX che si ha il diritto di pubblicare (fatti da voi o con licenza libera).

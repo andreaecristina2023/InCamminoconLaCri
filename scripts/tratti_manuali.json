@@ -1,0 +1,21 @@
+{
+  "_nota": "Tratti che su OpenStreetMap non esistono come percorso. Il tracciato si calcola con BRouter (strade e sentieri OSM) passando dalle tappe indicate; se c'è un GPX in data/manuali/<gpx>, si usa quello. 'unisci_a' è il nome del cammino del catalogo a cui il tratto viene aggiunto. L'id è negativo per non confondersi con OSM.",
+  "tratti": [
+    {
+      "id": -1001,
+      "nome": "Caminho Português do Interior (Coimbra - Farminhão)",
+      "unisci_a": "Camino Portugués Interior",
+      "group": "santiago",
+      "fonte": "Tappe di Gronze (Coimbra - Penacova via Lorvão - Mortágua - Tondela - Viseu); tracciato approssimato calcolato con BRouter",
+      "gpx": "coimbra-farminhao.gpx",
+      "tappe": [
+        ["Coimbra (Sé Velha)", 40.2088, -8.4270],
+        ["Lorvão", 40.2591, -8.3165],
+        ["Penacova", 40.2700, -8.2810],
+        ["Mortágua", 40.3963, -8.2354],
+        ["Tondela", 40.5170, -8.0820],
+        ["Farminhão (inizio del tracciato OSM)", 40.60411, -8.03225]
+      ]
+    }
+  ]
+}

@@ -79,3 +79,9 @@ scarica solo il suo file in `data/cammini/<nome>.json`, con tutti i tratti, di q
 - Famiglia **Trekking a lunga percorrenza**: ricerca dedicata (`TREK` in `build_geojson.py`: Sentiero Italia, Alte Vie,
   Via Alpina, TMB, GR 5/10/11/20, West Highland Way, Pennine Way, Kerry Way, Rota Vicentina, Rennsteig…), file
   `data/trekking.geojson`; quelli da includere sempre sono in `SEMPRE_TREK`.
+
+## Tratti aggiunti a mano (`scripts/tratti_manuali.json`)
+
+Per i pezzi di cammino che su OpenStreetMap non esistono come percorso (es. Portoghese Interior Coimbra - Farminhão):
+si indicano le tappe e `scripts/build_manuali.py` calcola il tracciato con BRouter su strade e sentieri OSM (approssimato,
+segnalato nel sito con ⚠), oppure usa un GPX messo in `data/manuali/`. Il tratto viene unito al cammino indicato in `unisci_a`.

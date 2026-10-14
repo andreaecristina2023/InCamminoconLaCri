@@ -57,7 +57,8 @@ C = [
     ("Portogallo", "Camino Portugués da Costa", [("Porto", 41.145, -8.610), ("Vila do Conde", 41.353, -8.745),
         ("Viana do Castelo", 41.694, -8.832), ("Caminha", 41.875, -8.838), ("A Guarda", 41.900, -8.870), ("Baiona", 42.118, -8.850),
         ("Vigo", 42.236, -8.720), ("Redondela", 42.283, -8.610)]),
-    ("Portogallo", "Camino Portugués Interior", [("Viseu", 40.657, -7.913), ("Lamego", 41.097, -7.810), ("Vila Real", 41.300, -7.746),
+    ("Portogallo", "Camino Portugués Interior", [("Coimbra", 40.209, -8.427), ("Penacova", 40.270, -8.281),
+        ("Mortágua", 40.396, -8.235), ("Tondela", 40.517, -8.082), ("Viseu", 40.657, -7.913), ("Lamego", 41.097, -7.810), ("Vila Real", 41.300, -7.746),
         ("Chaves", 41.740, -7.470), ("Verín", 41.940, -7.436), ("Xunqueira de Ambía", 42.200, -7.730),
         ("Ourense", 42.336, -7.864)]),
     ("Francia", "Via Podiensis (Le Puy)", [("Le Puy-en-Velay", 45.043, 3.885), ("Conques", 44.599, 2.398), ("Figeac", 44.609, 2.030),
@@ -208,6 +209,13 @@ def main():
             n += 1
             for line in f["geometry"]["coordinates"]:
                 net.add_line(line)
+    try:   # tratti aggiunti a mano (build_manuali.py)
+        for f in json.load(open(os.path.join(ROOT, "data", "manuali.json"), encoding="utf-8"))["features"]:
+            n += 1
+            for line in f["geometry"]["coordinates"]:
+                net.add_line(line)
+    except (OSError, ValueError):
+        pass
     nb = net.bridge()
     print(f"Rete: {n} cammini, {len(net.pos)} nodi, {nb} piccoli strappi cuciti\n", flush=True)
     out, problems = [], 0
