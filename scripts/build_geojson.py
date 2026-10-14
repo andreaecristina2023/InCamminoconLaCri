@@ -49,11 +49,11 @@ BROAD = ("Cami[nñ]o|Caminho|Chemin de (Saint|Compostelle)|Saint-Jacques|"
          "Via (de la Plata|Podiensis|Lemovicensis|Turonensis|Tolosana|Gebennensis)|"
          "Santiago|Compostelle|Fisterr|Finisterre|Mux[ií]a")
 JACOB = "Santiago|Xacob|Jacob|Jakob|Compostel|Jacques|Giacomo|Sant.?Iago"
-NORD = "Jakobs?weg|Jakobusweg|Jakobspilger|Via Jacobi|St\\.? ?James|Saint James|Chemin de Saint-Jacques|Camino Ingl"
+NORD = "Jakobs?weg|Jakobusweg|Jakobspilger|Via Jacobi|(St\\.?|Saint) ?James|Saint James|Chemin de Saint-Jacques|Camino Ingl"
 # cammini di pellegrinaggio di Gran Bretagna e Irlanda (anche Scozia, Galles, Irlanda del Nord)
-ISOLE = ("Pilgrim|Camino|St\\.? ?James|Saint James|Way of St|Saints.? Way|St\\.? ?Cuthbert|St\\.? ?Michael|"
-         "St\\.? ?Kevin|St\\.? ?Finbarr|St\\.? ?Declan|St\\.? ?Patrick|St\\.? ?Brigid|St\\.? ?Columba|"
-         "St\\.? ?Andrews Way|St\\.? ?Hilda|St\\.? ?Oswald|St\\.? ?Ninian|St\\.? ?Conan|St\\.? ?Aidan|St\\.? ?Winefride|"
+ISOLE = ("Pilgrim|Camino|(St\\.?|Saint) ?James|Saint James|Way of St|Saints.? Way|(St\\.?|Saint) ?Cuthbert|(St\\.?|Saint) ?Michael|"
+         "(St\\.?|Saint) ?Kevin|(St\\.?|Saint) ?Finbarr|(St\\.?|Saint) ?Declan|(St\\.?|Saint) ?Patrick|(St\\.?|Saint) ?Brigid|(St\\.?|Saint) ?Columba|"
+         "(St\\.?|Saint) ?Andrews Way|(St\\.?|Saint) ?Hilda|(St\\.?|Saint) ?Oswald|(St\\.?|Saint) ?Ninian|(St\\.?|Saint) ?Conan|(St\\.?|Saint) ?Aidan|(St\\.?|Saint) ?Winefride|"
          "Whithorn|Walsingham|T[oó]char|Cos[aá]n na Naomh|B[oó]thar na Naomh|Lough Derg|Croagh Patrick|"
          "Pererin|Two Saints|Augustine")
 # nomi da NON considerare cammini anche se la ricerca li trova (es. "King Charles" contiene "arles")
@@ -92,10 +92,12 @@ SEMPRE = [409737,
           19556718, 19552606, 19552607, 19552806,   # GR 239 tappe 24-27: Arévalo - Medina - Toro - Zamora
           3624753,    # Camino de Santiago de Levante (Valencia - El Toboso)
           15764571,   # St James' Way (Reading - Southampton, verso Santiago)
-          20446772,   # Pilgrims' Way
           7776868,    # Fife Pilgrim Way
-          9581839]    # Augustine Camino (Kent)
-SEARCH_VER = 7   # da aumentare quando cambiano NAMES, SEARCHES o pick_roots
+          9581839,    # Augustine Camino (Kent)
+          4515009,    # Saint Cuthbert's Way (Melrose - Lindisfarne)
+          14612088,   # Whithorn Way (Glasgow - Whithorn)
+          238293]     # Saint Kevin's Way (Hollywood - Glendalough)
+SEARCH_VER = 8   # da aumentare quando cambiano NAMES, SEARCHES o pick_roots
 
 GPRIO = {"santiago": 0, "francigena": 1, "isole": 2, "italia": 2}
 NPRIO = {"iwn": 0, "nwn": 1, "rwn": 2}   # prima i percorsi a lunga distanza
