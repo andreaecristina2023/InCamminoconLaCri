@@ -1353,29 +1353,17 @@
   },
   {
    "stato": "Regno Unito",
-   "cammino": "Pilgrims' Way",
-   "tratti": [
-    {
-     "da": "Winchester",
-     "a": "Canterbury",
-     "linea_aria": 168,
-     "esito": "NON COLLEGATO"
-    }
-   ],
-   "problemi": 1
-  },
-  {
-   "stato": "Regno Unito",
    "cammino": "St Cuthbert's Way",
    "tratti": [
     {
      "da": "Melrose",
      "a": "Lindisfarne",
      "linea_aria": 58,
-     "esito": "FUORI RETE: Melrose, Lindisfarne"
+     "km": 101,
+     "esito": "ok"
     }
    ],
-   "problemi": 1
+   "problemi": 0
   },
   {
    "stato": "Regno Unito",
@@ -1392,16 +1380,17 @@
   },
   {
    "stato": "Regno Unito",
-   "cammino": "St Andrews Way",
+   "cammino": "Fife Pilgrim Way",
    "tratti": [
     {
-     "da": "Edimburgo",
+     "da": "Culross",
      "a": "St Andrews",
-     "linea_aria": 49,
-     "esito": "FUORI RETE: Edimburgo"
+     "linea_aria": 60,
+     "km": 89,
+     "esito": "ok"
     }
    ],
-   "problemi": 1
+   "problemi": 0
   },
   {
    "stato": "Regno Unito",
