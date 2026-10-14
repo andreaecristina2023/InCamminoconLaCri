@@ -45,16 +45,16 @@
    "key": "inghilterra",
    "label": "Regno Unito",
    "file": "inghilterra.geojson",
-   "count": 51,
-   "mb": 1.55,
+   "count": 53,
+   "mb": 1.77,
    "updated": "2026-10-14"
   },
   {
    "key": "irlanda",
    "label": "Irlanda",
    "file": "irlanda.geojson",
-   "count": 9,
-   "mb": 0.19,
+   "count": 10,
+   "mb": 0.22,
    "updated": "2026-10-14"
   },
   {
@@ -85,9 +85,17 @@
    "key": "romea",
    "label": "Via Romea",
    "file": "romea.geojson",
-   "count": 49,
-   "mb": 2.56,
-   "updated": "2026-10-13"
+   "count": 51,
+   "mb": 4.66,
+   "updated": "2026-10-14"
+  },
+  {
+   "key": "trekking",
+   "label": "Trekking a lunga percorrenza",
+   "file": "trekking.geojson",
+   "count": 112,
+   "mb": 13.56,
+   "updated": "2026-10-14"
   },
   {
    "key": "europa",
