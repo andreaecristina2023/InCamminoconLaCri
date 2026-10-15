@@ -926,10 +926,15 @@ function renderStages() {
   S.stages.forEach((g, idx) => {
     const d = document.createElement('div'); d.className = 'stage' + (idx === S.sel ? ' sel' : '');
     const gl = g.gl ? `▲ ${g.gl.g} m ▼ ${g.gl.l} m` : 'quote n.d.';
-    const gronze = 'https://www.google.com/search?q=' + encodeURIComponent('site:gronze.com ' + g.to.name.replace(/\(.*\)/, ''));
+    const town = g.to.name.replace(/\(.*\)/, '').trim(), end = S.samples[g.to.i] || {};
+    // Gronze copre Spagna e Portogallo; Booking ovunque (ricerca per paese + coordinate, si aprono loro)
+    const iberia = end.lat < 43.9 && end.lat > 36 && end.lon < 3.4 && end.lon > -9.6;
+    const gronze = iberia ? 'https://www.google.com/search?q=' + encodeURIComponent('site:gronze.com ' + town) : '';
+    const booking = /^Km \d/.test(town) ? '' : 'https://www.booking.com/searchresults.it.html?' + new URLSearchParams({ ss: town, latitude: (end.lat || 0).toFixed(5), longitude: (end.lon || 0).toFixed(5), group_adults: 1, no_rooms: 1 });
+    const links = [booking && `<a href="${booking}" target="_blank" rel="noopener">Booking</a>`, gronze && `<a href="${gronze}" target="_blank" rel="noopener">Gronze</a>`].filter(Boolean).join(' · ');
     const last = idx === S.stages.length - 1;
     d.innerHTML = `<h3>Tappa ${g.n}: ${esc(g.from.name)} → ${esc(g.to.name)}${g.to.fixed ? ' 📌' : ''}</h3>
-      <div class="meta">${g.km.toFixed(1)} km · ${gl}${g.gl ? ` · ${g.sforzo.toFixed(0)} km-sforzo` : ''} · ${g.lodging.length} alloggi · <a href="${gronze}" target="_blank" rel="noopener">Gronze</a></div>` +
+      <div class="meta">${g.km.toFixed(1)} km · ${gl}${g.gl ? ` · ${g.sforzo.toFixed(0)} km-sforzo` : ''} · ${g.lodging.length} alloggi${links ? ' · ' + links : ''}</div>` +
       g.warn.map(w => `<div class="warn">⚠ ${esc(w)}</div>`).join('') +
       (last ? '' : `<div class="mv"><button data-mv="-1" title="Fine tappa al paese con alloggio precedente">◀ finisci prima</button><button data-mv="1" title="Fine tappa al paese con alloggio successivo">finisci dopo ▶</button></div>`);
     d.querySelectorAll('[data-mv]').forEach(bt => bt.onclick = ev => { ev.stopPropagation(); moveStageEnd(idx, +bt.dataset.mv); });
