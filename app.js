@@ -79,7 +79,7 @@ const gOver = L.layerGroup().addTo(map), gNet = L.layerGroup().addTo(map), gRout
    i tracciati completi di un cammino si scaricano solo quando lo si sceglie. */
 S.cat = [];              // [{slug, nome, fam, paesi, aree, km, n, ids, bbox}]
 S.bySlug = new Map();
-S.fam = 'santiago';      // famiglia mostrata nell'elenco
+S.fam = '*';             // famiglia mostrata nell'elenco (all'avvio: tutti i percorsi)
 S.pano = new Map();      // slug -> linee semplificate [[ [lat,lon], ... ], ...]
 S.over = new Map();      // slug -> layer sulla mappa
 const fullCache = new Map();
@@ -195,7 +195,7 @@ document.querySelectorAll('.tabbar [data-tab]').forEach(b => b.onclick = () => s
 $('#btnSheet').onclick = () => { document.body.classList.toggle('sheet'); setTimeout(() => map.invalidateSize(), 250); };
 
 /* ---------- panoramica sulla mappa (linee semplificate; tocca una linea per sceglierla) ---------- */
-const overStyle = slug => S.chosen.has(slug) ? { color: colorOf(slug), weight: 6, opacity: 1 } : { color: colorOf(slug), weight: 2.5, opacity: .55 };
+const overStyle = slug => S.chosen.has(slug) ? { color: colorOf(slug), weight: 6, opacity: 1 } : { color: colorOf(slug), weight: 3, opacity: .8 };
 function restyleOver() { for (const [slug, l] of S.over) { l.setStyle(overStyle(slug)); if (S.chosen.has(slug)) l.bringToFront(); } }
 function highlight(slug, on) { const l = S.over.get(slug); if (l) { l.setStyle(on ? { weight: 7, opacity: 1 } : overStyle(slug)); if (on) l.bringToFront(); } }
 function drawOverview() {

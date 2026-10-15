@@ -295,7 +295,11 @@ def main():
         write_if_changed(os.path.join(OUT_DIR, sl + ".json"),
                          {"type": "FeatureCollection", "attribution": "© contributori di OpenStreetMap (ODbL)", "features": fl})
         approx = [f["properties"].get("from", "") + " - " + f["properties"].get("to", "") for f in fl
-                  if f["properties"].get("manuale") and "BRouter" in f["properties"].get("origine", "")]
+                  if f["properties"].get("manuale") and "BRouter" in f["properties"].get("origine", "")
+                  and not f["properties"].get("auto")]
+        n_auto = sum(1 for f in fl if f["properties"].get("auto"))
+        if n_auto:
+            approx.append(f"{n_auto} raccord{'o' if n_auto == 1 else 'i'} automatic{'o' if n_auto == 1 else 'i'} dove OSM ha un buco")
         cat.append({"slug": sl, "nome": nome, "fam": famiglia(fl), "paesi": paesi, **({"approx": approx} if approx else {}),
                     "aree": sorted({f["properties"].get("area", "") for f in fl}), "km": round(km), "n": len(fl),
                     "ids": sorted(f["properties"]["id"] for f in fl),
