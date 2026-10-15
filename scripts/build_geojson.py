@@ -70,7 +70,15 @@ TREK = ("Sentiero Italia|Cammino d.Italia|Alta Via|Grande Traversata|Via Alpina|
 # trekking da includere sempre
 SEMPRE_TREK = [1021025,   # Sentiero Italia CAI (~7.700 km, regioni e tappe annidate)
                16287,     # West Highland Way
-               1756633]   # West Island Way (Bute)
+               1756633,   # West Island Way (Bute)
+               7011030,   # Sentiero Italia - Sardegna (super-percorso, ~585 km)
+               9791036,   # Selvaggio Blu (Sardegna)
+               7973533,   # Pieterpad (Paesi Bassi, ~500 km)
+               1955979,   # Noordzee Kustpad (Paesi Bassi)
+               9176775]   # GR 5 Nederland
+# cammini italiani da includere sempre (gruppo "italia")
+SEMPRE_ITALIA = [11790314,   # Cammino Minerario di Santa Barbara (Sardegna, ~500 km)
+                 20203159]   # Cammino di Sant'Antioco (Sardegna)
 # nomi da NON considerare cammini anche se la ricerca li trova (es. "King Charles" contiene "arles")
 ESCLUDI = re.compile(r"England Coast Path|King Charles III|Wales Coast Path", re.I)
 REFS_FR = "^GR[ -]?(65|653|654|655|78)([^0-9]|$)"   # GR 65 Puy, 653 Arles/Tolosana, 654 Vézelay, 655 Tours, 78 Piémont
@@ -121,6 +129,10 @@ SEMPRE = [409737,
           12614917,   # Via Monastica
           8382432,    # Via Gallia Belgica
           19226888,   # Jacobspad (Paesi Bassi)
+          9588884,    # Pelgrimspad deel 1 (Amsterdam - 's-Hertogenbosch), LAW 7
+          8446574,    # Pelgrimspad deel 2 ('s-Hertogenbosch - Maastricht - Visé)
+          20956421,   # Jacobsweg Amstelredam
+          5429547,    # Jabikspaad (Frisia)
           # Francia
           1247178,    # Voie de Soulac
           15471251,   # Voie de Rocamadour
@@ -129,7 +141,7 @@ SEMPRE = [409737,
           11959152,   # Chemin de Saint-Jacques via Le Puy (GR 65, intero)
           9204501,    # Via Romea (Germanica) completa, super-percorso: Stade - Austria (Fernpass, Innsbruck) - Roma
           16908565]   # Romea Strata, super-percorso (Tallinn - Roma)
-SEARCH_VER = 11   # da aumentare quando cambiano NAMES, SEARCHES o pick_roots
+SEARCH_VER = 12   # da aumentare quando cambiano NAMES, SEARCHES o pick_roots
 
 GPRIO = {"santiago": 0, "francigena": 1, "isole": 2, "italia": 2, "trekking": 4}
 NPRIO = {"iwn": 0, "nwn": 1, "rwn": 2}   # prima i percorsi a lunga distanza
@@ -593,6 +605,8 @@ def main():
             p = f["properties"]
             roots[k] = {"id": k, "name": p.get("name", ""), "network": p.get("network", ""),
                         "group": p.get("group", "santiago")}
+    for x in SEMPRE_ITALIA:
+        roots.setdefault(int(x), {"id": int(x), "name": "", "network": "rwn", "group": "italia"})
     for x in SEMPRE_TREK:
         roots.setdefault(int(x), {"id": int(x), "name": "", "network": "nwn", "group": "trekking"})
     for x in SEMPRE + [int(v) for v in re.findall(r"\d+", a.ids or "")]:
