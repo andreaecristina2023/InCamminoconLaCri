@@ -7,264 +7,942 @@
    "tratti": [
     {
      "da": "Saint-Jean-Pied-de-Port",
-     "a": "Roncisvalle",
+     "a": "Roncesvalles",
      "linea_aria": 18,
      "ll": [
       [
        43.163,
-       -1.237
+       -1.2381
       ],
       [
-       43.009,
-       -1.319
+       43.0092,
+       -1.3202
       ]
      ],
      "km": 24,
      "esito": "ok"
     },
     {
-     "da": "Roncisvalle",
-     "a": "Pamplona",
-     "linea_aria": 34,
+     "da": "Roncesvalles",
+     "a": "Zubiri",
+     "linea_aria": 17,
      "ll": [
       [
-       43.009,
-       -1.319
+       43.0092,
+       -1.3202
       ],
       [
-       42.818,
-       -1.644
+       42.9306,
+       -1.5043
       ]
      ],
-     "km": 42,
+     "km": 21,
+     "esito": "ok"
+    },
+    {
+     "da": "Zubiri",
+     "a": "Pamplona",
+     "linea_aria": 18,
+     "ll": [
+      [
+       42.9306,
+       -1.5043
+      ],
+      [
+       42.8157,
+       -1.6522
+      ]
+     ],
+     "km": 21,
      "esito": "ok"
     },
     {
      "da": "Pamplona",
-     "a": "Logroño",
-     "linea_aria": 76,
+     "a": "Puente la Reina",
+     "linea_aria": 19,
      "ll": [
       [
-       42.818,
-       -1.644
+       42.8157,
+       -1.6522
       ],
       [
-       42.465,
-       -2.445
+       42.6914,
+       -1.8123
       ]
      ],
-     "km": 94,
+     "km": 22,
+     "esito": "ok"
+    },
+    {
+     "da": "Puente la Reina",
+     "a": "Estella",
+     "linea_aria": 17,
+     "ll": [
+      [
+       42.6914,
+       -1.8123
+      ],
+      [
+       42.6626,
+       -2.022
+      ]
+     ],
+     "km": 23,
+     "esito": "ok"
+    },
+    {
+     "da": "Estella",
+     "a": "Los Arcos",
+     "linea_aria": 17,
+     "ll": [
+      [
+       42.6626,
+       -2.022
+      ],
+      [
+       42.5697,
+       -2.1923
+      ]
+     ],
+     "km": 22,
+     "esito": "ok"
+    },
+    {
+     "da": "Los Arcos",
+     "a": "Logroño",
+     "linea_aria": 23,
+     "ll": [
+      [
+       42.5697,
+       -2.1923
+      ],
+      [
+       42.4661,
+       -2.4397
+      ]
+     ],
+     "km": 28,
      "esito": "ok"
     },
     {
      "da": "Logroño",
-     "a": "Burgos",
-     "linea_aria": 104,
+     "a": "Nájera",
+     "linea_aria": 25,
      "ll": [
       [
-       42.465,
-       -2.445
+       42.4661,
+       -2.4397
       ],
       [
-       42.344,
-       -3.697
+       42.4167,
+       -2.7337
       ]
      ],
-     "km": 120,
+     "km": 29,
+     "esito": "ok"
+    },
+    {
+     "da": "Nájera",
+     "a": "Santo Domingo de la Calzada",
+     "linea_aria": 18,
+     "ll": [
+      [
+       42.4167,
+       -2.7337
+      ],
+      [
+       42.4407,
+       -2.9536
+      ]
+     ],
+     "km": 21,
+     "esito": "ok"
+    },
+    {
+     "da": "Santo Domingo de la Calzada",
+     "a": "Belorado",
+     "linea_aria": 20,
+     "ll": [
+      [
+       42.4407,
+       -2.9536
+      ],
+      [
+       42.4267,
+       -3.1965
+      ]
+     ],
+     "km": 23,
+     "esito": "ok"
+    },
+    {
+     "da": "Belorado",
+     "a": "San Juan de Ortega",
+     "linea_aria": 21,
+     "ll": [
+      [
+       42.4267,
+       -3.1965
+      ],
+      [
+       42.3753,
+       -3.4362
+      ]
+     ],
+     "km": 23,
+     "esito": "ok"
+    },
+    {
+     "da": "San Juan de Ortega",
+     "a": "Burgos",
+     "linea_aria": 20,
+     "ll": [
+      [
+       42.3753,
+       -3.4362
+      ],
+      [
+       42.3449,
+       -3.6812
+      ]
+     ],
+     "km": 23,
      "esito": "ok"
     },
     {
      "da": "Burgos",
-     "a": "Sahagún",
-     "linea_aria": 110,
+     "a": "Hornillos del Camino",
+     "linea_aria": 20,
      "ll": [
       [
-       42.344,
-       -3.697
+       42.3449,
+       -3.6812
       ],
       [
-       42.371,
-       -5.03
+       42.3385,
+       -3.9259
       ]
      ],
-     "km": 124,
+     "km": 23,
      "esito": "ok"
     },
     {
-     "da": "Sahagún",
-     "a": "León",
-     "linea_aria": 51,
+     "da": "Hornillos del Camino",
+     "a": "Castrojeriz",
+     "linea_aria": 19,
      "ll": [
       [
-       42.371,
-       -5.03
+       42.3385,
+       -3.9259
       ],
       [
-       42.599,
-       -5.567
+       42.2884,
+       -4.1406
       ]
      ],
-     "km": 55,
+     "km": 20,
      "esito": "ok"
     },
     {
-     "da": "León",
-     "a": "Astorga",
-     "linea_aria": 43,
+     "da": "Castrojeriz",
+     "a": "Frómista",
+     "linea_aria": 22,
      "ll": [
       [
-       42.599,
-       -5.567
+       42.2884,
+       -4.1406
       ],
       [
-       42.458,
-       -6.056
+       42.2677,
+       -4.4055
       ]
      ],
-     "km": 49,
+     "km": 25,
      "esito": "ok"
     },
     {
-     "da": "Astorga",
-     "a": "Ponferrada",
-     "linea_aria": 45,
+     "da": "Frómista",
+     "a": "Carrión de los Condes",
+     "linea_aria": 18,
      "ll": [
       [
-       42.458,
-       -6.056
+       42.2677,
+       -4.4055
       ],
       [
-       42.546,
-       -6.596
+       42.3385,
+       -4.6017
       ]
      ],
-     "km": 52,
+     "km": 19,
      "esito": "ok"
     },
     {
-     "da": "Ponferrada",
-     "a": "Sarria",
-     "linea_aria": 72,
+     "da": "Carrión de los Condes",
+     "a": "Terradillos de los Templarios",
+     "linea_aria": 24,
      "ll": [
       [
-       42.546,
-       -6.596
+       42.3385,
+       -4.6017
       ],
       [
-       42.777,
-       -7.414
-      ]
-     ],
-     "km": 89,
-     "esito": "ok"
-    },
-    {
-     "da": "Sarria",
-     "a": "Santiago",
-     "linea_aria": 93,
-     "ll": [
-      [
-       42.777,
-       -7.414
-      ],
-      [
-       42.8805,
-       -8.5457
-      ]
-     ],
-     "km": 115,
-     "esito": "ok"
-    }
-   ],
-   "problemi": 0
-  },
-  {
-   "stato": "Spagna",
-   "cammino": "Camino del Norte",
-   "tratti": [
-    {
-     "da": "Irún",
-     "a": "San Sebastián",
-     "linea_aria": 16,
-     "ll": [
-      [
-       43.338,
-       -1.789
-      ],
-      [
-       43.318,
-       -1.981
+       42.363,
+       -4.8906
       ]
      ],
      "km": 26,
      "esito": "ok"
     },
     {
-     "da": "San Sebastián",
-     "a": "Bilbao",
-     "linea_aria": 77,
+     "da": "Terradillos de los Templarios",
+     "a": "Bercianos del Real Camino",
+     "linea_aria": 21,
      "ll": [
       [
-       43.318,
-       -1.981
+       42.363,
+       -4.8906
+      ],
+      [
+       42.3877,
+       -5.1452
+      ]
+     ],
+     "km": 24,
+     "esito": "ok"
+    },
+    {
+     "da": "Bercianos del Real Camino",
+     "a": "Mansilla de las Mulas",
+     "linea_aria": 26,
+     "ll": [
+      [
+       42.3877,
+       -5.1452
+      ],
+      [
+       42.4991,
+       -5.4169
+      ]
+     ],
+     "km": 26,
+     "esito": "ok"
+    },
+    {
+     "da": "Mansilla de las Mulas",
+     "a": "León",
+     "linea_aria": 16,
+     "ll": [
+      [
+       42.4991,
+       -5.4169
+      ],
+      [
+       42.5934,
+       -5.5616
+      ]
+     ],
+     "km": 18,
+     "esito": "ok"
+    },
+    {
+     "da": "León",
+     "a": "San Martín del Camino",
+     "linea_aria": 23,
+     "ll": [
+      [
+       42.5934,
+       -5.5616
+      ],
+      [
+       42.4951,
+       -5.8095
+      ]
+     ],
+     "km": 27,
+     "esito": "ok"
+    },
+    {
+     "da": "San Martín del Camino",
+     "a": "Astorga",
+     "linea_aria": 20,
+     "ll": [
+      [
+       42.4951,
+       -5.8095
+      ],
+      [
+       42.4554,
+       -6.0529
+      ]
+     ],
+     "km": 23,
+     "esito": "ok"
+    },
+    {
+     "da": "Astorga",
+     "a": "Foncebadón",
+     "linea_aria": 24,
+     "ll": [
+      [
+       42.4554,
+       -6.0529
+      ],
+      [
+       42.4912,
+       -6.3425
+      ]
+     ],
+     "km": 26,
+     "esito": "ok"
+    },
+    {
+     "da": "Foncebadón",
+     "a": "Ponferrada",
+     "linea_aria": 18,
+     "ll": [
+      [
+       42.4912,
+       -6.3425
+      ],
+      [
+       42.4984,
+       -6.5663
+      ]
+     ],
+     "esito": "FUORI RETE: Ponferrada"
+    },
+    {
+     "da": "Ponferrada",
+     "a": "Villafranca del Bierzo",
+     "linea_aria": 23,
+     "ll": [
+      [
+       42.4984,
+       -6.5663
+      ],
+      [
+       42.6056,
+       -6.8112
+      ]
+     ],
+     "esito": "FUORI RETE: Ponferrada"
+    },
+    {
+     "da": "Villafranca del Bierzo",
+     "a": "O Cebreiro",
+     "linea_aria": 22,
+     "ll": [
+      [
+       42.6056,
+       -6.8112
+      ],
+      [
+       42.7078,
+       -7.0435
+      ]
+     ],
+     "km": 28,
+     "esito": "ok"
+    },
+    {
+     "da": "O Cebreiro",
+     "a": "Triacastela",
+     "linea_aria": 15,
+     "ll": [
+      [
+       42.7078,
+       -7.0435
+      ],
+      [
+       42.7622,
+       -7.2141
+      ]
+     ],
+     "km": 20,
+     "esito": "ok"
+    },
+    {
+     "da": "Triacastela",
+     "a": "Sarria",
+     "linea_aria": 18,
+     "ll": [
+      [
+       42.7622,
+       -7.2141
+      ],
+      [
+       42.771,
+       -7.4335
+      ]
+     ],
+     "km": 21,
+     "esito": "ok"
+    },
+    {
+     "da": "Sarria",
+     "a": "Portomarín",
+     "linea_aria": 15,
+     "ll": [
+      [
+       42.771,
+       -7.4335
+      ],
+      [
+       42.8082,
+       -7.6156
+      ]
+     ],
+     "km": 20,
+     "esito": "ok"
+    },
+    {
+     "da": "Portomarín",
+     "a": "Palas de Rei",
+     "linea_aria": 22,
+     "ll": [
+      [
+       42.8082,
+       -7.6156
+      ],
+      [
+       42.8739,
+       -7.8698
+      ]
+     ],
+     "km": 25,
+     "esito": "ok"
+    },
+    {
+     "da": "Palas de Rei",
+     "a": "Arzúa",
+     "linea_aria": 24,
+     "ll": [
+      [
+       42.8739,
+       -7.8698
+      ],
+      [
+       42.9237,
+       -8.1528
+      ]
+     ],
+     "km": 28,
+     "esito": "ok"
+    },
+    {
+     "da": "Arzúa",
+     "a": "O Pedrouzo",
+     "linea_aria": 17,
+     "ll": [
+      [
+       42.9237,
+       -8.1528
+      ],
+      [
+       42.9047,
+       -8.3624
+      ]
+     ],
+     "km": 20,
+     "esito": "ok"
+    },
+    {
+     "da": "O Pedrouzo",
+     "a": "Santiago de Compostela",
+     "linea_aria": 15,
+     "ll": [
+      [
+       42.9047,
+       -8.3624
+      ],
+      [
+       42.8804,
+       -8.5459
+      ]
+     ],
+     "km": 19,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 2
+  },
+  {
+   "stato": "Spagna",
+   "cammino": "Camino del Norte",
+   "tratti": [
+    {
+     "da": "Bayonne",
+     "a": "Saint-Jean-de-Luz",
+     "linea_aria": 19,
+     "ll": [
+      [
+       43.4945,
+       -1.4737
+      ],
+      [
+       43.3872,
+       -1.6637
+      ]
+     ],
+     "km": 26,
+     "esito": "ok"
+    },
+    {
+     "da": "Saint-Jean-de-Luz",
+     "a": "Irún",
+     "linea_aria": 11,
+     "ll": [
+      [
+       43.3872,
+       -1.6637
+      ],
+      [
+       43.3383,
+       -1.7888
+      ]
+     ],
+     "km": 17,
+     "esito": "ok"
+    },
+    {
+     "da": "Irún",
+     "a": "San Sebastián",
+     "linea_aria": 16,
+     "ll": [
+      [
+       43.3383,
+       -1.7888
+      ],
+      [
+       43.3224,
+       -1.9839
+      ]
+     ],
+     "km": 25,
+     "esito": "ok"
+    },
+    {
+     "da": "San Sebastián",
+     "a": "Zarautz",
+     "linea_aria": 16,
+     "ll": [
+      [
+       43.3224,
+       -1.9839
+      ],
+      [
+       43.2835,
+       -2.1723
+      ]
+     ],
+     "km": 23,
+     "esito": "ok"
+    },
+    {
+     "da": "Zarautz",
+     "a": "Deba",
+     "linea_aria": 15,
+     "ll": [
+      [
+       43.2835,
+       -2.1723
+      ],
+      [
+       43.2941,
+       -2.3539
+      ]
+     ],
+     "km": 22,
+     "esito": "ok"
+    },
+    {
+     "da": "Deba",
+     "a": "Markina-Xemein",
+     "linea_aria": 8,
+     "ll": [
+      [
+       43.2941,
+       -2.3539
+      ],
+      [
+       43.2596,
+       -2.4353
+      ]
+     ],
+     "km": 15,
+     "esito": "ok"
+    },
+    {
+     "da": "Markina-Xemein",
+     "a": "Gernika",
+     "linea_aria": 21,
+     "ll": [
+      [
+       43.2596,
+       -2.4353
+      ],
+      [
+       43.3144,
+       -2.6779
+      ]
+     ],
+     "km": 34,
+     "esito": "ok"
+    },
+    {
+     "da": "Gernika",
+     "a": "Lezama",
+     "linea_aria": 13,
+     "ll": [
+      [
+       43.3144,
+       -2.6779
+      ],
+      [
+       43.2743,
+       -2.8329
+      ]
+     ],
+     "km": 20,
+     "esito": "ok"
+    },
+    {
+     "da": "Lezama",
+     "a": "Bilbao",
+     "linea_aria": 8,
+     "ll": [
+      [
+       43.2743,
+       -2.8329
       ],
       [
        43.263,
        -2.935
       ]
      ],
-     "km": 126,
+     "km": 13,
      "esito": "ok"
     },
     {
      "da": "Bilbao",
-     "a": "Santander",
-     "linea_aria": 74,
+     "a": "Portugalete",
+     "linea_aria": 9,
      "ll": [
       [
        43.263,
        -2.935
       ],
       [
-       43.462,
-       -3.805
+       43.319,
+       -3.0199
       ]
      ],
-     "km": 123,
+     "km": 19,
+     "esito": "ok"
+    },
+    {
+     "da": "Portugalete",
+     "a": "Castro Urdiales",
+     "linea_aria": 17,
+     "ll": [
+      [
+       43.319,
+       -3.0199
+      ],
+      [
+       43.3843,
+       -3.2163
+      ]
+     ],
+     "km": 28,
+     "esito": "ok"
+    },
+    {
+     "da": "Castro Urdiales",
+     "a": "Laredo",
+     "linea_aria": 17,
+     "ll": [
+      [
+       43.3843,
+       -3.2163
+      ],
+      [
+       43.4106,
+       -3.4173
+      ]
+     ],
+     "km": 31,
+     "esito": "ok"
+    },
+    {
+     "da": "Laredo",
+     "a": "Güemes",
+     "linea_aria": 18,
+     "ll": [
+      [
+       43.4106,
+       -3.4173
+      ],
+      [
+       43.4558,
+       -3.6348
+      ]
+     ],
+     "km": 30,
+     "esito": "ok"
+    },
+    {
+     "da": "Güemes",
+     "a": "Santander",
+     "linea_aria": 14,
+     "ll": [
+      [
+       43.4558,
+       -3.6348
+      ],
+      [
+       43.4619,
+       -3.81
+      ]
+     ],
+     "km": 17,
      "esito": "ok"
     },
     {
      "da": "Santander",
-     "a": "Ribadesella",
-     "linea_aria": 101,
+     "a": "Santillana del Mar",
+     "linea_aria": 25,
      "ll": [
       [
-       43.462,
-       -3.805
+       43.4619,
+       -3.81
       ],
       [
-       43.461,
-       -5.059
+       43.3907,
+       -4.1081
       ]
      ],
-     "km": 141,
+     "km": 38,
+     "esito": "ok"
+    },
+    {
+     "da": "Santillana del Mar",
+     "a": "Comillas",
+     "linea_aria": 15,
+     "ll": [
+      [
+       43.3907,
+       -4.1081
+      ],
+      [
+       43.3855,
+       -4.2901
+      ]
+     ],
+     "km": 22,
+     "esito": "ok"
+    },
+    {
+     "da": "Comillas",
+     "a": "Colombres",
+     "linea_aria": 20,
+     "ll": [
+      [
+       43.3855,
+       -4.2901
+      ],
+      [
+       43.3749,
+       -4.5409
+      ]
+     ],
+     "km": 28,
+     "esito": "ok"
+    },
+    {
+     "da": "Colombres",
+     "a": "Llanes",
+     "linea_aria": 18,
+     "ll": [
+      [
+       43.3749,
+       -4.5409
+      ],
+      [
+       43.4211,
+       -4.7531
+      ]
+     ],
+     "km": 22,
+     "esito": "ok"
+    },
+    {
+     "da": "Llanes",
+     "a": "Ribadesella",
+     "linea_aria": 27,
+     "ll": [
+      [
+       43.4211,
+       -4.7531
+      ],
+      [
+       43.4457,
+       -5.0835
+      ]
+     ],
+     "km": 32,
      "esito": "ok"
     },
     {
      "da": "Ribadesella",
-     "a": "Gijón",
-     "linea_aria": 49,
+     "a": "Colunga",
+     "linea_aria": 16,
      "ll": [
       [
-       43.461,
-       -5.059
+       43.4457,
+       -5.0835
       ],
       [
-       43.532,
-       -5.661
+       43.4851,
+       -5.2707
       ]
      ],
-     "km": 64,
+     "km": 19,
+     "esito": "ok"
+    },
+    {
+     "da": "Colunga",
+     "a": "Villaviciosa",
+     "linea_aria": 13,
+     "ll": [
+      [
+       43.4851,
+       -5.2707
+      ],
+      [
+       43.4814,
+       -5.4345
+      ]
+     ],
+     "km": 17,
+     "esito": "ok"
+    },
+    {
+     "da": "Villaviciosa",
+     "a": "Gijón",
+     "linea_aria": 20,
+     "ll": [
+      [
+       43.4814,
+       -5.4345
+      ],
+      [
+       43.5449,
+       -5.6627
+      ]
+     ],
+     "km": 28,
      "esito": "ok"
     },
     {
@@ -273,83 +951,236 @@
      "linea_aria": 21,
      "ll": [
       [
-       43.532,
-       -5.661
+       43.5449,
+       -5.6627
       ],
       [
-       43.556,
-       -5.924
+       43.5555,
+       -5.9222
       ]
      ],
-     "km": 28,
+     "km": 26,
      "esito": "ok"
     },
     {
      "da": "Avilés",
-     "a": "Ribadeo",
-     "linea_aria": 90,
+     "a": "Muros de Nalón",
+     "linea_aria": 15,
      "ll": [
       [
-       43.556,
-       -5.924
+       43.5555,
+       -5.9222
       ],
       [
-       43.536,
-       -7.04
+       43.5511,
+       -6.1035
       ]
      ],
-     "km": 126,
+     "km": 23,
+     "esito": "ok"
+    },
+    {
+     "da": "Muros de Nalón",
+     "a": "Soto de Luiña",
+     "linea_aria": 10,
+     "ll": [
+      [
+       43.5511,
+       -6.1035
+      ],
+      [
+       43.562,
+       -6.2312
+      ]
+     ],
+     "km": 16,
+     "esito": "ok"
+    },
+    {
+     "da": "Soto de Luiña",
+     "a": "Cadavedo",
+     "linea_aria": 13,
+     "ll": [
+      [
+       43.562,
+       -6.2312
+      ],
+      [
+       43.5498,
+       -6.3862
+      ]
+     ],
+     "km": 19,
+     "esito": "ok"
+    },
+    {
+     "da": "Cadavedo",
+     "a": "Luarca",
+     "linea_aria": 12,
+     "ll": [
+      [
+       43.5498,
+       -6.3862
+      ],
+      [
+       43.5439,
+       -6.5357
+      ]
+     ],
+     "km": 17,
+     "esito": "ok"
+    },
+    {
+     "da": "Luarca",
+     "a": "La Caridad",
+     "linea_aria": 24,
+     "ll": [
+      [
+       43.5439,
+       -6.5357
+      ],
+      [
+       43.551,
+       -6.829
+      ]
+     ],
+     "km": 31,
+     "esito": "ok"
+    },
+    {
+     "da": "La Caridad",
+     "a": "Ribadeo",
+     "linea_aria": 24,
+     "ll": [
+      [
+       43.551,
+       -6.829
+      ],
+      [
+       43.5114,
+       -7.1267
+      ]
+     ],
+     "km": 31,
      "esito": "ok"
     },
     {
      "da": "Ribadeo",
-     "a": "Mondoñedo",
-     "linea_aria": 29,
+     "a": "Gondán",
+     "linea_aria": 9,
      "ll": [
       [
-       43.536,
-       -7.04
+       43.5114,
+       -7.1267
       ],
       [
-       43.428,
-       -7.363
+       43.4861,
+       -7.2382
       ]
      ],
-     "km": 36,
+     "km": 11,
+     "esito": "ok"
+    },
+    {
+     "da": "Gondán",
+     "a": "Mondoñedo",
+     "linea_aria": 12,
+     "ll": [
+      [
+       43.4861,
+       -7.2382
+      ],
+      [
+       43.4483,
+       -7.3809
+      ]
+     ],
+     "km": 14,
      "esito": "ok"
     },
     {
      "da": "Mondoñedo",
-     "a": "Arzúa",
-     "linea_aria": 86,
+     "a": "Abadín",
+     "linea_aria": 12,
      "ll": [
       [
-       43.428,
-       -7.363
+       43.4483,
+       -7.3809
       ],
       [
-       42.927,
-       -8.163
+       43.3604,
+       -7.4719
       ]
      ],
-     "km": 119,
+     "km": 18,
      "esito": "ok"
     },
     {
-     "da": "Arzúa",
-     "a": "Santiago",
-     "linea_aria": 32,
+     "da": "Abadín",
+     "a": "Vilalba",
+     "linea_aria": 18,
      "ll": [
       [
-       42.927,
-       -8.163
+       43.3604,
+       -7.4719
       ],
       [
-       42.8805,
-       -8.5457
+       43.2963,
+       -7.6788
       ]
      ],
-     "km": 39,
+     "km": 21,
+     "esito": "ok"
+    },
+    {
+     "da": "Vilalba",
+     "a": "Baamonde",
+     "linea_aria": 15,
+     "ll": [
+      [
+       43.2963,
+       -7.6788
+      ],
+      [
+       43.1742,
+       -7.7571
+      ]
+     ],
+     "km": 19,
+     "esito": "ok"
+    },
+    {
+     "da": "Baamonde",
+     "a": "Sobrado dos Monxes",
+     "linea_aria": 26,
+     "ll": [
+      [
+       43.1742,
+       -7.7571
+      ],
+      [
+       43.0404,
+       -8.0225
+      ]
+     ],
+     "km": 40,
+     "esito": "ok"
+    },
+    {
+     "da": "Sobrado dos Monxes",
+     "a": "Arzúa",
+     "linea_aria": 17,
+     "ll": [
+      [
+       43.0404,
+       -8.0225
+      ],
+      [
+       42.9237,
+       -8.1528
+      ]
+     ],
+     "km": 22,
      "esito": "ok"
     }
    ],
@@ -361,91 +1192,191 @@
    "tratti": [
     {
      "da": "Oviedo",
-     "a": "Tineo",
-     "linea_aria": 46,
+     "a": "Grado",
+     "linea_aria": 23,
      "ll": [
       [
-       43.362,
-       -5.845
+       43.3533,
+       -5.8795
       ],
       [
-       43.336,
-       -6.414
+       43.2981,
+       -6.1472
       ]
      ],
-     "km": 68,
+     "esito": "FUORI RETE: Grado"
+    },
+    {
+     "da": "Grado",
+     "a": "Salas",
+     "linea_aria": 14,
+     "ll": [
+      [
+       43.2981,
+       -6.1472
+      ],
+      [
+       43.4109,
+       -6.2316
+      ]
+     ],
+     "esito": "FUORI RETE: Grado"
+    },
+    {
+     "da": "Salas",
+     "a": "Tineo",
+     "linea_aria": 24,
+     "ll": [
+      [
+       43.4109,
+       -6.2316
+      ],
+      [
+       43.3093,
+       -6.492
+      ]
+     ],
+     "km": 30,
      "esito": "ok"
     },
     {
      "da": "Tineo",
-     "a": "Grandas de Salime",
-     "linea_aria": 40,
+     "a": "Borres",
+     "linea_aria": 6,
      "ll": [
       [
-       43.336,
-       -6.414
+       43.3093,
+       -6.492
       ],
       [
-       43.217,
-       -6.877
+       43.3351,
+       -6.5578
       ]
      ],
-     "km": 60,
+     "km": 8,
+     "esito": "ok"
+    },
+    {
+     "da": "Borres",
+     "a": "Berducedo",
+     "linea_aria": 20,
+     "ll": [
+      [
+       43.3351,
+       -6.5578
+      ],
+      [
+       43.2331,
+       -6.7672
+      ]
+     ],
+     "km": 25,
+     "esito": "ok"
+    },
+    {
+     "da": "Berducedo",
+     "a": "Grandas de Salime",
+     "linea_aria": 13,
+     "ll": [
+      [
+       43.2331,
+       -6.7672
+      ],
+      [
+       43.1881,
+       -6.9187
+      ]
+     ],
+     "km": 27,
      "esito": "ok"
     },
     {
      "da": "Grandas de Salime",
-     "a": "Lugo",
-     "linea_aria": 60,
+     "a": "A Fonsagrada",
+     "linea_aria": 12,
      "ll": [
       [
-       43.217,
-       -6.877
+       43.1881,
+       -6.9187
       ],
       [
-       43.012,
-       -7.556
+       43.1474,
+       -7.0604
       ]
      ],
-     "km": 80,
+     "km": 18,
+     "esito": "ok"
+    },
+    {
+     "da": "A Fonsagrada",
+     "a": "O Cádavo",
+     "linea_aria": 21,
+     "ll": [
+      [
+       43.1474,
+       -7.0604
+      ],
+      [
+       43.0152,
+       -7.2453
+      ]
+     ],
+     "km": 27,
+     "esito": "ok"
+    },
+    {
+     "da": "O Cádavo",
+     "a": "Lugo",
+     "linea_aria": 28,
+     "ll": [
+      [
+       43.0152,
+       -7.2453
+      ],
+      [
+       42.9913,
+       -7.5908
+      ]
+     ],
+     "km": 34,
      "esito": "ok"
     },
     {
      "da": "Lugo",
-     "a": "Melide",
-     "linea_aria": 39,
+     "a": "A Ponte Ferreira",
+     "linea_aria": 19,
      "ll": [
       [
-       43.012,
-       -7.556
+       42.9913,
+       -7.5908
       ],
       [
-       42.914,
-       -8.015
+       42.9467,
+       -7.8167
       ]
      ],
-     "km": 47,
+     "km": 22,
      "esito": "ok"
     },
     {
-     "da": "Melide",
-     "a": "Santiago",
-     "linea_aria": 43,
+     "da": "A Ponte Ferreira",
+     "a": "Melide",
+     "linea_aria": 16,
      "ll": [
       [
-       42.914,
-       -8.015
+       42.9467,
+       -7.8167
       ],
       [
-       42.8805,
-       -8.5457
+       42.9146,
+       -8.0136
       ]
      ],
-     "km": 53,
+     "km": 21,
      "esito": "ok"
     }
    ],
-   "problemi": 0
+   "problemi": 2
   },
   {
    "stato": "Spagna",
@@ -453,36 +1384,127 @@
    "tratti": [
     {
      "da": "Ferrol",
-     "a": "Betanzos",
-     "linea_aria": 23,
+     "a": "Pontedeume",
+     "linea_aria": 14,
      "ll": [
       [
-       43.484,
-       -8.233
+       43.5113,
+       -8.2625
       ],
       [
-       43.28,
-       -8.212
+       43.4073,
+       -8.1719
       ]
      ],
-     "km": 47,
+     "esito": "FUORI RETE: Ferrol"
+    },
+    {
+     "da": "Pontedeume",
+     "a": "Betanzos",
+     "linea_aria": 15,
+     "ll": [
+      [
+       43.4073,
+       -8.1719
+      ],
+      [
+       43.2757,
+       -8.2326
+      ]
+     ],
+     "km": 21,
      "esito": "ok"
     },
     {
      "da": "Betanzos",
-     "a": "Santiago",
-     "linea_aria": 52,
+     "a": "Hospital de Bruma",
+     "linea_aria": 17,
      "ll": [
       [
-       43.28,
-       -8.212
+       43.2757,
+       -8.2326
       ],
       [
-       42.8805,
-       -8.5457
+       43.1523,
+       -8.3634
       ]
      ],
-     "km": 64,
+     "km": 23,
+     "esito": "ok"
+    },
+    {
+     "da": "Hospital de Bruma",
+     "a": "Sigüeiro",
+     "linea_aria": 21,
+     "ll": [
+      [
+       43.1523,
+       -8.3634
+      ],
+      [
+       42.9688,
+       -8.4418
+      ]
+     ],
+     "km": 24,
+     "esito": "ok"
+    },
+    {
+     "da": "Sigüeiro",
+     "a": "Santiago de Compostela",
+     "linea_aria": 13,
+     "ll": [
+      [
+       42.9688,
+       -8.4418
+      ],
+      [
+       42.8804,
+       -8.5459
+      ]
+     ],
+     "km": 16,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 1
+  },
+  {
+   "stato": "Spagna",
+   "cammino": "Camino Inglés da A Coruña",
+   "tratti": [
+    {
+     "da": "A Coruña",
+     "a": "Sergude",
+     "linea_aria": 13,
+     "ll": [
+      [
+       43.3455,
+       -8.4139
+      ],
+      [
+       43.2444,
+       -8.3398
+      ]
+     ],
+     "km": 17,
+     "esito": "ok"
+    },
+    {
+     "da": "Sergude",
+     "a": "Hospital de Bruma",
+     "linea_aria": 10,
+     "ll": [
+      [
+       43.2444,
+       -8.3398
+      ],
+      [
+       43.1523,
+       -8.3634
+      ]
+     ],
+     "km": 12,
      "esito": "ok"
     }
    ],
@@ -493,146 +1515,71 @@
    "cammino": "Camino de Fisterra",
    "tratti": [
     {
-     "da": "Santiago",
+     "da": "Santiago de Compostela",
      "a": "Negreira",
-     "linea_aria": 16,
+     "linea_aria": 19,
      "ll": [
       [
-       42.8805,
-       -8.5457
+       42.8804,
+       -8.5459
       ],
       [
-       42.908,
-       -8.736
+       42.9077,
+       -8.7785
       ]
      ],
-     "km": 21,
+     "km": 26,
      "esito": "ok"
     },
     {
      "da": "Negreira",
-     "a": "Fisterra",
-     "linea_aria": 43,
-     "ll": [
-      [
-       42.908,
-       -8.736
-      ],
-      [
-       42.907,
-       -9.264
-      ]
-     ],
-     "km": 65,
-     "esito": "ok"
-    }
-   ],
-   "problemi": 0
-  },
-  {
-   "stato": "Spagna",
-   "cammino": "Camino Aragonés",
-   "tratti": [
-    {
-     "da": "Somport",
-     "a": "Jaca",
-     "linea_aria": 25,
-     "ll": [
-      [
-       42.792,
-       -0.526
-      ],
-      [
-       42.57,
-       -0.549
-      ]
-     ],
-     "km": 30,
-     "esito": "ok"
-    },
-    {
-     "da": "Jaca",
-     "a": "Arrés",
-     "linea_aria": 20,
-     "ll": [
-      [
-       42.57,
-       -0.549
-      ],
-      [
-       42.578,
-       -0.799
-      ]
-     ],
-     "km": 23,
-     "esito": "ok"
-    },
-    {
-     "da": "Arrés",
-     "a": "Ruesta",
+     "a": "Olveiroa",
      "linea_aria": 22,
      "ll": [
       [
-       42.578,
-       -0.799
+       42.9077,
+       -8.7785
       ],
       [
-       42.622,
-       -1.063
+       42.9669,
+       -9.0397
       ]
      ],
-     "km": 28,
+     "km": 29,
      "esito": "ok"
     },
     {
-     "da": "Ruesta",
-     "a": "Sangüesa",
-     "linea_aria": 19,
+     "da": "Olveiroa",
+     "a": "Corcubión",
+     "linea_aria": 14,
      "ll": [
       [
-       42.622,
-       -1.063
+       42.9669,
+       -9.0397
       ],
       [
-       42.575,
-       -1.283
+       42.9331,
+       -9.2011
       ]
      ],
-     "km": 25,
+     "km": 22,
      "esito": "ok"
     },
     {
-     "da": "Sangüesa",
-     "a": "Monreal",
-     "linea_aria": 23,
+     "da": "Corcubión",
+     "a": "Fisterra",
+     "linea_aria": 5,
      "ll": [
       [
-       42.575,
-       -1.283
+       42.9331,
+       -9.2011
       ],
       [
-       42.7,
-       -1.508
+       42.9287,
+       -9.2627
       ]
      ],
-     "km": 27,
-     "esito": "ok"
-    },
-    {
-     "da": "Monreal",
-     "a": "Puente la Reina",
-     "linea_aria": 25,
-     "ll": [
-      [
-       42.7,
-       -1.508
-      ],
-      [
-       42.672,
-       -1.814
-      ]
-     ],
-     "km": 31,
+     "km": 11,
      "esito": "ok"
     }
    ],
@@ -640,684 +1587,40 @@
   },
   {
    "stato": "Spagna",
-   "cammino": "Camino del Salvador",
+   "cammino": "Camino de Muxía",
    "tratti": [
     {
-     "da": "León",
-     "a": "Cabanillas",
-     "linea_aria": 11,
+     "da": "Olveiroa",
+     "a": "Muxía",
+     "linea_aria": 16,
      "ll": [
       [
-       42.599,
-       -5.567
+       42.9669,
+       -9.0397
       ],
       [
-       42.7,
-       -5.59
-      ]
-     ],
-     "km": 13,
-     "esito": "ok"
-    },
-    {
-     "da": "Cabanillas",
-     "a": "La Robla",
-     "linea_aria": 11,
-     "ll": [
-      [
-       42.7,
-       -5.59
-      ],
-      [
-       42.8,
-       -5.623
-      ]
-     ],
-     "km": 14,
-     "esito": "ok"
-    },
-    {
-     "da": "La Robla",
-     "a": "Pola de Lena",
-     "linea_aria": 43,
-     "ll": [
-      [
-       42.8,
-       -5.623
-      ],
-      [
-       43.16,
-       -5.828
-      ]
-     ],
-     "km": 62,
-     "esito": "ok"
-    },
-    {
-     "da": "Pola de Lena",
-     "a": "Oviedo",
-     "linea_aria": 23,
-     "ll": [
-      [
-       43.16,
-       -5.828
-      ],
-      [
-       43.362,
-       -5.845
-      ]
-     ],
-     "km": 31,
-     "esito": "ok"
-    }
-   ],
-   "problemi": 0
-  },
-  {
-   "stato": "Spagna",
-   "cammino": "Camino Vasco del Interior",
-   "tratti": [
-    {
-     "da": "Irún",
-     "a": "Vitoria",
-     "linea_aria": 90,
-     "ll": [
-      [
-       43.338,
-       -1.789
-      ],
-      [
-       42.846,
-       -2.672
-      ]
-     ],
-     "km": 132,
-     "esito": "ok"
-    },
-    {
-     "da": "Vitoria",
-     "a": "Burgos",
-     "linea_aria": 101,
-     "ll": [
-      [
-       42.846,
-       -2.672
-      ],
-      [
-       42.344,
-       -3.697
-      ]
-     ],
-     "km": 122,
-     "esito": "ok"
-    }
-   ],
-   "problemi": 0
-  },
-  {
-   "stato": "Spagna",
-   "cammino": "Camino de Madrid",
-   "tratti": [
-    {
-     "da": "Madrid",
-     "a": "Segovia",
-     "linea_aria": 69,
-     "ll": [
-      [
-       40.417,
-       -3.704
-      ],
-      [
-       40.948,
-       -4.118
-      ]
-     ],
-     "km": 98,
-     "esito": "ok"
-    },
-    {
-     "da": "Segovia",
-     "a": "Sahagún",
-     "linea_aria": 175,
-     "ll": [
-      [
-       40.948,
-       -4.118
-      ],
-      [
-       42.371,
-       -5.03
-      ]
-     ],
-     "km": 219,
-     "esito": "ok"
-    }
-   ],
-   "problemi": 0
-  },
-  {
-   "stato": "Spagna",
-   "cammino": "Camino de Invierno",
-   "tratti": [
-    {
-     "da": "Ponferrada",
-     "a": "O Barco",
-     "linea_aria": 35,
-     "ll": [
-      [
-       42.546,
-       -6.596
-      ],
-      [
-       42.414,
-       -6.983
-      ]
-     ],
-     "km": 51,
-     "esito": "ok"
-    },
-    {
-     "da": "O Barco",
-     "a": "Monforte de Lemos",
-     "linea_aria": 45,
-     "ll": [
-      [
-       42.414,
-       -6.983
-      ],
-      [
-       42.522,
-       -7.513
-      ]
-     ],
-     "km": 76,
-     "esito": "ok"
-    },
-    {
-     "da": "Monforte de Lemos",
-     "a": "Chantada",
-     "linea_aria": 23,
-     "ll": [
-      [
-       42.522,
-       -7.513
-      ],
-      [
-       42.61,
-       -7.77
-      ]
-     ],
-     "km": 30,
-     "esito": "ok"
-    },
-    {
-     "da": "Chantada",
-     "a": "Lalín",
-     "linea_aria": 28,
-     "ll": [
-      [
-       42.61,
-       -7.77
-      ],
-      [
-       42.661,
-       -8.11
-      ]
-     ],
-     "km": 47,
-     "esito": "ok"
-    },
-    {
-     "da": "Lalín",
-     "a": "Santiago",
-     "linea_aria": 43,
-     "ll": [
-      [
-       42.661,
-       -8.11
-      ],
-      [
-       42.8805,
-       -8.5457
-      ]
-     ],
-     "km": 57,
-     "esito": "ok"
-    }
-   ],
-   "problemi": 0
-  },
-  {
-   "stato": "Spagna",
-   "cammino": "Vía de la Plata",
-   "tratti": [
-    {
-     "da": "Sevilla",
-     "a": "Zafra",
-     "linea_aria": 121,
-     "ll": [
-      [
-       37.389,
-       -5.984
-      ],
-      [
-       38.425,
-       -6.417
-      ]
-     ],
-     "km": 148,
-     "esito": "ok"
-    },
-    {
-     "da": "Zafra",
-     "a": "Mérida",
-     "linea_aria": 55,
-     "ll": [
-      [
-       38.425,
-       -6.417
-      ],
-      [
-       38.916,
-       -6.344
-      ]
-     ],
-     "km": 63,
-     "esito": "ok"
-    },
-    {
-     "da": "Mérida",
-     "a": "Cáceres",
-     "linea_aria": 62,
-     "ll": [
-      [
-       38.916,
-       -6.344
-      ],
-      [
-       39.475,
-       -6.372
-      ]
-     ],
-     "km": 74,
-     "esito": "ok"
-    },
-    {
-     "da": "Cáceres",
-     "a": "Salamanca",
-     "linea_aria": 176,
-     "ll": [
-      [
-       39.475,
-       -6.372
-      ],
-      [
-       40.965,
-       -5.664
-      ]
-     ],
-     "km": 217,
-     "esito": "ok"
-    },
-    {
-     "da": "Salamanca",
-     "a": "Zamora",
-     "linea_aria": 60,
-     "ll": [
-      [
-       40.965,
-       -5.664
-      ],
-      [
-       41.503,
-       -5.745
-      ]
-     ],
-     "km": 68,
-     "esito": "ok"
-    },
-    {
-     "da": "Zamora",
-     "a": "Benavente",
-     "linea_aria": 56,
-     "ll": [
-      [
-       41.503,
-       -5.745
-      ],
-      [
-       42.003,
-       -5.678
-      ]
-     ],
-     "km": 70,
-     "esito": "ok"
-    },
-    {
-     "da": "Benavente",
-     "a": "Astorga",
-     "linea_aria": 59,
-     "ll": [
-      [
-       42.003,
-       -5.678
-      ],
-      [
-       42.458,
-       -6.056
-      ]
-     ],
-     "km": 71,
-     "esito": "ok"
-    }
-   ],
-   "problemi": 0
-  },
-  {
-   "stato": "Spagna",
-   "cammino": "Camino Sanabrés",
-   "tratti": [
-    {
-     "da": "Granja de Moreruela",
-     "a": "Puebla de Sanabria",
-     "linea_aria": 79,
-     "ll": [
-      [
-       41.8,
-       -5.74
-      ],
-      [
-       42.054,
-       -6.635
-      ]
-     ],
-     "km": 115,
-     "esito": "ok"
-    },
-    {
-     "da": "Puebla de Sanabria",
-     "a": "A Gudiña",
-     "linea_aria": 42,
-     "ll": [
-      [
-       42.054,
-       -6.635
-      ],
-      [
-       42.06,
-       -7.14
-      ]
-     ],
-     "km": 54,
-     "esito": "ok"
-    },
-    {
-     "da": "A Gudiña",
-     "a": "Laza",
-     "linea_aria": 26,
-     "ll": [
-      [
-       42.06,
-       -7.14
-      ],
-      [
-       42.06,
-       -7.46
-      ]
-     ],
-     "km": 34,
-     "esito": "ok"
-    },
-    {
-     "da": "Laza",
-     "a": "Ourense",
-     "linea_aria": 45,
-     "ll": [
-      [
-       42.06,
-       -7.46
-      ],
-      [
-       42.336,
-       -7.864
-      ]
-     ],
-     "km": 55,
-     "esito": "ok"
-    },
-    {
-     "da": "Ourense",
-     "a": "Santiago",
-     "linea_aria": 82,
-     "ll": [
-      [
-       42.336,
-       -7.864
-      ],
-      [
-       42.8805,
-       -8.5457
-      ]
-     ],
-     "km": 106,
-     "esito": "ok"
-    }
-   ],
-   "problemi": 0
-  },
-  {
-   "stato": "Spagna",
-   "cammino": "Camino de Levante",
-   "tratti": [
-    {
-     "da": "Valencia",
-     "a": "Albacete",
-     "linea_aria": 138,
-     "ll": [
-      [
-       39.47,
-       -0.376
-      ],
-      [
-       38.995,
-       -1.856
-      ]
-     ],
-     "km": 232,
-     "esito": "ok"
-    },
-    {
-     "da": "Albacete",
-     "a": "Toledo",
-     "linea_aria": 209,
-     "ll": [
-      [
-       38.995,
-       -1.856
-      ],
-      [
-       39.857,
-       -4.024
-      ]
-     ],
-     "km": 242,
-     "esito": "ok"
-    },
-    {
-     "da": "Toledo",
-     "a": "Ávila",
-     "linea_aria": 106,
-     "ll": [
-      [
-       39.857,
-       -4.024
-      ],
-      [
-       40.656,
-       -4.7
-      ]
-     ],
-     "km": 136,
-     "esito": "ok"
-    },
-    {
-     "da": "Ávila",
-     "a": "Medina del Campo",
-     "linea_aria": 75,
-     "ll": [
-      [
-       40.656,
-       -4.7
-      ],
-      [
-       41.31,
-       -4.91
-      ]
-     ],
-     "km": 86,
-     "esito": "ok"
-    },
-    {
-     "da": "Medina del Campo",
-     "a": "Zamora",
-     "linea_aria": 73,
-     "ll": [
-      [
-       41.31,
-       -4.91
-      ],
-      [
-       41.503,
-       -5.745
-      ]
-     ],
-     "km": 96,
-     "esito": "ok"
-    }
-   ],
-   "problemi": 0
-  },
-  {
-   "stato": "Spagna",
-   "cammino": "Camino Mozárabe",
-   "tratti": [
-    {
-     "da": "Granada",
-     "a": "Córdoba",
-     "linea_aria": 131,
-     "ll": [
-      [
-       37.177,
-       -3.599
-      ],
-      [
-       37.888,
-       -4.779
-      ]
-     ],
-     "km": 164,
-     "esito": "ok"
-    },
-    {
-     "da": "Córdoba",
-     "a": "Alcaracejos",
-     "linea_aria": 58,
-     "ll": [
-      [
-       37.888,
-       -4.779
-      ],
-      [
-       38.384,
-       -4.968
-      ]
-     ],
-     "km": 71,
-     "esito": "ok"
-    },
-    {
-     "da": "Alcaracejos",
-     "a": "Castuera",
-     "linea_aria": 63,
-     "ll": [
-      [
-       38.384,
-       -4.968
-      ],
-      [
-       38.722,
-       -5.545
-      ]
-     ],
-     "km": 73,
-     "esito": "ok"
-    },
-    {
-     "da": "Castuera",
-     "a": "Don Benito",
-     "linea_aria": 38,
-     "ll": [
-      [
-       38.722,
-       -5.545
-      ],
-      [
-       38.957,
-       -5.861
-      ]
-     ],
-     "km": 42,
-     "esito": "ok"
-    },
-    {
-     "da": "Don Benito",
-     "a": "Medellín",
-     "linea_aria": 8,
-     "ll": [
-      [
-       38.957,
-       -5.861
-      ],
-      [
-       38.965,
-       -5.957
-      ]
-     ],
-     "km": 9,
-     "esito": "ok"
-    },
-    {
-     "da": "Medellín",
-     "a": "Torrefresneda",
-     "linea_aria": 13,
-     "ll": [
-      [
-       38.965,
-       -5.957
-      ],
-      [
-       38.984,
-       -6.101
+       43.0655,
+       -9.1777
       ]
      ],
      "km": 18,
      "esito": "ok"
     },
     {
-     "da": "Torrefresneda",
-     "a": "Mérida",
-     "linea_aria": 22,
+     "da": "Muxía",
+     "a": "Fisterra",
+     "linea_aria": 17,
      "ll": [
       [
-       38.984,
-       -6.101
+       43.0655,
+       -9.1777
       ],
       [
-       38.916,
-       -6.344
+       42.9287,
+       -9.2627
       ]
      ],
-     "km": 28,
+     "km": 40,
      "esito": "ok"
     }
    ],
@@ -1325,105 +1628,309 @@
   },
   {
    "stato": "Portogallo",
-   "cammino": "Camino Portugués Central",
+   "cammino": "Camino Portugués",
    "tratti": [
     {
      "da": "Lisboa",
-     "a": "Santarém",
-     "linea_aria": 70,
+     "a": "Vila Franca de Xira",
+     "linea_aria": 30,
      "ll": [
       [
-       38.71,
-       -9.14
+       38.7077,
+       -9.1366
       ],
       [
-       39.236,
-       -8.687
+       38.9543,
+       -8.9897
       ]
      ],
-     "km": 93,
+     "km": 41,
+     "esito": "ok"
+    },
+    {
+     "da": "Vila Franca de Xira",
+     "a": "Azambuja",
+     "linea_aria": 17,
+     "ll": [
+      [
+       38.9543,
+       -8.9897
+      ],
+      [
+       39.069,
+       -8.8685
+      ]
+     ],
+     "km": 20,
+     "esito": "ok"
+    },
+    {
+     "da": "Azambuja",
+     "a": "Santarém",
+     "linea_aria": 24,
+     "ll": [
+      [
+       39.069,
+       -8.8685
+      ],
+      [
+       39.2364,
+       -8.6867
+      ]
+     ],
+     "km": 33,
      "esito": "ok"
     },
     {
      "da": "Santarém",
-     "a": "Tomar",
-     "linea_aria": 47,
+     "a": "Golegã",
+     "linea_aria": 25,
      "ll": [
       [
-       39.236,
-       -8.687
+       39.2364,
+       -8.6867
       ],
       [
-       39.602,
-       -8.41
+       39.4018,
+       -8.4867
       ]
      ],
-     "km": 62,
+     "km": 32,
+     "esito": "ok"
+    },
+    {
+     "da": "Golegã",
+     "a": "Tomar",
+     "linea_aria": 23,
+     "ll": [
+      [
+       39.4018,
+       -8.4867
+      ],
+      [
+       39.6037,
+       -8.4151
+      ]
+     ],
+     "km": 30,
      "esito": "ok"
     },
     {
      "da": "Tomar",
-     "a": "Coimbra",
-     "linea_aria": 68,
+     "a": "Alvaiázere",
+     "linea_aria": 25,
      "ll": [
       [
-       39.602,
-       -8.41
+       39.6037,
+       -8.4151
       ],
       [
-       40.21,
-       -8.43
+       39.8283,
+       -8.3986
       ]
      ],
-     "km": 94,
+     "km": 33,
+     "esito": "ok"
+    },
+    {
+     "da": "Alvaiázere",
+     "a": "Alvorge",
+     "linea_aria": 18,
+     "ll": [
+      [
+       39.8283,
+       -8.3986
+      ],
+      [
+       39.9799,
+       -8.4556
+      ]
+     ],
+     "km": 23,
+     "esito": "ok"
+    },
+    {
+     "da": "Alvorge",
+     "a": "Cernache",
+     "linea_aria": 18,
+     "ll": [
+      [
+       39.9799,
+       -8.4556
+      ],
+      [
+       40.1379,
+       -8.4691
+      ]
+     ],
+     "km": 25,
+     "esito": "ok"
+    },
+    {
+     "da": "Cernache",
+     "a": "Coimbra",
+     "linea_aria": 9,
+     "ll": [
+      [
+       40.1379,
+       -8.4691
+      ],
+      [
+       40.2112,
+       -8.4291
+      ]
+     ],
+     "km": 12,
      "esito": "ok"
     },
     {
      "da": "Coimbra",
-     "a": "Porto",
-     "linea_aria": 105,
+     "a": "Sernadelo",
+     "linea_aria": 20,
      "ll": [
       [
-       40.21,
-       -8.43
+       40.2112,
+       -8.4291
       ],
       [
-       41.145,
-       -8.61
+       40.3935,
+       -8.4484
       ]
      ],
-     "km": 128,
+     "km": 25,
+     "esito": "ok"
+    },
+    {
+     "da": "Sernadelo",
+     "a": "Águeda",
+     "linea_aria": 21,
+     "ll": [
+      [
+       40.3935,
+       -8.4484
+      ],
+      [
+       40.5785,
+       -8.4438
+      ]
+     ],
+     "km": 24,
+     "esito": "ok"
+    },
+    {
+     "da": "Águeda",
+     "a": "Albergaria-a-Velha",
+     "linea_aria": 13,
+     "ll": [
+      [
+       40.5785,
+       -8.4438
+      ],
+      [
+       40.6907,
+       -8.4792
+      ]
+     ],
+     "km": 16,
+     "esito": "ok"
+    },
+    {
+     "da": "Albergaria-a-Velha",
+     "a": "São João da Madeira",
+     "linea_aria": 24,
+     "ll": [
+      [
+       40.6907,
+       -8.4792
+      ],
+      [
+       40.9021,
+       -8.4896
+      ]
+     ],
+     "km": 29,
+     "esito": "ok"
+    },
+    {
+     "da": "São João da Madeira",
+     "a": "Grijó",
+     "linea_aria": 16,
+     "ll": [
+      [
+       40.9021,
+       -8.4896
+      ],
+      [
+       41.0301,
+       -8.5784
+      ]
+     ],
+     "km": 19,
+     "esito": "ok"
+    },
+    {
+     "da": "Grijó",
+     "a": "Porto",
+     "linea_aria": 14,
+     "ll": [
+      [
+       41.0301,
+       -8.5784
+      ],
+      [
+       41.1502,
+       -8.6104
+      ]
+     ],
+     "km": 16,
      "esito": "ok"
     },
     {
      "da": "Porto",
-     "a": "Barcelos",
-     "linea_aria": 43,
+     "a": "Vilarinho",
+     "linea_aria": 22,
      "ll": [
       [
-       41.145,
-       -8.61
+       41.1502,
+       -8.6104
       ],
       [
-       41.53,
-       -8.62
+       41.3386,
+       -8.6819
       ]
      ],
-     "km": 54,
+     "km": 27,
+     "esito": "ok"
+    },
+    {
+     "da": "Vilarinho",
+     "a": "Barcelos",
+     "linea_aria": 22,
+     "ll": [
+      [
+       41.3386,
+       -8.6819
+      ],
+      [
+       41.5314,
+       -8.6192
+      ]
+     ],
+     "km": 27,
      "esito": "ok"
     },
     {
      "da": "Barcelos",
      "a": "Ponte de Lima",
-     "linea_aria": 27,
+     "linea_aria": 26,
      "ll": [
       [
-       41.53,
-       -8.62
+       41.5314,
+       -8.6192
       ],
       [
-       41.767,
-       -8.583
+       41.7675,
+       -8.5831
       ]
      ],
      "km": 34,
@@ -1431,70 +1938,121 @@
     },
     {
      "da": "Ponte de Lima",
-     "a": "Tui",
-     "linea_aria": 32,
+     "a": "Rubiães",
+     "linea_aria": 15,
      "ll": [
       [
-       41.767,
-       -8.583
+       41.7675,
+       -8.5831
       ],
       [
-       42.047,
-       -8.645
+       41.8978,
+       -8.6249
       ]
      ],
-     "km": 38,
+     "km": 18,
+     "esito": "ok"
+    },
+    {
+     "da": "Rubiães",
+     "a": "Tui",
+     "linea_aria": 17,
+     "ll": [
+      [
+       41.8978,
+       -8.6249
+      ],
+      [
+       42.0501,
+       -8.6466
+      ]
+     ],
+     "km": 21,
      "esito": "ok"
     },
     {
      "da": "Tui",
-     "a": "Pontevedra",
-     "linea_aria": 43,
+     "a": "Redondela",
+     "linea_aria": 26,
      "ll": [
       [
-       42.047,
-       -8.645
+       42.0501,
+       -8.6466
       ],
       [
-       42.43,
-       -8.645
+       42.2842,
+       -8.6086
       ]
      ],
-     "km": 54,
+     "km": 33,
+     "esito": "ok"
+    },
+    {
+     "da": "Redondela",
+     "a": "Pontevedra",
+     "linea_aria": 16,
+     "ll": [
+      [
+       42.2842,
+       -8.6086
+      ],
+      [
+       42.4281,
+       -8.6041
+      ]
+     ],
+     "km": 19,
      "esito": "ok"
     },
     {
      "da": "Pontevedra",
-     "a": "Padrón",
-     "linea_aria": 34,
+     "a": "Caldas de Reis",
+     "linea_aria": 22,
      "ll": [
       [
-       42.43,
-       -8.645
+       42.4281,
+       -8.6041
       ],
       [
-       42.739,
-       -8.66
+       42.6183,
+       -8.6614
       ]
      ],
-     "km": 40,
+     "km": 24,
+     "esito": "ok"
+    },
+    {
+     "da": "Caldas de Reis",
+     "a": "Padrón",
+     "linea_aria": 16,
+     "ll": [
+      [
+       42.6183,
+       -8.6614
+      ],
+      [
+       42.7598,
+       -8.6236
+      ]
+     ],
+     "km": 20,
      "esito": "ok"
     },
     {
      "da": "Padrón",
-     "a": "Santiago",
-     "linea_aria": 18,
+     "a": "Santiago de Compostela",
+     "linea_aria": 15,
      "ll": [
       [
-       42.739,
-       -8.66
+       42.7598,
+       -8.6236
       ],
       [
-       42.8805,
-       -8.5457
+       42.8804,
+       -8.5459
       ]
      ],
-     "km": 25,
+     "km": 22,
      "esito": "ok"
     }
    ],
@@ -1502,40 +2060,74 @@
   },
   {
    "stato": "Portogallo",
-   "cammino": "Camino Portugués da Costa",
+   "cammino": "Camino Portugués de la Costa",
    "tratti": [
     {
      "da": "Porto",
-     "a": "Vila do Conde",
-     "linea_aria": 26,
+     "a": "Labruge",
+     "linea_aria": 17,
      "ll": [
       [
-       41.145,
-       -8.61
+       41.1502,
+       -8.6104
       ],
       [
-       41.353,
-       -8.745
+       41.2779,
+       -8.7152
       ]
      ],
-     "km": 28,
+     "km": 39,
      "esito": "ok"
     },
     {
-     "da": "Vila do Conde",
-     "a": "Viana do Castelo",
-     "linea_aria": 39,
+     "da": "Labruge",
+     "a": "Póvoa de Varzim",
+     "linea_aria": 12,
      "ll": [
       [
-       41.353,
-       -8.745
+       41.2779,
+       -8.7152
       ],
       [
-       41.694,
-       -8.832
+       41.3794,
+       -8.7599
       ]
      ],
-     "km": 50,
+     "km": 15,
+     "esito": "ok"
+    },
+    {
+     "da": "Póvoa de Varzim",
+     "a": "Marinhas",
+     "linea_aria": 20,
+     "ll": [
+      [
+       41.3794,
+       -8.7599
+      ],
+      [
+       41.559,
+       -8.7823
+      ]
+     ],
+     "km": 25,
+     "esito": "ok"
+    },
+    {
+     "da": "Marinhas",
+     "a": "Viana do Castelo",
+     "linea_aria": 15,
+     "ll": [
+      [
+       41.559,
+       -8.7823
+      ],
+      [
+       41.6935,
+       -8.8283
+      ]
+     ],
+     "km": 21,
      "esito": "ok"
     },
     {
@@ -1544,83 +2136,83 @@
      "linea_aria": 20,
      "ll": [
       [
-       41.694,
-       -8.832
+       41.6935,
+       -8.8283
       ],
       [
-       41.875,
-       -8.838
+       41.8758,
+       -8.8388
       ]
      ],
-     "km": 27,
+     "km": 28,
      "esito": "ok"
     },
     {
      "da": "Caminha",
-     "a": "A Guarda",
-     "linea_aria": 4,
+     "a": "Porto Mougás",
+     "linea_aria": 20,
      "ll": [
       [
-       41.875,
-       -8.838
+       41.8758,
+       -8.8388
       ],
       [
-       41.9,
-       -8.87
+       42.0526,
+       -8.886
       ]
      ],
-     "km": 6,
+     "km": 25,
      "esito": "ok"
     },
     {
-     "da": "A Guarda",
-     "a": "Baiona",
-     "linea_aria": 24,
+     "da": "Porto Mougás",
+     "a": "A Ramallosa",
+     "linea_aria": 9,
      "ll": [
       [
-       41.9,
-       -8.87
+       42.0526,
+       -8.886
       ],
       [
-       42.118,
-       -8.85
+       42.114,
+       -8.8157
       ]
      ],
-     "km": 32,
+     "km": 17,
      "esito": "ok"
     },
     {
-     "da": "Baiona",
+     "da": "A Ramallosa",
      "a": "Vigo",
-     "linea_aria": 17,
+     "linea_aria": 12,
      "ll": [
       [
-       42.118,
-       -8.85
+       42.114,
+       -8.8157
       ],
       [
-       42.236,
-       -8.72
+       42.1986,
+       -8.728
       ]
      ],
-     "km": 27,
+     "km": 19,
      "esito": "ok"
     },
     {
      "da": "Vigo",
      "a": "Redondela",
-     "linea_aria": 10,
+     "linea_aria": 14,
      "ll": [
       [
-       42.236,
-       -8.72
+       42.1986,
+       -8.728
       ],
       [
-       42.283,
-       -8.61
+       42.2842,
+       -8.6086
       ]
      ],
-     "km": 15,
+     "km": 20,
      "esito": "ok"
     }
    ],
@@ -1636,15 +2228,15 @@
      "linea_aria": 14,
      "ll": [
       [
-       40.209,
-       -8.427
+       40.2112,
+       -8.4291
       ],
       [
-       40.27,
-       -8.281
+       40.2702,
+       -8.2811
       ]
      ],
-     "km": 24,
+     "km": 25,
      "esito": "ok"
     },
     {
@@ -1653,29 +2245,29 @@
      "linea_aria": 15,
      "ll": [
       [
-       40.27,
-       -8.281
+       40.2702,
+       -8.2811
       ],
       [
-       40.396,
-       -8.235
+       40.3972,
+       -8.2287
       ]
      ],
-     "km": 22,
+     "km": 23,
      "esito": "ok"
     },
     {
      "da": "Mortágua",
      "a": "Tondela",
-     "linea_aria": 19,
+     "linea_aria": 18,
      "ll": [
       [
-       40.396,
-       -8.235
+       40.3972,
+       -8.2287
       ],
       [
-       40.517,
-       -8.082
+       40.5164,
+       -8.0805
       ]
      ],
      "km": 30,
@@ -1687,114 +2279,4524 @@
      "linea_aria": 21,
      "ll": [
       [
-       40.517,
-       -8.082
+       40.5164,
+       -8.0805
       ],
       [
-       40.657,
-       -7.913
+       40.6575,
+       -7.9139
       ]
      ],
-     "km": 32,
+     "km": 31,
      "esito": "ok"
     },
     {
      "da": "Viseu",
-     "a": "Lamego",
-     "linea_aria": 50,
+     "a": "Almargem",
+     "linea_aria": 12,
      "ll": [
       [
-       40.657,
-       -7.913
+       40.6575,
+       -7.9139
       ],
       [
-       41.097,
-       -7.81
+       40.7633,
+       -7.8943
       ]
      ],
-     "km": 78,
+     "km": 16,
+     "esito": "ok"
+    },
+    {
+     "da": "Almargem",
+     "a": "Ribolhos",
+     "linea_aria": 14,
+     "ll": [
+      [
+       40.7633,
+       -7.8943
+      ],
+      [
+       40.8822,
+       -7.9296
+      ]
+     ],
+     "km": 24,
+     "esito": "ok"
+    },
+    {
+     "da": "Ribolhos",
+     "a": "Bigorne",
+     "linea_aria": 15,
+     "ll": [
+      [
+       40.8822,
+       -7.9296
+      ],
+      [
+       41.0087,
+       -7.8855
+      ]
+     ],
+     "km": 20,
+     "esito": "ok"
+    },
+    {
+     "da": "Bigorne",
+     "a": "Lamego",
+     "linea_aria": 12,
+     "ll": [
+      [
+       41.0087,
+       -7.8855
+      ],
+      [
+       41.0985,
+       -7.8106
+      ]
+     ],
+     "km": 18,
      "esito": "ok"
     },
     {
      "da": "Lamego",
-     "a": "Vila Real",
-     "linea_aria": 23,
+     "a": "Santa Marta de Penaguião",
+     "linea_aria": 13,
      "ll": [
       [
-       41.097,
-       -7.81
+       41.0985,
+       -7.8106
       ],
       [
-       41.3,
-       -7.746
+       41.21,
+       -7.7847
       ]
      ],
-     "km": 39,
+     "km": 20,
+     "esito": "ok"
+    },
+    {
+     "da": "Santa Marta de Penaguião",
+     "a": "Vila Real",
+     "linea_aria": 10,
+     "ll": [
+      [
+       41.21,
+       -7.7847
+      ],
+      [
+       41.2977,
+       -7.7458
+      ]
+     ],
+     "km": 19,
      "esito": "ok"
     },
     {
      "da": "Vila Real",
-     "a": "Chaves",
-     "linea_aria": 54,
+     "a": "Vila Pouca de Aguiar",
+     "linea_aria": 24,
      "ll": [
       [
-       41.3,
-       -7.746
+       41.2977,
+       -7.7458
       ],
       [
-       41.74,
-       -7.47
+       41.5008,
+       -7.6443
       ]
      ],
-     "km": 66,
+     "km": 30,
+     "esito": "ok"
+    },
+    {
+     "da": "Vila Pouca de Aguiar",
+     "a": "Vidago",
+     "linea_aria": 17,
+     "ll": [
+      [
+       41.5008,
+       -7.6443
+      ],
+      [
+       41.6417,
+       -7.5717
+      ]
+     ],
+     "km": 19,
+     "esito": "ok"
+    },
+    {
+     "da": "Vidago",
+     "a": "Chaves",
+     "linea_aria": 14,
+     "ll": [
+      [
+       41.6417,
+       -7.5717
+      ],
+      [
+       41.7399,
+       -7.4715
+      ]
+     ],
+     "km": 17,
      "esito": "ok"
     },
     {
      "da": "Chaves",
      "a": "Verín",
+     "linea_aria": 18,
+     "ll": [
+      [
+       41.7399,
+       -7.4715
+      ],
+      [
+       41.8955,
+       -7.4181
+      ]
+     ],
+     "km": 22,
+     "esito": "ok"
+    },
+    {
+     "da": "Verín",
+     "a": "Viladerrei",
+     "linea_aria": 20,
+     "ll": [
+      [
+       41.8955,
+       -7.4181
+      ],
+      [
+       42.0144,
+       -7.5972
+      ]
+     ],
+     "km": 27,
+     "esito": "ok"
+    },
+    {
+     "da": "Viladerrei",
+     "a": "Xinzo de Limia",
+     "linea_aria": 12,
+     "ll": [
+      [
+       42.0144,
+       -7.5972
+      ],
+      [
+       42.0638,
+       -7.7245
+      ]
+     ],
+     "km": 16,
+     "esito": "ok"
+    },
+    {
+     "da": "Xinzo de Limia",
+     "a": "Allariz",
+     "linea_aria": 16,
+     "ll": [
+      [
+       42.0638,
+       -7.7245
+      ],
+      [
+       42.1931,
+       -7.8045
+      ]
+     ],
+     "km": 21,
+     "esito": "ok"
+    },
+    {
+     "da": "Allariz",
+     "a": "Ourense",
+     "linea_aria": 17,
+     "ll": [
+      [
+       42.1931,
+       -7.8045
+      ],
+      [
+       42.3439,
+       -7.8572
+      ]
+     ],
+     "km": 23,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Spagna",
+   "cammino": "Vía de la Plata",
+   "tratti": [
+    {
+     "da": "Sevilla",
+     "a": "Guillena",
+     "linea_aria": 18,
+     "ll": [
+      [
+       37.3886,
+       -5.9953
+      ],
+      [
+       37.5465,
+       -6.0571
+      ]
+     ],
+     "km": 23,
+     "esito": "ok"
+    },
+    {
+     "da": "Guillena",
+     "a": "Castilblanco de los Arroyos",
+     "linea_aria": 16,
+     "ll": [
+      [
+       37.5465,
+       -6.0571
+      ],
+      [
+       37.675,
+       -5.9889
+      ]
+     ],
+     "km": 18,
+     "esito": "ok"
+    },
+    {
+     "da": "Castilblanco de los Arroyos",
+     "a": "Almadén de la Plata",
+     "linea_aria": 24,
+     "ll": [
+      [
+       37.675,
+       -5.9889
+      ],
+      [
+       37.8736,
+       -6.0805
+      ]
+     ],
+     "km": 28,
+     "esito": "ok"
+    },
+    {
+     "da": "Almadén de la Plata",
+     "a": "Monesterio",
+     "linea_aria": 29,
+     "ll": [
+      [
+       37.8736,
+       -6.0805
+      ],
+      [
+       38.0876,
+       -6.2732
+      ]
+     ],
+     "km": 34,
+     "esito": "ok"
+    },
+    {
+     "da": "Monesterio",
+     "a": "Fuente de Cantos",
+     "linea_aria": 18,
+     "ll": [
+      [
+       38.0876,
+       -6.2732
+      ],
+      [
+       38.2461,
+       -6.3074
+      ]
+     ],
+     "km": 20,
+     "esito": "ok"
+    },
+    {
+     "da": "Fuente de Cantos",
+     "a": "Zafra",
      "linea_aria": 22,
      "ll": [
       [
-       41.74,
-       -7.47
+       38.2461,
+       -6.3074
       ],
       [
-       41.94,
-       -7.436
+       38.4254,
+       -6.4194
+      ]
+     ],
+     "km": 25,
+     "esito": "ok"
+    },
+    {
+     "da": "Zafra",
+     "a": "Villafranca de los Barros",
+     "linea_aria": 17,
+     "ll": [
+      [
+       38.4254,
+       -6.4194
+      ],
+      [
+       38.5613,
+       -6.3392
+      ]
+     ],
+     "km": 20,
+     "esito": "ok"
+    },
+    {
+     "da": "Villafranca de los Barros",
+     "a": "Torremejía",
+     "linea_aria": 26,
+     "ll": [
+      [
+       38.5613,
+       -6.3392
+      ],
+      [
+       38.7897,
+       -6.3763
+      ]
+     ],
+     "km": 27,
+     "esito": "ok"
+    },
+    {
+     "da": "Torremejía",
+     "a": "Mérida",
+     "linea_aria": 18,
+     "ll": [
+      [
+       38.7897,
+       -6.3763
+      ],
+      [
+       38.9543,
+       -6.3505
+      ]
+     ],
+     "km": 20,
+     "esito": "ok"
+    },
+    {
+     "da": "Mérida",
+     "a": "Alcuéscar",
+     "linea_aria": 27,
+     "ll": [
+      [
+       38.9543,
+       -6.3505
+      ],
+      [
+       39.1801,
+       -6.2284
+      ]
+     ],
+     "km": 31,
+     "esito": "ok"
+    },
+    {
+     "da": "Alcuéscar",
+     "a": "Cáceres",
+     "linea_aria": 35,
+     "ll": [
+      [
+       39.1801,
+       -6.2284
+      ],
+      [
+       39.4745,
+       -6.3717
+      ]
+     ],
+     "km": 37,
+     "esito": "ok"
+    },
+    {
+     "da": "Cáceres",
+     "a": "Embalse de Alcántara",
+     "linea_aria": 45,
+     "ll": [
+      [
+       39.4745,
+       -6.3717
+      ],
+      [
+       39.7614,
+       -6.7403
+      ]
+     ],
+     "esito": "FUORI RETE: Embalse de Alcántara"
+    },
+    {
+     "da": "Embalse de Alcántara",
+     "a": "Grimaldo",
+     "linea_aria": 35,
+     "ll": [
+      [
+       39.7614,
+       -6.7403
+      ],
+      [
+       39.8396,
+       -6.3485
+      ]
+     ],
+     "esito": "FUORI RETE: Embalse de Alcántara"
+    },
+    {
+     "da": "Grimaldo",
+     "a": "Carcaboso",
+     "linea_aria": 26,
+     "ll": [
+      [
+       39.8396,
+       -6.3485
+      ],
+      [
+       40.049,
+       -6.2136
+      ]
+     ],
+     "km": 30,
+     "esito": "ok"
+    },
+    {
+     "da": "Carcaboso",
+     "a": "Aldeanueva del Camino",
+     "linea_aria": 34,
+     "ll": [
+      [
+       40.049,
+       -6.2136
+      ],
+      [
+       40.259,
+       -5.9297
+      ]
+     ],
+     "km": 40,
+     "esito": "ok"
+    },
+    {
+     "da": "Aldeanueva del Camino",
+     "a": "La Calzada de Béjar",
+     "linea_aria": 19,
+     "ll": [
+      [
+       40.259,
+       -5.9297
+      ],
+      [
+       40.4116,
+       -5.8183
+      ]
+     ],
+     "km": 22,
+     "esito": "ok"
+    },
+    {
+     "da": "La Calzada de Béjar",
+     "a": "Fuenterroble de Salvatierra",
+     "linea_aria": 18,
+     "ll": [
+      [
+       40.4116,
+       -5.8183
+      ],
+      [
+       40.5641,
+       -5.7339
+      ]
+     ],
+     "km": 20,
+     "esito": "ok"
+    },
+    {
+     "da": "Fuenterroble de Salvatierra",
+     "a": "San Pedro de Rozados",
+     "linea_aria": 25,
+     "ll": [
+      [
+       40.5641,
+       -5.7339
+      ],
+      [
+       40.7905,
+       -5.7381
+      ]
+     ],
+     "km": 28,
+     "esito": "ok"
+    },
+    {
+     "da": "San Pedro de Rozados",
+     "a": "Salamanca",
+     "linea_aria": 20,
+     "ll": [
+      [
+       40.7905,
+       -5.7381
+      ],
+      [
+       40.9652,
+       -5.664
+      ]
+     ],
+     "km": 24,
+     "esito": "ok"
+    },
+    {
+     "da": "Salamanca",
+     "a": "El Cubo del Vino",
+     "linea_aria": 30,
+     "ll": [
+      [
+       40.9652,
+       -5.664
+      ],
+      [
+       41.228,
+       -5.7516
+      ]
+     ],
+     "esito": "FUORI RETE: El Cubo del Vino"
+    },
+    {
+     "da": "El Cubo del Vino",
+     "a": "Zamora",
+     "linea_aria": 32,
+     "ll": [
+      [
+       41.228,
+       -5.7516
+      ],
+      [
+       41.5163,
+       -5.7736
+      ]
+     ],
+     "esito": "FUORI RETE: El Cubo del Vino"
+    },
+    {
+     "da": "Zamora",
+     "a": "Montamarta",
+     "linea_aria": 15,
+     "ll": [
+      [
+       41.5163,
+       -5.7736
+      ],
+      [
+       41.6471,
+       -5.805
+      ]
+     ],
+     "km": 22,
+     "esito": "ok"
+    },
+    {
+     "da": "Montamarta",
+     "a": "Granja de Moreruela",
+     "linea_aria": 19,
+     "ll": [
+      [
+       41.6471,
+       -5.805
+      ],
+      [
+       41.8128,
+       -5.745
+      ]
+     ],
+     "km": 23,
+     "esito": "ok"
+    },
+    {
+     "da": "Granja de Moreruela",
+     "a": "Benavente",
+     "linea_aria": 22,
+     "ll": [
+      [
+       41.8128,
+       -5.745
+      ],
+      [
+       42.0033,
+       -5.6739
+      ]
+     ],
+     "km": 28,
+     "esito": "ok"
+    },
+    {
+     "da": "Benavente",
+     "a": "Alija del Infantado",
+     "linea_aria": 20,
+     "ll": [
+      [
+       42.0033,
+       -5.6739
+      ],
+      [
+       42.1418,
+       -5.8367
+      ]
+     ],
+     "km": 24,
+     "esito": "ok"
+    },
+    {
+     "da": "Alija del Infantado",
+     "a": "La Bañeza",
+     "linea_aria": 18,
+     "ll": [
+      [
+       42.1418,
+       -5.8367
+      ],
+      [
+       42.2998,
+       -5.897
+      ]
+     ],
+     "km": 21,
+     "esito": "ok"
+    },
+    {
+     "da": "La Bañeza",
+     "a": "Astorga",
+     "linea_aria": 22,
+     "ll": [
+      [
+       42.2998,
+       -5.897
+      ],
+      [
+       42.4554,
+       -6.0529
+      ]
+     ],
+     "km": 25,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 4
+  },
+  {
+   "stato": "Spagna",
+   "cammino": "Camino Sanabrés",
+   "tratti": [
+    {
+     "da": "Granja de Moreruela",
+     "a": "Tábara",
+     "linea_aria": 10,
+     "ll": [
+      [
+       41.8128,
+       -5.745
+      ],
+      [
+       41.799,
+       -5.8693
+      ]
+     ],
+     "esito": "FUORI RETE: Tábara"
+    },
+    {
+     "da": "Tábara",
+     "a": "Santa Marta de Tera",
+     "linea_aria": 23,
+     "ll": [
+      [
+       41.799,
+       -5.8693
+      ],
+      [
+       41.9949,
+       -5.9707
+      ]
+     ],
+     "esito": "FUORI RETE: Tábara"
+    },
+    {
+     "da": "Santa Marta de Tera",
+     "a": "Mombuey",
+     "linea_aria": 29,
+     "ll": [
+      [
+       41.9949,
+       -5.9707
+      ],
+      [
+       42.0095,
+       -6.3224
+      ]
+     ],
+     "km": 35,
+     "esito": "ok"
+    },
+    {
+     "da": "Mombuey",
+     "a": "Puebla de Sanabria",
+     "linea_aria": 23,
+     "ll": [
+      [
+       42.0095,
+       -6.3224
+      ],
+      [
+       42.0202,
+       -6.6012
+      ]
+     ],
+     "esito": "FUORI RETE: Puebla de Sanabria"
+    },
+    {
+     "da": "Puebla de Sanabria",
+     "a": "Lubián",
+     "linea_aria": 25,
+     "ll": [
+      [
+       42.0202,
+       -6.6012
+      ],
+      [
+       42.0549,
+       -6.8944
+      ]
+     ],
+     "esito": "FUORI RETE: Puebla de Sanabria"
+    },
+    {
+     "da": "Lubián",
+     "a": "A Gudiña",
+     "linea_aria": 20,
+     "ll": [
+      [
+       42.0549,
+       -6.8944
+      ],
+      [
+       42.0605,
+       -7.1403
+      ]
+     ],
+     "km": 27,
+     "esito": "ok"
+    },
+    {
+     "da": "A Gudiña",
+     "a": "Laza",
+     "linea_aria": 26,
+     "ll": [
+      [
+       42.0605,
+       -7.1403
+      ],
+      [
+       42.0605,
+       -7.4612
+      ]
+     ],
+     "km": 35,
+     "esito": "ok"
+    },
+    {
+     "da": "Laza",
+     "a": "Xunqueira de Ambía",
+     "linea_aria": 28,
+     "ll": [
+      [
+       42.0605,
+       -7.4612
+      ],
+      [
+       42.2051,
+       -7.7352
+      ]
+     ],
+     "km": 33,
+     "esito": "ok"
+    },
+    {
+     "da": "Xunqueira de Ambía",
+     "a": "Ourense",
+     "linea_aria": 18,
+     "ll": [
+      [
+       42.2051,
+       -7.7352
+      ],
+      [
+       42.3439,
+       -7.8572
+      ]
+     ],
+     "km": 23,
+     "esito": "ok"
+    },
+    {
+     "da": "Ourense",
+     "a": "Cea",
+     "linea_aria": 18,
+     "ll": [
+      [
+       42.3439,
+       -7.8572
+      ],
+      [
+       42.4747,
+       -7.9859
+      ]
+     ],
+     "km": 21,
+     "esito": "ok"
+    },
+    {
+     "da": "Cea",
+     "a": "O Castro (Dozón)",
+     "linea_aria": 30,
+     "ll": [
+      [
+       42.4747,
+       -7.9859
+      ],
+      [
+       42.7373,
+       -8.0811
+      ]
+     ],
+     "esito": "FUORI RETE: O Castro (Dozón)"
+    },
+    {
+     "da": "O Castro (Dozón)",
+     "a": "Silleda",
+     "linea_aria": 14,
+     "ll": [
+      [
+       42.7373,
+       -8.0811
+      ],
+      [
+       42.698,
+       -8.2466
+      ]
+     ],
+     "esito": "FUORI RETE: O Castro (Dozón)"
+    },
+    {
+     "da": "Silleda",
+     "a": "Outeiro",
+     "linea_aria": 23,
+     "ll": [
+      [
+       42.698,
+       -8.2466
+      ],
+      [
+       42.8401,
+       -8.0393
+      ]
+     ],
+     "esito": "FUORI RETE: Outeiro"
+    },
+    {
+     "da": "Outeiro",
+     "a": "Santiago de Compostela",
+     "linea_aria": 42,
+     "ll": [
+      [
+       42.8401,
+       -8.0393
+      ],
+      [
+       42.8804,
+       -8.5459
+      ]
+     ],
+     "esito": "FUORI RETE: Outeiro"
+    }
+   ],
+   "problemi": 8
+  },
+  {
+   "stato": "Spagna",
+   "cammino": "Camino Sanabrés por Verín",
+   "tratti": [
+    {
+     "da": "A Gudiña",
+     "a": "As Vendas da Barreira",
+     "linea_aria": 14,
+     "ll": [
+      [
+       42.0605,
+       -7.1403
+      ],
+      [
+       41.986,
+       -7.2783
+      ]
+     ],
+     "km": 19,
+     "esito": "ok"
+    },
+    {
+     "da": "As Vendas da Barreira",
+     "a": "Verín",
+     "linea_aria": 15,
+     "ll": [
+      [
+       41.986,
+       -7.2783
+      ],
+      [
+       41.8955,
+       -7.4181
+      ]
+     ],
+     "km": 28,
+     "esito": "ok"
+    },
+    {
+     "da": "Verín",
+     "a": "Viladerrei",
+     "linea_aria": 20,
+     "ll": [
+      [
+       41.8955,
+       -7.4181
+      ],
+      [
+       42.0144,
+       -7.5972
+      ]
+     ],
+     "km": 27,
+     "esito": "ok"
+    },
+    {
+     "da": "Viladerrei",
+     "a": "Xinzo de Limia",
+     "linea_aria": 12,
+     "ll": [
+      [
+       42.0144,
+       -7.5972
+      ],
+      [
+       42.0638,
+       -7.7245
+      ]
+     ],
+     "km": 16,
+     "esito": "ok"
+    },
+    {
+     "da": "Xinzo de Limia",
+     "a": "Allariz",
+     "linea_aria": 16,
+     "ll": [
+      [
+       42.0638,
+       -7.7245
+      ],
+      [
+       42.1931,
+       -7.8045
+      ]
+     ],
+     "km": 21,
+     "esito": "ok"
+    },
+    {
+     "da": "Allariz",
+     "a": "Ourense",
+     "linea_aria": 17,
+     "ll": [
+      [
+       42.1931,
+       -7.8045
+      ],
+      [
+       42.3439,
+       -7.8572
+      ]
+     ],
+     "km": 23,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Spagna",
+   "cammino": "Camino de Invierno",
+   "tratti": [
+    {
+     "da": "Ponferrada",
+     "a": "Las Médulas",
+     "linea_aria": 17,
+     "ll": [
+      [
+       42.4984,
+       -6.5663
+      ],
+      [
+       42.4597,
+       -6.7684
+      ]
+     ],
+     "esito": "FUORI RETE: Ponferrada"
+    },
+    {
+     "da": "Las Médulas",
+     "a": "O Barco de Valdeorras",
+     "linea_aria": 18,
+     "ll": [
+      [
+       42.4597,
+       -6.7684
+      ],
+      [
+       42.4301,
+       -6.9801
       ]
      ],
      "km": 29,
      "esito": "ok"
     },
     {
-     "da": "Verín",
-     "a": "Xunqueira de Ambía",
-     "linea_aria": 38,
+     "da": "O Barco de Valdeorras",
+     "a": "A Rúa de Valdeorras",
+     "linea_aria": 12,
      "ll": [
       [
-       41.94,
-       -7.436
+       42.4301,
+       -6.9801
       ],
       [
-       42.2,
-       -7.73
+       42.3953,
+       -7.1142
       ]
      ],
-     "km": 80,
+     "km": 13,
      "esito": "ok"
     },
     {
-     "da": "Xunqueira de Ambía",
-     "a": "Ourense",
+     "da": "A Rúa de Valdeorras",
+     "a": "Quiroga",
+     "linea_aria": 10,
+     "ll": [
+      [
+       42.3953,
+       -7.1142
+      ],
+      [
+       42.4658,
+       -7.185
+      ]
+     ],
+     "esito": "FUORI RETE: Quiroga"
+    },
+    {
+     "da": "Quiroga",
+     "a": "A Pobra do Brollón",
+     "linea_aria": 17,
+     "ll": [
+      [
+       42.4658,
+       -7.185
+      ],
+      [
+       42.549,
+       -7.359
+      ]
+     ],
+     "esito": "FUORI RETE: Quiroga"
+    },
+    {
+     "da": "A Pobra do Brollón",
+     "a": "Monforte de Lemos",
+     "linea_aria": 11,
+     "ll": [
+      [
+       42.549,
+       -7.359
+      ],
+      [
+       42.5106,
+       -7.4875
+      ]
+     ],
+     "km": 14,
+     "esito": "ok"
+    },
+    {
+     "da": "Monforte de Lemos",
+     "a": "Chantada",
+     "linea_aria": 29,
+     "ll": [
+      [
+       42.5106,
+       -7.4875
+      ],
+      [
+       42.6109,
+       -7.8107
+      ]
+     ],
+     "km": 35,
+     "esito": "ok"
+    },
+    {
+     "da": "Chantada",
+     "a": "Rodeiro",
+     "linea_aria": 11,
+     "ll": [
+      [
+       42.6109,
+       -7.8107
+      ],
+      [
+       42.6535,
+       -7.9388
+      ]
+     ],
+     "km": 21,
+     "esito": "ok"
+    },
+    {
+     "da": "Rodeiro",
+     "a": "Lalín",
+     "linea_aria": 14,
+     "ll": [
+      [
+       42.6535,
+       -7.9388
+      ],
+      [
+       42.6614,
+       -8.111
+      ]
+     ],
+     "km": 23,
+     "esito": "ok"
+    },
+    {
+     "da": "Lalín",
+     "a": "Silleda",
+     "linea_aria": 12,
+     "ll": [
+      [
+       42.6614,
+       -8.111
+      ],
+      [
+       42.698,
+       -8.2466
+      ]
+     ],
+     "km": 16,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 3
+  },
+  {
+   "stato": "Spagna",
+   "cammino": "Camino de Madrid",
+   "tratti": [
+    {
+     "da": "Madrid",
+     "a": "Tres Cantos",
+     "linea_aria": 21,
+     "ll": [
+      [
+       40.4168,
+       -3.7035
+      ],
+      [
+       40.6012,
+       -3.7039
+      ]
+     ],
+     "km": 23,
+     "esito": "ok"
+    },
+    {
+     "da": "Tres Cantos",
+     "a": "Manzanares el Real",
      "linea_aria": 19,
      "ll": [
       [
-       42.2,
-       -7.73
+       40.6012,
+       -3.7039
       ],
       [
-       42.336,
-       -7.864
+       40.7268,
+       -3.8649
+      ]
+     ],
+     "km": 25,
+     "esito": "ok"
+    },
+    {
+     "da": "Manzanares el Real",
+     "a": "Cercedilla",
+     "linea_aria": 16,
+     "ll": [
+      [
+       40.7268,
+       -3.8649
+      ],
+      [
+       40.7413,
+       -4.0558
+      ]
+     ],
+     "km": 20,
+     "esito": "ok"
+    },
+    {
+     "da": "Cercedilla",
+     "a": "Segovia",
+     "linea_aria": 24,
+     "ll": [
+      [
+       40.7413,
+       -4.0558
+      ],
+      [
+       40.9481,
+       -4.1172
+      ]
+     ],
+     "km": 30,
+     "esito": "ok"
+    },
+    {
+     "da": "Segovia",
+     "a": "Santa María la Real de Nieva",
+     "linea_aria": 28,
+     "ll": [
+      [
+       40.9481,
+       -4.1172
+      ],
+      [
+       41.0706,
+       -4.4065
+      ]
+     ],
+     "km": 33,
+     "esito": "ok"
+    },
+    {
+     "da": "Santa María la Real de Nieva",
+     "a": "Coca",
+     "linea_aria": 19,
+     "ll": [
+      [
+       41.0706,
+       -4.4065
+      ],
+      [
+       41.2177,
+       -4.5228
+      ]
+     ],
+     "km": 22,
+     "esito": "ok"
+    },
+    {
+     "da": "Coca",
+     "a": "Alcazarén",
+     "linea_aria": 21,
+     "ll": [
+      [
+       41.2177,
+       -4.5228
+      ],
+      [
+       41.3709,
+       -4.6716
+      ]
+     ],
+     "km": 24,
+     "esito": "ok"
+    },
+    {
+     "da": "Alcazarén",
+     "a": "Puente Duero",
+     "linea_aria": 23,
+     "ll": [
+      [
+       41.3709,
+       -4.6716
+      ],
+      [
+       41.5537,
+       -4.7907
+      ]
+     ],
+     "km": 26,
+     "esito": "ok"
+    },
+    {
+     "da": "Puente Duero",
+     "a": "Peñaflor de Hornija",
+     "linea_aria": 24,
+     "ll": [
+      [
+       41.5537,
+       -4.7907
+      ],
+      [
+       41.7116,
+       -4.9811
+      ]
+     ],
+     "km": 27,
+     "esito": "ok"
+    },
+    {
+     "da": "Peñaflor de Hornija",
+     "a": "Medina de Rioseco",
+     "linea_aria": 20,
+     "ll": [
+      [
+       41.7116,
+       -4.9811
+      ],
+      [
+       41.8837,
+       -5.0434
+      ]
+     ],
+     "km": 24,
+     "esito": "ok"
+    },
+    {
+     "da": "Medina de Rioseco",
+     "a": "Cuenca de Campos",
+     "linea_aria": 19,
+     "ll": [
+      [
+       41.8837,
+       -5.0434
+      ],
+      [
+       42.0585,
+       -5.0547
+      ]
+     ],
+     "km": 23,
+     "esito": "ok"
+    },
+    {
+     "da": "Cuenca de Campos",
+     "a": "Santervás de Campos",
+     "linea_aria": 18,
+     "ll": [
+      [
+       42.0585,
+       -5.0547
+      ],
+      [
+       42.2176,
+       -5.0993
+      ]
+     ],
+     "km": 21,
+     "esito": "ok"
+    },
+    {
+     "da": "Santervás de Campos",
+     "a": "Sahagún",
+     "linea_aria": 18,
+     "ll": [
+      [
+       42.2176,
+       -5.0993
+      ],
+      [
+       42.3719,
+       -5.0313
+      ]
+     ],
+     "km": 20,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Spagna",
+   "cammino": "Camino de Levante",
+   "tratti": [
+    {
+     "da": "Valencia",
+     "a": "Algemesí",
+     "linea_aria": 31,
+     "ll": [
+      [
+       39.4697,
+       -0.3763
+      ],
+      [
+       39.1908,
+       -0.4358
+      ]
+     ],
+     "km": 39,
+     "esito": "ok"
+    },
+    {
+     "da": "Algemesí",
+     "a": "Xàtiva",
+     "linea_aria": 24,
+     "ll": [
+      [
+       39.1908,
+       -0.4358
+      ],
+      [
+       38.9881,
+       -0.52
+      ]
+     ],
+     "km": 34,
+     "esito": "ok"
+    },
+    {
+     "da": "Xàtiva",
+     "a": "Moixent",
+     "linea_aria": 23,
+     "ll": [
+      [
+       38.9881,
+       -0.52
+      ],
+      [
+       38.8753,
+       -0.7495
+      ]
+     ],
+     "km": 28,
+     "esito": "ok"
+    },
+    {
+     "da": "Moixent",
+     "a": "La Font de la Figuera",
+     "linea_aria": 14,
+     "ll": [
+      [
+       38.8753,
+       -0.7495
+      ],
+      [
+       38.8049,
+       -0.8799
+      ]
+     ],
+     "km": 17,
+     "esito": "ok"
+    },
+    {
+     "da": "La Font de la Figuera",
+     "a": "Almansa",
+     "linea_aria": 20,
+     "ll": [
+      [
+       38.8049,
+       -0.8799
+      ],
+      [
+       38.8682,
+       -1.0979
+      ]
+     ],
+     "km": 29,
+     "esito": "ok"
+    },
+    {
+     "da": "Almansa",
+     "a": "Higueruela",
+     "linea_aria": 32,
+     "ll": [
+      [
+       38.8682,
+       -1.0979
+      ],
+      [
+       38.9643,
+       -1.4444
+      ]
+     ],
+     "km": 40,
+     "esito": "ok"
+    },
+    {
+     "da": "Higueruela",
+     "a": "Chinchilla de Montearagón",
+     "linea_aria": 25,
+     "ll": [
+      [
+       38.9643,
+       -1.4444
+      ],
+      [
+       38.9197,
+       -1.7263
+      ]
+     ],
+     "km": 29,
+     "esito": "ok"
+    },
+    {
+     "da": "Chinchilla de Montearagón",
+     "a": "Albacete",
+     "linea_aria": 14,
+     "ll": [
+      [
+       38.9197,
+       -1.7263
+      ],
+      [
+       38.9951,
+       -1.8559
+      ]
+     ],
+     "km": 18,
+     "esito": "ok"
+    },
+    {
+     "da": "Albacete",
+     "a": "La Roda",
+     "linea_aria": 35,
+     "ll": [
+      [
+       38.9951,
+       -1.8559
+      ],
+      [
+       39.207,
+       -2.1582
+      ]
+     ],
+     "km": 41,
+     "esito": "ok"
+    },
+    {
+     "da": "La Roda",
+     "a": "San Clemente (Cuenca)",
+     "linea_aria": 32,
+     "ll": [
+      [
+       39.207,
+       -2.1582
+      ],
+      [
+       39.4035,
+       -2.4281
+      ]
+     ],
+     "km": 35,
+     "esito": "ok"
+    },
+    {
+     "da": "San Clemente (Cuenca)",
+     "a": "Las Pedroñeras",
+     "linea_aria": 22,
+     "ll": [
+      [
+       39.4035,
+       -2.4281
+      ],
+      [
+       39.4498,
+       -2.673
+      ]
+     ],
+     "km": 23,
+     "esito": "ok"
+    },
+    {
+     "da": "Las Pedroñeras",
+     "a": "El Toboso",
+     "linea_aria": 29,
+     "ll": [
+      [
+       39.4498,
+       -2.673
+      ],
+      [
+       39.5129,
+       -2.9955
+      ]
+     ],
+     "km": 32,
+     "esito": "ok"
+    },
+    {
+     "da": "El Toboso",
+     "a": "La Villa de Don Fadrique",
+     "linea_aria": 22,
+     "ll": [
+      [
+       39.5129,
+       -2.9955
+      ],
+      [
+       39.618,
+       -3.2182
+      ]
+     ],
+     "km": 25,
+     "esito": "ok"
+    },
+    {
+     "da": "La Villa de Don Fadrique",
+     "a": "Tembleque",
+     "linea_aria": 26,
+     "ll": [
+      [
+       39.618,
+       -3.2182
+      ],
+      [
+       39.6971,
+       -3.502
+      ]
+     ],
+     "km": 30,
+     "esito": "ok"
+    },
+    {
+     "da": "Tembleque",
+     "a": "Mora (Toledo)",
+     "linea_aria": 23,
+     "ll": [
+      [
+       39.6971,
+       -3.502
+      ],
+      [
+       39.6832,
+       -3.7728
+      ]
+     ],
+     "km": 25,
+     "esito": "ok"
+    },
+    {
+     "da": "Mora (Toledo)",
+     "a": "Toledo",
+     "linea_aria": 29,
+     "ll": [
+      [
+       39.6832,
+       -3.7728
+      ],
+      [
+       39.8559,
+       -4.0243
+      ]
+     ],
+     "km": 39,
+     "esito": "ok"
+    },
+    {
+     "da": "Toledo",
+     "a": "Torrijos",
+     "linea_aria": 26,
+     "ll": [
+      [
+       39.8559,
+       -4.0243
+      ],
+      [
+       39.9809,
+       -4.2842
+      ]
+     ],
+     "esito": "FUORI RETE: Torrijos"
+    },
+    {
+     "da": "Torrijos",
+     "a": "Escalona",
+     "linea_aria": 23,
+     "ll": [
+      [
+       39.9809,
+       -4.2842
+      ],
+      [
+       40.1666,
+       -4.4039
+      ]
+     ],
+     "esito": "FUORI RETE: Torrijos"
+    },
+    {
+     "da": "Escalona",
+     "a": "San Martín de Valdeiglesias",
+     "linea_aria": 22,
+     "ll": [
+      [
+       40.1666,
+       -4.4039
+      ],
+      [
+       40.3625,
+       -4.3986
+      ]
+     ],
+     "km": 29,
+     "esito": "ok"
+    },
+    {
+     "da": "San Martín de Valdeiglesias",
+     "a": "Cebreros",
+     "linea_aria": 12,
+     "ll": [
+      [
+       40.3625,
+       -4.3986
+      ],
+      [
+       40.4552,
+       -4.4652
+      ]
+     ],
+     "km": 15,
+     "esito": "ok"
+    },
+    {
+     "da": "Cebreros",
+     "a": "San Bartolomé de Pinares",
+     "linea_aria": 12,
+     "ll": [
+      [
+       40.4552,
+       -4.4652
+      ],
+      [
+       40.5435,
+       -4.5398
+      ]
+     ],
+     "km": 15,
+     "esito": "ok"
+    },
+    {
+     "da": "San Bartolomé de Pinares",
+     "a": "Ávila",
+     "linea_aria": 16,
+     "ll": [
+      [
+       40.5435,
+       -4.5398
+      ],
+      [
+       40.6572,
+       -4.6627
+      ]
+     ],
+     "km": 22,
+     "esito": "ok"
+    },
+    {
+     "da": "Ávila",
+     "a": "Gotarrendura",
+     "linea_aria": 20,
+     "ll": [
+      [
+       40.6572,
+       -4.6627
+      ],
+      [
+       40.8265,
+       -4.7409
+      ]
+     ],
+     "km": 26,
+     "esito": "ok"
+    },
+    {
+     "da": "Gotarrendura",
+     "a": "Arévalo",
+     "linea_aria": 26,
+     "ll": [
+      [
+       40.8265,
+       -4.7409
+      ],
+      [
+       41.0633,
+       -4.7199
+      ]
+     ],
+     "km": 29,
+     "esito": "ok"
+    },
+    {
+     "da": "Arévalo",
+     "a": "Medina del Campo",
+     "linea_aria": 32,
+     "ll": [
+      [
+       41.0633,
+       -4.7199
+      ],
+      [
+       41.3085,
+       -4.915
+      ]
+     ],
+     "km": 34,
+     "esito": "ok"
+    },
+    {
+     "da": "Medina del Campo",
+     "a": "Siete Iglesias de Trabancos",
+     "linea_aria": 23,
+     "ll": [
+      [
+       41.3085,
+       -4.915
+      ],
+      [
+       41.3518,
+       -5.1846
+      ]
+     ],
+     "km": 25,
+     "esito": "ok"
+    },
+    {
+     "da": "Siete Iglesias de Trabancos",
+     "a": "Toro",
+     "linea_aria": 26,
+     "ll": [
+      [
+       41.3518,
+       -5.1846
+      ],
+      [
+       41.5217,
+       -5.394
+      ]
+     ],
+     "km": 32,
+     "esito": "ok"
+    },
+    {
+     "da": "Toro",
+     "a": "Zamora",
+     "linea_aria": 32,
+     "ll": [
+      [
+       41.5217,
+       -5.394
+      ],
+      [
+       41.5163,
+       -5.7736
+      ]
+     ],
+     "km": 43,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 2
+  },
+  {
+   "stato": "Spagna",
+   "cammino": "Camino del Salvador",
+   "tratti": [
+    {
+     "da": "León",
+     "a": "La Robla",
+     "linea_aria": 24,
+     "ll": [
+      [
+       42.5934,
+       -5.5616
+      ],
+      [
+       42.8029,
+       -5.6292
+      ]
+     ],
+     "km": 29,
+     "esito": "ok"
+    },
+    {
+     "da": "La Robla",
+     "a": "Poladura de la Tercia",
+     "linea_aria": 18,
+     "ll": [
+      [
+       42.8029,
+       -5.6292
+      ],
+      [
+       42.947,
+       -5.7212
+      ]
+     ],
+     "km": 24,
+     "esito": "ok"
+    },
+    {
+     "da": "Poladura de la Tercia",
+     "a": "Pajares",
+     "linea_aria": 9,
+     "ll": [
+      [
+       42.947,
+       -5.7212
+      ],
+      [
+       43.0179,
+       -5.7726
+      ]
+     ],
+     "km": 14,
+     "esito": "ok"
+    },
+    {
+     "da": "Pajares",
+     "a": "Pola de Lena",
+     "linea_aria": 17,
+     "ll": [
+      [
+       43.0179,
+       -5.7726
+      ],
+      [
+       43.1617,
+       -5.8283
+      ]
+     ],
+     "km": 25,
+     "esito": "ok"
+    },
+    {
+     "da": "Pola de Lena",
+     "a": "Mieres",
+     "linea_aria": 9,
+     "ll": [
+      [
+       43.1617,
+       -5.8283
+      ],
+      [
+       43.235,
+       -5.7699
+      ]
+     ],
+     "km": 10,
+     "esito": "ok"
+    },
+    {
+     "da": "Mieres",
+     "a": "Oviedo",
+     "linea_aria": 16,
+     "ll": [
+      [
+       43.235,
+       -5.7699
+      ],
+      [
+       43.3533,
+       -5.8795
+      ]
+     ],
+     "km": 24,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Spagna",
+   "cammino": "Camino Vasco del Interior",
+   "tratti": [
+    {
+     "da": "Irún",
+     "a": "Hernani",
+     "linea_aria": 17,
+     "ll": [
+      [
+       43.3383,
+       -1.7888
+      ],
+      [
+       43.2661,
+       -1.9747
+      ]
+     ],
+     "km": 25,
+     "esito": "ok"
+    },
+    {
+     "da": "Hernani",
+     "a": "Tolosa",
+     "linea_aria": 16,
+     "ll": [
+      [
+       43.2661,
+       -1.9747
+      ],
+      [
+       43.1386,
+       -2.0724
+      ]
+     ],
+     "km": 20,
+     "esito": "ok"
+    },
+    {
+     "da": "Tolosa",
+     "a": "Beasain",
+     "linea_aria": 15,
+     "ll": [
+      [
+       43.1386,
+       -2.0724
+      ],
+      [
+       43.0473,
+       -2.2033
+      ]
+     ],
+     "km": 19,
+     "esito": "ok"
+    },
+    {
+     "da": "Beasain",
+     "a": "Zegama",
+     "linea_aria": 11,
+     "ll": [
+      [
+       43.0473,
+       -2.2033
+      ],
+      [
+       42.9758,
+       -2.2903
+      ]
+     ],
+     "km": 17,
+     "esito": "ok"
+    },
+    {
+     "da": "Zegama",
+     "a": "Salvatierra",
+     "linea_aria": 16,
+     "ll": [
+      [
+       42.9758,
+       -2.2903
+      ],
+      [
+       42.8493,
+       -2.3891
+      ]
+     ],
+     "km": 22,
+     "esito": "ok"
+    },
+    {
+     "da": "Salvatierra",
+     "a": "Vitoria",
+     "linea_aria": 23,
+     "ll": [
+      [
+       42.8493,
+       -2.3891
+      ],
+      [
+       42.8465,
+       -2.6724
+      ]
+     ],
+     "km": 29,
+     "esito": "ok"
+    },
+    {
+     "da": "Vitoria",
+     "a": "La Puebla de Arganzón",
+     "linea_aria": 14,
+     "ll": [
+      [
+       42.8465,
+       -2.6724
+      ],
+      [
+       42.7742,
+       -2.8187
+      ]
+     ],
+     "km": 16,
+     "esito": "ok"
+    },
+    {
+     "da": "La Puebla de Arganzón",
+     "a": "Haro",
+     "linea_aria": 22,
+     "ll": [
+      [
+       42.7742,
+       -2.8187
+      ],
+      [
+       42.5769,
+       -2.8467
+      ]
+     ],
+     "km": 33,
+     "esito": "ok"
+    },
+    {
+     "da": "Haro",
+     "a": "Santo Domingo de la Calzada",
+     "linea_aria": 18,
+     "ll": [
+      [
+       42.5769,
+       -2.8467
+      ],
+      [
+       42.4407,
+       -2.9536
+      ]
+     ],
+     "km": 21,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Spagna",
+   "cammino": "Camino Aragonés",
+   "tratti": [
+    {
+     "da": "Somport",
+     "a": "Jaca",
+     "linea_aria": 25,
+     "ll": [
+      [
+       42.7957,
+       -0.5248
+      ],
+      [
+       42.5693,
+       -0.5494
+      ]
+     ],
+     "km": 31,
+     "esito": "ok"
+    },
+    {
+     "da": "Jaca",
+     "a": "Arrés",
+     "linea_aria": 23,
+     "ll": [
+      [
+       42.5693,
+       -0.5494
+      ],
+      [
+       42.5555,
+       -0.8273
+      ]
+     ],
+     "km": 25,
+     "esito": "ok"
+    },
+    {
+     "da": "Arrés",
+     "a": "Ruesta",
+     "linea_aria": 21,
+     "ll": [
+      [
+       42.5555,
+       -0.8273
+      ],
+      [
+       42.5888,
+       -1.0762
+      ]
+     ],
+     "km": 28,
+     "esito": "ok"
+    },
+    {
+     "da": "Ruesta",
+     "a": "Sangüesa",
+     "linea_aria": 15,
+     "ll": [
+      [
+       42.5888,
+       -1.0762
+      ],
+      [
+       42.5647,
+       -1.2541
+      ]
+     ],
+     "km": 19,
+     "esito": "ok"
+    },
+    {
+     "da": "Sangüesa",
+     "a": "Monreal",
+     "linea_aria": 26,
+     "ll": [
+      [
+       42.5647,
+       -1.2541
+      ],
+      [
+       42.7049,
+       -1.5072
+      ]
+     ],
+     "km": 30,
+     "esito": "ok"
+    },
+    {
+     "da": "Monreal",
+     "a": "Puente la Reina",
+     "linea_aria": 25,
+     "ll": [
+      [
+       42.7049,
+       -1.5072
+      ],
+      [
+       42.6914,
+       -1.8123
+      ]
+     ],
+     "km": 31,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Spagna",
+   "cammino": "Camino Mozárabe",
+   "tratti": [
+    {
+     "da": "Granada",
+     "a": "Pinos Puente",
+     "linea_aria": 16,
+     "ll": [
+      [
+       37.1735,
+       -3.5995
+      ],
+      [
+       37.2326,
+       -3.7589
+      ]
+     ],
+     "km": 17,
+     "esito": "ok"
+    },
+    {
+     "da": "Pinos Puente",
+     "a": "Moclín",
+     "linea_aria": 15,
+     "ll": [
+      [
+       37.2326,
+       -3.7589
+      ],
+      [
+       37.365,
+       -3.8033
+      ]
+     ],
+     "km": 20,
+     "esito": "ok"
+    },
+    {
+     "da": "Moclín",
+     "a": "Alcalá la Real",
+     "linea_aria": 15,
+     "ll": [
+      [
+       37.365,
+       -3.8033
+      ],
+      [
+       37.462,
+       -3.9224
+      ]
+     ],
+     "km": 19,
+     "esito": "ok"
+    },
+    {
+     "da": "Alcalá la Real",
+     "a": "Alcaudete",
+     "linea_aria": 20,
+     "ll": [
+      [
+       37.462,
+       -3.9224
+      ],
+      [
+       37.5881,
+       -4.0813
+      ]
+     ],
+     "km": 23,
+     "esito": "ok"
+    },
+    {
+     "da": "Alcaudete",
+     "a": "Baena",
+     "linea_aria": 22,
+     "ll": [
+      [
+       37.5881,
+       -4.0813
+      ],
+      [
+       37.6173,
+       -4.3244
+      ]
+     ],
+     "km": 25,
+     "esito": "ok"
+    },
+    {
+     "da": "Baena",
+     "a": "Castro del Río",
+     "linea_aria": 16,
+     "ll": [
+      [
+       37.6173,
+       -4.3244
+      ],
+      [
+       37.6912,
+       -4.4827
+      ]
+     ],
+     "km": 20,
+     "esito": "ok"
+    },
+    {
+     "da": "Castro del Río",
+     "a": "Santa Cruz",
+     "linea_aria": 14,
+     "ll": [
+      [
+       37.6912,
+       -4.4827
+      ],
+      [
+       37.7349,
+       -4.6339
+      ]
+     ],
+     "km": 23,
+     "esito": "ok"
+    },
+    {
+     "da": "Santa Cruz",
+     "a": "Córdoba",
+     "linea_aria": 21,
+     "ll": [
+      [
+       37.7349,
+       -4.6339
+      ],
+      [
+       37.8846,
+       -4.776
+      ]
+     ],
+     "km": 26,
+     "esito": "ok"
+    },
+    {
+     "da": "Córdoba",
+     "a": "Cerro Muriano",
+     "linea_aria": 13,
+     "ll": [
+      [
+       37.8846,
+       -4.776
+      ],
+      [
+       38.0045,
+       -4.7683
+      ]
+     ],
+     "km": 17,
+     "esito": "ok"
+    },
+    {
+     "da": "Cerro Muriano",
+     "a": "Villaharta",
+     "linea_aria": 19,
+     "ll": [
+      [
+       38.0045,
+       -4.7683
+      ],
+      [
+       38.1401,
+       -4.9038
+      ]
+     ],
+     "km": 21,
+     "esito": "ok"
+    },
+    {
+     "da": "Villaharta",
+     "a": "Alcaracejos",
+     "linea_aria": 28,
+     "ll": [
+      [
+       38.1401,
+       -4.9038
+      ],
+      [
+       38.3893,
+       -4.9674
+      ]
+     ],
+     "km": 35,
+     "esito": "ok"
+    },
+    {
+     "da": "Alcaracejos",
+     "a": "Hinojosa del Duque",
+     "linea_aria": 20,
+     "ll": [
+      [
+       38.3893,
+       -4.9674
+      ],
+      [
+       38.5004,
+       -5.1479
+      ]
+     ],
+     "km": 22,
+     "esito": "ok"
+    },
+    {
+     "da": "Hinojosa del Duque",
+     "a": "Monterrubio de la Serena",
+     "linea_aria": 28,
+     "ll": [
+      [
+       38.5004,
+       -5.1479
+      ],
+      [
+       38.5893,
+       -5.4451
+      ]
+     ],
+     "km": 32,
+     "esito": "ok"
+    },
+    {
+     "da": "Monterrubio de la Serena",
+     "a": "Castuera",
+     "linea_aria": 17,
+     "ll": [
+      [
+       38.5893,
+       -5.4451
+      ],
+      [
+       38.7252,
+       -5.5461
+      ]
+     ],
+     "km": 19,
+     "esito": "ok"
+    },
+    {
+     "da": "Castuera",
+     "a": "Campanario",
+     "linea_aria": 17,
+     "ll": [
+      [
+       38.7252,
+       -5.5461
+      ],
+      [
+       38.8634,
+       -5.618
+      ]
+     ],
+     "km": 20,
+     "esito": "ok"
+    },
+    {
+     "da": "Campanario",
+     "a": "Don Benito",
+     "linea_aria": 23,
+     "ll": [
+      [
+       38.8634,
+       -5.618
+      ],
+      [
+       38.954,
+       -5.862
+      ]
+     ],
+     "km": 27,
+     "esito": "ok"
+    },
+    {
+     "da": "Don Benito",
+     "a": "Torrefresneda",
+     "linea_aria": 22,
+     "ll": [
+      [
+       38.954,
+       -5.862
+      ],
+      [
+       38.9896,
+       -6.1117
+      ]
+     ],
+     "km": 25,
+     "esito": "ok"
+    },
+    {
+     "da": "Torrefresneda",
+     "a": "Mérida",
+     "linea_aria": 21,
+     "ll": [
+      [
+       38.9896,
+       -6.1117
+      ],
+      [
+       38.9543,
+       -6.3505
+      ]
+     ],
+     "km": 32,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Spagna",
+   "cammino": "Camino del Sur",
+   "tratti": [
+    {
+     "da": "Huelva",
+     "a": "Trigueros",
+     "linea_aria": 17,
+     "ll": [
+      [
+       37.2576,
+       -6.9485
+      ],
+      [
+       37.3831,
+       -6.8341
+      ]
+     ],
+     "km": 19,
+     "esito": "ok"
+    },
+    {
+     "da": "Trigueros",
+     "a": "Valverde del Camino",
+     "linea_aria": 22,
+     "ll": [
+      [
+       37.3831,
+       -6.8341
+      ],
+      [
+       37.574,
+       -6.7544
+      ]
+     ],
+     "km": 27,
+     "esito": "ok"
+    },
+    {
+     "da": "Valverde del Camino",
+     "a": "Minas de Riotinto",
+     "linea_aria": 19,
+     "ll": [
+      [
+       37.574,
+       -6.7544
+      ],
+      [
+       37.6935,
+       -6.5958
+      ]
+     ],
+     "km": 26,
+     "esito": "ok"
+    },
+    {
+     "da": "Minas de Riotinto",
+     "a": "Campofrío",
+     "linea_aria": 8,
+     "ll": [
+      [
+       37.6935,
+       -6.5958
+      ],
+      [
+       37.7656,
+       -6.5767
+      ]
+     ],
+     "km": 10,
+     "esito": "ok"
+    },
+    {
+     "da": "Campofrío",
+     "a": "Aracena",
+     "linea_aria": 14,
+     "ll": [
+      [
+       37.7656,
+       -6.5767
+      ],
+      [
+       37.8949,
+       -6.5625
+      ]
+     ],
+     "km": 19,
+     "esito": "ok"
+    },
+    {
+     "da": "Aracena",
+     "a": "Cañaveral de León",
+     "linea_aria": 14,
+     "ll": [
+      [
+       37.8949,
+       -6.5625
+      ],
+      [
+       38.0148,
+       -6.5285
+      ]
+     ],
+     "km": 25,
+     "esito": "ok"
+    },
+    {
+     "da": "Cañaveral de León",
+     "a": "Segura de León",
+     "linea_aria": 12,
+     "ll": [
+      [
+       38.0148,
+       -6.5285
+      ],
+      [
+       38.1202,
+       -6.5287
+      ]
+     ],
+     "km": 17,
+     "esito": "ok"
+    },
+    {
+     "da": "Segura de León",
+     "a": "Valencia del Ventoso",
+     "linea_aria": 16,
+     "ll": [
+      [
+       38.1202,
+       -6.5287
+      ],
+      [
+       38.2493,
+       -6.4456
+      ]
+     ],
+     "km": 17,
+     "esito": "ok"
+    },
+    {
+     "da": "Valencia del Ventoso",
+     "a": "Zafra",
+     "linea_aria": 20,
+     "ll": [
+      [
+       38.2493,
+       -6.4456
+      ],
+      [
+       38.4254,
+       -6.4194
+      ]
+     ],
+     "esito": "GIRO LUNGHISSIMO (oltre 3 volte la linea d'aria)"
+    }
+   ],
+   "problemi": 1
+  },
+  {
+   "stato": "Spagna",
+   "cammino": "Ruta de la Lana",
+   "tratti": [
+    {
+     "da": "Alicante",
+     "a": "Orito",
+     "linea_aria": 18,
+     "ll": [
+      [
+       38.3436,
+       -0.4882
+      ],
+      [
+       38.3772,
+       -0.6897
+      ]
+     ],
+     "km": 23,
+     "esito": "ok"
+    },
+    {
+     "da": "Orito",
+     "a": "Petrer",
+     "linea_aria": 14,
+     "ll": [
+      [
+       38.3772,
+       -0.6897
+      ],
+      [
+       38.485,
+       -0.7704
+      ]
+     ],
+     "km": 20,
+     "esito": "ok"
+    },
+    {
+     "da": "Petrer",
+     "a": "Villena",
+     "linea_aria": 19,
+     "ll": [
+      [
+       38.485,
+       -0.7704
+      ],
+      [
+       38.6361,
+       -0.866
+      ]
+     ],
+     "km": 23,
+     "esito": "ok"
+    },
+    {
+     "da": "Villena",
+     "a": "Caudete",
+     "linea_aria": 13,
+     "ll": [
+      [
+       38.6361,
+       -0.866
+      ],
+      [
+       38.7063,
+       -0.9868
+      ]
+     ],
+     "km": 15,
+     "esito": "ok"
+    },
+    {
+     "da": "Caudete",
+     "a": "Almansa",
+     "linea_aria": 20,
+     "ll": [
+      [
+       38.7063,
+       -0.9868
+      ],
+      [
+       38.8682,
+       -1.0979
+      ]
+     ],
+     "esito": "GIRO LUNGHISSIMO (oltre 3 volte la linea d'aria)"
+    },
+    {
+     "da": "Almansa",
+     "a": "Alpera",
+     "linea_aria": 15,
+     "ll": [
+      [
+       38.8682,
+       -1.0979
+      ],
+      [
+       38.9597,
+       -1.2309
+      ]
+     ],
+     "esito": "FUORI RETE: Alpera"
+    },
+    {
+     "da": "Alpera",
+     "a": "Alatoz",
+     "linea_aria": 19,
+     "ll": [
+      [
+       38.9597,
+       -1.2309
+      ],
+      [
+       39.0955,
+       -1.3611
+      ]
+     ],
+     "esito": "FUORI RETE: Alpera, Alatoz"
+    },
+    {
+     "da": "Alatoz",
+     "a": "Casas Ibáñez",
+     "linea_aria": 23,
+     "ll": [
+      [
+       39.0955,
+       -1.3611
+      ],
+      [
+       39.2869,
+       -1.4707
+      ]
+     ],
+     "esito": "FUORI RETE: Alatoz, Casas Ibáñez"
+    },
+    {
+     "da": "Casas Ibáñez",
+     "a": "Villarta",
+     "linea_aria": 23,
+     "ll": [
+      [
+       39.2869,
+       -1.4707
+      ],
+      [
+       39.441,
+       -1.6511
+      ]
+     ],
+     "esito": "FUORI RETE: Casas Ibáñez"
+    },
+    {
+     "da": "Villarta",
+     "a": "Campillo de Altobuey",
+     "linea_aria": 23,
+     "ll": [
+      [
+       39.441,
+       -1.6511
+      ],
+      [
+       39.6113,
+       -1.7928
+      ]
+     ],
+     "km": 30,
+     "esito": "ok"
+    },
+    {
+     "da": "Campillo de Altobuey",
+     "a": "Monteagudo de las Salinas",
+     "linea_aria": 23,
+     "ll": [
+      [
+       39.6113,
+       -1.7928
+      ],
+      [
+       39.8047,
+       -1.9
+      ]
+     ],
+     "km": 34,
+     "esito": "ok"
+    },
+    {
+     "da": "Monteagudo de las Salinas",
+     "a": "Fuentes (Cuenca)",
+     "linea_aria": 19,
+     "ll": [
+      [
+       39.8047,
+       -1.9
+      ],
+      [
+       39.9504,
+       -2.021
+      ]
+     ],
+     "km": 23,
+     "esito": "ok"
+    },
+    {
+     "da": "Fuentes (Cuenca)",
+     "a": "Cuenca",
+     "linea_aria": 16,
+     "ll": [
+      [
+       39.9504,
+       -2.021
+      ],
+      [
+       40.0661,
+       -2.1313
+      ]
+     ],
+     "km": 21,
+     "esito": "ok"
+    },
+    {
+     "da": "Cuenca",
+     "a": "Villar de Domingo García",
+     "linea_aria": 20,
+     "ll": [
+      [
+       40.0661,
+       -2.1313
+      ],
+      [
+       40.2101,
+       -2.28
+      ]
+     ],
+     "esito": "FUORI RETE: Villar de Domingo García"
+    },
+    {
+     "da": "Villar de Domingo García",
+     "a": "Villaconejos de Trabaque",
+     "linea_aria": 21,
+     "ll": [
+      [
+       40.2101,
+       -2.28
+      ],
+      [
+       40.401,
+       -2.3181
+      ]
+     ],
+     "esito": "FUORI RETE: Villar de Domingo García"
+    },
+    {
+     "da": "Villaconejos de Trabaque",
+     "a": "Salmerón (Guadalajara)",
+     "linea_aria": 22,
+     "ll": [
+      [
+       40.401,
+       -2.3181
+      ],
+      [
+       40.545,
+       -2.4936
+      ]
+     ],
+     "km": 28,
+     "esito": "ok"
+    },
+    {
+     "da": "Salmerón (Guadalajara)",
+     "a": "Viana de Mondéjar",
+     "linea_aria": 13,
+     "ll": [
+      [
+       40.545,
+       -2.4936
+      ],
+      [
+       40.6498,
+       -2.5622
+      ]
+     ],
+     "km": 24,
+     "esito": "ok"
+    },
+    {
+     "da": "Viana de Mondéjar",
+     "a": "Cifuentes",
+     "linea_aria": 16,
+     "ll": [
+      [
+       40.6498,
+       -2.5622
+      ],
+      [
+       40.7855,
+       -2.6221
+      ]
+     ],
+     "km": 21,
+     "esito": "ok"
+    },
+    {
+     "da": "Cifuentes",
+     "a": "Mandayona",
+     "linea_aria": 22,
+     "ll": [
+      [
+       40.7855,
+       -2.6221
+      ],
+      [
+       40.9566,
+       -2.7497
+      ]
+     ],
+     "km": 26,
+     "esito": "ok"
+    },
+    {
+     "da": "Mandayona",
+     "a": "Atienza",
+     "linea_aria": 29,
+     "ll": [
+      [
+       40.9566,
+       -2.7497
+      ],
+      [
+       41.1992,
+       -2.8702
+      ]
+     ],
+     "km": 38,
+     "esito": "ok"
+    },
+    {
+     "da": "Atienza",
+     "a": "Retortillo de Soria",
+     "linea_aria": 16,
+     "ll": [
+      [
+       41.1992,
+       -2.8702
+      ],
+      [
+       41.3114,
+       -2.9823
+      ]
+     ],
+     "km": 23,
+     "esito": "ok"
+    },
+    {
+     "da": "Retortillo de Soria",
+     "a": "Fresno de Caracena",
+     "linea_aria": 18,
+     "ll": [
+      [
+       41.3114,
+       -2.9823
+      ],
+      [
+       41.4526,
+       -3.0912
+      ]
+     ],
+     "km": 24,
+     "esito": "ok"
+    },
+    {
+     "da": "Fresno de Caracena",
+     "a": "San Esteban de Gormaz",
+     "linea_aria": 16,
+     "ll": [
+      [
+       41.4526,
+       -3.0912
+      ],
+      [
+       41.5743,
+       -3.2041
+      ]
+     ],
+     "km": 20,
+     "esito": "ok"
+    },
+    {
+     "da": "San Esteban de Gormaz",
+     "a": "Quintanarraya",
+     "linea_aria": 27,
+     "ll": [
+      [
+       41.5743,
+       -3.2041
+      ],
+      [
+       41.8065,
+       -3.2801
+      ]
+     ],
+     "esito": "FUORI RETE: Quintanarraya"
+    },
+    {
+     "da": "Quintanarraya",
+     "a": "Santo Domingo de Silos",
+     "linea_aria": 21,
+     "ll": [
+      [
+       41.8065,
+       -3.2801
+      ],
+      [
+       41.9626,
+       -3.4186
+      ]
+     ],
+     "esito": "FUORI RETE: Quintanarraya"
+    },
+    {
+     "da": "Santo Domingo de Silos",
+     "a": "Mecerreyes",
+     "linea_aria": 20,
+     "ll": [
+      [
+       41.9626,
+       -3.4186
+      ],
+      [
+       42.0955,
+       -3.5742
+      ]
+     ],
+     "km": 24,
+     "esito": "ok"
+    },
+    {
+     "da": "Mecerreyes",
+     "a": "Burgos",
+     "linea_aria": 29,
+     "ll": [
+      [
+       42.0955,
+       -3.5742
+      ],
+      [
+       42.3449,
+       -3.6812
+      ]
+     ],
+     "km": 36,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 9
+  },
+  {
+   "stato": "Spagna",
+   "cammino": "Camino del Baztán",
+   "tratti": [
+    {
+     "da": "Bayonne",
+     "a": "Souraïde",
+     "linea_aria": 17,
+     "ll": [
+      [
+       43.4945,
+       -1.4737
+      ],
+      [
+       43.3415,
+       -1.4753
+      ]
+     ],
+     "km": 24,
+     "esito": "ok"
+    },
+    {
+     "da": "Souraïde",
+     "a": "Amaiur",
+     "linea_aria": 16,
+     "ll": [
+      [
+       43.3415,
+       -1.4753
+      ],
+      [
+       43.2016,
+       -1.4788
+      ]
+     ],
+     "km": 21,
+     "esito": "ok"
+    },
+    {
+     "da": "Amaiur",
+     "a": "Berroeta",
+     "linea_aria": 14,
+     "ll": [
+      [
+       43.2016,
+       -1.4788
+      ],
+      [
+       43.1046,
+       -1.5896
+      ]
+     ],
+     "km": 19,
+     "esito": "ok"
+    },
+    {
+     "da": "Berroeta",
+     "a": "Olagüe",
+     "linea_aria": 16,
+     "ll": [
+      [
+       43.1046,
+       -1.5896
+      ],
+      [
+       42.9634,
+       -1.6186
+      ]
+     ],
+     "km": 20,
+     "esito": "ok"
+    },
+    {
+     "da": "Olagüe",
+     "a": "Pamplona",
+     "linea_aria": 17,
+     "ll": [
+      [
+       42.9634,
+       -1.6186
+      ],
+      [
+       42.8157,
+       -1.6522
+      ]
+     ],
+     "km": 25,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Spagna",
+   "cammino": "Camino del Ebro",
+   "tratti": [
+    {
+     "da": "Deltebre",
+     "a": "La Ràpita",
+     "linea_aria": 16,
+     "ll": [
+      [
+       40.7204,
+       0.7243
+      ],
+      [
+       40.6178,
+       0.59
+      ]
+     ],
+     "km": 22,
+     "esito": "ok"
+    },
+    {
+     "da": "La Ràpita",
+     "a": "Tortosa",
+     "linea_aria": 22,
+     "ll": [
+      [
+       40.6178,
+       0.59
+      ],
+      [
+       40.811,
+       0.5209
+      ]
+     ],
+     "km": 29,
+     "esito": "ok"
+    },
+    {
+     "da": "Tortosa",
+     "a": "Xerta",
+     "linea_aria": 11,
+     "ll": [
+      [
+       40.811,
+       0.5209
+      ],
+      [
+       40.908,
+       0.4911
+      ]
+     ],
+     "km": 15,
+     "esito": "ok"
+    },
+    {
+     "da": "Xerta",
+     "a": "Gandesa",
+     "linea_aria": 17,
+     "ll": [
+      [
+       40.908,
+       0.4911
+      ],
+      [
+       41.052,
+       0.4389
+      ]
+     ],
+     "km": 26,
+     "esito": "ok"
+    },
+    {
+     "da": "Gandesa",
+     "a": "Fabara",
+     "linea_aria": 27,
+     "ll": [
+      [
+       41.052,
+       0.4389
+      ],
+      [
+       41.1779,
+       0.1676
+      ]
+     ],
+     "km": 30,
+     "esito": "ok"
+    },
+    {
+     "da": "Fabara",
+     "a": "Caspe",
+     "linea_aria": 19,
+     "ll": [
+      [
+       41.1779,
+       0.1676
+      ],
+      [
+       41.2368,
+       -0.0395
+      ]
+     ],
+     "km": 22,
+     "esito": "ok"
+    },
+    {
+     "da": "Caspe",
+     "a": "Escatrón",
+     "linea_aria": 25,
+     "ll": [
+      [
+       41.2368,
+       -0.0395
+      ],
+      [
+       41.2871,
+       -0.325
+      ]
+     ],
+     "km": 30,
+     "esito": "ok"
+    },
+    {
+     "da": "Escatrón",
+     "a": "Quinto",
+     "linea_aria": 21,
+     "ll": [
+      [
+       41.2871,
+       -0.325
+      ],
+      [
+       41.4249,
+       -0.4976
+      ]
+     ],
+     "km": 35,
+     "esito": "ok"
+    },
+    {
+     "da": "Quinto",
+     "a": "El Burgo de Ebro",
+     "linea_aria": 26,
+     "ll": [
+      [
+       41.4249,
+       -0.4976
+      ],
+      [
+       41.5722,
+       -0.7424
+      ]
+     ],
+     "esito": "FUORI RETE: El Burgo de Ebro"
+    },
+    {
+     "da": "El Burgo de Ebro",
+     "a": "Zaragoza",
+     "linea_aria": 19,
+     "ll": [
+      [
+       41.5722,
+       -0.7424
+      ],
+      [
+       41.6916,
+       -0.9101
+      ]
+     ],
+     "esito": "FUORI RETE: El Burgo de Ebro, Zaragoza"
+    },
+    {
+     "da": "Zaragoza",
+     "a": "Alagón",
+     "linea_aria": 19,
+     "ll": [
+      [
+       41.6916,
+       -0.9101
+      ],
+      [
+       41.7711,
+       -1.1189
+      ]
+     ],
+     "esito": "FUORI RETE: Zaragoza, Alagón"
+    },
+    {
+     "da": "Alagón",
+     "a": "Gallur",
+     "linea_aria": 20,
+     "ll": [
+      [
+       41.7711,
+       -1.1189
+      ],
+      [
+       41.869,
+       -1.3183
+      ]
+     ],
+     "esito": "FUORI RETE: Alagón"
+    },
+    {
+     "da": "Gallur",
+     "a": "Tudela",
+     "linea_aria": 35,
+     "ll": [
+      [
+       41.869,
+       -1.3183
+      ],
+      [
+       42.0783,
+       -1.6387
+      ]
+     ],
+     "esito": "FUORI RETE: Tudela"
+    },
+    {
+     "da": "Tudela",
+     "a": "Alfaro",
+     "linea_aria": 14,
+     "ll": [
+      [
+       42.0783,
+       -1.6387
+      ],
+      [
+       42.1786,
+       -1.7492
+      ]
+     ],
+     "esito": "FUORI RETE: Tudela, Alfaro"
+    },
+    {
+     "da": "Alfaro",
+     "a": "Calahorra",
+     "linea_aria": 23,
+     "ll": [
+      [
+       42.1786,
+       -1.7492
+      ],
+      [
+       42.3035,
+       -1.9649
+      ]
+     ],
+     "esito": "FUORI RETE: Alfaro, Calahorra"
+    },
+    {
+     "da": "Calahorra",
+     "a": "Alcanadre",
+     "linea_aria": 17,
+     "ll": [
+      [
+       42.3035,
+       -1.9649
+      ],
+      [
+       42.4051,
+       -2.1199
+      ]
+     ],
+     "esito": "FUORI RETE: Calahorra, Alcanadre"
+    },
+    {
+     "da": "Alcanadre",
+     "a": "Logroño",
+     "linea_aria": 27,
+     "ll": [
+      [
+       42.4051,
+       -2.1199
+      ],
+      [
+       42.4661,
+       -2.4397
+      ]
+     ],
+     "esito": "FUORI RETE: Alcanadre"
+    }
+   ],
+   "problemi": 9
+  },
+  {
+   "stato": "Spagna",
+   "cammino": "Camino Olvidado",
+   "tratti": [
+    {
+     "da": "Bilbao",
+     "a": "Mimétiz",
+     "linea_aria": 17,
+     "ll": [
+      [
+       43.263,
+       -2.935
+      ],
+      [
+       43.2139,
+       -3.1311
+      ]
+     ],
+     "esito": "FUORI RETE: Mimétiz"
+    },
+    {
+     "da": "Mimétiz",
+     "a": "Villasana de Mena",
+     "linea_aria": 18,
+     "ll": [
+      [
+       43.2139,
+       -3.1311
+      ],
+      [
+       43.1005,
+       -3.283
+      ]
+     ],
+     "esito": "FUORI RETE: Mimétiz, Villasana de Mena"
+    },
+    {
+     "da": "Villasana de Mena",
+     "a": "Espinosa de los Monteros",
+     "linea_aria": 27,
+     "ll": [
+      [
+       43.1005,
+       -3.283
+      ],
+      [
+       43.1114,
+       -3.6207
+      ]
+     ],
+     "esito": "FUORI RETE: Villasana de Mena, Espinosa de los Monteros"
+    },
+    {
+     "da": "Espinosa de los Monteros",
+     "a": "Santelices",
+     "linea_aria": 16,
+     "ll": [
+      [
+       43.1114,
+       -3.6207
+      ],
+      [
+       43.0029,
+       -3.7427
+      ]
+     ],
+     "esito": "FUORI RETE: Espinosa de los Monteros, Santelices"
+    },
+    {
+     "da": "Santelices",
+     "a": "Arija",
+     "linea_aria": 17,
+     "ll": [
+      [
+       43.0029,
+       -3.7427
+      ],
+      [
+       42.9916,
+       -3.9452
+      ]
+     ],
+     "esito": "FUORI RETE: Santelices, Arija"
+    },
+    {
+     "da": "Arija",
+     "a": "Olea",
+     "linea_aria": 21,
+     "ll": [
+      [
+       42.9916,
+       -3.9452
+      ],
+      [
+       42.9397,
+       -4.1885
+      ]
+     ],
+     "esito": "FUORI RETE: Arija, Olea"
+    },
+    {
+     "da": "Olea",
+     "a": "Aguilar de Campoo",
+     "linea_aria": 19,
+     "ll": [
+      [
+       42.9397,
+       -4.1885
+      ],
+      [
+       42.7956,
+       -4.3037
+      ]
+     ],
+     "esito": "FUORI RETE: Olea, Aguilar de Campoo"
+    },
+    {
+     "da": "Aguilar de Campoo",
+     "a": "Cervera de Pisuerga",
+     "linea_aria": 17,
+     "ll": [
+      [
+       42.7956,
+       -4.3037
+      ],
+      [
+       42.8635,
+       -4.4972
+      ]
+     ],
+     "esito": "FUORI RETE: Aguilar de Campoo"
+    },
+    {
+     "da": "Cervera de Pisuerga",
+     "a": "Tarilonte de la Peña",
+     "linea_aria": 15,
+     "ll": [
+      [
+       42.8635,
+       -4.4972
+      ],
+      [
+       42.8194,
+       -4.6684
+      ]
+     ],
+     "esito": "FUORI RETE: Tarilonte de la Peña"
+    },
+    {
+     "da": "Tarilonte de la Peña",
+     "a": "Guardo",
+     "linea_aria": 15,
+     "ll": [
+      [
+       42.8194,
+       -4.6684
+      ],
+      [
+       42.7895,
+       -4.8463
+      ]
+     ],
+     "esito": "FUORI RETE: Tarilonte de la Peña, Guardo"
+    },
+    {
+     "da": "Guardo",
+     "a": "Puente Almuhey",
+     "linea_aria": 10,
+     "ll": [
+      [
+       42.7895,
+       -4.8463
+      ],
+      [
+       42.786,
+       -4.9745
+      ]
+     ],
+     "esito": "FUORI RETE: Guardo, Puente Almuhey"
+    },
+    {
+     "da": "Puente Almuhey",
+     "a": "Cistierna",
+     "linea_aria": 12,
+     "ll": [
+      [
+       42.786,
+       -4.9745
+      ],
+      [
+       42.8031,
+       -5.1256
+      ]
+     ],
+     "esito": "FUORI RETE: Puente Almuhey"
+    },
+    {
+     "da": "Cistierna",
+     "a": "Boñar",
+     "linea_aria": 18,
+     "ll": [
+      [
+       42.8031,
+       -5.1256
+      ],
+      [
+       42.8668,
+       -5.3233
+      ]
+     ],
+     "esito": "FUORI RETE: Boñar"
+    },
+    {
+     "da": "Boñar",
+     "a": "Robles de la Valcueva",
+     "linea_aria": 15,
+     "ll": [
+      [
+       42.8668,
+       -5.3233
+      ],
+      [
+       42.8383,
+       -5.5073
+      ]
+     ],
+     "esito": "FUORI RETE: Boñar, Robles de la Valcueva"
+    },
+    {
+     "da": "Robles de la Valcueva",
+     "a": "La Robla",
+     "linea_aria": 11,
+     "ll": [
+      [
+       42.8383,
+       -5.5073
+      ],
+      [
+       42.8029,
+       -5.6292
+      ]
+     ],
+     "esito": "FUORI RETE: Robles de la Valcueva"
+    },
+    {
+     "da": "La Robla",
+     "a": "La Magdalena",
+     "linea_aria": 14,
+     "ll": [
+      [
+       42.8029,
+       -5.6292
+      ],
+      [
+       42.7844,
+       -5.8035
+      ]
+     ],
+     "esito": "FUORI RETE: La Magdalena"
+    },
+    {
+     "da": "La Magdalena",
+     "a": "Riello",
+     "linea_aria": 12,
+     "ll": [
+      [
+       42.7844,
+       -5.8035
+      ],
+      [
+       42.7735,
+       -5.945
+      ]
+     ],
+     "esito": "FUORI RETE: La Magdalena, Riello"
+    },
+    {
+     "da": "Riello",
+     "a": "Fasgar",
+     "linea_aria": 23,
+     "ll": [
+      [
+       42.7735,
+       -5.945
+      ],
+      [
+       42.8088,
+       -6.2219
+      ]
+     ],
+     "esito": "FUORI RETE: Riello, Fasgar"
+    },
+    {
+     "da": "Fasgar",
+     "a": "Igüeña",
+     "linea_aria": 8,
+     "ll": [
+      [
+       42.8088,
+       -6.2219
+      ],
+      [
+       42.7362,
+       -6.2439
+      ]
+     ],
+     "esito": "FUORI RETE: Fasgar, Igüeña"
+    },
+    {
+     "da": "Igüeña",
+     "a": "Labaniego",
+     "linea_aria": 15,
+     "ll": [
+      [
+       42.7362,
+       -6.2439
+      ],
+      [
+       42.6678,
+       -6.4061
+      ]
+     ],
+     "esito": "FUORI RETE: Igüeña, Labaniego"
+    },
+    {
+     "da": "Labaniego",
+     "a": "Congosto",
+     "linea_aria": 11,
+     "ll": [
+      [
+       42.6678,
+       -6.4061
+      ],
+      [
+       42.6175,
+       -6.5201
+      ]
+     ],
+     "esito": "FUORI RETE: Labaniego, Congosto"
+    },
+    {
+     "da": "Congosto",
+     "a": "Cabañas Raras",
+     "linea_aria": 9,
+     "ll": [
+      [
+       42.6175,
+       -6.5201
+      ],
+      [
+       42.6211,
+       -6.6301
+      ]
+     ],
+     "esito": "FUORI RETE: Congosto, Cabañas Raras"
+    },
+    {
+     "da": "Cabañas Raras",
+     "a": "Villafranca del Bierzo",
+     "linea_aria": 16,
+     "ll": [
+      [
+       42.6211,
+       -6.6301
+      ],
+      [
+       42.6953,
+       -6.7931
+      ]
+     ],
+     "esito": "FUORI RETE: Cabañas Raras, Villafranca del Bierzo"
+    }
+   ],
+   "problemi": 23
+  },
+  {
+   "stato": "Spagna",
+   "cammino": "Camino Catalán",
+   "tratti": [
+    {
+     "da": "Barcelona",
+     "a": "Sant Cugat del Vallès",
+     "linea_aria": 12,
+     "ll": [
+      [
+       41.3826,
+       2.1771
+      ],
+      [
+       41.4708,
+       2.0849
+      ]
+     ],
+     "esito": "FUORI RETE: Barcelona, Sant Cugat del Vallès"
+    },
+    {
+     "da": "Sant Cugat del Vallès",
+     "a": "Esparreguera",
+     "linea_aria": 19,
+     "ll": [
+      [
+       41.4708,
+       2.0849
+      ],
+      [
+       41.5389,
+       1.8706
+      ]
+     ],
+     "esito": "FUORI RETE: Sant Cugat del Vallès"
+    },
+    {
+     "da": "Esparreguera",
+     "a": "Monestir de Montserrat",
+     "linea_aria": 7,
+     "ll": [
+      [
+       41.5389,
+       1.8706
+      ],
+      [
+       41.5942,
+       1.8396
+      ]
+     ],
+     "km": 15,
+     "esito": "ok"
+    },
+    {
+     "da": "Monestir de Montserrat",
+     "a": "Igualada",
+     "linea_aria": 19,
+     "ll": [
+      [
+       41.5942,
+       1.8396
+      ],
+      [
+       41.579,
+       1.6174
+      ]
+     ],
+     "km": 26,
+     "esito": "ok"
+    },
+    {
+     "da": "Igualada",
+     "a": "La Panadella",
+     "linea_aria": 19,
+     "ll": [
+      [
+       41.579,
+       1.6174
+      ],
+      [
+       41.618,
+       1.4003
+      ]
+     ],
+     "km": 23,
+     "esito": "ok"
+    },
+    {
+     "da": "La Panadella",
+     "a": "Tàrrega",
+     "linea_aria": 22,
+     "ll": [
+      [
+       41.618,
+       1.4003
+      ],
+      [
+       41.6473,
+       1.1409
+      ]
+     ],
+     "km": 27,
+     "esito": "ok"
+    },
+    {
+     "da": "Tàrrega",
+     "a": "El Palau d'Anglesola",
+     "linea_aria": 22,
+     "ll": [
+      [
+       41.6473,
+       1.1409
+      ],
+      [
+       41.6519,
+       0.8806
+      ]
+     ],
+     "km": 30,
+     "esito": "ok"
+    },
+    {
+     "da": "El Palau d'Anglesola",
+     "a": "Lleida",
+     "linea_aria": 21,
+     "ll": [
+      [
+       41.6519,
+       0.8806
+      ],
+      [
+       41.6148,
+       0.6268
+      ]
+     ],
+     "km": 25,
+     "esito": "ok"
+    },
+    {
+     "da": "Lleida",
+     "a": "Fraga",
+     "linea_aria": 38,
+     "ll": [
+      [
+       41.6148,
+       0.6268
+      ],
+      [
+       41.4763,
+       0.2036
+      ]
+     ],
+     "esito": "FUORI RETE: Fraga"
+    },
+    {
+     "da": "Fraga",
+     "a": "Candasnos",
+     "linea_aria": 11,
+     "ll": [
+      [
+       41.4763,
+       0.2036
+      ],
+      [
+       41.4905,
+       0.0669
+      ]
+     ],
+     "esito": "FUORI RETE: Fraga, Candasnos"
+    },
+    {
+     "da": "Candasnos",
+     "a": "Bujaraloz",
+     "linea_aria": 18,
+     "ll": [
+      [
+       41.4905,
+       0.0669
+      ],
+      [
+       41.4528,
+       -0.1483
+      ]
+     ],
+     "esito": "FUORI RETE: Candasnos, Bujaraloz"
+    },
+    {
+     "da": "Bujaraloz",
+     "a": "Pina de Ebro",
+     "linea_aria": 32,
+     "ll": [
+      [
+       41.4528,
+       -0.1483
+      ],
+      [
+       41.4892,
+       -0.5263
+      ]
+     ],
+     "esito": "FUORI RETE: Bujaraloz"
+    },
+    {
+     "da": "Pina de Ebro",
+     "a": "El Burgo de Ebro",
+     "linea_aria": 20,
+     "ll": [
+      [
+       41.4892,
+       -0.5263
+      ],
+      [
+       41.5722,
+       -0.7424
+      ]
+     ],
+     "esito": "FUORI RETE: El Burgo de Ebro"
+    }
+   ],
+   "problemi": 7
+  },
+  {
+   "stato": "Spagna",
+   "cammino": "Vía Augusta",
+   "tratti": [
+    {
+     "da": "Cádiz",
+     "a": "Puerto Real",
+     "linea_aria": 9,
+     "ll": [
+      [
+       36.5297,
+       -6.2929
+      ],
+      [
+       36.5287,
+       -6.1902
+      ]
+     ],
+     "km": 27,
+     "esito": "GIRO LUNGO"
+    },
+    {
+     "da": "Puerto Real",
+     "a": "Jerez de la Frontera",
+     "linea_aria": 18,
+     "ll": [
+      [
+       36.5287,
+       -6.1902
+      ],
+      [
+       36.6817,
+       -6.1377
+      ]
+     ],
+     "km": 24,
+     "esito": "ok"
+    },
+    {
+     "da": "Jerez de la Frontera",
+     "a": "El Cuervo de Sevilla",
+     "linea_aria": 21,
+     "ll": [
+      [
+       36.6817,
+       -6.1377
+      ],
+      [
+       36.8535,
+       -6.0388
+      ]
+     ],
+     "km": 27,
+     "esito": "ok"
+    },
+    {
+     "da": "El Cuervo de Sevilla",
+     "a": "Las Cabezas de San Juan",
+     "linea_aria": 17,
+     "ll": [
+      [
+       36.8535,
+       -6.0388
+      ],
+      [
+       36.9807,
+       -5.9407
+      ]
+     ],
+     "esito": "GIRO LUNGHISSIMO (oltre 3 volte la linea d'aria)"
+    },
+    {
+     "da": "Las Cabezas de San Juan",
+     "a": "Utrera",
+     "linea_aria": 26,
+     "ll": [
+      [
+       36.9807,
+       -5.9407
+      ],
+      [
+       37.1825,
+       -5.7817
+      ]
+     ],
+     "km": 32,
+     "esito": "ok"
+    },
+    {
+     "da": "Utrera",
+     "a": "Alcalá de Guadaíra",
+     "linea_aria": 18,
+     "ll": [
+      [
+       37.1825,
+       -5.7817
+      ],
+      [
+       37.3398,
+       -5.8408
+      ]
+     ],
+     "km": 20,
+     "esito": "ok"
+    },
+    {
+     "da": "Alcalá de Guadaíra",
+     "a": "Sevilla",
+     "linea_aria": 15,
+     "ll": [
+      [
+       37.3398,
+       -5.8408
+      ],
+      [
+       37.3886,
+       -5.9953
+      ]
+     ],
+     "esito": "NON COLLEGATO"
+    }
+   ],
+   "problemi": 3
+  },
+  {
+   "stato": "Spagna",
+   "cammino": "Camino Vadiniense",
+   "tratti": [
+    {
+     "da": "San Vicente de la Barquera",
+     "a": "Cades",
+     "linea_aria": 10,
+     "ll": [
+      [
+       43.3832,
+       -4.4003
+      ],
+      [
+       43.304,
+       -4.4685
+      ]
+     ],
+     "km": 26,
+     "esito": "ok"
+    },
+    {
+     "da": "Cades",
+     "a": "Cicera",
+     "linea_aria": 10,
+     "ll": [
+      [
+       43.304,
+       -4.4685
+      ],
+      [
+       43.2361,
+       -4.5503
+      ]
+     ],
+     "km": 16,
+     "esito": "ok"
+    },
+    {
+     "da": "Cicera",
+     "a": "Potes",
+     "linea_aria": 11,
+     "ll": [
+      [
+       43.2361,
+       -4.5503
+      ],
+      [
+       43.1537,
+       -4.6234
+      ]
+     ],
+     "km": 22,
+     "esito": "ok"
+    },
+    {
+     "da": "Potes",
+     "a": "Espinama",
+     "linea_aria": 14,
+     "ll": [
+      [
+       43.1537,
+       -4.6234
+      ],
+      [
+       43.1278,
+       -4.787
+      ]
+     ],
+     "km": 25,
+     "esito": "ok"
+    },
+    {
+     "da": "Espinama",
+     "a": "Portilla de la Reina",
+     "linea_aria": 11,
+     "ll": [
+      [
+       43.1278,
+       -4.787
+      ],
+      [
+       43.042,
+       -4.8518
+      ]
+     ],
+     "km": 24,
+     "esito": "ok"
+    },
+    {
+     "da": "Portilla de la Reina",
+     "a": "Riaño",
+     "linea_aria": 15,
+     "ll": [
+      [
+       43.042,
+       -4.8518
+      ],
+      [
+       42.9756,
+       -5.0057
+      ]
+     ],
+     "km": 20,
+     "esito": "ok"
+    },
+    {
+     "da": "Riaño",
+     "a": "Crémenes",
+     "linea_aria": 14,
+     "ll": [
+      [
+       42.9756,
+       -5.0057
+      ],
+      [
+       42.9034,
+       -5.1431
+      ]
+     ],
+     "km": 19,
+     "esito": "ok"
+    },
+    {
+     "da": "Crémenes",
+     "a": "Cistierna",
+     "linea_aria": 11,
+     "ll": [
+      [
+       42.9034,
+       -5.1431
+      ],
+      [
+       42.8031,
+       -5.1256
+      ]
+     ],
+     "km": 16,
+     "esito": "ok"
+    },
+    {
+     "da": "Cistierna",
+     "a": "Gradefes",
+     "linea_aria": 22,
+     "ll": [
+      [
+       42.8031,
+       -5.1256
+      ],
+      [
+       42.6241,
+       -5.227
+      ]
+     ],
+     "km": 23,
+     "esito": "ok"
+    },
+    {
+     "da": "Gradefes",
+     "a": "Mansilla de las Mulas",
+     "linea_aria": 21,
+     "ll": [
+      [
+       42.6241,
+       -5.227
+      ],
+      [
+       42.4991,
+       -5.4169
       ]
      ],
      "km": 23,
@@ -1809,121 +6811,478 @@
    "tratti": [
     {
      "da": "Le Puy-en-Velay",
-     "a": "Conques",
-     "linea_aria": 127,
+     "a": "Saint-Privat-d'Allier",
+     "linea_aria": 17,
      "ll": [
       [
-       45.043,
-       3.885
+       45.046,
+       3.8855
       ],
       [
-       44.599,
-       2.398
+       44.9901,
+       3.6785
       ]
      ],
-     "km": 206,
+     "km": 24,
+     "esito": "ok"
+    },
+    {
+     "da": "Saint-Privat-d'Allier",
+     "a": "Saugues",
+     "linea_aria": 11,
+     "ll": [
+      [
+       44.9901,
+       3.6785
+      ],
+      [
+       44.9592,
+       3.5446
+      ]
+     ],
+     "km": 20,
+     "esito": "ok"
+    },
+    {
+     "da": "Saugues",
+     "a": "Aumont-Aubrac",
+     "linea_aria": 33,
+     "ll": [
+      [
+       44.9592,
+       3.5446
+      ],
+      [
+       44.7226,
+       3.2842
+      ]
+     ],
+     "km": 48,
+     "esito": "ok"
+    },
+    {
+     "da": "Aumont-Aubrac",
+     "a": "Nasbinals",
+     "linea_aria": 20,
+     "ll": [
+      [
+       44.7226,
+       3.2842
+      ],
+      [
+       44.6625,
+       3.0466
+      ]
+     ],
+     "km": 26,
+     "esito": "ok"
+    },
+    {
+     "da": "Nasbinals",
+     "a": "Saint-Côme-d'Olt",
+     "linea_aria": 25,
+     "ll": [
+      [
+       44.6625,
+       3.0466
+      ],
+      [
+       44.5149,
+       2.815
+      ]
+     ],
+     "km": 33,
+     "esito": "ok"
+    },
+    {
+     "da": "Saint-Côme-d'Olt",
+     "a": "Estaing",
+     "linea_aria": 12,
+     "ll": [
+      [
+       44.5149,
+       2.815
+      ],
+      [
+       44.5537,
+       2.6732
+      ]
+     ],
+     "km": 21,
+     "esito": "ok"
+    },
+    {
+     "da": "Estaing",
+     "a": "Espeyrac",
+     "linea_aria": 14,
+     "ll": [
+      [
+       44.5537,
+       2.6732
+      ],
+      [
+       44.6133,
+       2.5107
+      ]
+     ],
+     "km": 23,
+     "esito": "ok"
+    },
+    {
+     "da": "Espeyrac",
+     "a": "Conques",
+     "linea_aria": 9,
+     "ll": [
+      [
+       44.6133,
+       2.5107
+      ],
+      [
+       44.5996,
+       2.3982
+      ]
+     ],
+     "km": 12,
      "esito": "ok"
     },
     {
      "da": "Conques",
-     "a": "Figeac",
-     "linea_aria": 29,
+     "a": "Livinhac-le-Haut",
+     "linea_aria": 13,
      "ll": [
       [
-       44.599,
-       2.398
+       44.5996,
+       2.3982
       ],
       [
-       44.609,
-       2.03
+       44.5915,
+       2.2285
       ]
      ],
-     "km": 47,
+     "km": 24,
+     "esito": "ok"
+    },
+    {
+     "da": "Livinhac-le-Haut",
+     "a": "Figeac",
+     "linea_aria": 16,
+     "ll": [
+      [
+       44.5915,
+       2.2285
+      ],
+      [
+       44.6092,
+       2.0324
+      ]
+     ],
+     "km": 23,
      "esito": "ok"
     },
     {
      "da": "Figeac",
-     "a": "Cahors",
-     "linea_aria": 50,
+     "a": "Cajarc",
+     "linea_aria": 20,
      "ll": [
       [
-       44.609,
-       2.03
+       44.6092,
+       2.0324
       ],
       [
-       44.447,
-       1.441
+       44.4864,
+       1.8421
       ]
      ],
-     "km": 90,
+     "km": 31,
+     "esito": "ok"
+    },
+    {
+     "da": "Cajarc",
+     "a": "Varaire",
+     "linea_aria": 17,
+     "ll": [
+      [
+       44.4864,
+       1.8421
+      ],
+      [
+       44.357,
+       1.7231
+      ]
+     ],
+     "km": 27,
+     "esito": "ok"
+    },
+    {
+     "da": "Varaire",
+     "a": "Cahors",
+     "linea_aria": 25,
+     "ll": [
+      [
+       44.357,
+       1.7231
+      ],
+      [
+       44.4495,
+       1.4365
+      ]
+     ],
+     "km": 33,
      "esito": "ok"
     },
     {
      "da": "Cahors",
-     "a": "Moissac",
-     "linea_aria": 47,
+     "a": "Lascabanes",
+     "linea_aria": 16,
      "ll": [
       [
-       44.447,
-       1.441
+       44.4495,
+       1.4365
       ],
       [
-       44.105,
-       1.085
+       44.3398,
+       1.3066
       ]
      ],
-     "km": 76,
+     "km": 23,
+     "esito": "ok"
+    },
+    {
+     "da": "Lascabanes",
+     "a": "Lauzerte",
+     "linea_aria": 16,
+     "ll": [
+      [
+       44.3398,
+       1.3066
+      ],
+      [
+       44.2565,
+       1.1383
+      ]
+     ],
+     "km": 25,
+     "esito": "ok"
+    },
+    {
+     "da": "Lauzerte",
+     "a": "Moissac",
+     "linea_aria": 17,
+     "ll": [
+      [
+       44.2565,
+       1.1383
+      ],
+      [
+       44.1051,
+       1.0847
+      ]
+     ],
+     "km": 28,
      "esito": "ok"
     },
     {
      "da": "Moissac",
-     "a": "Lectoure",
-     "linea_aria": 42,
+     "a": "Auvillar",
+     "linea_aria": 15,
      "ll": [
       [
-       44.105,
-       1.085
+       44.1051,
+       1.0847
       ],
       [
-       43.934,
-       0.623
+       44.0706,
+       0.8995
       ]
      ],
-     "km": 53,
+     "km": 20,
+     "esito": "ok"
+    },
+    {
+     "da": "Auvillar",
+     "a": "Lectoure",
+     "linea_aria": 27,
+     "ll": [
+      [
+       44.0706,
+       0.8995
+      ],
+      [
+       43.9353,
+       0.6219
+      ]
+     ],
+     "km": 33,
      "esito": "ok"
     },
     {
      "da": "Lectoure",
-     "a": "Navarrenx",
-     "linea_aria": 131,
+     "a": "Condom",
+     "linea_aria": 20,
      "ll": [
       [
-       43.934,
-       0.623
+       43.9353,
+       0.6219
       ],
       [
-       43.32,
-       -0.759
+       43.9561,
+       0.3743
       ]
      ],
-     "km": 211,
+     "km": 32,
+     "esito": "ok"
+    },
+    {
+     "da": "Condom",
+     "a": "Eauze",
+     "linea_aria": 24,
+     "ll": [
+      [
+       43.9561,
+       0.3743
+      ],
+      [
+       43.8614,
+       0.1003
+      ]
+     ],
+     "km": 34,
+     "esito": "ok"
+    },
+    {
+     "da": "Eauze",
+     "a": "Nogaro",
+     "linea_aria": 16,
+     "ll": [
+      [
+       43.8614,
+       0.1003
+      ],
+      [
+       43.7592,
+       -0.0328
+      ]
+     ],
+     "km": 21,
+     "esito": "ok"
+    },
+    {
+     "da": "Nogaro",
+     "a": "Aire-sur-l'Adour",
+     "linea_aria": 20,
+     "ll": [
+      [
+       43.7592,
+       -0.0328
+      ],
+      [
+       43.7007,
+       -0.2647
+      ]
+     ],
+     "km": 28,
+     "esito": "ok"
+    },
+    {
+     "da": "Aire-sur-l'Adour",
+     "a": "Arzacq-Arraziguet",
+     "linea_aria": 22,
+     "ll": [
+      [
+       43.7007,
+       -0.2647
+      ],
+      [
+       43.5363,
+       -0.4117
+      ]
+     ],
+     "km": 34,
+     "esito": "ok"
+    },
+    {
+     "da": "Arzacq-Arraziguet",
+     "a": "Arthez-de-Béarn",
+     "linea_aria": 18,
+     "ll": [
+      [
+       43.5363,
+       -0.4117
+      ],
+      [
+       43.4646,
+       -0.615
+      ]
+     ],
+     "km": 30,
+     "esito": "ok"
+    },
+    {
+     "da": "Arthez-de-Béarn",
+     "a": "Navarrenx",
+     "linea_aria": 20,
+     "ll": [
+      [
+       43.4646,
+       -0.615
+      ],
+      [
+       43.3222,
+       -0.761
+      ]
+     ],
+     "km": 32,
      "esito": "ok"
     },
     {
      "da": "Navarrenx",
-     "a": "Saint-Jean-Pied-de-Port",
-     "linea_aria": 42,
+     "a": "Aroue",
+     "linea_aria": 13,
      "ll": [
       [
-       43.32,
-       -0.759
+       43.3222,
+       -0.761
+      ],
+      [
+       43.318,
+       -0.9186
+      ]
+     ],
+     "km": 19,
+     "esito": "ok"
+    },
+    {
+     "da": "Aroue",
+     "a": "Ostabat",
+     "linea_aria": 14,
+     "ll": [
+      [
+       43.318,
+       -0.9186
+      ],
+      [
+       43.2563,
+       -1.0708
+      ]
+     ],
+     "km": 24,
+     "esito": "ok"
+    },
+    {
+     "da": "Ostabat",
+     "a": "Saint-Jean-Pied-de-Port",
+     "linea_aria": 17,
+     "ll": [
+      [
+       43.2563,
+       -1.0708
       ],
       [
        43.163,
-       -1.237
+       -1.2381
       ]
      ],
-     "km": 66,
+     "km": 23,
      "esito": "ok"
     }
    ],
@@ -1935,104 +7294,563 @@
    "tratti": [
     {
      "da": "Arles",
-     "a": "Montpellier",
-     "linea_aria": 61,
+     "a": "Saint-Gilles",
+     "linea_aria": 16,
+     "ll": [
+      [
+       43.6776,
+       4.631
+      ],
+      [
+       43.677,
+       4.4318
+      ]
+     ],
+     "km": 23,
+     "esito": "ok"
+    },
+    {
+     "da": "Saint-Gilles",
+     "a": "Gallargues-le-Montueux",
+     "linea_aria": 21,
      "ll": [
       [
        43.677,
-       4.63
+       4.4318
       ],
       [
-       43.61,
-       3.877
+       43.7221,
+       4.1744
       ]
      ],
-     "km": 95,
+     "km": 30,
+     "esito": "ok"
+    },
+    {
+     "da": "Gallargues-le-Montueux",
+     "a": "Vendargues",
+     "linea_aria": 18,
+     "ll": [
+      [
+       43.7221,
+       4.1744
+      ],
+      [
+       43.6568,
+       3.9687
+      ]
+     ],
+     "km": 30,
+     "esito": "ok"
+    },
+    {
+     "da": "Vendargues",
+     "a": "Montpellier",
+     "linea_aria": 9,
+     "ll": [
+      [
+       43.6568,
+       3.9687
+      ],
+      [
+       43.6112,
+       3.8767
+      ]
+     ],
+     "km": 12,
      "esito": "ok"
     },
     {
      "da": "Montpellier",
-     "a": "Castres",
-     "linea_aria": 132,
+     "a": "Montarnaud",
+     "linea_aria": 15,
      "ll": [
       [
-       43.61,
-       3.877
+       43.6112,
+       3.8767
       ],
       [
-       43.606,
-       2.24
+       43.6495,
+       3.6984
       ]
      ],
-     "km": 236,
+     "km": 21,
+     "esito": "ok"
+    },
+    {
+     "da": "Montarnaud",
+     "a": "Saint-Guilhem-le-Désert",
+     "linea_aria": 15,
+     "ll": [
+      [
+       43.6495,
+       3.6984
+      ],
+      [
+       43.734,
+       3.5485
+      ]
+     ],
+     "km": 22,
+     "esito": "ok"
+    },
+    {
+     "da": "Saint-Guilhem-le-Désert",
+     "a": "Saint-Jean-de-la-Blaquière",
+     "linea_aria": 10,
+     "ll": [
+      [
+       43.734,
+       3.5485
+      ],
+      [
+       43.7148,
+       3.424
+      ]
+     ],
+     "km": 23,
+     "esito": "ok"
+    },
+    {
+     "da": "Saint-Jean-de-la-Blaquière",
+     "a": "Lodève",
+     "linea_aria": 9,
+     "ll": [
+      [
+       43.7148,
+       3.424
+      ],
+      [
+       43.7311,
+       3.3189
+      ]
+     ],
+     "km": 15,
+     "esito": "ok"
+    },
+    {
+     "da": "Lodève",
+     "a": "Lunas",
+     "linea_aria": 10,
+     "ll": [
+      [
+       43.7311,
+       3.3189
+      ],
+      [
+       43.7075,
+       3.1943
+      ]
+     ],
+     "km": 27,
+     "esito": "ok"
+    },
+    {
+     "da": "Lunas",
+     "a": "Saint-Gervais-sur-Mare",
+     "linea_aria": 14,
+     "ll": [
+      [
+       43.7075,
+       3.1943
+      ],
+      [
+       43.6534,
+       3.0415
+      ]
+     ],
+     "km": 29,
+     "esito": "ok"
+    },
+    {
+     "da": "Saint-Gervais-sur-Mare",
+     "a": "Murat-sur-Vèbre",
+     "linea_aria": 16,
+     "ll": [
+      [
+       43.6534,
+       3.0415
+      ],
+      [
+       43.6852,
+       2.8532
+      ]
+     ],
+     "km": 22,
+     "esito": "ok"
+    },
+    {
+     "da": "Murat-sur-Vèbre",
+     "a": "La Salvetat-sur-Agout",
+     "linea_aria": 15,
+     "ll": [
+      [
+       43.6852,
+       2.8532
+      ],
+      [
+       43.6016,
+       2.7029
+      ]
+     ],
+     "km": 21,
+     "esito": "ok"
+    },
+    {
+     "da": "La Salvetat-sur-Agout",
+     "a": "Anglès",
+     "linea_aria": 12,
+     "ll": [
+      [
+       43.6016,
+       2.7029
+      ],
+      [
+       43.5641,
+       2.5605
+      ]
+     ],
+     "km": 19,
+     "esito": "ok"
+    },
+    {
+     "da": "Anglès",
+     "a": "Boissezon",
+     "linea_aria": 15,
+     "ll": [
+      [
+       43.5641,
+       2.5605
+      ],
+      [
+       43.5756,
+       2.3792
+      ]
+     ],
+     "km": 21,
+     "esito": "ok"
+    },
+    {
+     "da": "Boissezon",
+     "a": "Castres",
+     "linea_aria": 12,
+     "ll": [
+      [
+       43.5756,
+       2.3792
+      ],
+      [
+       43.6054,
+       2.2411
+      ]
+     ],
+     "km": 16,
      "esito": "ok"
     },
     {
      "da": "Castres",
-     "a": "Toulouse",
-     "linea_aria": 64,
+     "a": "Dourgne",
+     "linea_aria": 16,
      "ll": [
       [
-       43.606,
-       2.24
+       43.6054,
+       2.2411
       ],
       [
-       43.604,
-       1.444
+       43.4855,
+       2.1362
       ]
      ],
-     "km": 131,
+     "km": 22,
+     "esito": "ok"
+    },
+    {
+     "da": "Dourgne",
+     "a": "Les Cassés",
+     "linea_aria": 23,
+     "ll": [
+      [
+       43.4855,
+       2.1362
+      ],
+      [
+       43.4254,
+       1.8681
+      ]
+     ],
+     "km": 33,
+     "esito": "ok"
+    },
+    {
+     "da": "Les Cassés",
+     "a": "Avignonet-Lauragais",
+     "linea_aria": 9,
+     "ll": [
+      [
+       43.4254,
+       1.8681
+      ],
+      [
+       43.3664,
+       1.7849
+      ]
+     ],
+     "km": 24,
+     "esito": "ok"
+    },
+    {
+     "da": "Avignonet-Lauragais",
+     "a": "Baziège",
+     "linea_aria": 17,
+     "ll": [
+      [
+       43.3664,
+       1.7849
+      ],
+      [
+       43.4552,
+       1.6131
+      ]
+     ],
+     "km": 27,
+     "esito": "ok"
+    },
+    {
+     "da": "Baziège",
+     "a": "Toulouse",
+     "linea_aria": 21,
+     "ll": [
+      [
+       43.4552,
+       1.6131
+      ],
+      [
+       43.6045,
+       1.4442
+      ]
+     ],
+     "km": 25,
      "esito": "ok"
     },
     {
      "da": "Toulouse",
-     "a": "Auch",
-     "linea_aria": 69,
+     "a": "Léguevin",
+     "linea_aria": 17,
      "ll": [
       [
-       43.604,
-       1.444
+       43.6045,
+       1.4442
       ],
       [
-       43.646,
-       0.586
+       43.5998,
+       1.2345
       ]
      ],
-     "km": 97,
+     "km": 19,
+     "esito": "ok"
+    },
+    {
+     "da": "Léguevin",
+     "a": "Giscaro",
+     "linea_aria": 25,
+     "ll": [
+      [
+       43.5998,
+       1.2345
+      ],
+      [
+       43.6073,
+       0.9283
+      ]
+     ],
+     "km": 38,
+     "esito": "ok"
+    },
+    {
+     "da": "Giscaro",
+     "a": "L'Isle-Arné",
+     "linea_aria": 13,
+     "ll": [
+      [
+       43.6073,
+       0.9283
+      ],
+      [
+       43.6164,
+       0.7719
+      ]
+     ],
+     "km": 17,
+     "esito": "ok"
+    },
+    {
+     "da": "L'Isle-Arné",
+     "a": "Auch",
+     "linea_aria": 15,
+     "ll": [
+      [
+       43.6164,
+       0.7719
+      ],
+      [
+       43.6464,
+       0.585
+      ]
+     ],
+     "km": 23,
      "esito": "ok"
     },
     {
      "da": "Auch",
-     "a": "Oloron-Sainte-Marie",
-     "linea_aria": 109,
+     "a": "L'Isle-de-Noé",
+     "linea_aria": 15,
      "ll": [
       [
-       43.646,
-       0.586
+       43.6464,
+       0.585
       ],
       [
-       43.194,
-       -0.607
+       43.586,
+       0.4131
       ]
      ],
-     "km": 162,
+     "km": 24,
+     "esito": "ok"
+    },
+    {
+     "da": "L'Isle-de-Noé",
+     "a": "Marciac",
+     "linea_aria": 21,
+     "ll": [
+      [
+       43.586,
+       0.4131
+      ],
+      [
+       43.5241,
+       0.1611
+      ]
+     ],
+     "km": 31,
+     "esito": "ok"
+    },
+    {
+     "da": "Marciac",
+     "a": "Vidouze",
+     "linea_aria": 19,
+     "ll": [
+      [
+       43.5241,
+       0.1611
+      ],
+      [
+       43.4436,
+       -0.0491
+      ]
+     ],
+     "km": 27,
+     "esito": "ok"
+    },
+    {
+     "da": "Vidouze",
+     "a": "Morlaàs",
+     "linea_aria": 21,
+     "ll": [
+      [
+       43.4436,
+       -0.0491
+      ],
+      [
+       43.3454,
+       -0.265
+      ]
+     ],
+     "km": 29,
+     "esito": "ok"
+    },
+    {
+     "da": "Morlaàs",
+     "a": "Lescar",
+     "linea_aria": 14,
+     "ll": [
+      [
+       43.3454,
+       -0.265
+      ],
+      [
+       43.3334,
+       -0.4357
+      ]
+     ],
+     "km": 20,
+     "esito": "ok"
+    },
+    {
+     "da": "Lescar",
+     "a": "Oloron-Sainte-Marie",
+     "linea_aria": 21,
+     "ll": [
+      [
+       43.3334,
+       -0.4357
+      ],
+      [
+       43.1922,
+       -0.6116
+      ]
+     ],
+     "km": 32,
      "esito": "ok"
     },
     {
      "da": "Oloron-Sainte-Marie",
-     "a": "Somport",
-     "linea_aria": 45,
+     "a": "Sarrance",
+     "linea_aria": 16,
      "ll": [
       [
-       43.194,
-       -0.607
+       43.1922,
+       -0.6116
       ],
       [
-       42.792,
-       -0.526
+       43.0517,
+       -0.6014
       ]
      ],
-     "km": 63,
+     "km": 22,
+     "esito": "ok"
+    },
+    {
+     "da": "Sarrance",
+     "a": "Borce",
+     "linea_aria": 16,
+     "ll": [
+      [
+       43.0517,
+       -0.6014
+      ],
+      [
+       42.9087,
+       -0.5727
+      ]
+     ],
+     "km": 23,
+     "esito": "ok"
+    },
+    {
+     "da": "Borce",
+     "a": "Somport",
+     "linea_aria": 13,
+     "ll": [
+      [
+       42.9087,
+       -0.5727
+      ],
+      [
+       42.7957,
+       -0.5248
+      ]
+     ],
+     "km": 18,
      "esito": "ok"
     }
    ],
@@ -2044,87 +7862,648 @@
    "tratti": [
     {
      "da": "Vézelay",
-     "a": "Nevers",
-     "linea_aria": 69,
+     "a": "Anthien",
+     "linea_aria": 17,
      "ll": [
       [
-       47.466,
-       3.743
+       47.4657,
+       3.7463
       ],
       [
-       46.99,
-       3.159
+       47.3133,
+       3.7393
       ]
      ],
-     "km": 101,
+     "km": 26,
+     "esito": "ok"
+    },
+    {
+     "da": "Anthien",
+     "a": "Saint-Révérien",
+     "linea_aria": 21,
+     "ll": [
+      [
+       47.3133,
+       3.7393
+      ],
+      [
+       47.2113,
+       3.5034
+      ]
+     ],
+     "km": 28,
+     "esito": "ok"
+    },
+    {
+     "da": "Saint-Révérien",
+     "a": "Prémery",
+     "linea_aria": 14,
+     "ll": [
+      [
+       47.2113,
+       3.5034
+      ],
+      [
+       47.1751,
+       3.3306
+      ]
+     ],
+     "km": 16,
+     "esito": "ok"
+    },
+    {
+     "da": "Prémery",
+     "a": "Nevers",
+     "linea_aria": 25,
+     "ll": [
+      [
+       47.1751,
+       3.3306
+      ],
+      [
+       46.9877,
+       3.1577
+      ]
+     ],
+     "km": 32,
      "esito": "ok"
     },
     {
      "da": "Nevers",
-     "a": "Limoges",
-     "linea_aria": 194,
+     "a": "Saint-Pierre-le-Moûtier",
+     "linea_aria": 22,
      "ll": [
       [
-       46.99,
-       3.159
+       46.9877,
+       3.1577
       ],
       [
-       45.834,
-       1.262
+       46.7906,
+       3.118
       ]
      ],
-     "km": 308,
+     "km": 30,
+     "esito": "ok"
+    },
+    {
+     "da": "Saint-Pierre-le-Moûtier",
+     "a": "Lurcy-Lévis",
+     "linea_aria": 15,
+     "ll": [
+      [
+       46.7906,
+       3.118
+      ],
+      [
+       46.7324,
+       2.9379
+      ]
+     ],
+     "km": 23,
+     "esito": "ok"
+    },
+    {
+     "da": "Lurcy-Lévis",
+     "a": "Ainay-le-Château",
+     "linea_aria": 19,
+     "ll": [
+      [
+       46.7324,
+       2.9379
+      ],
+      [
+       46.7115,
+       2.6939
+      ]
+     ],
+     "km": 21,
+     "esito": "ok"
+    },
+    {
+     "da": "Ainay-le-Château",
+     "a": "Saint-Amand-Montrond",
+     "linea_aria": 14,
+     "ll": [
+      [
+       46.7115,
+       2.6939
+      ],
+      [
+       46.7227,
+       2.5046
+      ]
+     ],
+     "km": 19,
+     "esito": "ok"
+    },
+    {
+     "da": "Saint-Amand-Montrond",
+     "a": "Le Châtelet",
+     "linea_aria": 19,
+     "ll": [
+      [
+       46.7227,
+       2.5046
+      ],
+      [
+       46.6418,
+       2.2836
+      ]
+     ],
+     "km": 27,
+     "esito": "ok"
+    },
+    {
+     "da": "Le Châtelet",
+     "a": "La Châtre",
+     "linea_aria": 24,
+     "ll": [
+      [
+       46.6418,
+       2.2836
+      ],
+      [
+       46.5816,
+       1.9867
+      ]
+     ],
+     "km": 31,
+     "esito": "ok"
+    },
+    {
+     "da": "La Châtre",
+     "a": "Neuvy-Saint-Sépulchre",
+     "linea_aria": 14,
+     "ll": [
+      [
+       46.5816,
+       1.9867
+      ],
+      [
+       46.5959,
+       1.8076
+      ]
+     ],
+     "km": 18,
+     "esito": "ok"
+    },
+    {
+     "da": "Neuvy-Saint-Sépulchre",
+     "a": "Gargilesse-Dampierre",
+     "linea_aria": 19,
+     "ll": [
+      [
+       46.5959,
+       1.8076
+      ],
+      [
+       46.513,
+       1.5967
+      ]
+     ],
+     "km": 24,
+     "esito": "ok"
+    },
+    {
+     "da": "Gargilesse-Dampierre",
+     "a": "Crozant",
+     "linea_aria": 14,
+     "ll": [
+      [
+       46.513,
+       1.5967
+      ],
+      [
+       46.3917,
+       1.6217
+      ]
+     ],
+     "km": 19,
+     "esito": "ok"
+    },
+    {
+     "da": "Crozant",
+     "a": "La Souterraine",
+     "linea_aria": 20,
+     "ll": [
+      [
+       46.3917,
+       1.6217
+      ],
+      [
+       46.2375,
+       1.4857
+      ]
+     ],
+     "km": 25,
+     "esito": "ok"
+    },
+    {
+     "da": "La Souterraine",
+     "a": "Bénévent-l'Abbaye",
+     "linea_aria": 17,
+     "ll": [
+      [
+       46.2375,
+       1.4857
+      ],
+      [
+       46.119,
+       1.6294
+      ]
+     ],
+     "km": 23,
+     "esito": "ok"
+    },
+    {
+     "da": "Bénévent-l'Abbaye",
+     "a": "Saint-Léonard-de-Noblat",
+     "linea_aria": 33,
+     "ll": [
+      [
+       46.119,
+       1.6294
+      ],
+      [
+       45.8377,
+       1.4925
+      ]
+     ],
+     "km": 47,
+     "esito": "ok"
+    },
+    {
+     "da": "Saint-Léonard-de-Noblat",
+     "a": "Limoges",
+     "linea_aria": 18,
+     "ll": [
+      [
+       45.8377,
+       1.4925
+      ],
+      [
+       45.8354,
+       1.2645
+      ]
+     ],
+     "km": 24,
      "esito": "ok"
     },
     {
      "da": "Limoges",
-     "a": "Périgueux",
-     "linea_aria": 84,
+     "a": "Les Cars",
+     "linea_aria": 23,
      "ll": [
       [
-       45.834,
-       1.262
+       45.8354,
+       1.2645
+      ],
+      [
+       45.6806,
+       1.0722
+      ]
+     ],
+     "km": 31,
+     "esito": "ok"
+    },
+    {
+     "da": "Les Cars",
+     "a": "La Coquille",
+     "linea_aria": 17,
+     "ll": [
+      [
+       45.6806,
+       1.0722
+      ],
+      [
+       45.5426,
+       0.9773
+      ]
+     ],
+     "km": 27,
+     "esito": "ok"
+    },
+    {
+     "da": "La Coquille",
+     "a": "Thiviers",
+     "linea_aria": 15,
+     "ll": [
+      [
+       45.5426,
+       0.9773
+      ],
+      [
+       45.4144,
+       0.9194
+      ]
+     ],
+     "km": 18,
+     "esito": "ok"
+    },
+    {
+     "da": "Thiviers",
+     "a": "Sorges",
+     "linea_aria": 12,
+     "ll": [
+      [
+       45.4144,
+       0.9194
+      ],
+      [
+       45.3075,
+       0.8723
+      ]
+     ],
+     "km": 19,
+     "esito": "ok"
+    },
+    {
+     "da": "Sorges",
+     "a": "Périgueux",
+     "linea_aria": 18,
+     "ll": [
+      [
+       45.3075,
+       0.8723
       ],
       [
        45.184,
-       0.718
+       0.716
       ]
      ],
-     "km": 117,
+     "km": 22,
      "esito": "ok"
     },
     {
      "da": "Périgueux",
-     "a": "Mont-de-Marsan",
-     "linea_aria": 173,
+     "a": "Douville",
+     "linea_aria": 23,
      "ll": [
       [
        45.184,
-       0.718
+       0.716
       ],
       [
-       43.89,
-       -0.5
+       44.999,
+       0.5858
       ]
      ],
-     "km": 252,
+     "km": 33,
+     "esito": "ok"
+    },
+    {
+     "da": "Douville",
+     "a": "Bergerac",
+     "linea_aria": 18,
+     "ll": [
+      [
+       44.999,
+       0.5858
+      ],
+      [
+       44.8535,
+       0.4875
+      ]
+     ],
+     "km": 25,
+     "esito": "ok"
+    },
+    {
+     "da": "Bergerac",
+     "a": "Sainte-Foy-la-Grande",
+     "linea_aria": 22,
+     "ll": [
+      [
+       44.8535,
+       0.4875
+      ],
+      [
+       44.8417,
+       0.215
+      ]
+     ],
+     "km": 35,
+     "esito": "ok"
+    },
+    {
+     "da": "Sainte-Foy-la-Grande",
+     "a": "Saint-Ferme",
+     "linea_aria": 21,
+     "ll": [
+      [
+       44.8417,
+       0.215
+      ],
+      [
+       44.6939,
+       0.0583
+      ]
+     ],
+     "km": 29,
+     "esito": "ok"
+    },
+    {
+     "da": "Saint-Ferme",
+     "a": "La Réole",
+     "linea_aria": 15,
+     "ll": [
+      [
+       44.6939,
+       0.0583
+      ],
+      [
+       44.5818,
+       -0.0392
+      ]
+     ],
+     "km": 20,
+     "esito": "ok"
+    },
+    {
+     "da": "La Réole",
+     "a": "Auros",
+     "linea_aria": 13,
+     "ll": [
+      [
+       44.5818,
+       -0.0392
+      ],
+      [
+       44.4949,
+       -0.1464
+      ]
+     ],
+     "km": 22,
+     "esito": "ok"
+    },
+    {
+     "da": "Auros",
+     "a": "Bazas",
+     "linea_aria": 9,
+     "ll": [
+      [
+       44.4949,
+       -0.1464
+      ],
+      [
+       44.432,
+       -0.2126
+      ]
+     ],
+     "km": 16,
+     "esito": "ok"
+    },
+    {
+     "da": "Bazas",
+     "a": "Captieux",
+     "linea_aria": 16,
+     "ll": [
+      [
+       44.432,
+       -0.2126
+      ],
+      [
+       44.2921,
+       -0.2615
+      ]
+     ],
+     "km": 17,
+     "esito": "ok"
+    },
+    {
+     "da": "Captieux",
+     "a": "Roquefort",
+     "linea_aria": 29,
+     "ll": [
+      [
+       44.2921,
+       -0.2615
+      ],
+      [
+       44.0345,
+       -0.3223
+      ]
+     ],
+     "km": 35,
+     "esito": "ok"
+    },
+    {
+     "da": "Roquefort",
+     "a": "Mont-de-Marsan",
+     "linea_aria": 21,
+     "ll": [
+      [
+       44.0345,
+       -0.3223
+      ],
+      [
+       43.8911,
+       -0.501
+      ]
+     ],
+     "km": 29,
      "esito": "ok"
     },
     {
      "da": "Mont-de-Marsan",
-     "a": "Ostabat",
-     "linea_aria": 84,
+     "a": "Saint-Sever",
+     "linea_aria": 16,
      "ll": [
       [
-       43.89,
-       -0.5
+       43.8911,
+       -0.501
       ],
       [
-       43.256,
-       -1.075
+       43.7575,
+       -0.5742
       ]
      ],
-     "km": 114,
+     "km": 21,
+     "esito": "ok"
+    },
+    {
+     "da": "Saint-Sever",
+     "a": "Hagetmau",
+     "linea_aria": 11,
+     "ll": [
+      [
+       43.7575,
+       -0.5742
+      ],
+      [
+       43.6551,
+       -0.5939
+      ]
+     ],
+     "km": 16,
+     "esito": "ok"
+    },
+    {
+     "da": "Hagetmau",
+     "a": "Sault-de-Navailles",
+     "linea_aria": 13,
+     "ll": [
+      [
+       43.6551,
+       -0.5939
+      ],
+      [
+       43.5502,
+       -0.6735
+      ]
+     ],
+     "km": 16,
+     "esito": "ok"
+    },
+    {
+     "da": "Sault-de-Navailles",
+     "a": "Orthez",
+     "linea_aria": 11,
+     "ll": [
+      [
+       43.5502,
+       -0.6735
+      ],
+      [
+       43.4875,
+       -0.7738
+      ]
+     ],
+     "km": 12,
+     "esito": "ok"
+    },
+    {
+     "da": "Orthez",
+     "a": "Sauveterre-de-Béarn",
+     "linea_aria": 17,
+     "ll": [
+      [
+       43.4875,
+       -0.7738
+      ],
+      [
+       43.3994,
+       -0.9388
+      ]
+     ],
+     "km": 23,
+     "esito": "ok"
+    },
+    {
+     "da": "Sauveterre-de-Béarn",
+     "a": "Ostabat",
+     "linea_aria": 19,
+     "ll": [
+      [
+       43.3994,
+       -0.9388
+      ],
+      [
+       43.2563,
+       -1.0708
+      ]
+     ],
+     "km": 26,
      "esito": "ok"
     }
    ],
@@ -2132,125 +8511,994 @@
   },
   {
    "stato": "Francia",
-   "cammino": "Via Turonensis (Tours)",
+   "cammino": "Via Turonensis (Parigi - Tours)",
    "tratti": [
     {
-     "da": "Parigi",
-     "a": "Orléans",
-     "linea_aria": 111,
+     "da": "Paris",
+     "a": "La Ville-du-Bois",
+     "linea_aria": 22,
      "ll": [
       [
-       48.853,
-       2.349
+       48.8535,
+       2.3484
       ],
       [
-       47.902,
-       1.909
+       48.6611,
+       2.2688
       ]
      ],
-     "km": 148,
+     "km": 27,
      "esito": "ok"
     },
     {
-     "da": "Orléans",
-     "a": "Tours",
-     "linea_aria": 108,
+     "da": "La Ville-du-Bois",
+     "a": "Étampes",
+     "linea_aria": 26,
      "ll": [
       [
-       47.902,
-       1.909
+       48.6611,
+       2.2688
       ],
       [
-       47.394,
-       0.684
+       48.4345,
+       2.1614
       ]
      ],
-     "km": 144,
+     "km": 39,
+     "esito": "ok"
+    },
+    {
+     "da": "Étampes",
+     "a": "Angerville",
+     "linea_aria": 18,
+     "ll": [
+      [
+       48.4345,
+       2.1614
+      ],
+      [
+       48.3107,
+       1.998
+      ]
+     ],
+     "esito": "FUORI RETE: Angerville"
+    },
+    {
+     "da": "Angerville",
+     "a": "Artenay",
+     "linea_aria": 27,
+     "ll": [
+      [
+       48.3107,
+       1.998
+      ],
+      [
+       48.0826,
+       1.8786
+      ]
+     ],
+     "esito": "FUORI RETE: Angerville, Artenay"
+    },
+    {
+     "da": "Artenay",
+     "a": "Orléans",
+     "linea_aria": 20,
+     "ll": [
+      [
+       48.0826,
+       1.8786
+      ],
+      [
+       47.9027,
+       1.9086
+      ]
+     ],
+     "esito": "FUORI RETE: Artenay"
+    },
+    {
+     "da": "Orléans",
+     "a": "Beaugency",
+     "linea_aria": 25,
+     "ll": [
+      [
+       47.9027,
+       1.9086
+      ],
+      [
+       47.7779,
+       1.6312
+      ]
+     ],
+     "km": 28,
+     "esito": "ok"
+    },
+    {
+     "da": "Beaugency",
+     "a": "Blois",
+     "linea_aria": 31,
+     "ll": [
+      [
+       47.7779,
+       1.6312
+      ],
+      [
+       47.5877,
+       1.3338
+      ]
+     ],
+     "km": 36,
+     "esito": "ok"
+    },
+    {
+     "da": "Blois",
+     "a": "Chaumont-sur-Loire",
+     "linea_aria": 16,
+     "ll": [
+      [
+       47.5877,
+       1.3338
+      ],
+      [
+       47.4781,
+       1.1904
+      ]
+     ],
+     "km": 24,
+     "esito": "ok"
+    },
+    {
+     "da": "Chaumont-sur-Loire",
+     "a": "Amboise",
+     "linea_aria": 17,
+     "ll": [
+      [
+       47.4781,
+       1.1904
+      ],
+      [
+       47.411,
+       0.9837
+      ]
+     ],
+     "km": 23,
+     "esito": "ok"
+    },
+    {
+     "da": "Amboise",
+     "a": "Tours",
+     "linea_aria": 22,
+     "ll": [
+      [
+       47.411,
+       0.9837
+      ],
+      [
+       47.3901,
+       0.6889
+      ]
+     ],
+     "km": 34,
      "esito": "ok"
     },
     {
      "da": "Tours",
-     "a": "Poitiers",
-     "linea_aria": 94,
+     "a": "Sorigny",
+     "linea_aria": 17,
      "ll": [
       [
-       47.394,
-       0.684
+       47.3901,
+       0.6889
       ],
       [
-       46.58,
-       0.34
+       47.2416,
+       0.6939
       ]
      ],
-     "km": 141,
+     "km": 26,
+     "esito": "ok"
+    },
+    {
+     "da": "Sorigny",
+     "a": "Sainte-Maure-de-Touraine",
+     "linea_aria": 16,
+     "ll": [
+      [
+       47.2416,
+       0.6939
+      ],
+      [
+       47.1108,
+       0.619
+      ]
+     ],
+     "km": 24,
+     "esito": "ok"
+    },
+    {
+     "da": "Sainte-Maure-de-Touraine",
+     "a": "Dangé-Saint-Romain",
+     "linea_aria": 19,
+     "ll": [
+      [
+       47.1108,
+       0.619
+      ],
+      [
+       46.9361,
+       0.6077
+      ]
+     ],
+     "km": 29,
+     "esito": "ok"
+    },
+    {
+     "da": "Dangé-Saint-Romain",
+     "a": "Châtellerault",
+     "linea_aria": 14,
+     "ll": [
+      [
+       46.9361,
+       0.6077
+      ],
+      [
+       46.818,
+       0.5458
+      ]
+     ],
+     "km": 20,
+     "esito": "ok"
+    },
+    {
+     "da": "Châtellerault",
+     "a": "Poitiers",
+     "linea_aria": 31,
+     "ll": [
+      [
+       46.818,
+       0.5458
+      ],
+      [
+       46.5803,
+       0.3402
+      ]
+     ],
+     "km": 40,
      "esito": "ok"
     },
     {
      "da": "Poitiers",
-     "a": "Saintes",
-     "linea_aria": 119,
+     "a": "Lusignan",
+     "linea_aria": 23,
      "ll": [
       [
-       46.58,
-       0.34
+       46.5803,
+       0.3402
       ],
       [
-       45.746,
-       -0.633
+       46.4352,
+       0.1224
       ]
      ],
-     "km": 187,
+     "km": 43,
+     "esito": "ok"
+    },
+    {
+     "da": "Lusignan",
+     "a": "Chenay",
+     "linea_aria": 17,
+     "ll": [
+      [
+       46.4352,
+       0.1224
+      ],
+      [
+       46.3252,
+       -0.0331
+      ]
+     ],
+     "km": 21,
+     "esito": "ok"
+    },
+    {
+     "da": "Chenay",
+     "a": "Melle",
+     "linea_aria": 14,
+     "ll": [
+      [
+       46.3252,
+       -0.0331
+      ],
+      [
+       46.2232,
+       -0.1429
+      ]
+     ],
+     "km": 23,
+     "esito": "ok"
+    },
+    {
+     "da": "Melle",
+     "a": "Aulnay",
+     "linea_aria": 27,
+     "ll": [
+      [
+       46.2232,
+       -0.1429
+      ],
+      [
+       46.0206,
+       -0.3471
+      ]
+     ],
+     "km": 42,
+     "esito": "ok"
+    },
+    {
+     "da": "Aulnay",
+     "a": "Saint-Jean-d'Angély",
+     "linea_aria": 16,
+     "ll": [
+      [
+       46.0206,
+       -0.3471
+      ],
+      [
+       45.9446,
+       -0.5196
+      ]
+     ],
+     "km": 23,
+     "esito": "ok"
+    },
+    {
+     "da": "Saint-Jean-d'Angély",
+     "a": "Saintes",
+     "linea_aria": 24,
+     "ll": [
+      [
+       45.9446,
+       -0.5196
+      ],
+      [
+       45.7461,
+       -0.6301
+      ]
+     ],
+     "km": 35,
      "esito": "ok"
     },
     {
      "da": "Saintes",
-     "a": "Bordeaux",
-     "linea_aria": 101,
+     "a": "Pons",
+     "linea_aria": 20,
      "ll": [
       [
-       45.746,
-       -0.633
+       45.7461,
+       -0.6301
       ],
       [
-       44.838,
-       -0.579
+       45.5792,
+       -0.5472
       ]
      ],
-     "km": 142,
+     "km": 24,
+     "esito": "ok"
+    },
+    {
+     "da": "Pons",
+     "a": "Mirambeau",
+     "linea_aria": 23,
+     "ll": [
+      [
+       45.5792,
+       -0.5472
+      ],
+      [
+       45.3724,
+       -0.5702
+      ]
+     ],
+     "km": 32,
+     "esito": "ok"
+    },
+    {
+     "da": "Mirambeau",
+     "a": "Saint-Aubin-de-Blaye",
+     "linea_aria": 12,
+     "ll": [
+      [
+       45.3724,
+       -0.5702
+      ],
+      [
+       45.2663,
+       -0.5642
+      ]
+     ],
+     "km": 17,
+     "esito": "ok"
+    },
+    {
+     "da": "Saint-Aubin-de-Blaye",
+     "a": "Blaye",
+     "linea_aria": 17,
+     "ll": [
+      [
+       45.2663,
+       -0.5642
+      ],
+      [
+       45.1271,
+       -0.6636
+      ]
+     ],
+     "km": 24,
+     "esito": "ok"
+    },
+    {
+     "da": "Blaye",
+     "a": "Blanquefort",
+     "linea_aria": 24,
+     "ll": [
+      [
+       45.1271,
+       -0.6636
+      ],
+      [
+       44.9089,
+       -0.63
+      ]
+     ],
+     "km": 36,
+     "esito": "ok"
+    },
+    {
+     "da": "Blanquefort",
+     "a": "Bordeaux",
+     "linea_aria": 8,
+     "ll": [
+      [
+       44.9089,
+       -0.63
+      ],
+      [
+       44.8412,
+       -0.58
+      ]
+     ],
+     "km": 10,
      "esito": "ok"
     },
     {
      "da": "Bordeaux",
-     "a": "Dax",
-     "linea_aria": 131,
+     "a": "Le Barp",
+     "linea_aria": 30,
      "ll": [
       [
-       44.838,
-       -0.579
+       44.8412,
+       -0.58
       ],
       [
-       43.708,
-       -1.054
+       44.6063,
+       -0.7697
       ]
      ],
-     "km": 178,
+     "km": 38,
+     "esito": "ok"
+    },
+    {
+     "da": "Le Barp",
+     "a": "Saugnacq-et-Muret",
+     "linea_aria": 25,
+     "ll": [
+      [
+       44.6063,
+       -0.7697
+      ],
+      [
+       44.3895,
+       -0.8381
+      ]
+     ],
+     "km": 30,
+     "esito": "ok"
+    },
+    {
+     "da": "Saugnacq-et-Muret",
+     "a": "Labouheyre",
+     "linea_aria": 21,
+     "ll": [
+      [
+       44.3895,
+       -0.8381
+      ],
+      [
+       44.2126,
+       -0.919
+      ]
+     ],
+     "km": 38,
+     "esito": "ok"
+    },
+    {
+     "da": "Labouheyre",
+     "a": "Onesse-Laharie",
+     "linea_aria": 19,
+     "ll": [
+      [
+       44.2126,
+       -0.919
+      ],
+      [
+       44.0631,
+       -1.021
+      ]
+     ],
+     "km": 20,
+     "esito": "ok"
+    },
+    {
+     "da": "Onesse-Laharie",
+     "a": "Taller",
+     "linea_aria": 22,
+     "ll": [
+      [
+       44.0631,
+       -1.021
+      ],
+      [
+       43.8726,
+       -1.0725
+      ]
+     ],
+     "km": 29,
+     "esito": "ok"
+    },
+    {
+     "da": "Taller",
+     "a": "Dax",
+     "linea_aria": 18,
+     "ll": [
+      [
+       43.8726,
+       -1.0725
+      ],
+      [
+       43.7084,
+       -1.0519
+      ]
+     ],
+     "km": 23,
      "esito": "ok"
     },
     {
      "da": "Dax",
-     "a": "Ostabat",
-     "linea_aria": 50,
+     "a": "Peyrehorade",
+     "linea_aria": 19,
      "ll": [
       [
-       43.708,
-       -1.054
+       43.7084,
+       -1.0519
       ],
       [
-       43.256,
-       -1.075
+       43.5441,
+       -1.1051
       ]
      ],
-     "km": 77,
+     "esito": "FUORI RETE: Peyrehorade"
+    },
+    {
+     "da": "Peyrehorade",
+     "a": "Bergouey-Viellenave",
+     "linea_aria": 14,
+     "ll": [
+      [
+       43.5441,
+       -1.1051
+      ],
+      [
+       43.4258,
+       -1.0654
+      ]
+     ],
+     "esito": "FUORI RETE: Peyrehorade"
+    },
+    {
+     "da": "Bergouey-Viellenave",
+     "a": "Ostabat",
+     "linea_aria": 19,
+     "ll": [
+      [
+       43.4258,
+       -1.0654
+      ],
+      [
+       43.2563,
+       -1.0708
+      ]
+     ],
+     "km": 25,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 5
+  },
+  {
+   "stato": "Francia",
+   "cammino": "Chemin du Piémont Pyrénéen",
+   "tratti": [
+    {
+     "da": "Carcassonne",
+     "a": "Arzens",
+     "linea_aria": 12,
+     "ll": [
+      [
+       43.213,
+       2.3491
+      ],
+      [
+       43.1988,
+       2.2081
+      ]
+     ],
+     "km": 19,
+     "esito": "ok"
+    },
+    {
+     "da": "Arzens",
+     "a": "Fanjeaux",
+     "linea_aria": 14,
+     "ll": [
+      [
+       43.1988,
+       2.2081
+      ],
+      [
+       43.185,
+       2.0344
+      ]
+     ],
+     "km": 21,
+     "esito": "ok"
+    },
+    {
+     "da": "Fanjeaux",
+     "a": "Mirepoix",
+     "linea_aria": 17,
+     "ll": [
+      [
+       43.185,
+       2.0344
+      ],
+      [
+       43.0881,
+       1.8743
+      ]
+     ],
+     "km": 24,
+     "esito": "ok"
+    },
+    {
+     "da": "Mirepoix",
+     "a": "Pamiers",
+     "linea_aria": 22,
+     "ll": [
+      [
+       43.0881,
+       1.8743
+      ],
+      [
+       43.1148,
+       1.6082
+      ]
+     ],
+     "km": 34,
+     "esito": "ok"
+    },
+    {
+     "da": "Pamiers",
+     "a": "Le Mas-d'Azil",
+     "linea_aria": 20,
+     "ll": [
+      [
+       43.1148,
+       1.6082
+      ],
+      [
+       43.0795,
+       1.3613
+      ]
+     ],
+     "km": 42,
+     "esito": "ok"
+    },
+    {
+     "da": "Le Mas-d'Azil",
+     "a": "Saint-Lizier",
+     "linea_aria": 20,
+     "ll": [
+      [
+       43.0795,
+       1.3613
+      ],
+      [
+       43.0025,
+       1.1355
+      ]
+     ],
+     "km": 31,
+     "esito": "ok"
+    },
+    {
+     "da": "Saint-Lizier",
+     "a": "Castillon-en-Couserans",
+     "linea_aria": 12,
+     "ll": [
+      [
+       43.0025,
+       1.1355
+      ],
+      [
+       42.9213,
+       1.0309
+      ]
+     ],
+     "km": 17,
+     "esito": "ok"
+    },
+    {
+     "da": "Castillon-en-Couserans",
+     "a": "Portet-d'Aspet",
+     "linea_aria": 14,
+     "ll": [
+      [
+       42.9213,
+       1.0309
+      ],
+      [
+       42.9406,
+       0.8657
+      ]
+     ],
+     "km": 21,
+     "esito": "ok"
+    },
+    {
+     "da": "Portet-d'Aspet",
+     "a": "Juzet-d'Izaut",
+     "linea_aria": 10,
+     "ll": [
+      [
+       42.9406,
+       0.8657
+      ],
+      [
+       42.9785,
+       0.7551
+      ]
+     ],
+     "km": 16,
+     "esito": "ok"
+    },
+    {
+     "da": "Juzet-d'Izaut",
+     "a": "Saint-Bertrand-de-Comminges",
+     "linea_aria": 16,
+     "ll": [
+      [
+       42.9785,
+       0.7551
+      ],
+      [
+       43.0269,
+       0.5709
+      ]
+     ],
+     "km": 27,
+     "esito": "ok"
+    },
+    {
+     "da": "Saint-Bertrand-de-Comminges",
+     "a": "Montsérié",
+     "linea_aria": 11,
+     "ll": [
+      [
+       43.0269,
+       0.5709
+      ],
+      [
+       43.0508,
+       0.4369
+      ]
+     ],
+     "km": 20,
+     "esito": "ok"
+    },
+    {
+     "da": "Montsérié",
+     "a": "Bourg-de-Bigorre",
+     "linea_aria": 15,
+     "ll": [
+      [
+       43.0508,
+       0.4369
+      ],
+      [
+       43.0909,
+       0.2601
+      ]
+     ],
+     "km": 28,
+     "esito": "ok"
+    },
+    {
+     "da": "Bourg-de-Bigorre",
+     "a": "Bagnères-de-Bigorre",
+     "linea_aria": 9,
+     "ll": [
+      [
+       43.0909,
+       0.2601
+      ],
+      [
+       43.0658,
+       0.1531
+      ]
+     ],
+     "km": 21,
+     "esito": "ok"
+    },
+    {
+     "da": "Bagnères-de-Bigorre",
+     "a": "Germs-sur-l'Oussouet",
+     "linea_aria": 8,
+     "ll": [
+      [
+       43.0658,
+       0.1531
+      ],
+      [
+       43.0522,
+       0.0573
+      ]
+     ],
+     "km": 18,
+     "esito": "ok"
+    },
+    {
+     "da": "Germs-sur-l'Oussouet",
+     "a": "Lourdes",
+     "linea_aria": 10,
+     "ll": [
+      [
+       43.0522,
+       0.0573
+      ],
+      [
+       43.0941,
+       -0.0465
+      ]
+     ],
+     "km": 16,
+     "esito": "ok"
+    },
+    {
+     "da": "Lourdes",
+     "a": "Asson",
+     "linea_aria": 18,
+     "ll": [
+      [
+       43.0941,
+       -0.0465
+      ],
+      [
+       43.1407,
+       -0.2548
+      ]
+     ],
+     "km": 24,
+     "esito": "ok"
+    },
+    {
+     "da": "Asson",
+     "a": "Arudy",
+     "linea_aria": 15,
+     "ll": [
+      [
+       43.1407,
+       -0.2548
+      ],
+      [
+       43.1062,
+       -0.4281
+      ]
+     ],
+     "km": 18,
+     "esito": "ok"
+    },
+    {
+     "da": "Arudy",
+     "a": "Oloron-Sainte-Marie",
+     "linea_aria": 18,
+     "ll": [
+      [
+       43.1062,
+       -0.4281
+      ],
+      [
+       43.1922,
+       -0.6116
+      ]
+     ],
+     "km": 28,
+     "esito": "ok"
+    },
+    {
+     "da": "Oloron-Sainte-Marie",
+     "a": "L'Hôpital-Saint-Blaise",
+     "linea_aria": 14,
+     "ll": [
+      [
+       43.1922,
+       -0.6116
+      ],
+      [
+       43.2512,
+       -0.7694
+      ]
+     ],
+     "km": 23,
+     "esito": "ok"
+    },
+    {
+     "da": "L'Hôpital-Saint-Blaise",
+     "a": "Mauléon-Licharre",
+     "linea_aria": 10,
+     "ll": [
+      [
+       43.2512,
+       -0.7694
+      ],
+      [
+       43.2233,
+       -0.8886
+      ]
+     ],
+     "km": 17,
+     "esito": "ok"
+    },
+    {
+     "da": "Mauléon-Licharre",
+     "a": "Saint-Just-Ibarre",
+     "linea_aria": 14,
+     "ll": [
+      [
+       43.2233,
+       -0.8886
+      ],
+      [
+       43.1611,
+       -1.0415
+      ]
+     ],
+     "km": 20,
+     "esito": "ok"
+    },
+    {
+     "da": "Saint-Just-Ibarre",
+     "a": "Saint-Jean-Pied-de-Port",
+     "linea_aria": 16,
+     "ll": [
+      [
+       43.1611,
+       -1.0415
+      ],
+      [
+       43.163,
+       -1.2381
+      ]
+     ],
+     "km": 27,
      "esito": "ok"
     }
    ],
@@ -2261,20 +9509,258 @@
    "cammino": "Via Gebennensis (Ginevra)",
    "tratti": [
     {
-     "da": "Ginevra",
-     "a": "Le Puy-en-Velay",
-     "linea_aria": 218,
+     "da": "Genève",
+     "a": "Frangy",
+     "linea_aria": 26,
      "ll": [
       [
-       46.204,
-       6.143
+       46.2018,
+       6.1466
       ],
       [
-       45.043,
-       3.885
+       46.0191,
+       5.9293
       ]
      ],
-     "km": 357,
+     "km": 43,
+     "esito": "ok"
+    },
+    {
+     "da": "Frangy",
+     "a": "Serrières-en-Chautagne",
+     "linea_aria": 17,
+     "ll": [
+      [
+       46.0191,
+       5.9293
+      ],
+      [
+       45.8805,
+       5.8437
+      ]
+     ],
+     "km": 23,
+     "esito": "ok"
+    },
+    {
+     "da": "Serrières-en-Chautagne",
+     "a": "Yenne",
+     "linea_aria": 21,
+     "ll": [
+      [
+       45.8805,
+       5.8437
+      ],
+      [
+       45.7037,
+       5.7588
+      ]
+     ],
+     "km": 28,
+     "esito": "ok"
+    },
+    {
+     "da": "Yenne",
+     "a": "Saint-Genix-sur-Guiers",
+     "linea_aria": 15,
+     "ll": [
+      [
+       45.7037,
+       5.7588
+      ],
+      [
+       45.5991,
+       5.6329
+      ]
+     ],
+     "km": 24,
+     "esito": "ok"
+    },
+    {
+     "da": "Saint-Genix-sur-Guiers",
+     "a": "Le Pin",
+     "linea_aria": 19,
+     "ll": [
+      [
+       45.5991,
+       5.6329
+      ],
+      [
+       45.4557,
+       5.506
+      ]
+     ],
+     "km": 30,
+     "esito": "ok"
+    },
+    {
+     "da": "Le Pin",
+     "a": "La Côte-Saint-André",
+     "linea_aria": 20,
+     "ll": [
+      [
+       45.4557,
+       5.506
+      ],
+      [
+       45.3938,
+       5.2605
+      ]
+     ],
+     "km": 25,
+     "esito": "ok"
+    },
+    {
+     "da": "La Côte-Saint-André",
+     "a": "Revel-Tourdan",
+     "linea_aria": 18,
+     "ll": [
+      [
+       45.3938,
+       5.2605
+      ],
+      [
+       45.3834,
+       5.036
+      ]
+     ],
+     "km": 22,
+     "esito": "ok"
+    },
+    {
+     "da": "Revel-Tourdan",
+     "a": "Saint-Romain-de-Surieu",
+     "linea_aria": 12,
+     "ll": [
+      [
+       45.3834,
+       5.036
+      ],
+      [
+       45.3861,
+       4.8819
+      ]
+     ],
+     "km": 19,
+     "esito": "ok"
+    },
+    {
+     "da": "Saint-Romain-de-Surieu",
+     "a": "Chavanay",
+     "linea_aria": 12,
+     "ll": [
+      [
+       45.3861,
+       4.8819
+      ],
+      [
+       45.4141,
+       4.7297
+      ]
+     ],
+     "km": 26,
+     "esito": "ok"
+    },
+    {
+     "da": "Chavanay",
+     "a": "Bourg-Argental",
+     "linea_aria": 19,
+     "ll": [
+      [
+       45.4141,
+       4.7297
+      ],
+      [
+       45.2967,
+       4.5608
+      ]
+     ],
+     "km": 26,
+     "esito": "ok"
+    },
+    {
+     "da": "Bourg-Argental",
+     "a": "Les Sétoux",
+     "linea_aria": 12,
+     "ll": [
+      [
+       45.2967,
+       4.5608
+      ],
+      [
+       45.2238,
+       4.456
+      ]
+     ],
+     "km": 17,
+     "esito": "ok"
+    },
+    {
+     "da": "Les Sétoux",
+     "a": "Montfaucon-en-Velay",
+     "linea_aria": 12,
+     "ll": [
+      [
+       45.2238,
+       4.456
+      ],
+      [
+       45.1854,
+       4.3147
+      ]
+     ],
+     "km": 17,
+     "esito": "ok"
+    },
+    {
+     "da": "Montfaucon-en-Velay",
+     "a": "Araules",
+     "linea_aria": 15,
+     "ll": [
+      [
+       45.1854,
+       4.3147
+      ],
+      [
+       45.09,
+       4.1736
+      ]
+     ],
+     "km": 22,
+     "esito": "ok"
+    },
+    {
+     "da": "Araules",
+     "a": "Saint-Julien-Chapteuil",
+     "linea_aria": 11,
+     "ll": [
+      [
+       45.09,
+       4.1736
+      ],
+      [
+       45.036,
+       4.0596
+      ]
+     ],
+     "km": 16,
+     "esito": "ok"
+    },
+    {
+     "da": "Saint-Julien-Chapteuil",
+     "a": "Le Puy-en-Velay",
+     "linea_aria": 14,
+     "ll": [
+      [
+       45.036,
+       4.0596
+      ],
+      [
+       45.046,
+       3.8855
+      ]
+     ],
+     "km": 18,
      "esito": "ok"
     }
    ],
@@ -2282,210 +9768,1237 @@
   },
   {
    "stato": "Italia",
-   "cammino": "Via Francigena (Italia)",
+   "cammino": "Via Francigena (Losanna - Roma)",
    "tratti": [
     {
-     "da": "Gran San Bernardo",
-     "a": "Aosta",
-     "linea_aria": 18,
+     "da": "Lausanne",
+     "a": "Vevey",
+     "linea_aria": 17,
      "ll": [
       [
-       45.869,
-       7.17
+       46.5218,
+       6.6327
       ],
       [
-       45.737,
-       7.315
+       46.4603,
+       6.8419
+      ]
+     ],
+     "km": 29,
+     "esito": "ok"
+    },
+    {
+     "da": "Vevey",
+     "a": "Aigle",
+     "linea_aria": 19,
+     "ll": [
+      [
+       46.4603,
+       6.8419
+      ],
+      [
+       46.3179,
+       6.9689
+      ]
+     ],
+     "km": 25,
+     "esito": "ok"
+    },
+    {
+     "da": "Aigle",
+     "a": "Saint-Maurice",
+     "linea_aria": 11,
+     "ll": [
+      [
+       46.3179,
+       6.9689
+      ],
+      [
+       46.2198,
+       7.0045
+      ]
+     ],
+     "km": 18,
+     "esito": "ok"
+    },
+    {
+     "da": "Saint-Maurice",
+     "a": "Martigny",
+     "linea_aria": 14,
+     "ll": [
+      [
+       46.2198,
+       7.0045
+      ],
+      [
+       46.1031,
+       7.0727
+      ]
+     ],
+     "km": 17,
+     "esito": "ok"
+    },
+    {
+     "da": "Martigny",
+     "a": "Orsières",
+     "linea_aria": 10,
+     "ll": [
+      [
+       46.1031,
+       7.0727
+      ],
+      [
+       46.0301,
+       7.1454
+      ]
+     ],
+     "km": 21,
+     "esito": "ok"
+    },
+    {
+     "da": "Orsières",
+     "a": "Bourg-Saint-Pierre",
+     "linea_aria": 10,
+     "ll": [
+      [
+       46.0301,
+       7.1454
+      ],
+      [
+       45.9489,
+       7.2088
+      ]
+     ],
+     "km": 13,
+     "esito": "ok"
+    },
+    {
+     "da": "Bourg-Saint-Pierre",
+     "a": "Col du Grand-Saint-Bernard",
+     "linea_aria": 10,
+     "ll": [
+      [
+       45.9489,
+       7.2088
+      ],
+      [
+       45.8681,
+       7.1653
+      ]
+     ],
+     "km": 12,
+     "esito": "ok"
+    },
+    {
+     "da": "Col du Grand-Saint-Bernard",
+     "a": "Étroubles",
+     "linea_aria": 6,
+     "ll": [
+      [
+       45.8681,
+       7.1653
+      ],
+      [
+       45.8409,
+       7.2355
+      ]
+     ],
+     "km": 14,
+     "esito": "ok"
+    },
+    {
+     "da": "Étroubles",
+     "a": "Aosta",
+     "linea_aria": 13,
+     "ll": [
+      [
+       45.8409,
+       7.2355
+      ],
+      [
+       45.7373,
+       7.3204
+      ]
+     ],
+     "km": 30,
+     "esito": "ok"
+    },
+    {
+     "da": "Aosta",
+     "a": "Châtillon",
+     "linea_aria": 24,
+     "ll": [
+      [
+       45.7373,
+       7.3204
+      ],
+      [
+       45.7588,
+       7.6245
+      ]
+     ],
+     "km": 30,
+     "esito": "ok"
+    },
+    {
+     "da": "Châtillon",
+     "a": "Verrès",
+     "linea_aria": 11,
+     "ll": [
+      [
+       45.7588,
+       7.6245
+      ],
+      [
+       45.6687,
+       7.6908
+      ]
+     ],
+     "km": 16,
+     "esito": "ok"
+    },
+    {
+     "da": "Verrès",
+     "a": "Pont-Saint-Martin",
+     "linea_aria": 12,
+     "ll": [
+      [
+       45.6687,
+       7.6908
+      ],
+      [
+       45.5989,
+       7.8162
+      ]
+     ],
+     "km": 16,
+     "esito": "ok"
+    },
+    {
+     "da": "Pont-Saint-Martin",
+     "a": "Ivrea",
+     "linea_aria": 17,
+     "ll": [
+      [
+       45.5989,
+       7.8162
+      ],
+      [
+       45.4518,
+       7.8933
+      ]
+     ],
+     "km": 22,
+     "esito": "ok"
+    },
+    {
+     "da": "Ivrea",
+     "a": "Viverone",
+     "linea_aria": 13,
+     "ll": [
+      [
+       45.4518,
+       7.8933
+      ],
+      [
+       45.4256,
+       8.0512
+      ]
+     ],
+     "km": 20,
+     "esito": "ok"
+    },
+    {
+     "da": "Viverone",
+     "a": "Santhià",
+     "linea_aria": 12,
+     "ll": [
+      [
+       45.4256,
+       8.0512
+      ],
+      [
+       45.3865,
+       8.2006
+      ]
+     ],
+     "km": 19,
+     "esito": "ok"
+    },
+    {
+     "da": "Santhià",
+     "a": "Vercelli",
+     "linea_aria": 19,
+     "ll": [
+      [
+       45.3865,
+       8.2006
+      ],
+      [
+       45.3252,
+       8.4228
+      ]
+     ],
+     "km": 27,
+     "esito": "ok"
+    },
+    {
+     "da": "Vercelli",
+     "a": "Robbio",
+     "linea_aria": 14,
+     "ll": [
+      [
+       45.3252,
+       8.4228
+      ],
+      [
+       45.29,
+       8.5933
+      ]
+     ],
+     "km": 19,
+     "esito": "ok"
+    },
+    {
+     "da": "Robbio",
+     "a": "Tromello",
+     "linea_aria": 24,
+     "ll": [
+      [
+       45.29,
+       8.5933
+      ],
+      [
+       45.2091,
+       8.8717
+      ]
+     ],
+     "km": 30,
+     "esito": "ok"
+    },
+    {
+     "da": "Tromello",
+     "a": "Pavia",
+     "linea_aria": 22,
+     "ll": [
+      [
+       45.2091,
+       8.8717
+      ],
+      [
+       45.186,
+       9.1546
+      ]
+     ],
+     "km": 30,
+     "esito": "ok"
+    },
+    {
+     "da": "Pavia",
+     "a": "Belgioioso",
+     "linea_aria": 13,
+     "ll": [
+      [
+       45.186,
+       9.1546
+      ],
+      [
+       45.1586,
+       9.3138
+      ]
+     ],
+     "km": 16,
+     "esito": "ok"
+    },
+    {
+     "da": "Belgioioso",
+     "a": "Orio Litta",
+     "linea_aria": 19,
+     "ll": [
+      [
+       45.1586,
+       9.3138
+      ],
+      [
+       45.1603,
+       9.5542
       ]
      ],
      "km": 28,
      "esito": "ok"
     },
     {
-     "da": "Aosta",
-     "a": "Ivrea",
-     "linea_aria": 53,
-     "ll": [
-      [
-       45.737,
-       7.315
-      ],
-      [
-       45.466,
-       7.876
-      ]
-     ],
-     "km": 84,
-     "esito": "ok"
-    },
-    {
-     "da": "Ivrea",
-     "a": "Vercelli",
-     "linea_aria": 45,
-     "ll": [
-      [
-       45.466,
-       7.876
-      ],
-      [
-       45.32,
-       8.42
-      ]
-     ],
-     "km": 66,
-     "esito": "ok"
-    },
-    {
-     "da": "Vercelli",
-     "a": "Pavia",
-     "linea_aria": 59,
-     "ll": [
-      [
-       45.32,
-       8.42
-      ],
-      [
-       45.185,
-       9.155
-      ]
-     ],
-     "km": 79,
-     "esito": "ok"
-    },
-    {
-     "da": "Pavia",
+     "da": "Orio Litta",
      "a": "Piacenza",
-     "linea_aria": 45,
+     "linea_aria": 16,
      "ll": [
       [
-       45.185,
-       9.155
+       45.1603,
+       9.5542
       ],
       [
-       45.052,
-       9.693
+       45.0535,
+       9.6948
       ]
      ],
-     "km": 68,
+     "km": 24,
      "esito": "ok"
     },
     {
      "da": "Piacenza",
-     "a": "Fidenza",
-     "linea_aria": 36,
+     "a": "Fiorenzuola d'Arda",
+     "linea_aria": 22,
      "ll": [
       [
-       45.052,
-       9.693
+       45.0535,
+       9.6948
       ],
       [
-       44.866,
-       10.06
+       44.9281,
+       9.9107
       ]
      ],
-     "km": 53,
+     "km": 31,
+     "esito": "ok"
+    },
+    {
+     "da": "Fiorenzuola d'Arda",
+     "a": "Fidenza",
+     "linea_aria": 14,
+     "ll": [
+      [
+       44.9281,
+       9.9107
+      ],
+      [
+       44.8665,
+       10.0612
+      ]
+     ],
+     "km": 23,
      "esito": "ok"
     },
     {
      "da": "Fidenza",
-     "a": "Pontremoli",
-     "linea_aria": 56,
+     "a": "Medesano",
+     "linea_aria": 14,
      "ll": [
       [
-       44.866,
-       10.06
+       44.8665,
+       10.0612
       ],
       [
-       44.375,
-       9.88
+       44.7567,
+       10.1398
       ]
      ],
-     "km": 90,
+     "km": 22,
+     "esito": "ok"
+    },
+    {
+     "da": "Medesano",
+     "a": "Sivizzano",
+     "linea_aria": 13,
+     "ll": [
+      [
+       44.7567,
+       10.1398
+      ],
+      [
+       44.6427,
+       10.1168
+      ]
+     ],
+     "km": 17,
+     "esito": "ok"
+    },
+    {
+     "da": "Sivizzano",
+     "a": "Berceto",
+     "linea_aria": 18,
+     "ll": [
+      [
+       44.6427,
+       10.1168
+      ],
+      [
+       44.5106,
+       9.9896
+      ]
+     ],
+     "km": 24,
+     "esito": "ok"
+    },
+    {
+     "da": "Berceto",
+     "a": "Pontremoli",
+     "linea_aria": 17,
+     "ll": [
+      [
+       44.5106,
+       9.9896
+      ],
+      [
+       44.3772,
+       9.883
+      ]
+     ],
+     "km": 26,
      "esito": "ok"
     },
     {
      "da": "Pontremoli",
-     "a": "Lucca",
-     "linea_aria": 77,
+     "a": "Aulla",
+     "linea_aria": 19,
      "ll": [
       [
-       44.375,
-       9.88
+       44.3772,
+       9.883
       ],
       [
-       43.843,
-       10.505
+       44.2146,
+       9.9678
       ]
      ],
-     "km": 128,
+     "km": 31,
+     "esito": "ok"
+    },
+    {
+     "da": "Aulla",
+     "a": "Sarzana",
+     "linea_aria": 11,
+     "ll": [
+      [
+       44.2146,
+       9.9678
+      ],
+      [
+       44.1132,
+       9.96
+      ]
+     ],
+     "km": 18,
+     "esito": "ok"
+    },
+    {
+     "da": "Sarzana",
+     "a": "Massa",
+     "linea_aria": 17,
+     "ll": [
+      [
+       44.1132,
+       9.96
+      ],
+      [
+       44.0359,
+       10.1395
+      ]
+     ],
+     "km": 29,
+     "esito": "ok"
+    },
+    {
+     "da": "Massa",
+     "a": "Camaiore",
+     "linea_aria": 17,
+     "ll": [
+      [
+       44.0359,
+       10.1395
+      ],
+      [
+       43.9381,
+       10.304
+      ]
+     ],
+     "km": 26,
+     "esito": "ok"
+    },
+    {
+     "da": "Camaiore",
+     "a": "Lucca",
+     "linea_aria": 19,
+     "ll": [
+      [
+       43.9381,
+       10.304
+      ],
+      [
+       43.8428,
+       10.5029
+      ]
+     ],
+     "km": 24,
      "esito": "ok"
     },
     {
      "da": "Lucca",
-     "a": "San Gimignano",
-     "linea_aria": 60,
+     "a": "Altopascio",
+     "linea_aria": 14,
      "ll": [
       [
-       43.843,
-       10.505
+       43.8428,
+       10.5029
       ],
       [
-       43.468,
-       11.043
+       43.815,
+       10.6744
       ]
      ],
-     "km": 82,
+     "km": 18,
+     "esito": "ok"
+    },
+    {
+     "da": "Altopascio",
+     "a": "San Miniato",
+     "linea_aria": 21,
+     "ll": [
+      [
+       43.815,
+       10.6744
+      ],
+      [
+       43.6797,
+       10.8501
+      ]
+     ],
+     "km": 27,
+     "esito": "ok"
+    },
+    {
+     "da": "San Miniato",
+     "a": "Gambassi Terme",
+     "linea_aria": 18,
+     "ll": [
+      [
+       43.6797,
+       10.8501
+      ],
+      [
+       43.5391,
+       10.9541
+      ]
+     ],
+     "km": 24,
+     "esito": "ok"
+    },
+    {
+     "da": "Gambassi Terme",
+     "a": "San Gimignano",
+     "linea_aria": 11,
+     "ll": [
+      [
+       43.5391,
+       10.9541
+      ],
+      [
+       43.4678,
+       11.0432
+      ]
+     ],
+     "km": 14,
      "esito": "ok"
     },
     {
      "da": "San Gimignano",
-     "a": "Siena",
-     "linea_aria": 29,
+     "a": "Monteriggioni",
+     "linea_aria": 17,
      "ll": [
       [
-       43.468,
-       11.043
+       43.4678,
+       11.0432
       ],
       [
-       43.318,
-       11.331
+       43.39,
+       11.2236
       ]
      ],
-     "km": 50,
+     "km": 29,
+     "esito": "ok"
+    },
+    {
+     "da": "Monteriggioni",
+     "a": "Siena",
+     "linea_aria": 12,
+     "ll": [
+      [
+       43.39,
+       11.2236
+      ],
+      [
+       43.3186,
+       11.3316
+      ]
+     ],
+     "km": 21,
      "esito": "ok"
     },
     {
      "da": "Siena",
-     "a": "Viterbo",
-     "linea_aria": 118,
+     "a": "Ponte d'Arbia",
+     "linea_aria": 20,
      "ll": [
       [
-       43.318,
-       11.331
+       43.3186,
+       11.3316
       ],
       [
-       42.417,
-       12.105
+       43.1674,
+       11.4647
       ]
      ],
-     "km": 167,
+     "km": 26,
+     "esito": "ok"
+    },
+    {
+     "da": "Ponte d'Arbia",
+     "a": "San Quirico d'Orcia",
+     "linea_aria": 16,
+     "ll": [
+      [
+       43.1674,
+       11.4647
+      ],
+      [
+       43.0604,
+       11.6037
+      ]
+     ],
+     "km": 27,
+     "esito": "ok"
+    },
+    {
+     "da": "San Quirico d'Orcia",
+     "a": "Radicofani",
+     "linea_aria": 23,
+     "ll": [
+      [
+       43.0604,
+       11.6037
+      ],
+      [
+       42.8965,
+       11.7697
+      ]
+     ],
+     "km": 34,
+     "esito": "ok"
+    },
+    {
+     "da": "Radicofani",
+     "a": "Acquapendente",
+     "linea_aria": 19,
+     "ll": [
+      [
+       42.8965,
+       11.7697
+      ],
+      [
+       42.744,
+       11.865
+      ]
+     ],
+     "km": 23,
+     "esito": "ok"
+    },
+    {
+     "da": "Acquapendente",
+     "a": "Bolsena",
+     "linea_aria": 15,
+     "ll": [
+      [
+       42.744,
+       11.865
+      ],
+      [
+       42.6441,
+       11.985
+      ]
+     ],
+     "km": 23,
+     "esito": "ok"
+    },
+    {
+     "da": "Bolsena",
+     "a": "Montefiascone",
+     "linea_aria": 12,
+     "ll": [
+      [
+       42.6441,
+       11.985
+      ],
+      [
+       42.5379,
+       12.031
+      ]
+     ],
+     "km": 17,
+     "esito": "ok"
+    },
+    {
+     "da": "Montefiascone",
+     "a": "Viterbo",
+     "linea_aria": 15,
+     "ll": [
+      [
+       42.5379,
+       12.031
+      ],
+      [
+       42.4168,
+       12.1051
+      ]
+     ],
+     "km": 18,
      "esito": "ok"
     },
     {
      "da": "Viterbo",
-     "a": "Roma",
-     "linea_aria": 64,
+     "a": "Vetralla",
+     "linea_aria": 11,
      "ll": [
       [
-       42.417,
-       12.105
+       42.4168,
+       12.1051
       ],
       [
-       41.902,
-       12.457
+       42.3205,
+       12.0575
       ]
      ],
-     "km": 96,
+     "km": 16,
+     "esito": "ok"
+    },
+    {
+     "da": "Vetralla",
+     "a": "Sutri",
+     "linea_aria": 15,
+     "ll": [
+      [
+       42.3205,
+       12.0575
+      ],
+      [
+       42.247,
+       12.2151
+      ]
+     ],
+     "km": 25,
+     "esito": "ok"
+    },
+    {
+     "da": "Sutri",
+     "a": "Campagnano di Roma",
+     "linea_aria": 18,
+     "ll": [
+      [
+       42.247,
+       12.2151
+      ],
+      [
+       42.1411,
+       12.3837
+      ]
+     ],
+     "km": 24,
+     "esito": "ok"
+    },
+    {
+     "da": "Campagnano di Roma",
+     "a": "La Storta",
+     "linea_aria": 14,
+     "ll": [
+      [
+       42.1411,
+       12.3837
+      ],
+      [
+       42.0121,
+       12.3729
+      ]
+     ],
+     "km": 23,
+     "esito": "ok"
+    },
+    {
+     "da": "La Storta",
+     "a": "Roma",
+     "linea_aria": 16,
+     "ll": [
+      [
+       42.0121,
+       12.3729
+      ],
+      [
+       41.8933,
+       12.4829
+      ]
+     ],
+     "km": 23,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Svizzera",
+   "cammino": "ViaJacobi (Costanza - Ginevra)",
+   "tratti": [
+    {
+     "da": "Konstanz",
+     "a": "Märstetten",
+     "linea_aria": 11,
+     "ll": [
+      [
+       47.6592,
+       9.1751
+      ],
+      [
+       47.5926,
+       9.0678
+      ]
+     ],
+     "km": 14,
+     "esito": "ok"
+    },
+    {
+     "da": "Märstetten",
+     "a": "Fischingen",
+     "linea_aria": 21,
+     "ll": [
+      [
+       47.5926,
+       9.0678
+      ],
+      [
+       47.4162,
+       8.9698
+      ]
+     ],
+     "km": 28,
+     "esito": "ok"
+    },
+    {
+     "da": "Fischingen",
+     "a": "Gibswil",
+     "linea_aria": 12,
+     "ll": [
+      [
+       47.4162,
+       8.9698
+      ],
+      [
+       47.313,
+       8.9132
+      ]
+     ],
+     "km": 16,
+     "esito": "ok"
+    },
+    {
+     "da": "Gibswil",
+     "a": "Rapperswil",
+     "linea_aria": 12,
+     "ll": [
+      [
+       47.313,
+       8.9132
+      ],
+      [
+       47.2266,
+       8.8164
+      ]
+     ],
+     "km": 17,
+     "esito": "ok"
+    },
+    {
+     "da": "Rapperswil",
+     "a": "Einsiedeln",
+     "linea_aria": 12,
+     "ll": [
+      [
+       47.2266,
+       8.8164
+      ],
+      [
+       47.1286,
+       8.75
+      ]
+     ],
+     "km": 16,
+     "esito": "ok"
+    },
+    {
+     "da": "Einsiedeln",
+     "a": "Brunnen",
+     "linea_aria": 19,
+     "ll": [
+      [
+       47.1286,
+       8.75
+      ],
+      [
+       46.994,
+       8.6054
+      ]
+     ],
+     "km": 25,
+     "esito": "ok"
+    },
+    {
+     "da": "Brunnen",
+     "a": "Buochs",
+     "linea_aria": 14,
+     "ll": [
+      [
+       46.994,
+       8.6054
+      ],
+      [
+       46.974,
+       8.4206
+      ]
+     ],
+     "esito": "ok",
+     "nota": "in battello"
+    },
+    {
+     "da": "Buochs",
+     "a": "Flüeli-Ranft",
+     "linea_aria": 16,
+     "ll": [
+      [
+       46.974,
+       8.4206
+      ],
+      [
+       46.871,
+       8.2693
+      ]
+     ],
+     "km": 23,
+     "esito": "ok"
+    },
+    {
+     "da": "Flüeli-Ranft",
+     "a": "Lungern",
+     "linea_aria": 13,
+     "ll": [
+      [
+       46.871,
+       8.2693
+      ],
+      [
+       46.7857,
+       8.1607
+      ]
+     ],
+     "km": 19,
+     "esito": "ok"
+    },
+    {
+     "da": "Lungern",
+     "a": "Brienz",
+     "linea_aria": 10,
+     "ll": [
+      [
+       46.7857,
+       8.1607
+      ],
+      [
+       46.756,
+       8.0303
+      ]
+     ],
+     "km": 14,
+     "esito": "ok"
+    },
+    {
+     "da": "Brienz",
+     "a": "Interlaken",
+     "linea_aria": 15,
+     "ll": [
+      [
+       46.756,
+       8.0303
+      ],
+      [
+       46.6855,
+       7.8585
+      ]
+     ],
+     "km": 18,
+     "esito": "ok"
+    },
+    {
+     "da": "Interlaken",
+     "a": "Amsoldingen",
+     "linea_aria": 22,
+     "ll": [
+      [
+       46.6855,
+       7.8585
+      ],
+      [
+       46.7281,
+       7.5815
+      ]
+     ],
+     "km": 31,
+     "esito": "ok"
+    },
+    {
+     "da": "Amsoldingen",
+     "a": "Rüeggisberg",
+     "linea_aria": 15,
+     "ll": [
+      [
+       46.7281,
+       7.5815
+      ],
+      [
+       46.8215,
+       7.4397
+      ]
+     ],
+     "km": 20,
+     "esito": "ok"
+    },
+    {
+     "da": "Rüeggisberg",
+     "a": "Fribourg",
+     "linea_aria": 21,
+     "ll": [
+      [
+       46.8215,
+       7.4397
+      ],
+      [
+       46.8056,
+       7.1613
+      ]
+     ],
+     "km": 30,
+     "esito": "ok"
+    },
+    {
+     "da": "Fribourg",
+     "a": "Chavannes-sous-Orsonnens",
+     "linea_aria": 16,
+     "ll": [
+      [
+       46.8056,
+       7.1613
+      ],
+      [
+       46.7271,
+       6.9919
+      ]
+     ],
+     "km": 20,
+     "esito": "ok"
+    },
+    {
+     "da": "Chavannes-sous-Orsonnens",
+     "a": "Moudon",
+     "linea_aria": 16,
+     "ll": [
+      [
+       46.7271,
+       6.9919
+      ],
+      [
+       46.6681,
+       6.8003
+      ]
+     ],
+     "km": 23,
+     "esito": "ok"
+    },
+    {
+     "da": "Moudon",
+     "a": "Lausanne",
+     "linea_aria": 21,
+     "ll": [
+      [
+       46.6681,
+       6.8003
+      ],
+      [
+       46.5218,
+       6.6327
+      ]
+     ],
+     "km": 30,
+     "esito": "ok"
+    },
+    {
+     "da": "Lausanne",
+     "a": "Saint-Prex",
+     "linea_aria": 14,
+     "ll": [
+      [
+       46.5218,
+       6.6327
+      ],
+      [
+       46.4809,
+       6.4586
+      ]
+     ],
+     "km": 19,
+     "esito": "ok"
+    },
+    {
+     "da": "Saint-Prex",
+     "a": "Gland",
+     "linea_aria": 16,
+     "ll": [
+      [
+       46.4809,
+       6.4586
+      ],
+      [
+       46.4239,
+       6.2655
+      ]
+     ],
+     "km": 21,
+     "esito": "ok"
+    },
+    {
+     "da": "Gland",
+     "a": "Commugny",
+     "linea_aria": 14,
+     "ll": [
+      [
+       46.4239,
+       6.2655
+      ],
+      [
+       46.3182,
+       6.1758
+      ]
+     ],
+     "km": 18,
+     "esito": "ok"
+    },
+    {
+     "da": "Commugny",
+     "a": "Genève",
+     "linea_aria": 13,
+     "ll": [
+      [
+       46.3182,
+       6.1758
+      ],
+      [
+       46.2018,
+       6.1466
+      ]
+     ],
+     "km": 18,
      "esito": "ok"
     }
    ],
@@ -2496,224 +11009,54 @@
    "cammino": "Via Francigena (Francia e Svizzera)",
    "tratti": [
     {
-     "da": "Calais",
-     "a": "Wissant",
-     "linea_aria": 15,
-     "ll": [
-      [
-       50.951,
-       1.858
-      ],
-      [
-       50.886,
-       1.663
-      ]
-     ],
-     "km": 20,
-     "esito": "ok"
-    },
-    {
-     "da": "Wissant",
-     "a": "Licques",
-     "linea_aria": 22,
-     "ll": [
-      [
-       50.886,
-       1.663
-      ],
-      [
-       50.784,
-       1.936
-      ]
-     ],
-     "km": 36,
-     "esito": "ok"
-    },
-    {
-     "da": "Licques",
-     "a": "Wisques",
-     "linea_aria": 20,
-     "ll": [
-      [
-       50.784,
-       1.936
-      ],
-      [
-       50.722,
-       2.197
-      ]
-     ],
-     "km": 35,
-     "esito": "ok"
-    },
-    {
-     "da": "Wisques",
-     "a": "Arras",
-     "linea_aria": 63,
-     "ll": [
-      [
-       50.722,
-       2.197
-      ],
-      [
-       50.29,
-       2.78
-      ]
-     ],
-     "km": 111,
-     "esito": "ok"
-    },
-    {
      "da": "Arras",
-     "a": "Péronne",
-     "linea_aria": 41,
+     "a": "Reims",
+     "linea_aria": 146,
      "ll": [
       [
        50.29,
        2.78
-      ],
-      [
-       49.932,
-       2.934
-      ]
-     ],
-     "km": 57,
-     "esito": "ok"
-    },
-    {
-     "da": "Péronne",
-     "a": "Laon",
-     "linea_aria": 64,
-     "ll": [
-      [
-       49.932,
-       2.934
-      ],
-      [
-       49.564,
-       3.62
-      ]
-     ],
-     "km": 101,
-     "esito": "ok"
-    },
-    {
-     "da": "Laon",
-     "a": "Reims",
-     "linea_aria": 45,
-     "ll": [
-      [
-       49.564,
-       3.62
       ],
       [
        49.258,
        4.032
       ]
      ],
-     "km": 70,
+     "km": 228,
      "esito": "ok"
     },
     {
      "da": "Reims",
-     "a": "Châlons-en-Champagne",
-     "linea_aria": 41,
+     "a": "Besançon",
+     "linea_aria": 269,
      "ll": [
       [
        49.258,
        4.032
       ],
       [
-       48.957,
-       4.365
-      ]
-     ],
-     "km": 60,
-     "esito": "ok"
-    },
-    {
-     "da": "Châlons-en-Champagne",
-     "a": "Bar-sur-Aube",
-     "linea_aria": 84,
-     "ll": [
-      [
-       48.957,
-       4.365
-      ],
-      [
-       48.233,
-       4.706
-      ]
-     ],
-     "km": 160,
-     "esito": "ok"
-    },
-    {
-     "da": "Bar-sur-Aube",
-     "a": "Langres",
-     "linea_aria": 62,
-     "ll": [
-      [
-       48.233,
-       4.706
-      ],
-      [
-       47.862,
-       5.333
-      ]
-     ],
-     "km": 96,
-     "esito": "ok"
-    },
-    {
-     "da": "Langres",
-     "a": "Besançon",
-     "linea_aria": 87,
-     "ll": [
-      [
-       47.862,
-       5.333
-      ],
-      [
        47.238,
        6.024
       ]
      ],
-     "km": 145,
+     "km": 460,
      "esito": "ok"
     },
     {
      "da": "Besançon",
-     "a": "Pontarlier",
-     "linea_aria": 45,
+     "a": "Losanna",
+     "linea_aria": 92,
      "ll": [
       [
        47.238,
        6.024
-      ],
-      [
-       46.904,
-       6.354
-      ]
-     ],
-     "km": 75,
-     "esito": "ok"
-    },
-    {
-     "da": "Pontarlier",
-     "a": "Losanna",
-     "linea_aria": 48,
-     "ll": [
-      [
-       46.904,
-       6.354
       ],
       [
        46.52,
        6.63
       ]
      ],
-     "km": 90,
+     "km": 165,
      "esito": "ok"
     },
     {
@@ -2731,268 +11074,6 @@
       ]
      ],
      "km": 133,
-     "esito": "ok"
-    }
-   ],
-   "problemi": 0
-  },
-  {
-   "stato": "Italia",
-   "cammino": "Via Francigena del Sud",
-   "tratti": [
-    {
-     "da": "Roma",
-     "a": "Velletri",
-     "linea_aria": 36,
-     "ll": [
-      [
-       41.902,
-       12.457
-      ],
-      [
-       41.687,
-       12.777
-      ]
-     ],
-     "km": 46,
-     "esito": "ok"
-    },
-    {
-     "da": "Velletri",
-     "a": "Priverno",
-     "linea_aria": 42,
-     "ll": [
-      [
-       41.687,
-       12.777
-      ],
-      [
-       41.472,
-       13.188
-      ]
-     ],
-     "km": 64,
-     "esito": "ok"
-    },
-    {
-     "da": "Priverno",
-     "a": "Terracina",
-     "linea_aria": 21,
-     "ll": [
-      [
-       41.472,
-       13.188
-      ],
-      [
-       41.291,
-       13.248
-      ]
-     ],
-     "km": 28,
-     "esito": "ok"
-    },
-    {
-     "da": "Terracina",
-     "a": "Fondi",
-     "linea_aria": 17,
-     "ll": [
-      [
-       41.291,
-       13.248
-      ],
-      [
-       41.357,
-       13.426
-      ]
-     ],
-     "km": 22,
-     "esito": "ok"
-    },
-    {
-     "da": "Fondi",
-     "a": "Formia",
-     "linea_aria": 19,
-     "ll": [
-      [
-       41.357,
-       13.426
-      ],
-      [
-       41.256,
-       13.606
-      ]
-     ],
-     "km": 27,
-     "esito": "ok"
-    },
-    {
-     "da": "Formia",
-     "a": "Sessa Aurunca",
-     "linea_aria": 27,
-     "ll": [
-      [
-       41.256,
-       13.606
-      ],
-      [
-       41.236,
-       13.932
-      ]
-     ],
-     "km": 31,
-     "esito": "ok"
-    },
-    {
-     "da": "Sessa Aurunca",
-     "a": "Benevento",
-     "linea_aria": 72,
-     "ll": [
-      [
-       41.236,
-       13.932
-      ],
-      [
-       41.13,
-       14.782
-      ]
-     ],
-     "km": 110,
-     "esito": "ok"
-    },
-    {
-     "da": "Benevento",
-     "a": "Troia",
-     "linea_aria": 51,
-     "ll": [
-      [
-       41.13,
-       14.782
-      ],
-      [
-       41.361,
-       15.309
-      ]
-     ],
-     "km": 69,
-     "esito": "ok"
-    },
-    {
-     "da": "Troia",
-     "a": "Monte Sant'Angelo",
-     "linea_aria": 66,
-     "ll": [
-      [
-       41.361,
-       15.309
-      ],
-      [
-       41.707,
-       15.958
-      ]
-     ],
-     "km": 111,
-     "esito": "ok"
-    },
-    {
-     "da": "Monte Sant'Angelo",
-     "a": "Barletta",
-     "linea_aria": 51,
-     "ll": [
-      [
-       41.707,
-       15.958
-      ],
-      [
-       41.32,
-       16.283
-      ]
-     ],
-     "km": 76,
-     "esito": "ok"
-    },
-    {
-     "da": "Barletta",
-     "a": "Bari",
-     "linea_aria": 54,
-     "ll": [
-      [
-       41.32,
-       16.283
-      ],
-      [
-       41.117,
-       16.872
-      ]
-     ],
-     "km": 69,
-     "esito": "ok"
-    },
-    {
-     "da": "Bari",
-     "a": "Brindisi",
-     "linea_aria": 105,
-     "ll": [
-      [
-       41.117,
-       16.872
-      ],
-      [
-       40.638,
-       17.946
-      ]
-     ],
-     "km": 137,
-     "esito": "ok"
-    },
-    {
-     "da": "Brindisi",
-     "a": "Lecce",
-     "linea_aria": 37,
-     "ll": [
-      [
-       40.638,
-       17.946
-      ],
-      [
-       40.352,
-       18.172
-      ]
-     ],
-     "km": 47,
-     "esito": "ok"
-    },
-    {
-     "da": "Lecce",
-     "a": "Otranto",
-     "linea_aria": 35,
-     "ll": [
-      [
-       40.352,
-       18.172
-      ],
-      [
-       40.147,
-       18.486
-      ]
-     ],
-     "km": 49,
-     "esito": "ok"
-    },
-    {
-     "da": "Otranto",
-     "a": "Santa Maria di Leuca",
-     "linea_aria": 41,
-     "ll": [
-      [
-       40.147,
-       18.486
-      ],
-      [
-       39.796,
-       18.359
-      ]
-     ],
-     "km": 57,
      "esito": "ok"
     }
    ],
@@ -3229,156 +11310,6 @@
       ]
      ],
      "km": 123,
-     "esito": "ok"
-    }
-   ],
-   "problemi": 0
-  },
-  {
-   "stato": "Svizzera",
-   "cammino": "ViaJacobi (Rorschach - Brunnen)",
-   "tratti": [
-    {
-     "da": "Rorschach",
-     "a": "Einsiedeln",
-     "linea_aria": 68,
-     "ll": [
-      [
-       47.478,
-       9.49
-      ],
-      [
-       47.128,
-       8.747
-      ]
-     ],
-     "km": 94,
-     "esito": "ok"
-    },
-    {
-     "da": "Einsiedeln",
-     "a": "Brunnen",
-     "linea_aria": 18,
-     "ll": [
-      [
-       47.128,
-       8.747
-      ],
-      [
-       46.995,
-       8.605
-      ]
-     ],
-     "km": 25,
-     "esito": "ok"
-    }
-   ],
-   "problemi": 0
-  },
-  {
-   "stato": "Svizzera",
-   "cammino": "ViaJacobi (Treib - Ginevra, dopo il battello)",
-   "tratti": [
-    {
-     "da": "Treib",
-     "a": "Flüeli-Ranft",
-     "linea_aria": 28,
-     "ll": [
-      [
-       46.983,
-       8.598
-      ],
-      [
-       46.873,
-       8.268
-      ]
-     ],
-     "km": 38,
-     "esito": "ok"
-    },
-    {
-     "da": "Flüeli-Ranft",
-     "a": "Brienz",
-     "linea_aria": 22,
-     "ll": [
-      [
-       46.873,
-       8.268
-      ],
-      [
-       46.754,
-       8.037
-      ]
-     ],
-     "km": 33,
-     "esito": "ok"
-    },
-    {
-     "da": "Brienz",
-     "a": "Berna",
-     "linea_aria": 50,
-     "ll": [
-      [
-       46.754,
-       8.037
-      ],
-      [
-       46.948,
-       7.447
-      ]
-     ],
-     "km": 90,
-     "esito": "ok"
-    },
-    {
-     "da": "Berna",
-     "a": "Friburgo",
-     "linea_aria": 27,
-     "ll": [
-      [
-       46.948,
-       7.447
-      ],
-      [
-       46.806,
-       7.162
-      ]
-     ],
-     "km": 52,
-     "esito": "ok"
-    },
-    {
-     "da": "Friburgo",
-     "a": "Losanna",
-     "linea_aria": 52,
-     "ll": [
-      [
-       46.806,
-       7.162
-      ],
-      [
-       46.52,
-       6.63
-      ]
-     ],
-     "km": 74,
-     "esito": "ok"
-    },
-    {
-     "da": "Losanna",
-     "a": "Ginevra",
-     "linea_aria": 51,
-     "ll": [
-      [
-       46.52,
-       6.63
-      ],
-      [
-       46.204,
-       6.143
-      ]
-     ],
-     "km": 75,
      "esito": "ok"
     }
    ],
