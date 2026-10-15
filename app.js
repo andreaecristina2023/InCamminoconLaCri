@@ -102,8 +102,8 @@ const catReady = (async () => {
 
 function renderFamTabs() {
   const box = $('#famTabs'); box.innerHTML = '';
-  for (const f of S.famiglie) {
-    const n = S.cat.filter(c => c.fam === f.key && c.km >= MIN_KM).length;
+  for (const f of [{ key: '*', label: 'Tutti i percorsi' }, ...S.famiglie]) {
+    const n = S.cat.filter(c => (f.key === '*' || c.fam === f.key) && c.km >= MIN_KM).length;
     if (!n) continue;   // famiglia ancora senza dati (es. appena aggiunta)
     const b = document.createElement('button');
     b.textContent = `${f.label} (${n})`; b.className = f.key === S.fam ? 'on' : '';
@@ -125,7 +125,7 @@ function esitoDi(c) {
 }
 function renderPaesi() {
   const box = $('#statiChips'); box.innerHTML = '';
-  const paesi = [...new Set(S.cat.filter(c => c.fam === S.fam && c.km >= MIN_KM).flatMap(c => c.paesi))].sort((a, b) => a.localeCompare(b));
+  const paesi = [...new Set(S.cat.filter(c => (S.fam === '*' || c.fam === S.fam) && c.km >= MIN_KM).flatMap(c => c.paesi))].sort((a, b) => a.localeCompare(b));
   for (const s of [...S.stati]) if (!paesi.includes(s)) S.stati.delete(s);
   const all = document.createElement('button');
   all.textContent = 'Tutti i paesi'; all.className = S.stati.size ? '' : 'on';
@@ -143,7 +143,7 @@ const plain = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLo
 function filteredRoutes() {
   const f = plain($('#filter').value.trim()), brevi = $('#fBrevi').checked;
   return S.cat.filter(c => S.chosen.has(c.slug) || (
-    (f ? true : c.fam === S.fam) && (brevi || c.km >= MIN_KM || f) &&
+    (f || S.fam === '*' ? true : c.fam === S.fam) && (brevi || c.km >= MIN_KM || f) &&
     (!S.stati.size || c.paesi.some(p => S.stati.has(p))) &&
     (!f || plain(c.nome).includes(f))));
 }

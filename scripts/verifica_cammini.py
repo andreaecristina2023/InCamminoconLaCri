@@ -77,8 +77,16 @@ C = [
         ("Vercelli", 45.320, 8.420), ("Pavia", 45.185, 9.155), ("Piacenza", 45.052, 9.693), ("Fidenza", 44.866, 10.060),
         ("Pontremoli", 44.375, 9.880), ("Lucca", 43.843, 10.505), ("San Gimignano", 43.468, 11.043), ("Siena", 43.318, 11.331),
         ("Viterbo", 42.417, 12.105), ("Roma", 41.902, 12.457)]),
-    ("Francia", "Via Francigena (Francia e Svizzera)", [("Arras", 50.290, 2.780), ("Reims", 49.258, 4.032), ("Besançon", 47.238, 6.024),
+    ("Francia", "Via Francigena (Francia e Svizzera)", [("Calais", 50.951, 1.858), ("Wissant", 50.886, 1.663),
+        ("Licques", 50.784, 1.936), ("Wisques", 50.722, 2.197), ("Arras", 50.290, 2.780),
+        ("Péronne", 49.932, 2.934), ("Laon", 49.564, 3.620), ("Reims", 49.258, 4.032), ("Châlons-en-Champagne", 48.957, 4.365),
+        ("Bar-sur-Aube", 48.233, 4.706), ("Langres", 47.862, 5.333), ("Besançon", 47.238, 6.024), ("Pontarlier", 46.904, 6.354),
         ("Losanna", 46.520, 6.630), ("Gran San Bernardo", 45.869, 7.170)]),
+    ("Italia", "Via Francigena del Sud", [("Roma", 41.902, 12.457), ("Velletri", 41.687, 12.777), ("Priverno", 41.472, 13.188),
+        ("Terracina", 41.291, 13.248), ("Fondi", 41.357, 13.426), ("Formia", 41.256, 13.606), ("Sessa Aurunca", 41.236, 13.932),
+        ("Benevento", 41.130, 14.782), ("Troia", 41.361, 15.309), ("Monte Sant'Angelo", 41.707, 15.958),
+        ("Barletta", 41.320, 16.283), ("Bari", 41.117, 16.872), ("Brindisi", 40.638, 17.946), ("Lecce", 40.352, 18.172),
+        ("Otranto", 40.147, 18.486), ("Santa Maria di Leuca", 39.796, 18.359)]),
     ("Regno Unito", "Via Francigena (Inghilterra)", [("Canterbury", 51.280, 1.080), ("Dover", 51.126, 1.313)]),
     ("Austria", "Via Romea Germanica (Austria)", [("Augusta", 48.366, 10.894), ("Füssen", 47.570, 10.700),
         ("Reutte", 47.488, 10.719), ("Innsbruck", 47.269, 11.404), ("Brennero", 47.002, 11.505), ("Bolzano", 46.498, 11.354)]),
@@ -236,7 +244,7 @@ def main():
             if len(towns) >= 2:
                 gl.append((c["stato"], c["nome"], towns))
         coperti = ("Camino", "Vía de la Plata", "Via Podiensis", "Via Tolosana", "Via Lemovicensis", "Via Turonensis",
-                   "Via Gebennensis", "Via Francigena (Italia)", "ViaJacobi")
+                   "Via Gebennensis", "Via Francigena", "ViaJacobi")
         lista = gl + [x for x in C if not x[1].startswith(coperti)]
         print(f"Tappe di Gronze: {len(gl)} cammini, {sum(len(x[2]) for x in gl)} tappe con coordinate\n", flush=True)
 

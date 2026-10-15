@@ -2496,54 +2496,224 @@
    "cammino": "Via Francigena (Francia e Svizzera)",
    "tratti": [
     {
+     "da": "Calais",
+     "a": "Wissant",
+     "linea_aria": 15,
+     "ll": [
+      [
+       50.951,
+       1.858
+      ],
+      [
+       50.886,
+       1.663
+      ]
+     ],
+     "km": 20,
+     "esito": "ok"
+    },
+    {
+     "da": "Wissant",
+     "a": "Licques",
+     "linea_aria": 22,
+     "ll": [
+      [
+       50.886,
+       1.663
+      ],
+      [
+       50.784,
+       1.936
+      ]
+     ],
+     "km": 36,
+     "esito": "ok"
+    },
+    {
+     "da": "Licques",
+     "a": "Wisques",
+     "linea_aria": 20,
+     "ll": [
+      [
+       50.784,
+       1.936
+      ],
+      [
+       50.722,
+       2.197
+      ]
+     ],
+     "km": 35,
+     "esito": "ok"
+    },
+    {
+     "da": "Wisques",
+     "a": "Arras",
+     "linea_aria": 63,
+     "ll": [
+      [
+       50.722,
+       2.197
+      ],
+      [
+       50.29,
+       2.78
+      ]
+     ],
+     "km": 111,
+     "esito": "ok"
+    },
+    {
      "da": "Arras",
-     "a": "Reims",
-     "linea_aria": 146,
+     "a": "Péronne",
+     "linea_aria": 41,
      "ll": [
       [
        50.29,
        2.78
       ],
       [
+       49.932,
+       2.934
+      ]
+     ],
+     "km": 57,
+     "esito": "ok"
+    },
+    {
+     "da": "Péronne",
+     "a": "Laon",
+     "linea_aria": 64,
+     "ll": [
+      [
+       49.932,
+       2.934
+      ],
+      [
+       49.564,
+       3.62
+      ]
+     ],
+     "km": 101,
+     "esito": "ok"
+    },
+    {
+     "da": "Laon",
+     "a": "Reims",
+     "linea_aria": 45,
+     "ll": [
+      [
+       49.564,
+       3.62
+      ],
+      [
        49.258,
        4.032
       ]
      ],
-     "km": 228,
+     "km": 70,
      "esito": "ok"
     },
     {
      "da": "Reims",
-     "a": "Besançon",
-     "linea_aria": 269,
+     "a": "Châlons-en-Champagne",
+     "linea_aria": 41,
      "ll": [
       [
        49.258,
        4.032
       ],
       [
+       48.957,
+       4.365
+      ]
+     ],
+     "km": 60,
+     "esito": "ok"
+    },
+    {
+     "da": "Châlons-en-Champagne",
+     "a": "Bar-sur-Aube",
+     "linea_aria": 84,
+     "ll": [
+      [
+       48.957,
+       4.365
+      ],
+      [
+       48.233,
+       4.706
+      ]
+     ],
+     "km": 160,
+     "esito": "ok"
+    },
+    {
+     "da": "Bar-sur-Aube",
+     "a": "Langres",
+     "linea_aria": 62,
+     "ll": [
+      [
+       48.233,
+       4.706
+      ],
+      [
+       47.862,
+       5.333
+      ]
+     ],
+     "km": 96,
+     "esito": "ok"
+    },
+    {
+     "da": "Langres",
+     "a": "Besançon",
+     "linea_aria": 87,
+     "ll": [
+      [
+       47.862,
+       5.333
+      ],
+      [
        47.238,
        6.024
       ]
      ],
-     "km": 460,
+     "km": 145,
      "esito": "ok"
     },
     {
      "da": "Besançon",
-     "a": "Losanna",
-     "linea_aria": 92,
+     "a": "Pontarlier",
+     "linea_aria": 45,
      "ll": [
       [
        47.238,
        6.024
+      ],
+      [
+       46.904,
+       6.354
+      ]
+     ],
+     "km": 75,
+     "esito": "ok"
+    },
+    {
+     "da": "Pontarlier",
+     "a": "Losanna",
+     "linea_aria": 48,
+     "ll": [
+      [
+       46.904,
+       6.354
       ],
       [
        46.52,
        6.63
       ]
      ],
-     "km": 165,
+     "km": 90,
      "esito": "ok"
     },
     {
@@ -2561,6 +2731,268 @@
       ]
      ],
      "km": 133,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 0
+  },
+  {
+   "stato": "Italia",
+   "cammino": "Via Francigena del Sud",
+   "tratti": [
+    {
+     "da": "Roma",
+     "a": "Velletri",
+     "linea_aria": 36,
+     "ll": [
+      [
+       41.902,
+       12.457
+      ],
+      [
+       41.687,
+       12.777
+      ]
+     ],
+     "km": 46,
+     "esito": "ok"
+    },
+    {
+     "da": "Velletri",
+     "a": "Priverno",
+     "linea_aria": 42,
+     "ll": [
+      [
+       41.687,
+       12.777
+      ],
+      [
+       41.472,
+       13.188
+      ]
+     ],
+     "km": 64,
+     "esito": "ok"
+    },
+    {
+     "da": "Priverno",
+     "a": "Terracina",
+     "linea_aria": 21,
+     "ll": [
+      [
+       41.472,
+       13.188
+      ],
+      [
+       41.291,
+       13.248
+      ]
+     ],
+     "km": 28,
+     "esito": "ok"
+    },
+    {
+     "da": "Terracina",
+     "a": "Fondi",
+     "linea_aria": 17,
+     "ll": [
+      [
+       41.291,
+       13.248
+      ],
+      [
+       41.357,
+       13.426
+      ]
+     ],
+     "km": 22,
+     "esito": "ok"
+    },
+    {
+     "da": "Fondi",
+     "a": "Formia",
+     "linea_aria": 19,
+     "ll": [
+      [
+       41.357,
+       13.426
+      ],
+      [
+       41.256,
+       13.606
+      ]
+     ],
+     "km": 27,
+     "esito": "ok"
+    },
+    {
+     "da": "Formia",
+     "a": "Sessa Aurunca",
+     "linea_aria": 27,
+     "ll": [
+      [
+       41.256,
+       13.606
+      ],
+      [
+       41.236,
+       13.932
+      ]
+     ],
+     "km": 31,
+     "esito": "ok"
+    },
+    {
+     "da": "Sessa Aurunca",
+     "a": "Benevento",
+     "linea_aria": 72,
+     "ll": [
+      [
+       41.236,
+       13.932
+      ],
+      [
+       41.13,
+       14.782
+      ]
+     ],
+     "km": 110,
+     "esito": "ok"
+    },
+    {
+     "da": "Benevento",
+     "a": "Troia",
+     "linea_aria": 51,
+     "ll": [
+      [
+       41.13,
+       14.782
+      ],
+      [
+       41.361,
+       15.309
+      ]
+     ],
+     "km": 69,
+     "esito": "ok"
+    },
+    {
+     "da": "Troia",
+     "a": "Monte Sant'Angelo",
+     "linea_aria": 66,
+     "ll": [
+      [
+       41.361,
+       15.309
+      ],
+      [
+       41.707,
+       15.958
+      ]
+     ],
+     "km": 111,
+     "esito": "ok"
+    },
+    {
+     "da": "Monte Sant'Angelo",
+     "a": "Barletta",
+     "linea_aria": 51,
+     "ll": [
+      [
+       41.707,
+       15.958
+      ],
+      [
+       41.32,
+       16.283
+      ]
+     ],
+     "km": 76,
+     "esito": "ok"
+    },
+    {
+     "da": "Barletta",
+     "a": "Bari",
+     "linea_aria": 54,
+     "ll": [
+      [
+       41.32,
+       16.283
+      ],
+      [
+       41.117,
+       16.872
+      ]
+     ],
+     "km": 69,
+     "esito": "ok"
+    },
+    {
+     "da": "Bari",
+     "a": "Brindisi",
+     "linea_aria": 105,
+     "ll": [
+      [
+       41.117,
+       16.872
+      ],
+      [
+       40.638,
+       17.946
+      ]
+     ],
+     "km": 137,
+     "esito": "ok"
+    },
+    {
+     "da": "Brindisi",
+     "a": "Lecce",
+     "linea_aria": 37,
+     "ll": [
+      [
+       40.638,
+       17.946
+      ],
+      [
+       40.352,
+       18.172
+      ]
+     ],
+     "km": 47,
+     "esito": "ok"
+    },
+    {
+     "da": "Lecce",
+     "a": "Otranto",
+     "linea_aria": 35,
+     "ll": [
+      [
+       40.352,
+       18.172
+      ],
+      [
+       40.147,
+       18.486
+      ]
+     ],
+     "km": 49,
+     "esito": "ok"
+    },
+    {
+     "da": "Otranto",
+     "a": "Santa Maria di Leuca",
+     "linea_aria": 41,
+     "ll": [
+      [
+       40.147,
+       18.486
+      ],
+      [
+       39.796,
+       18.359
+      ]
+     ],
+     "km": 57,
      "esito": "ok"
     }
    ],
