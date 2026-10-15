@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-14",
+ "generated": "2026-10-15",
  "areas": [
   {
    "key": "spagna",
@@ -21,17 +21,17 @@
    "key": "francia",
    "label": "Francia",
    "file": "francia.geojson",
-   "count": 146,
-   "mb": 9.74,
-   "updated": "2026-10-14"
+   "count": 153,
+   "mb": 10.65,
+   "updated": "2026-10-15"
   },
   {
    "key": "italia",
    "label": "Italia",
    "file": "italia.geojson",
-   "count": 620,
-   "mb": 18.01,
-   "updated": "2026-10-14"
+   "count": 622,
+   "mb": 18.54,
+   "updated": "2026-10-15"
   },
   {
    "key": "svizzera",
@@ -61,9 +61,9 @@
    "key": "germania",
    "label": "Germania",
    "file": "germania.geojson",
-   "count": 277,
-   "mb": 13.38,
-   "updated": "2026-10-14"
+   "count": 279,
+   "mb": 13.6,
+   "updated": "2026-10-15"
   },
   {
    "key": "austria",
@@ -72,6 +72,30 @@
    "count": 25,
    "mb": 3.31,
    "updated": "2026-10-14"
+  },
+  {
+   "key": "belgio",
+   "label": "Belgio",
+   "file": "belgio.geojson",
+   "count": 28,
+   "mb": 1.31,
+   "updated": "2026-10-15"
+  },
+  {
+   "key": "paesibassi",
+   "label": "Paesi Bassi",
+   "file": "paesibassi.geojson",
+   "count": 11,
+   "mb": 0.47,
+   "updated": "2026-10-15"
+  },
+  {
+   "key": "lussemburgo",
+   "label": "Lussemburgo",
+   "file": "lussemburgo.geojson",
+   "count": 1,
+   "mb": 0.15,
+   "updated": "2026-10-15"
   },
   {
    "key": "francigena",
@@ -93,17 +117,41 @@
    "key": "trekking",
    "label": "Trekking a lunga percorrenza",
    "file": "trekking.geojson",
-   "count": 152,
-   "mb": 14.42,
-   "updated": "2026-10-14"
+   "count": 157,
+   "mb": 16.18,
+   "updated": "2026-10-15"
   },
   {
    "key": "europa",
    "label": "Altri paesi",
    "file": "europa.geojson",
-   "count": 78,
-   "mb": 3.66,
-   "updated": "2026-10-14"
+   "count": 67,
+   "mb": 3.21,
+   "updated": "2026-10-15"
+  },
+  {
+   "key": "gr-francia",
+   "label": "GR e sentieri europei - Francia",
+   "file": "gr-francia.geojson",
+   "count": 3,
+   "mb": 0.47,
+   "updated": "2026-10-15"
+  },
+  {
+   "key": "gr-svizzera",
+   "label": "GR e sentieri europei - Svizzera",
+   "file": "gr-svizzera.geojson",
+   "count": 3,
+   "mb": 1.11,
+   "updated": "2026-10-15"
+  },
+  {
+   "key": "gr-austria",
+   "label": "GR e sentieri europei - Austria",
+   "file": "gr-austria.geojson",
+   "count": 1,
+   "mb": 0.06,
+   "updated": "2026-10-15"
   }
  ]
 }
