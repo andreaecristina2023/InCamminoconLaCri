@@ -26,7 +26,6 @@ ENDPOINTS = [
     "https://lz4.overpass-api.de/api/interpreter",
     "https://overpass.kumi.systems/api/interpreter",
     "https://overpass.private.coffee/api/interpreter",
-    "https://overpass.osm.ch/api/interpreter",
 ]
 TODAY = datetime.date.today().isoformat()
 DEADLINE = [None]
@@ -149,7 +148,7 @@ SEMPRE = [409737,
           11959152,   # Chemin de Saint-Jacques via Le Puy (GR 65, intero)
           9204501,    # Via Romea (Germanica) completa, super-percorso: Stade - Austria (Fernpass, Innsbruck) - Roma
           16908565]   # Romea Strata, super-percorso (Tallinn - Roma)
-SEARCH_VER = 13   # da aumentare quando cambiano NAMES, SEARCHES o pick_roots
+SEARCH_VER = 14   # da aumentare quando cambiano NAMES, SEARCHES o pick_roots
 
 GPRIO = {"santiago": 0, "francigena": 1, "isole": 2, "italia": 2, "trekking": 4, "gr": 5}
 NPRIO = {"iwn": 0, "nwn": 1, "rwn": 2}   # prima i percorsi a lunga distanza

@@ -34,7 +34,6 @@ ENDPOINTS = [
     "https://lz4.overpass-api.de/api/interpreter",
     "https://overpass.kumi.systems/api/interpreter",
     "https://overpass.private.coffee/api/interpreter",
-    "https://overpass.osm.ch/api/interpreter",
 ]
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "data")
@@ -211,7 +210,7 @@ node["place"~"{PLACE_RX}"]["name"]({bb})->.p;
             continue
         lodging.append([e["type"][0] + str(e["id"]), {k: t[k] for k in KEEP_TAGS if k in t},
                         round(c["lat"], 5), round(c["lon"], 5)])
-    return {"d": TODAY.isoformat(), "p": places, "l": lodging}
+    return {"d": TODAY.isoformat(), "p": places, "l": lodging, "v": 2}
 
 
 # ------------------------------------------------------------------ stati e regioni
@@ -412,6 +411,12 @@ def main():
         sys.exit(1)
     os.makedirs(OUT, exist_ok=True)
     cache = json.load(open(CACHE, encoding="utf-8")) if os.path.exists(CACHE) else {}
+    # i riquadri vuoti scaricati prima della versione 2 vengono da overpass.osm.ch (solo Svizzera): da riscaricare
+    vuoti = [k for k, v in cache.items() if not v.get("p") and not v.get("l") and v.get("v", 1) < 2]
+    for k in vuoti:
+        del cache[k]
+    if vuoti:
+        print(f"Riquadri vuoti da riscaricare (vecchio server con la sola Svizzera): {len(vuoti)}", flush=True)
     need, prio = set(), {}
     for n, a in enumerate(areas.values()):   # ordine dell'indice: prima Spagna, Portogallo, Francia…
         for k in a["corr"].cells():
