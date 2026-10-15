@@ -339,13 +339,21 @@ class Heap {
   pop() { const a = this.a, top = a[0], last = a.pop(); if (a.length) { a[0] = last; let i = 0; for (;;) { const l = 2 * i + 1, r = l + 1; let m = i; if (l < a.length && a[l][0] < a[m][0]) m = l; if (r < a.length && a[r][0] < a[m][0]) m = r; if (m === i) break; [a[m], a[i]] = [a[i], a[m]]; i = m; } } return top; }
 }
 function factor(rel) { const p = S.pref[rel]; return p === 'x' ? null : p === 'p' ? 0.6 : 1; }
-function shortest(src, dst) {
+// opt.rel: solo quel cammino (più i raccordi); opt.avoid: archi già percorsi (Set "u,v"), molto penalizzati;
+// dst = -1: calcola tutto e restituisce {dist, prev}
+function shortest(src, dst, opt = {}) {
   const n = G.nodes.length, dist = new Float64Array(n).fill(Infinity), prev = new Int32Array(n).fill(-1), h = new Heap();
   dist[src] = 0; h.push(0, src);
   while (h.size) {
     const [d, u] = h.pop(); if (d > dist[u]) continue; if (u === dst) break;
-    for (const e of G.adj[u]) { const f = factor(e.rel); if (f === null) continue; const nd = d + e.w * f; if (nd < dist[e.v]) { dist[e.v] = nd; prev[e.v] = u; h.push(nd, e.v); } }
+    for (const e of G.adj[u]) {
+      if (opt.rel && e.rel !== opt.rel && e.rel !== 'gap') continue;
+      const f = factor(e.rel); if (f === null) continue;
+      const pen = opt.avoid && (opt.avoid.has(u + ',' + e.v) || opt.avoid.has(e.v + ',' + u)) ? 30 : 1;
+      const nd = d + e.w * f * pen; if (nd < dist[e.v]) { dist[e.v] = nd; prev[e.v] = u; h.push(nd, e.v); }
+    }
   }
+  if (dst < 0) return { dist, prev };
   if (!isFinite(dist[dst])) return null;
   const path = []; for (let u = dst; u !== -1; u = prev[u]) path.push(u);
   return path.reverse();
@@ -374,8 +382,13 @@ function drawNet() {
 /* ---------- 3. punti dell'itinerario: Da / passando per / A ---------- */
 function addPoint(role, lat, lon, name, extra) {
   const pt = { lat, lon, role, name: name || `${lat.toFixed(4)}, ${lon.toFixed(4)}`, ...(extra || {}) };
-  if (role === 'start') { S.pts = S.pts.filter(p => p.role !== 'start'); S.pts.unshift(pt); }
-  else if (role === 'end') { S.pts = S.pts.filter(p => p.role !== 'end'); S.pts.push(pt); }
+  if (role === 'start') { S.pts = S.pts.filter(p => p.role !== 'start'); S.pts.unshift(pt); if (S.anello) { S.pts = S.pts.filter(p => p.role !== 'end'); S.pts.push({ ...pt, role: 'end', name: pt.name + ' (ritorno)', loop: true }); } }
+  else if (role === 'end' && S.anello) return renderPts();
+  else if (role === 'end') {
+    S.pts = S.pts.filter(p => p.role !== 'end'); S.pts.push(pt);
+    const st = S.pts.find(p => p.role === 'start');
+    if (st && hav(st, pt) < 1 && !S.anello) { setAnello(true); status('Arrivo uguale alla partenza: giro ad anello.'); return; }
+  }
   else { const e = S.pts.findIndex(p => p.role === 'end'); if (e >= 0) S.pts.splice(e, 0, pt); else S.pts.push(pt); }
   renderPts();
 }
@@ -444,12 +457,50 @@ map.on('click', e => {
   addPoint(role, e.latlng.lat, e.latlng.lng, n ? n.n : null);
   if (S.pts.some(p => p.role === 'start') && S.pts.some(p => p.role === 'end')) computeRoute();
 });
-$('#btnClear').onclick = () => { S.pts = []; S.forced = []; renderPts(); };
+$('#btnClear').onclick = () => { S.pts = []; S.forced = []; setAnello(false); };
 $('#btnFlip').onclick = () => {
+  if (S.anello) { S.loopRev = !S.loopRev; S.pts = [S.pts[0], ...S.pts.slice(1, -1).reverse(), S.pts[S.pts.length - 1]]; S.forced = []; renderPts(); if (S.samples.length) computeRoute(); return; }
   S.pts.reverse(); S.pts.forEach((p, i) => p.role = i === 0 ? 'start' : i === S.pts.length - 1 ? 'end' : 'via'); S.forced = []; renderPts();
   if (S.samples.length) computeRoute();
 };
 $('#btnRoute').onclick = () => computeRoute();
+
+/* ---------- giro ad anello ----------
+   Partenza e arrivo coincidono: si gira tutto il cammino ad anello. Si va fino al punto "opposto" (fra i più lontani
+   lungo il cammino) e si torna per l'altra parte, evitando la strada dell'andata; vince il giro più lungo con meno
+   tratti ripetuti. S.loopRev inverte il senso di marcia. */
+const pathKm = p => { let k = 0; for (let i = 1; i < p.length; i++) k += hav(G.nodes[p[i - 1]], G.nodes[p[i]]); return k; };
+function loopPath(src) {
+  const rel = mainRel([src, ...G.adj[src].map(e => e.v)].slice(0, 2)) || (G.adj[src][0] || {}).rel;
+  const opt = rel && rel !== 'gap' ? { rel } : {};
+  const { dist, prev } = shortest(src, -1, opt);
+  let max = 0; for (const d of dist) if (isFinite(d) && d > max) max = d;
+  if (max < 1) return null;
+  const cand = []; for (let i = 0; i < dist.length; i++) if (isFinite(dist[i]) && dist[i] > max * 0.35) cand.push(i);
+  cand.sort((a, b) => dist[b] - dist[a]);
+  const pick = []; for (let k = 0; k < 10 && cand.length; k++) pick.push(cand[Math.floor(k * (cand.length - 1) / 9)]);
+  let best = null;
+  for (const far of new Set(pick)) {
+    const go = []; for (let u = far; u !== -1; u = prev[u]) go.push(u); go.reverse();
+    const avoid = new Set(); for (let i = 1; i < go.length; i++) avoid.add(go[i - 1] + ',' + go[i]);
+    const back = shortest(far, src, { ...opt, avoid }); if (!back) continue;
+    let rip = 0; for (let i = 1; i < back.length; i++) if (avoid.has(back[i] + ',' + back[i - 1]) || avoid.has(back[i - 1] + ',' + back[i])) rip += hav(G.nodes[back[i - 1]], G.nodes[back[i]]);
+    const tot = pathKm(go) + pathKm(back), score = tot - 10 * rip;
+    if (!best || score > best.score) best = { score, path: go.concat(back.slice(1)), rip };
+  }
+  if (!best) return null;
+  if (best.rip > 3) S.autoMsg = (S.autoMsg ? S.autoMsg + ' ' : '') + `Attenzione: l'anello non è chiuso nei dati, ${best.rip.toFixed(0)} km si fanno due volte (andata e ritorno).`;
+  return S.loopRev ? best.path.reverse() : best.path;
+}
+function setAnello(on) {
+  S.anello = on; $('#chkAnello').checked = on; $('#pEnd').disabled = on;
+  const st = S.pts.find(p => p.role === 'start');
+  S.pts = S.pts.filter(p => p.role !== 'end' || !on);
+  if (on && st) S.pts.push({ ...st, role: 'end', name: st.name + ' (ritorno)', loop: true });
+  if (!on) S.loopRev = false;
+  renderPts();
+}
+$('#chkAnello').onchange = e => { setAnello(e.target.checked); if (S.pts.length >= 2 && G.nodes.length) computeRoute(); };
 
 /* ---------- calcolo del percorso ---------- */
 /* ---------- completamento automatico della rete ----------
@@ -532,8 +583,13 @@ async function computeRoute(auto = true) {
   const snaps = [], rotte = [];
   for (const p of S.pts) { const s = nearestNode(p.lat, p.lon); snaps.push(s && s.d <= 4 ? { ...s, name: p.name } : null); }
   let nodes = [];
+  const fatti = new Set();
   for (let i = 1; i < snaps.length; i++) {
-    const path = snaps[i - 1] && snaps[i] ? shortest(snaps[i - 1].id, snaps[i].id) : null;
+    const a = snaps[i - 1], b = snaps[i];
+    let path = null;
+    if (a && b && (a.id === b.id || hav(G.nodes[a.id], G.nodes[b.id]) < 0.3) && snaps.length === 2) path = loopPath(a.id);
+    else if (a && b) path = shortest(a.id, b.id, S.anello ? { avoid: fatti } : {});
+    if (path) for (let k = 1; k < path.length; k++) fatti.add(path[k - 1] + ',' + path[k]);
     if (!path) { rotte.push([S.pts[i - 1], S.pts[i]]); continue; }
     nodes = nodes.length ? nodes.concat(path.slice(1)) : path;
   }

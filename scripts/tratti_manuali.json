@@ -342,6 +342,11 @@
    "fonte": "Cammino delle 100 Torri (cammino100torri.com): anello costiero della Sardegna in 8 vie, partenza e arrivo a Cagliari. Su OSM non c'è: tracciato approssimato calcolato con BRouter passando per i paesi costieri di ogni via. Questo tratto: Via dei Giganti.",
    "tappe": [
     [
+     "Bosa",
+     40.298,
+     8.498
+    ],
+    [
      "Bosa Marina",
      40.287,
      8.468
