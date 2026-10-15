@@ -60,8 +60,32 @@ def brouter(tappe):
     return lines
 
 
+AUTO_MAX_KM = 30   # i salti veri più corti di così si riempiono da soli con un raccordo BRouter
+
+
+def auto_tratti():
+    """Raccordi automatici per i salti trovati da trova_salti.py (non coperti da altri percorsi, fino a 30 km)."""
+    try:
+        salti = json.load(open(os.path.join(ROOT, "data", "salti.json"), encoding="utf-8"))["salti"]
+    except (OSError, ValueError):
+        return []
+    out = []
+    for s in salti:
+        if s.get("coperto") or not (0.6 < s["km_salto"] <= AUTO_MAX_KM):
+            continue
+        pezzo = s["da"]["pezzo"] or s["a"]["pezzo"]
+        if not pezzo:
+            continue
+        key = f"{s['da']['ll']}{s['a']['ll']}"
+        tid = -(100000 + int(hashlib.sha1(key.encode()).hexdigest()[:7], 16))
+        out.append({"id": tid, "nome": f"{pezzo} (raccordo)", "unisci_a": pezzo, "group": s.get("gruppo") or "santiago", "auto": True,
+                    "fonte": f"Salto di {s['km_salto']} km trovato da trova_salti.py; raccordo approssimato calcolato con BRouter",
+                    "tappe": [["inizio del salto", *s["da"]["ll"]], ["fine del salto", *s["a"]["ll"]]]})
+    return out
+
+
 def main():
-    spec = json.load(open(SRC, encoding="utf-8"))["tratti"]
+    spec = json.load(open(SRC, encoding="utf-8"))["tratti"] + auto_tratti()
     try:
         old = {f["properties"]["id"]: f for f in json.load(open(OUT, encoding="utf-8"))["features"]}
     except (OSError, ValueError):
@@ -91,11 +115,15 @@ def main():
                 feats.append(prev)
             continue
         feats.append({"type": "Feature",
-                      "properties": {"id": t["id"], "name": t["nome"], "group": t.get("group", "santiago"),
+                      "properties": {"id": t["id"], "name": t["nome"], "group": t.get("group", "santiago"), "auto": bool(t.get("auto")),
                                      "unisci_a": t.get("unisci_a", ""), "fonte": t.get("fonte", ""), "origine": origine,
                                      "manuale": True, "firma": firma, "from": t["tappe"][0][0], "to": t["tappe"][-1][0]},
                       "geometry": {"type": "MultiLineString", "coordinates": lines}})
         print(f"  ok ({origine})", flush=True)
+    have = {f["properties"]["id"] for f in feats}
+    for k, f in old.items():
+        if f["properties"].get("auto") and k not in have:
+            feats.append(f)
     tmp = OUT + ".tmp"
     with open(tmp, "w", encoding="utf-8") as f:
         json.dump({"type": "FeatureCollection", "attribution": "Tracciati su dati © contributori di OpenStreetMap (ODbL)",

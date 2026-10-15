@@ -22,7 +22,8 @@ TOL = 0.0015          # semplificazione della panoramica (~150 m: basta per vede
 
 AREA_LABEL = {"spagna": "Spagna", "portogallo": "Portogallo", "francia": "Francia", "italia": "Italia",
               "svizzera": "Svizzera", "inghilterra": "Regno Unito", "irlanda": "Irlanda", "germania": "Germania",
-              "austria": "Austria", "europa": "Altri paesi", "trekking": ""}
+              "austria": "Austria", "europa": "Altri paesi", "trekking": "", "belgio": "Belgio",
+              "paesibassi": "Paesi Bassi", "lussemburgo": "Lussemburgo"}
 
 # cammini fatti di relazioni con nomi diversi: nome nel catalogo -> nomi delle relazioni che lo compongono
 COMPOSTI = {
@@ -246,7 +247,8 @@ def main():
         if not dest:
             continue
         own = norm_name(f["properties"]["name"])
-        for k in ("composto:" + dest, norm_name(dest)):
+        cand = ["composto:" + dest, norm_name(dest)] + [k for k, v in by.items() if any(x["properties"].get("name") == dest for x in v)]
+        for k in cand:
             if k in by and k != own:
                 by[k].append(f)
                 by[own] = [x for x in by.get(own, []) if x is not f]
@@ -265,7 +267,8 @@ def main():
                 + f" (OSM {p['id']})"
         else:
             names = {}
-            for f in fl:
+            osm = [f for f in fl if not f["properties"].get("manuale")] or fl   # i raccordi non danno il nome
+            for f in osm:
                 b = base_name(f["properties"].get("name", ""))
                 names[b] = names.get(b, 0) + 1
             nome = max(names, key=lambda n: (names[n], -len(n)))

@@ -26,6 +26,9 @@
     .altri{font-size:.8rem;color:var(--muted);margin:4px 0 8px}
     .altri summary{cursor:pointer;color:var(--blue)}
     .altri li{padding:1px 0}
+    .sl{display:flex;gap:6px;align-items:baseline;font-size:.82rem;padding:4px 2px;border-bottom:1px dashed var(--line);cursor:pointer}
+    .sl b{flex:1}
+    .sl:hover{background:#fff}
   </style>
 </head>
 <body>
@@ -52,6 +55,13 @@
         <div class="chips" id="fStati"></div>
         <div class="chips small" id="fEsito"></div>
         <div id="list"></div>
+        <h2 class="sec" id="saltiTit">Salti nei percorsi</h2>
+        <p class="small muted">Punti dove un percorso si interrompe (spesso al confine fra regioni o stati, perché su OSM è
+          diviso in pezzi). <b class="ck ok">raccordato</b> = un altro percorso o un raccordo calcolato chiude il buco;
+          <b class="ck ko">aperto</b> = buco ancora da chiudere. I buchi fino a 30 km vengono raccordati da soli al giro
+          successivo della Action (tratto approssimato). Tocca un salto per vederlo sulla mappa.</p>
+        <div class="chips small" id="fSalti"></div>
+        <div id="salti"></div>
         <footer class="small">Controllo aggiornato a ogni giro della Action “Genera GeoJSON dei cammini”
           (<span id="gen"></span>). Tracciati © contributori di OpenStreetMap (ODbL); tappe di riferimento:
           <a href="https://www.gronze.com">Gronze</a>.</footer>
@@ -67,7 +77,24 @@
   const map = L.map('map', { preferCanvas: true }).setView([45, 2], 5);
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' }).addTo(map);
   const layer = L.featureGroup().addTo(map);
-  let V = [], CAT = [], filtroStato = '', filtroEsito = '', sel = null;
+  let V = [], CAT = [], SALTI = [], filtroStato = '', filtroEsito = '', filtroSalti = 'aperti', sel = null;
+  const saltiLayer = L.featureGroup().addTo(map);
+  function renderSalti() {
+    const vs = SALTI.filter(s => (!filtroStato || s.paese === filtroStato) && (filtroSalti === 'tutti' || !s.coperto));
+    const aperti = SALTI.filter(s => !s.coperto && (!filtroStato || s.paese === filtroStato)).length;
+    $('#saltiTit').textContent = `Salti nei percorsi (${aperti} aperti${filtroStato ? ' in ' + filtroStato : ''})`;
+    $('#fSalti').innerHTML = [['aperti', '⚠ solo aperti'], ['tutti', 'tutti']].map(([k, l]) => `<button class="${k === filtroSalti ? 'on' : ''}" data-f="${k}">${l}</button>`).join('');
+    $('#salti').innerHTML = vs.map(s => `<div class="sl" data-i="${SALTI.indexOf(s)}"><b>${esc(s.da.pezzo || s.percorso)}</b>` +
+      `<span>${s.km_salto} km</span>${s.coperto ? '<span class="ck ok">raccordato</span>' : `<span class="ck ko">aperto${s.km_salto <= 30 ? ' · si chiude da solo' : ''}</span>`}` +
+      `<span class="muted">${esc(s.paese || '')}</span></div>`).join('') || '<p class="small">Nessun salto con questi filtri.</p>';
+    saltiLayer.clearLayers();
+    vs.forEach(s => {
+      const c = s.coperto ? '#2e7d4f' : '#b35c00';
+      const l = L.polyline([s.da.ll, s.a.ll], { color: c, weight: 4, dashArray: '2 8' }).addTo(saltiLayer);
+      l.bindTooltip(`Salto di ${s.km_salto} km: ${s.da.pezzo} → ${s.a.pezzo}`, { sticky: true });
+      [s.da.ll, s.a.ll].forEach(p => L.circleMarker(p, { radius: 6, color: c, fillColor: '#fff', fillOpacity: 1, weight: 3 }).addTo(saltiLayer));
+    });
+  }
 
   // a quale paese appartiene un cammino controllato: il campo "stato" del controllo, più i paesi del catalogo
   function paesiDi(v) {
@@ -101,7 +128,7 @@
     const ok = vs.filter(v => !v.problemi).length, tr = vs.reduce((a, v) => a + v.tratti.length, 0), ko = vs.reduce((a, v) => a + v.problemi, 0);
     $('#tot').innerHTML = `<div><b>${vs.length}</b>cammini controllati</div><div><b style="color:var(--ok)">${ok}</b>completi</div>` +
       `<div><b style="color:var(--warn)">${vs.length - ok}</b>con buchi</div><div><b>${ko}/${tr}</b>tratti con problemi</div>`;
-    const stati = [...new Set(V.flatMap(paesiDi))].sort((a, b) => a.localeCompare(b));
+    const stati = [...new Set([...V.flatMap(paesiDi), ...SALTI.filter(s => !s.coperto).map(s => s.paese)])].sort((a, b) => a.localeCompare(b));
     $('#fStati').innerHTML = `<button class="${filtroStato ? '' : 'on'}" data-s="">Tutti i paesi</button>` + stati.map(s => `<button class="${s === filtroStato ? 'on' : ''}" data-s="${esc(s)}">${esc(s)}</button>`).join('');
     $('#fEsito').innerHTML = [['', 'Tutti'], ['ko', '⚠ solo con buchi'], ['ok', '✔ solo completi']].map(([k, l]) => `<button class="${k === filtroEsito ? 'on' : ''}" data-e="${k}">${l}</button>`).join('');
     const per = new Map();
@@ -130,15 +157,18 @@
       html += '</div>';
     }
     $('#list').innerHTML = html || '<p class="small">Nessun cammino con questi filtri.</p>';
-    draw();
+    draw(); renderSalti();
   }
   $('#fStati').onclick = e => { const b = e.target.closest('[data-s]'); if (b) { filtroStato = b.dataset.s; sel = null; render(); fit(); } };
   $('#fEsito').onclick = e => { const b = e.target.closest('[data-e]'); if (b) { filtroEsito = b.dataset.e; render(); } };
+  $('#fSalti').onclick = e => { const b = e.target.closest('[data-f]'); if (b) { filtroSalti = b.dataset.f; renderSalti(); } };
+  $('#salti').onclick = e => { const d = e.target.closest('.sl'); if (d) { const s = SALTI[+d.dataset.i]; map.fitBounds([s.da.ll, s.a.ll], { padding: [60, 60], maxZoom: 12 }); } };
   $('#list').onclick = e => { const d = e.target.closest('.cam'); if (d) select(V[+d.dataset.i]); };
   function fit() { if (layer.getLayers().length) map.fitBounds(layer.getBounds(), { padding: [20, 20] }); }
   (async () => {
     try {
-      const [v, c] = await Promise.all([fetch('data/verifica.json'), fetch('data/catalogo.json')]);
+      const [v, c, sl] = await Promise.all([fetch('data/verifica.json'), fetch('data/catalogo.json'), fetch('data/salti.json').catch(() => null)]);
+      if (sl && sl.ok) SALTI = (await sl.json()).salti;
       if (!v.ok) throw new Error('controllo non ancora eseguito');
       const vj = await v.json(); V = vj.cammini; CAT = c.ok ? (await c.json()).cammini : [];
       $('#gen').textContent = 'ultimo controllo: ' + vj.generated;

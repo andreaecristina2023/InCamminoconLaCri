@@ -41,7 +41,7 @@ NAMES = ("Franc[eé]s|Aragon[eé]s|Podiensis|Lemovicensis|Turonensis|Tolosana|de
          "Caminho (de Santiago|Portugu|Central|Interior|da Costa|Nascente|Torres)|Cami[nñ]o Portugu|Xacob|Via da Prata|"
          "Augusta|Salvador|Vadiniense|Cam[ií] (de Sant Jaume|Jacobeu|Ignasi)|Sant Jaume|Jacobeu|V[eé]zelay|"
          "Voie (de V[eé]zelay|de Tours|du Pi[eé]mont|des Pi[eé]monts|de Soulac|de Gen[eè]ve|du Puy|d.Arles|de Rocamadour|du Littoral|Limousine|Tolosane|Podiense)|"
-         "Pi[eé]mont Pyr[eé]n|Soulac|Rocamadour|Xabr[eé]s|"
+         "Pi[eé]mont Pyr[eé]n|Soulac|Rocamadour|Plantagen|Xabr[eé]s|"
          "[Cc]hemin (du Puy|d.Arles|de V[eé]zelay|de Tours|de Paris|de Saint-Jacques|de Compostelle|de Cluny|de Rocamadour)|"
          "GR[ -]?(65|653|654|655|78)([^0-9]|$)|Via Podiensis|Via Lemovicensis|Via Turonensis|Via Tolosana|Via Gebennensis|"
          "Jacquaire|Jacquet|Saint-Jacques-de-Compostelle")
@@ -49,7 +49,7 @@ BROAD = ("Cami[nñ]o|Caminho|Chemin de (Saint|Compostelle)|Saint-Jacques|"
          "Via (de la Plata|Podiensis|Lemovicensis|Turonensis|Tolosana|Gebennensis)|"
          "Santiago|Compostelle|Fisterr|Finisterre|Mux[ií]a")
 JACOB = "Santiago|Xacob|Jacob|Jakob|Compostel|Jacques|Giacomo|Sant.?Iago"
-NORD = "Jakobs?weg|Jakobusweg|Jakobspilger|Via Jacobi|(St\\.?|Saint) ?James|Saint James|Chemin de Saint-Jacques|Camino Ingl"
+NORD = "Jakobs?weg|Jakobusweg|Jakobspilger|Jacobs(pad|route|weg)|Sint.?Jacob|Via (Mosana|Brabantica|Scaldea|Tenera|Monastica|Gallia Belgica|Arduinna)|Via Jacobi|(St\\.?|Saint) ?James|Saint James|Chemin de Saint-Jacques|Camino Ingl"
 # cammini di pellegrinaggio di Gran Bretagna e Irlanda (anche Scozia, Galles, Irlanda del Nord)
 ISOLE = ("Pilgrim|Camino|(St\\.?|Saint) ?James|Saint James|Way of St|Saints.? Way|(St\\.?|Saint) ?Cuthbert|(St\\.?|Saint) ?Michael|"
          "(St\\.?|Saint) ?Kevin|(St\\.?|Saint) ?Finbarr|(St\\.?|Saint) ?Declan|(St\\.?|Saint) ?Patrick|(St\\.?|Saint) ?Brigid|(St\\.?|Saint) ?Columba|"
@@ -113,9 +113,23 @@ SEMPRE = [409737,
           4515009,    # Saint Cuthbert's Way (Melrose - Lindisfarne)
           14612088,   # Whithorn Way (Glasgow - Whithorn)
           238293,     # Saint Kevin's Way (Hollywood - Glendalough)
+          # Belgio e Paesi Bassi
+          151765,     # Via Mosana (Aquisgrana - Liegi - Namur)
+          1241530, 18632711,   # Via Brabantica
+          18201304,   # Via Scaldea
+          18711028,   # Via Tenera
+          12614917,   # Via Monastica
+          8382432,    # Via Gallia Belgica
+          19226888,   # Jacobspad (Paesi Bassi)
+          # Francia
+          1247178,    # Voie de Soulac
+          15471251,   # Voie de Rocamadour
+          8375828,    # Voie des Plantagenêts
+          20499402,   # Chemin des Plantagenêts
+          11959152,   # Chemin de Saint-Jacques via Le Puy (GR 65, intero)
           9204501,    # Via Romea (Germanica) completa, super-percorso: Stade - Austria (Fernpass, Innsbruck) - Roma
           16908565]   # Romea Strata, super-percorso (Tallinn - Roma)
-SEARCH_VER = 10   # da aumentare quando cambiano NAMES, SEARCHES o pick_roots
+SEARCH_VER = 11   # da aumentare quando cambiano NAMES, SEARCHES o pick_roots
 
 GPRIO = {"santiago": 0, "francigena": 1, "isole": 2, "italia": 2, "trekking": 4}
 NPRIO = {"iwn": 0, "nwn": 1, "rwn": 2}   # prima i percorsi a lunga distanza
@@ -257,6 +271,7 @@ def make_feature(parent, by_id, group):
 LABELS = {
     "spagna": "Spagna", "portogallo": "Portogallo", "francia": "Francia", "italia": "Italia",
     "svizzera": "Svizzera", "inghilterra": "Regno Unito", "irlanda": "Irlanda", "germania": "Germania", "austria": "Austria",
+    "belgio": "Belgio", "paesibassi": "Paesi Bassi", "lussemburgo": "Lussemburgo",
     "francigena": "Via Francigena", "romea": "Via Romea", "trekking": "Trekking a lunga percorrenza", "europa": "Altri paesi",
 }
 
@@ -307,7 +322,7 @@ def _inside(x, y, poly):
 CC_AREA = {"ES": "spagna", "AD": "spagna", "PT": "portogallo", "FR": "francia", "MC": "francia",
            "IT": "italia", "SM": "italia", "VA": "italia", "CH": "svizzera", "LI": "svizzera",
            "AT": "austria", "DE": "germania", "GB": "inghilterra", "IM": "inghilterra", "JE": "inghilterra",
-           "GG": "inghilterra", "IE": "irlanda"}
+           "GG": "inghilterra", "IE": "irlanda", "BE": "belgio", "NL": "paesibassi", "LU": "lussemburgo"}
 _NE = [None]
 
 
