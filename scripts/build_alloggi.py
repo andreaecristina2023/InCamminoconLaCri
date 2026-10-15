@@ -419,7 +419,12 @@ def main():
             prio.setdefault(k, n)
     limit = (TODAY - datetime.timedelta(days=args.vecchio)).isoformat()
     todo = sorted(k for k in need if k not in cache or cache[k]["d"] < limit)
-    todo.sort(key=lambda k: (k in cache, prio[k]))   # prima i mai scaricati, area per area
+    # prima Galizia e Portogallo (dai dintorni di Santiago verso l'esterno), poi il resto area per area
+    def prima(k):
+        la, lo = map(float, k.split(","))
+        ovest = lo < -6.7 and 36.8 < la < 44
+        return (0, hav(la, lo, 42.88, -8.54)) if ovest else (1 + prio[k], 0)
+    todo.sort(key=lambda k: (k in cache, prima(k)))   # prima i mai scaricati
     print(f"Riquadri: {len(need)} in totale, {len(todo)} da scaricare", flush=True)
 
     done, fails, streak = 0, 0, 0
