@@ -1,75 +1,476 @@
 {
-  "_nota": "Tratti che su OpenStreetMap non esistono come percorso. Il tracciato si calcola con BRouter (strade e sentieri OSM) passando dalle tappe indicate; se c'è un GPX in data/manuali/<gpx>, si usa quello. 'unisci_a' è il nome del cammino del catalogo a cui il tratto viene aggiunto. L'id è negativo per non confondersi con OSM.",
-  "tratti": [
-    {
-      "id": -1001,
-      "nome": "Caminho Português do Interior (Coimbra - Farminhão)",
-      "unisci_a": "Camino Portugués Interior",
-      "group": "santiago",
-      "fonte": "Tappe di Gronze (Coimbra - Penacova via Lorvão - Mortágua - Tondela - Viseu); tracciato approssimato calcolato con BRouter",
-      "gpx": "coimbra-farminhao.gpx",
-      "tappe": [
-        [
-          "Coimbra (Sé Velha)",
-          40.2088,
-          -8.427
-        ],
-        [
-          "Lorvão",
-          40.2591,
-          -8.3165
-        ],
-        [
-          "Penacova",
-          40.27,
-          -8.281
-        ],
-        [
-          "Mortágua",
-          40.3963,
-          -8.2354
-        ],
-        [
-          "Tondela",
-          40.517,
-          -8.082
-        ],
-        [
-          "Farminhão (inizio del tracciato OSM)",
-          40.60411,
-          -8.03225
-        ]
-      ]
-    },
-    {
-      "id": -1002,
-      "nome": "Camino Mozárabe (Don Benito - Medellín - Torrefresneda - Mérida)",
-      "unisci_a": "Camino Mozárabe",
-      "group": "santiago",
-      "fonte": "Tappe di Gronze (etapa 25 Campanario - Don Benito, 26 Don Benito - Torrefresneda, 27 Torrefresneda - Mérida); tracciato approssimato calcolato con BRouter",
-      "gpx": "mozarabe-medellin.gpx",
-      "tappe": [
-        [
-          "Don Benito (fine del tracciato OSM)",
-          38.95835,
-          -5.88234
-        ],
-        [
-          "Medellín",
-          38.9634,
-          -5.958
-        ],
-        [
-          "Torrefresneda",
-          38.9845,
-          -6.101
-        ],
-        [
-          "Mérida (Plaza de España)",
-          38.916,
-          -6.3437
-        ]
-      ]
-    }
-  ]
+ "_nota": "Tratti che su OpenStreetMap non esistono come percorso. Il tracciato si calcola con BRouter (strade e sentieri OSM) passando dalle tappe indicate; se c'è un GPX in data/manuali/<gpx>, si usa quello. 'unisci_a' è il nome del cammino del catalogo a cui il tratto viene aggiunto. L'id è negativo per non confondersi con OSM.",
+ "tratti": [
+  {
+   "id": -1001,
+   "nome": "Caminho Português do Interior (Coimbra - Farminhão)",
+   "unisci_a": "Camino Portugués Interior",
+   "group": "santiago",
+   "fonte": "Tappe di Gronze (Coimbra - Penacova via Lorvão - Mortágua - Tondela - Viseu); tracciato approssimato calcolato con BRouter",
+   "gpx": "coimbra-farminhao.gpx",
+   "tappe": [
+    [
+     "Coimbra (Sé Velha)",
+     40.2088,
+     -8.427
+    ],
+    [
+     "Lorvão",
+     40.2591,
+     -8.3165
+    ],
+    [
+     "Penacova",
+     40.27,
+     -8.281
+    ],
+    [
+     "Mortágua",
+     40.3963,
+     -8.2354
+    ],
+    [
+     "Tondela",
+     40.517,
+     -8.082
+    ],
+    [
+     "Farminhão (inizio del tracciato OSM)",
+     40.60411,
+     -8.03225
+    ]
+   ]
+  },
+  {
+   "id": -1002,
+   "nome": "Camino Mozárabe (Don Benito - Medellín - Torrefresneda - Mérida)",
+   "unisci_a": "Camino Mozárabe",
+   "group": "santiago",
+   "fonte": "Tappe di Gronze (etapa 25 Campanario - Don Benito, 26 Don Benito - Torrefresneda, 27 Torrefresneda - Mérida); tracciato approssimato calcolato con BRouter",
+   "gpx": "mozarabe-medellin.gpx",
+   "tappe": [
+    [
+     "Don Benito (fine del tracciato OSM)",
+     38.95835,
+     -5.88234
+    ],
+    [
+     "Medellín",
+     38.9634,
+     -5.958
+    ],
+    [
+     "Torrefresneda",
+     38.9845,
+     -6.101
+    ],
+    [
+     "Mérida (Plaza de España)",
+     38.916,
+     -6.3437
+    ]
+   ]
+  },
+  {
+   "id": -1100,
+   "nome": "Cammino delle 100 Torri",
+   "group": "italia",
+   "fonte": "Cammino delle 100 Torri (cammino100torri.com): anello costiero della Sardegna in 8 vie, partenza e arrivo a Cagliari. Su OSM non c'è: tracciato approssimato calcolato con BRouter passando per i paesi costieri di ogni via. Questo tratto: Via degli Angeli.",
+   "tappe": [
+    [
+     "Cagliari",
+     39.2153,
+     9.11
+    ],
+    [
+     "Quartu Sant'Elena (Margine Rosso)",
+     39.2215,
+     9.256
+    ],
+    [
+     "Torre delle Stelle",
+     39.1555,
+     9.3965
+    ],
+    [
+     "Solanas",
+     39.137,
+     9.438
+    ],
+    [
+     "Villasimius",
+     39.1415,
+     9.5195
+    ]
+   ]
+  },
+  {
+   "id": -1101,
+   "nome": "Cammino delle 100 Torri - Via Sarcapos",
+   "group": "italia",
+   "fonte": "Cammino delle 100 Torri (cammino100torri.com): anello costiero della Sardegna in 8 vie, partenza e arrivo a Cagliari. Su OSM non c'è: tracciato approssimato calcolato con BRouter passando per i paesi costieri di ogni via. Questo tratto: Via Sarcapos.",
+   "tappe": [
+    [
+     "Villasimius",
+     39.1415,
+     9.5195
+    ],
+    [
+     "Costa Rei",
+     39.249,
+     9.568
+    ],
+    [
+     "Torre Salinas (Muravera)",
+     39.379,
+     9.605
+    ],
+    [
+     "Porto Corallo",
+     39.442,
+     9.638
+    ],
+    [
+     "Sarrala (Tertenia)",
+     39.633,
+     9.705
+    ],
+    [
+     "Marina di Cardedu",
+     39.78,
+     9.695
+    ],
+    [
+     "Bari Sardo",
+     39.842,
+     9.646
+    ],
+    [
+     "Arbatax",
+     39.9375,
+     9.7036
+    ]
+   ],
+   "unisci_a": "Cammino delle 100 Torri"
+  },
+  {
+   "id": -1102,
+   "nome": "Cammino delle 100 Torri - Via Ogliastra",
+   "group": "italia",
+   "fonte": "Cammino delle 100 Torri (cammino100torri.com): anello costiero della Sardegna in 8 vie, partenza e arrivo a Cagliari. Su OSM non c'è: tracciato approssimato calcolato con BRouter passando per i paesi costieri di ogni via. Questo tratto: Via Ogliastra.",
+   "tappe": [
+    [
+     "Arbatax",
+     39.9375,
+     9.7036
+    ],
+    [
+     "Santa Maria Navarrese",
+     40.001,
+     9.687
+    ],
+    [
+     "Baunei",
+     40.032,
+     9.664
+    ],
+    [
+     "Cala Gonone",
+     40.281,
+     9.632
+    ],
+    [
+     "Orosei",
+     40.379,
+     9.694
+    ],
+    [
+     "Cala Liberotto",
+     40.443,
+     9.78
+    ],
+    [
+     "La Caletta",
+     40.613,
+     9.757
+    ],
+    [
+     "Posada",
+     40.632,
+     9.719
+    ],
+    [
+     "Budoni",
+     40.705,
+     9.703
+    ]
+   ],
+   "unisci_a": "Cammino delle 100 Torri"
+  },
+  {
+   "id": -1103,
+   "nome": "Cammino delle 100 Torri - Via Gallura",
+   "group": "italia",
+   "fonte": "Cammino delle 100 Torri (cammino100torri.com): anello costiero della Sardegna in 8 vie, partenza e arrivo a Cagliari. Su OSM non c'è: tracciato approssimato calcolato con BRouter passando per i paesi costieri di ogni via. Questo tratto: Via Gallura.",
+   "tappe": [
+    [
+     "Budoni",
+     40.705,
+     9.703
+    ],
+    [
+     "San Teodoro",
+     40.773,
+     9.67
+    ],
+    [
+     "Porto San Paolo",
+     40.874,
+     9.64
+    ],
+    [
+     "Olbia",
+     40.923,
+     9.498
+    ],
+    [
+     "Golfo Aranci",
+     40.995,
+     9.617
+    ],
+    [
+     "Porto Rotondo",
+     41.031,
+     9.542
+    ],
+    [
+     "Porto Cervo",
+     41.135,
+     9.534
+    ],
+    [
+     "Cannigione",
+     41.106,
+     9.44
+    ],
+    [
+     "Palau",
+     41.18,
+     9.383
+    ],
+    [
+     "Santa Teresa Gallura",
+     41.239,
+     9.188
+    ],
+    [
+     "Vignola Mare",
+     41.126,
+     9.069
+    ],
+    [
+     "Isola Rossa",
+     41.007,
+     8.869
+    ],
+    [
+     "Valledoria",
+     40.93,
+     8.82
+    ],
+    [
+     "Castelsardo",
+     40.914,
+     8.713
+    ]
+   ],
+   "unisci_a": "Cammino delle 100 Torri"
+  },
+  {
+   "id": -1104,
+   "nome": "Cammino delle 100 Torri - Via Catalana",
+   "group": "italia",
+   "fonte": "Cammino delle 100 Torri (cammino100torri.com): anello costiero della Sardegna in 8 vie, partenza e arrivo a Cagliari. Su OSM non c'è: tracciato approssimato calcolato con BRouter passando per i paesi costieri di ogni via. Questo tratto: Via Catalana.",
+   "tappe": [
+    [
+     "Castelsardo",
+     40.914,
+     8.713
+    ],
+    [
+     "Marina di Sorso",
+     40.835,
+     8.56
+    ],
+    [
+     "Porto Torres",
+     40.835,
+     8.401
+    ],
+    [
+     "Stintino",
+     40.937,
+     8.226
+    ],
+    [
+     "Argentiera",
+     40.74,
+     8.143
+    ],
+    [
+     "Porto Ferro",
+     40.683,
+     8.202
+    ],
+    [
+     "Alghero",
+     40.558,
+     8.319
+    ],
+    [
+     "Bosa",
+     40.298,
+     8.498
+    ]
+   ],
+   "unisci_a": "Cammino delle 100 Torri"
+  },
+  {
+   "id": -1105,
+   "nome": "Cammino delle 100 Torri - Via dei Giganti",
+   "group": "italia",
+   "fonte": "Cammino delle 100 Torri (cammino100torri.com): anello costiero della Sardegna in 8 vie, partenza e arrivo a Cagliari. Su OSM non c'è: tracciato approssimato calcolato con BRouter passando per i paesi costieri di ogni via. Questo tratto: Via dei Giganti.",
+   "tappe": [
+    [
+     "Bosa Marina",
+     40.287,
+     8.468
+    ],
+    [
+     "Porto Alabe",
+     40.238,
+     8.495
+    ],
+    [
+     "Santa Caterina di Pittinuri",
+     40.103,
+     8.492
+    ],
+    [
+     "Putzu Idu",
+     40.032,
+     8.41
+    ],
+    [
+     "San Giovanni di Sinis",
+     39.88,
+     8.44
+    ],
+    [
+     "Torre Grande",
+     39.905,
+     8.524
+    ],
+    [
+     "Marceddì",
+     39.706,
+     8.532
+    ],
+    [
+     "Torre dei Corsari",
+     39.676,
+     8.441
+    ]
+   ],
+   "unisci_a": "Cammino delle 100 Torri"
+  },
+  {
+   "id": -1106,
+   "nome": "Cammino delle 100 Torri - Via delle Miniere",
+   "group": "italia",
+   "fonte": "Cammino delle 100 Torri (cammino100torri.com): anello costiero della Sardegna in 8 vie, partenza e arrivo a Cagliari. Su OSM non c'è: tracciato approssimato calcolato con BRouter passando per i paesi costieri di ogni via. Questo tratto: Via delle Miniere.",
+   "tappe": [
+    [
+     "Torre dei Corsari",
+     39.676,
+     8.441
+    ],
+    [
+     "Piscinas",
+     39.54,
+     8.45
+    ],
+    [
+     "Buggerru",
+     39.398,
+     8.401
+    ],
+    [
+     "Nebida",
+     39.312,
+     8.426
+    ],
+    [
+     "Portoscuso",
+     39.206,
+     8.381
+    ]
+   ],
+   "unisci_a": "Cammino delle 100 Torri"
+  },
+  {
+   "id": -1107,
+   "nome": "Cammino delle 100 Torri - Via del Martirio",
+   "group": "italia",
+   "fonte": "Cammino delle 100 Torri (cammino100torri.com): anello costiero della Sardegna in 8 vie, partenza e arrivo a Cagliari. Su OSM non c'è: tracciato approssimato calcolato con BRouter passando per i paesi costieri di ogni via. Questo tratto: Via del Martirio.",
+   "tappe": [
+    [
+     "Portoscuso",
+     39.206,
+     8.381
+    ],
+    [
+     "Calasetta",
+     39.107,
+     8.37
+    ],
+    [
+     "Sant'Antioco",
+     39.07,
+     8.455
+    ],
+    [
+     "Porto Pino",
+     38.966,
+     8.598
+    ],
+    [
+     "Teulada",
+     38.967,
+     8.772
+    ],
+    [
+     "Chia",
+     38.893,
+     8.88
+    ],
+    [
+     "Pula",
+     38.994,
+     9.001
+    ],
+    [
+     "Capoterra (La Maddalena Spiaggia)",
+     39.143,
+     9.035
+    ],
+    [
+     "Cagliari",
+     39.2153,
+     9.11
+    ]
+   ],
+   "unisci_a": "Cammino delle 100 Torri"
+  }
+ ]
 }
