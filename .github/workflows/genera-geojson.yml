@@ -70,6 +70,7 @@ jobs:
         run: |
           python3 -u scripts/trova_salti.py || echo "Ricerca dei salti: errore."
           python3 -u scripts/build_manuali.py || echo "Tratti aggiunti a mano: errore, tengo la versione precedente."
+          python3 -u scripts/trova_salti.py > /dev/null || true   # di nuovo, così i salti appena raccordati risultano chiusi
           python3 -u scripts/build_catalogo.py
           MESSAGGIO="Aggiorna catalogo dei cammini" bash scripts/salva_dati.sh || { echo "Catalogo non salvato."; exit 1; }
       - name: Controllo dei buchi nei cammini principali (risultato in data/verifica.json)
