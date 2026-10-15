@@ -14,33 +14,34 @@
    "key": "spagna",
    "label": "Spagna",
    "file": "spagna.json",
-   "luoghi": 3208,
-   "con_alloggio": 600,
-   "alloggi": 4124,
+   "luoghi": 5164,
+   "con_alloggio": 748,
+   "alloggi": 4572,
    "tipi": {
-    "H": 1986,
-    "O": 421,
-    "B": 1199,
-    "C": 88,
-    "P": 398,
-    "R": 32
+    "H": 2153,
+    "O": 467,
+    "B": 1291,
+    "C": 102,
+    "P": 525,
+    "R": 34
    },
-   "mb": 1.05
+   "mb": 1.38
   },
   {
    "key": "portogallo",
    "label": "Portogallo",
    "file": "portogallo.json",
-   "luoghi": 431,
-   "con_alloggio": 33,
-   "alloggi": 106,
+   "luoghi": 676,
+   "con_alloggio": 51,
+   "alloggi": 177,
    "tipi": {
-    "P": 28,
-    "H": 41,
-    "B": 20,
-    "O": 17
+    "P": 44,
+    "H": 66,
+    "B": 36,
+    "O": 30,
+    "C": 1
    },
-   "mb": 0.07
+   "mb": 0.12
   },
   {
    "key": "francia",
@@ -159,6 +160,6 @@
  ],
  "riquadri": {
   "totali": 2666,
-  "scaricati": 429
+  "scaricati": 472
  }
 }
