@@ -14,18 +14,18 @@
    "key": "spagna",
    "label": "Spagna",
    "file": "spagna.json",
-   "luoghi": 979,
-   "con_alloggio": 319,
-   "alloggi": 3075,
+   "luoghi": 1205,
+   "con_alloggio": 373,
+   "alloggi": 3251,
    "tipi": {
-    "H": 1585,
-    "O": 337,
-    "B": 942,
-    "C": 48,
-    "P": 152,
-    "R": 11
+    "H": 1655,
+    "O": 348,
+    "B": 988,
+    "C": 55,
+    "P": 190,
+    "R": 15
    },
-   "mb": 0.59
+   "mb": 0.65
   },
   {
    "key": "portogallo",
@@ -154,6 +154,6 @@
  ],
  "riquadri": {
   "totali": 2666,
-  "scaricati": 322
+  "scaricati": 356
  }
 }
