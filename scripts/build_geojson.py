@@ -97,7 +97,14 @@ SEARCHES = [
      "Francigena|Via Romea|Romea (Germanica|Strata|Nonantolana)|Via Francigena", None, False, None),
     ("isole", "isole", "49.8,-11,61,2", ISOLE, None, False, None),
     ("trekking", "trekking", "35,-11,61,20", TREK, "iwn|nwn|rwn", False, None),
-    ("gr", "gr", "35,-11,55.1,17.2", GR_RX, None, False, GR_REFS),
+    # GR: la zona è enorme, una ricerca sola va in timeout: a pezzi
+    ("gr-iberia", "gr", "35,-10,44,4.5", GR_RX, None, False, GR_REFS),
+    ("gr-francia-ovest", "gr", "42,-5.5,51.2,2.5", GR_RX, None, False, GR_REFS),
+    ("gr-francia-est", "gr", "42,2.5,49.5,10.6", GR_RX, None, False, GR_REFS),
+    ("gr-benelux-germania", "gr", "49.5,2.5,55.1,10.6", GR_RX, None, False, GR_REFS),
+    ("gr-germania-austria", "gr", "45.5,10.6,55.1,17.2", GR_RX, None, False, GR_REFS),
+    ("gr-italia", "gr", "36,6.5,45.5,18.6", GR_RX, None, False, GR_REFS),
+    ("gr-isole", "gr", "49.8,-11,61,2", GR_RX, None, False, GR_REFS),
     ("italia", "italia", "36,6.5,47.2,18.8",
      "Cammino|Via (degli Dei|Appia|Traiana|Lauretana|Micaelica|Flaminia|Postumia|Francesca|Sacra|Clodia|Aurelia|Romea|Salaria)|"
      "Sentiero Italia|Sentiero Roma|Francesco|Benedetto|Sant.Antonio|Sant.Agostino|Dante|Assisi|Materano|Celeste|Balteo",
@@ -148,7 +155,7 @@ SEMPRE = [409737,
           11959152,   # Chemin de Saint-Jacques via Le Puy (GR 65, intero)
           9204501,    # Via Romea (Germanica) completa, super-percorso: Stade - Austria (Fernpass, Innsbruck) - Roma
           16908565]   # Romea Strata, super-percorso (Tallinn - Roma)
-SEARCH_VER = 14   # da aumentare quando cambiano NAMES, SEARCHES o pick_roots
+SEARCH_VER = 15   # da aumentare quando cambiano NAMES, SEARCHES o pick_roots
 
 GPRIO = {"santiago": 0, "francigena": 1, "isole": 2, "italia": 2, "trekking": 4, "gr": 5}
 NPRIO = {"iwn": 0, "nwn": 1, "rwn": 2}   # prima i percorsi a lunga distanza
