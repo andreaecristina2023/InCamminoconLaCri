@@ -951,6 +951,19 @@ function renderStages() {
         ul.appendChild(li);
       });
       d.appendChild(ul);
+      // riquadro Google Maps con gli alloggi vicino all'arrivo (ricerca di Google, con foto e recensioni)
+      if (!/^Km \d/.test(town) && end.lat) {
+        const word = iberia ? 'albergue' : end.lat > 41.5 && end.lat < 51.2 && end.lon > -5 && end.lon < 7.6 ? "gîte d'étape" :
+          end.lat < 47.1 && end.lat > 36.5 && end.lon > 6.6 && end.lon < 18.6 ? 'ostello' : 'hostel';
+        const q = [[word, 'pellegrini / ostelli'], ['hotel', 'hotel'], ['alloggio', 'tutto']];
+        const box = document.createElement('div'); box.className = 'gmap';
+        box.innerHTML = `<div class="chips small">${q.map(([w, l], i) => `<button data-q="${esc(w)}" class="${i ? '' : 'on'}">${l}</button>`).join('')}</div><iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Alloggi su Google Maps"></iframe>`;
+        const fr = box.querySelector('iframe');
+        const go = w => fr.src = 'https://maps.google.com/maps?' + new URLSearchParams({ q: `${w} ${town}`, ll: `${end.lat.toFixed(5)},${end.lon.toFixed(5)}`, z: 14, hl: 'it', output: 'embed' });
+        box.querySelectorAll('[data-q]').forEach(b => b.onclick = ev => { ev.stopPropagation(); box.querySelectorAll('[data-q]').forEach(x => x.classList.toggle('on', x === b)); go(b.dataset.q); });
+        box.onclick = ev => ev.stopPropagation();
+        go(word); d.appendChild(box);
+      }
     }
     d.onclick = e => { if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return; S.sel = S.sel === idx ? -1 : idx; renderStages(); drawStages(); if (S.sel >= 0) map.fitBounds(S.samples.slice(g.from.i, g.to.i + 1).map(p => [p.lat, p.lon]), { padding: [30, 30] }); };
     box.appendChild(d);

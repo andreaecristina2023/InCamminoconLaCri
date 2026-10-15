@@ -139,6 +139,8 @@ label.km{flex:1}
 .stage .mv button{font-size:.78rem;padding:3px 8px}
 .stage ul{margin-top:6px}
 .stage li{padding:3px 0;font-size:.82rem;border-top:1px dashed var(--line)}
+.gmap{margin-top:8px}
+.gmap iframe{width:100%;height:320px;border:1px solid var(--line);border-radius:10px;background:#fff}
 .leaflet-container canvas{background:transparent;border:0;border-radius:0}
 
 /* segnaposto in mappa: conchiglia e frecce */
