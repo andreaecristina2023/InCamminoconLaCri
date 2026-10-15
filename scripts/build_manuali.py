@@ -71,7 +71,7 @@ def auto_tratti():
         return []
     out = []
     for s in salti:
-        if s.get("coperto") or not (0.6 < s["km_salto"] <= AUTO_MAX_KM):
+        if s.get("coperto") or not (0.6 < s["km_salto"] <= AUTO_MAX_KM) or s.get("gruppo") == "gr":
             continue
         pezzo = s["da"]["pezzo"] or s["a"]["pezzo"]
         if not pezzo:

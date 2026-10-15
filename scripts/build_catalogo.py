@@ -39,6 +39,7 @@ FAMIGLIE = [  # (chiave, etichetta) nell'ordine in cui compaiono nel sito
     ("italia", "Cammini italiani"),
     ("isole", "Gran Bretagna e Irlanda"),
     ("trekking", "Trekking a lunga percorrenza"),
+    ("gr", "GR e sentieri europei"),
 ]
 
 
@@ -173,6 +174,8 @@ def famiglia(feats):
     areas = [f["properties"].get("area", "") for f in feats]
     if "romea" in areas:
         return "romea"
+    if "gr" in groups and all(g == "gr" for g in groups if g):
+        return "gr"
     for g in ("trekking", "francigena", "isole", "italia"):
         if g in groups:
             return g
@@ -281,7 +284,7 @@ def main():
         merged = merge_lines(lines)
         simple = []
         for l in merged:
-            s = rdp(l, TOL)
+            s = rdp(l, TOL * 3 if famiglia(fl) == "gr" else TOL)   # i GR sono tanti: panoramica più leggera
             if len(s) >= 2 and not (len(s) == 2 and hav(s[0], s[1]) < 0.1):
                 simple.append([[round(x, 4), round(y, 4)] for x, y in s])
         xs = [p[0] for l in merged for p in l]

@@ -79,6 +79,13 @@ SEMPRE_TREK = [1021025,   # Sentiero Italia CAI (~7.700 km, regioni e tappe anni
 # cammini italiani da includere sempre (gruppo "italia")
 SEMPRE_ITALIA = [11790314,   # Cammino Minerario di Santa Barbara (Sardegna, ~500 km)
                  20203159]   # Cammino di Sant'Antioco (Sardegna)
+# GR e sentieri europei a lunga percorrenza (Grande Randonnée, Gran Recorrido, Grande Rota, Fernwanderwege,
+# LAW olandesi, sentieri europei E1-E12), solo negli stati del sito: dalla penisola iberica fino alla Germania
+GR_RX = ("^GR[ -]?[0-9]|Grande Randonn|Gran Recorrido|Grande Rota|Fernwanderweg|Europ.{0,12}(Fernwanderweg|wandelroute)|"
+         "European long.distance|^E ?[0-9]{1,2}([^0-9]|$)|Landelijke wandelroute")
+GR_REFS = "^(GR[ -]?[0-9]+[A-Z]?|E ?[0-9]{1,2}|LAW ?[0-9]+(-[0-9])?)$"
+GR_PAESI = {"ES", "AD", "PT", "FR", "MC", "IT", "SM", "VA", "CH", "LI", "AT", "DE", "GB", "IM", "JE", "GG", "IE",
+            "BE", "NL", "LU"}
 # nomi da NON considerare cammini anche se la ricerca li trova (es. "King Charles" contiene "arles")
 ESCLUDI = re.compile(r"England Coast Path|King Charles III|Wales Coast Path", re.I)
 REFS_FR = "^GR[ -]?(65|653|654|655|78)([^0-9]|$)"   # GR 65 Puy, 653 Arles/Tolosana, 654 Vézelay, 655 Tours, 78 Piémont
@@ -91,6 +98,7 @@ SEARCHES = [
      "Francigena|Via Romea|Romea (Germanica|Strata|Nonantolana)|Via Francigena", None, False, None),
     ("isole", "isole", "49.8,-11,61,2", ISOLE, None, False, None),
     ("trekking", "trekking", "35,-11,61,20", TREK, "iwn|nwn|rwn", False, None),
+    ("gr", "gr", "35,-11,55.1,17.2", GR_RX, None, False, GR_REFS),
     ("italia", "italia", "36,6.5,47.2,18.8",
      "Cammino|Via (degli Dei|Appia|Traiana|Lauretana|Micaelica|Flaminia|Postumia|Francesca|Sacra|Clodia|Aurelia|Romea|Salaria)|"
      "Sentiero Italia|Sentiero Roma|Francesco|Benedetto|Sant.Antonio|Sant.Agostino|Dante|Assisi|Materano|Celeste|Balteo",
@@ -141,9 +149,9 @@ SEMPRE = [409737,
           11959152,   # Chemin de Saint-Jacques via Le Puy (GR 65, intero)
           9204501,    # Via Romea (Germanica) completa, super-percorso: Stade - Austria (Fernpass, Innsbruck) - Roma
           16908565]   # Romea Strata, super-percorso (Tallinn - Roma)
-SEARCH_VER = 12   # da aumentare quando cambiano NAMES, SEARCHES o pick_roots
+SEARCH_VER = 13   # da aumentare quando cambiano NAMES, SEARCHES o pick_roots
 
-GPRIO = {"santiago": 0, "francigena": 1, "isole": 2, "italia": 2, "trekking": 4}
+GPRIO = {"santiago": 0, "francigena": 1, "isole": 2, "italia": 2, "trekking": 4, "gr": 5}
 NPRIO = {"iwn": 0, "nwn": 1, "rwn": 2}   # prima i percorsi a lunga distanza
 
 STAGE = re.compile(r"[ée]tape|etapa|tappa|stage|etappe|jornada|tramo|secci[oó]n|section|journ[ée]e|d[ií]a \d|\bleg\b", re.I)
@@ -208,7 +216,7 @@ def pick_roots(els, rx):
     return out
 
 
-def list_roots(rx, bbox, net=None, jacob=False, refs=None):
+def list_roots(rx, bbox, net=None, jacob=False, refs=None, center=False):
     netf = f'["network"~"^({net})$"]' if net else ""
     extra = (f'\n  rel["type"~"^(route|superroute)$"]["route"~"^(hiking|foot)$"]{netf}'
              f'[~"^(description|alt_name|official_name|old_name|name:.*|ref:name|destination|from|to)$"~"{JACOB}"]({bbox});') if jacob else ""
@@ -218,8 +226,12 @@ def list_roots(rx, bbox, net=None, jacob=False, refs=None):
 (
   rel["type"~"^(route|superroute)$"]["route"~"^(hiking|foot)$"]{netf}["name"~"{rx}",i]({bbox});{extra}
 );
-out body;"""
-    return pick_roots(overpass(q)["elements"], rx)
+out body{" center" if center else ""};"""
+    els = overpass(q)["elements"]
+    if center:   # solo relazioni col centro negli stati del sito (GR: fino alla Germania, non oltre)
+        els = [e for e in els if "center" not in e or
+               _cc_at(e["center"]["lon"], e["center"]["lat"]) in GR_PAESI]
+    return pick_roots(els, rx)
 
 
 def fetch_geom(ids):
@@ -264,6 +276,12 @@ def ways_of(parent, by_id):
 
 def make_feature(parent, by_id, group):
     lines = ways_of(parent, by_id)
+    if group == "gr":
+        def dentro(l):
+            x, y = l[len(l) // 2]
+            cc = _cc_at(x, y)
+            return cc is None or cc in GR_PAESI
+        lines = [l for l in lines if dentro(l)]
     if not lines:
         return None
     t = parent.get("tags", {})
@@ -286,6 +304,8 @@ LABELS = {
     "belgio": "Belgio", "paesibassi": "Paesi Bassi", "lussemburgo": "Lussemburgo",
     "francigena": "Via Francigena", "romea": "Via Romea", "trekking": "Trekking a lunga percorrenza", "europa": "Altri paesi",
 }
+LABELS.update({"gr-" + k: "GR e sentieri europei - " + v for k, v in list(LABELS.items())
+               if k not in ("francigena", "romea", "trekking")})
 
 # contorni approssimati (lon, lat): bastano per capire in che paese sta la maggior parte di un cammino.
 # L'ordine conta: al primo contorno che contiene il punto ci si ferma.
@@ -395,6 +415,8 @@ def area_of(f):
         return "francigena"
     if p.get("group") == "trekking":
         return "trekking"
+    if p.get("group") == "gr":
+        return "gr-" + country_of(f)
     return country_of(f)
 
 
@@ -539,7 +561,7 @@ def search_all(broad, roots, searches, only_old_days=None):
             continue
         rx = rx or (BROAD if broad else NAMES)
         try:
-            found = list_roots(rx, bbox, net, jac, refs)
+            found = list_roots(rx, bbox, net, jac, refs, center=(group == "gr"))
         except TimeoutError:
             raise
         except Exception as e:  # noqa: BLE001
