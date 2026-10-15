@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-14",
+ "generated": "2026-10-15",
  "fonte": "© contributori di OpenStreetMap (ODbL)",
  "tipi": {
   "P": "Accoglienza pellegrini",
@@ -14,11 +14,17 @@
    "key": "spagna",
    "label": "Spagna",
    "file": "spagna.json",
-   "luoghi": 0,
-   "con_alloggio": 0,
-   "alloggi": 0,
-   "tipi": {},
-   "mb": 0.0
+   "luoghi": 35,
+   "con_alloggio": 18,
+   "alloggi": 412,
+   "tipi": {
+    "H": 215,
+    "O": 51,
+    "B": 129,
+    "C": 11,
+    "P": 6
+   },
+   "mb": 0.06
   },
   {
    "key": "portogallo",
@@ -62,8 +68,18 @@
   },
   {
    "key": "inghilterra",
-   "label": "Inghilterra",
+   "label": "Regno Unito",
    "file": "inghilterra.json",
+   "luoghi": 0,
+   "con_alloggio": 0,
+   "alloggi": 0,
+   "tipi": {},
+   "mb": 0.0
+  },
+  {
+   "key": "irlanda",
+   "label": "Irlanda",
+   "file": "irlanda.json",
    "luoghi": 0,
    "con_alloggio": 0,
    "alloggi": 0,
@@ -111,18 +127,32 @@
    "mb": 0.0
   },
   {
-   "key": "europa",
-   "label": "Altri paesi",
-   "file": "europa.json",
+   "key": "trekking",
+   "label": "Trekking a lunga percorrenza",
+   "file": "trekking.json",
    "luoghi": 0,
    "con_alloggio": 0,
    "alloggi": 0,
    "tipi": {},
    "mb": 0.0
+  },
+  {
+   "key": "europa",
+   "label": "Altri paesi",
+   "file": "europa.json",
+   "luoghi": 1,
+   "con_alloggio": 1,
+   "alloggi": 116,
+   "tipi": {
+    "O": 15,
+    "H": 54,
+    "B": 47
+   },
+   "mb": 0.02
   }
  ],
  "riquadri": {
-  "totali": 2449,
-  "scaricati": 0
+  "totali": 2666,
+  "scaricati": 22
  }
 }
