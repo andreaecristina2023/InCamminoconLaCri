@@ -2,87 +2,15 @@
 "generated": "2026-10-15",
 "salti": [
 {
-"percorso": "sentiero italia",
-"km_salto": 17.0,
-"da": {
-"ll": [
-39.9848,
-16.2151
-],
-"pezzo": "Sentiero Italia - Basilicata T00",
-"km_pezzo": 5963
-},
-"a": {
-"ll": [
-39.8452,
-16.1333
-],
-"pezzo": "Sentiero Italia",
-"km_pezzo": 599
-},
-"km_percorso": 7817,
-"gruppo": "italia",
-"coperto": false,
-"paese": "Italia"
-},
-{
-"percorso": "sentiero italia",
-"km_salto": 15.0,
-"da": {
-"ll": [
-40.7894,
-17.0916
-],
-"pezzo": "Sentiero Italia",
-"km_pezzo": 5963
-},
-"a": {
-"ll": [
-40.8107,
-17.2679
-],
-"pezzo": "Sentiero Italia",
-"km_pezzo": 48
-},
-"km_percorso": 7817,
-"gruppo": "italia",
-"coperto": false,
-"paese": "Italia"
-},
-{
-"percorso": "sentiero italia",
-"km_salto": 13.1,
-"da": {
-"ll": [
-38.1314,
-15.6677
-],
-"pezzo": "Sentiero Italia",
-"km_pezzo": 599
-},
-"a": {
-"ll": [
-38.2178,
-15.566
-],
-"pezzo": "Sentiero Italia",
-"km_pezzo": 629
-},
-"km_percorso": 7817,
-"gruppo": "italia",
-"coperto": false,
-"paese": "Italia"
-},
-{
 "percorso": "jakobsweg osterreich",
-"km_salto": 77.4,
+"km_salto": 77.1,
 "da": {
 "ll": [
-46.8224,
-12.7876
+46.8243,
+12.7835
 ],
 "pezzo": "Jakobsweg Österreich",
-"km_pezzo": 460
+"km_pezzo": 502
 },
 "a": {
 "ll": [
@@ -92,130 +20,10 @@
 "pezzo": "Jakobsweg Österreich",
 "km_pezzo": 1064
 },
-"km_percorso": 1540,
+"km_percorso": 1566,
 "gruppo": "santiago",
 "coperto": false,
 "paese": "Austria"
-},
-{
-"percorso": "jakobsweg osterreich",
-"km_salto": 21.1,
-"da": {
-"ll": [
-47.076,
-15.3616
-],
-"pezzo": "Jakobsweg Österreich",
-"km_pezzo": 460
-},
-"a": {
-"ll": [
-46.9086,
-15.4933
-],
-"pezzo": "Jakobsweg Österreich",
-"km_pezzo": 16
-},
-"km_percorso": 1540,
-"gruppo": "santiago",
-"coperto": false,
-"paese": "Austria"
-},
-{
-"percorso": "il cammino di sant'antonio",
-"km_salto": 3.6,
-"da": {
-"ll": [
-45.91,
-12.2931
-],
-"pezzo": "Il Cammino di Sant'Antonio - Tappa 07G",
-"km_pezzo": 668
-},
-"a": {
-"ll": [
-45.925,
-12.3342
-],
-"pezzo": "Il Cammino di Sant'Antonio - Tappa 06G2",
-"km_pezzo": 137
-},
-"km_percorso": 805,
-"gruppo": "italia",
-"coperto": false,
-"paese": "Italia"
-},
-{
-"percorso": "jakobova pot slovenija",
-"km_salto": 21.9,
-"da": {
-"ll": [
-46.4198,
-15.8504
-],
-"pezzo": "Jakobova pot Slovenija",
-"km_pezzo": 746
-},
-"a": {
-"ll": [
-46.5565,
-15.6453
-],
-"pezzo": "Jakobova pot Slovenija",
-"km_pezzo": 40
-},
-"km_percorso": 786,
-"gruppo": "santiago",
-"coperto": false,
-"paese": "Altri paesi"
-},
-{
-"percorso": "jakobova pot",
-"km_salto": 21.9,
-"da": {
-"ll": [
-46.4182,
-15.8491
-],
-"pezzo": "Jakobova pot – Prekmursko-Štajerska veja",
-"km_pezzo": 701
-},
-"a": {
-"ll": [
-46.5565,
-15.6453
-],
-"pezzo": "Jakobova pot – Maribor",
-"km_pezzo": 40
-},
-"km_percorso": 741,
-"gruppo": "santiago",
-"coperto": false,
-"paese": "Altri paesi"
-},
-{
-"percorso": "jakobsweg via scandinavica",
-"km_salto": 1.0,
-"da": {
-"ll": [
-53.8995,
-10.7651
-],
-"pezzo": "Jakobsweg Via Scandinavica, Zubringer von Travemünde",
-"km_pezzo": 676
-},
-"a": {
-"ll": [
-53.905,
-10.7775
-],
-"pezzo": "Jakobsweg Via Scandinavica, Zubringer von Travemünde",
-"km_pezzo": 13
-},
-"km_percorso": 688,
-"gruppo": "santiago",
-"coperto": false,
-"paese": "Germania"
 },
 {
 "percorso": "cami de sant jaume",
@@ -243,14 +51,14 @@
 },
 {
 "percorso": "svatojakubska cesta na slovensku",
-"km_salto": 31.6,
+"km_salto": 31.7,
 "da": {
 "ll": [
-48.5778,
-19.135
+48.5774,
+19.1379
 ],
 "pezzo": "Svätojakubská cesta na Slovensku: Etapa Banská Bystrica – Zvolen",
-"km_pezzo": 166
+"km_pezzo": 327
 },
 "a": {
 "ll": [
@@ -260,58 +68,10 @@
 "pezzo": "Svätojakubská cesta na Slovensku: Etapa Vysoká – Nová Baňa",
 "km_pezzo": 285
 },
-"km_percorso": 611,
+"km_percorso": 612,
 "gruppo": "santiago",
 "coperto": false,
 "paese": "Altri paesi"
-},
-{
-"percorso": "svatojakubska cesta na slovensku",
-"km_salto": 0.8,
-"da": {
-"ll": [
-49.0581,
-20.0676
-],
-"pezzo": "Svätojakubská cesta na Slovensku: Etapa Poprad – Važec",
-"km_pezzo": 166
-},
-"a": {
-"ll": [
-49.0542,
-20.0768
-],
-"pezzo": "Svätojakubská cesta na Slovensku: Etapa Poprad – Važec",
-"km_pezzo": 160
-},
-"km_percorso": 611,
-"gruppo": "santiago",
-"coperto": false,
-"paese": "Altri paesi"
-},
-{
-"percorso": "via alpina",
-"km_salto": 15.1,
-"da": {
-"ll": [
-46.4282,
-7.1959
-],
-"pezzo": "Via Alpina",
-"km_pezzo": 431
-},
-"a": {
-"ll": [
-46.2936,
-7.2258
-],
-"pezzo": "Via Alpina Stage 76: Auberge du Godey - Anzeinde",
-"km_pezzo": 92
-},
-"km_percorso": 523,
-"gruppo": "trekking",
-"coperto": false,
-"paese": "Svizzera"
 },
 {
 "percorso": "chemin du piemont pyreneen",
@@ -338,145 +98,25 @@
 "paese": "Francia"
 },
 {
-"percorso": "trans swiss trail",
-"km_salto": 7.1,
-"da": {
-"ll": [
-46.991,
-6.9332
-],
-"pezzo": "Trans Swiss Trail",
-"km_pezzo": 89
-},
-"a": {
-"ll": [
-46.9593,
-7.014
-],
-"pezzo": "Trans Swiss Trail",
-"km_pezzo": 55
-},
-"km_percorso": 506,
-"gruppo": "trekking",
-"coperto": false,
-"paese": "Svizzera"
-},
-{
-"percorso": "trans swiss trail",
-"km_salto": 2.1,
-"da": {
-"ll": [
-46.9443,
-7.4462
-],
-"pezzo": "Trans Swiss Trail",
-"km_pezzo": 349
-},
-"a": {
-"ll": [
-46.9408,
-7.4186
-],
-"pezzo": "Trans Swiss Trail",
-"km_pezzo": 55
-},
-"km_percorso": 506,
-"gruppo": "trekking",
-"coperto": false,
-"paese": "Svizzera"
-},
-{
-"percorso": "trans swiss trail",
+"percorso": "camino de santiago de la lana.senderista",
 "km_salto": 1.5,
 "da": {
 "ll": [
-45.9231,
-8.9139
-],
-"pezzo": "Trans Swiss Trail",
-"km_pezzo": 349
-},
-"a": {
-"ll": [
-45.9226,
-8.9334
-],
-"pezzo": "Trans Swiss Trail",
-"km_pezzo": 13
-},
-"km_percorso": 506,
-"gruppo": "trekking",
-"coperto": false,
-"paese": "Svizzera"
-},
-{
-"percorso": "cammino delle dolomiti",
-"km_salto": 3.9,
-"da": {
-"ll": [
-46.1996,
-12.3017
-],
-"pezzo": "Cammino delle Dolomiti - Tappa 26",
-"km_pezzo": 174
-},
-"a": {
-"ll": [
-46.2339,
-12.2887
-],
-"pezzo": "Cammino delle Dolomiti - Tappa 26",
-"km_pezzo": 233
-},
-"km_percorso": 473,
-"gruppo": "italia",
-"coperto": false,
-"paese": "Italia"
-},
-{
-"percorso": "cammino delle dolomiti",
-"km_salto": 0.8,
-"da": {
-"ll": [
-46.4585,
-11.9634
-],
-"pezzo": "Cammino delle Dolomiti - Tappa 11",
-"km_pezzo": 66
-},
-"a": {
-"ll": [
-46.4654,
-11.9679
-],
-"pezzo": "Cammino delle Dolomiti - Tappa 11",
-"km_pezzo": 233
-},
-"km_percorso": 473,
-"gruppo": "italia",
-"coperto": false,
-"paese": "Italia"
-},
-{
-"percorso": "camino de santiago de la lana.senderista",
-"km_salto": 1.2,
-"da": {
-"ll": [
-41.0648,
--2.6543
+41.0113,
+-2.6599
 ],
 "pezzo": "Camino de Santiago de la Lana.Senderista(Var.Sigüenza)",
-"km_pezzo": 438
+"km_pezzo": 450
 },
 "a": {
 "ll": [
-41.0614,
--2.6411
+41.0079,
+-2.6772
 ],
 "pezzo": "Camino de Santiago de la Lana.Senderista(Var.Sigüenza)",
-"km_pezzo": 10
+"km_pezzo": 7
 },
-"km_percorso": 455,
+"km_percorso": 457,
 "gruppo": "santiago",
 "coperto": false,
 "paese": "Spagna"
@@ -506,78 +146,6 @@
 "paese": "Altri paesi"
 },
 {
-"percorso": "antica via clodia",
-"km_salto": 3.1,
-"da": {
-"ll": [
-42.3619,
-11.9108
-],
-"pezzo": "Antica Via Clodia Tappa 08",
-"km_pezzo": 153
-},
-"a": {
-"ll": [
-42.3473,
-11.9428
-],
-"pezzo": "Antica Via Clodia Tappa 08",
-"km_pezzo": 98
-},
-"km_percorso": 251,
-"gruppo": "italia",
-"coperto": false,
-"paese": "Italia"
-},
-{
-"percorso": "whithorn way",
-"km_salto": 9.9,
-"da": {
-"ll": [
-55.1675,
--4.9311
-],
-"pezzo": "Whithorn Way",
-"km_pezzo": 93
-},
-"a": {
-"ll": [
-55.2447,
--4.8547
-],
-"pezzo": "Whithorn Way",
-"km_pezzo": 136
-},
-"km_percorso": 229,
-"gruppo": "santiago",
-"coperto": false,
-"paese": "Regno Unito"
-},
-{
-"percorso": "via augusta de cadiz a sevilla",
-"km_salto": 0.7,
-"da": {
-"ll": [
-37.3257,
--5.9506
-],
-"pezzo": "Vía Augusta de Cádiz a Sevilla",
-"km_pezzo": 117
-},
-"a": {
-"ll": [
-37.3314,
--5.955
-],
-"pezzo": "Vía Augusta de Cádiz a Sevilla",
-"km_pezzo": 11
-},
-"km_percorso": 223,
-"gruppo": "santiago",
-"coperto": false,
-"paese": "Spagna"
-},
-{
 "percorso": "via augusta de cadiz a sevilla",
 "km_salto": 0.6,
 "da": {
@@ -594,7 +162,7 @@
 -6.0724
 ],
 "pezzo": "Vía Augusta de Cádiz a Sevilla",
-"km_pezzo": 117
+"km_pezzo": 128
 },
 "km_percorso": 223,
 "gruppo": "santiago",
@@ -626,78 +194,6 @@
 "paese": "Spagna"
 },
 {
-"percorso": "camino mozarabe. almeria-granada",
-"km_salto": 1.2,
-"da": {
-"ll": [
-37.1802,
--2.8437
-],
-"pezzo": "Camino Mozárabe. Almería-Granada",
-"km_pezzo": 76
-},
-"a": {
-"ll": [
-37.1835,
--2.8564
-],
-"pezzo": "Camino Mozárabe. Almería-Granada",
-"km_pezzo": 122
-},
-"km_percorso": 198,
-"gruppo": "santiago",
-"coperto": false,
-"paese": "Spagna"
-},
-{
-"percorso": "jakobsweg frankfurt/oder",
-"km_salto": 0.7,
-"da": {
-"ll": [
-51.5573,
-13.0093
-],
-"pezzo": "Jakobsweg Frankfurt/Oder - Leipzig",
-"km_pezzo": 182
-},
-"a": {
-"ll": [
-51.5566,
-12.9999
-],
-"pezzo": "Jakobsweg Frankfurt/Oder - Leipzig",
-"km_pezzo": 9
-},
-"km_percorso": 190,
-"gruppo": "santiago",
-"coperto": false,
-"paese": "Germania"
-},
-{
-"percorso": "walserweg gottardo",
-"km_salto": 12.7,
-"da": {
-"ll": [
-46.3621,
-8.3063
-],
-"pezzo": "Walserweg Gottardo - Etappe 1",
-"km_pezzo": 20
-},
-"a": {
-"ll": [
-46.3349,
-8.4667
-],
-"pezzo": "Walserweg Gottardo - Etappe 5",
-"km_pezzo": 151
-},
-"km_percorso": 171,
-"gruppo": "trekking",
-"coperto": false,
-"paese": "Italia"
-},
-{
 "percorso": "jakobs-pilgerweg heidenstraße",
 "km_salto": 74.8,
 "da": {
@@ -720,78 +216,6 @@
 "gruppo": "santiago",
 "coperto": false,
 "paese": "Germania"
-},
-{
-"percorso": "jakobsweg erfurt",
-"km_salto": 7.0,
-"da": {
-"ll": [
-50.6198,
-11.1562
-],
-"pezzo": "Jakobsweg Erfurt - Coburg",
-"km_pezzo": 81
-},
-"a": {
-"ll": [
-50.5813,
-11.0779
-],
-"pezzo": "Jakobsweg Erfurt - Coburg",
-"km_pezzo": 12
-},
-"km_percorso": 142,
-"gruppo": "santiago",
-"coperto": false,
-"paese": "Germania"
-},
-{
-"percorso": "jakobsweg erfurt",
-"km_salto": 2.2,
-"da": {
-"ll": [
-50.4798,
-11.0171
-],
-"pezzo": "Jakobsweg Erfurt - Coburg",
-"km_pezzo": 49
-},
-"a": {
-"ll": [
-50.4981,
-11.029
-],
-"pezzo": "Jakobsweg Erfurt - Coburg",
-"km_pezzo": 12
-},
-"km_percorso": 142,
-"gruppo": "santiago",
-"coperto": false,
-"paese": "Germania"
-},
-{
-"percorso": "via romea nonantolana e via della sambuca",
-"km_salto": 25.6,
-"da": {
-"ll": [
-44.3372,
-11.0129
-],
-"pezzo": "Via Romea Nonantolana e Via della Sambuca: Tappa 3",
-"km_pezzo": 63
-},
-"a": {
-"ll": [
-44.1073,
-10.9943
-],
-"pezzo": "Via Romea Nonantolana e Via della Sambuca: Tappa 5",
-"km_pezzo": 70
-},
-"km_percorso": 132,
-"gruppo": "francigena",
-"coperto": false,
-"paese": "Italia"
 },
 {
 "percorso": "via romea nonantolana occidentale",
@@ -818,54 +242,6 @@
 "paese": "Italia"
 },
 {
-"percorso": "via aurelia",
-"km_salto": 5.4,
-"da": {
-"ll": [
-43.556,
-6.9391
-],
-"pezzo": "Via Aurelia, Roquebrune - Mandelieu",
-"km_pezzo": 102
-},
-"a": {
-"ll": [
-43.5074,
-6.9418
-],
-"pezzo": "Via Aurelia, Théoule - Col Notre-Dame",
-"km_pezzo": 9
-},
-"km_percorso": 111,
-"gruppo": "italia",
-"coperto": false,
-"paese": "Francia"
-},
-{
-"percorso": "jakobsweg saar",
-"km_salto": 2.5,
-"da": {
-"ll": [
-49.2061,
-7.3457
-],
-"pezzo": "Jakobsweg Saar, Strecke Althornbach – Blieskastel – Hérapel",
-"km_pezzo": 62
-},
-"a": {
-"ll": [
-49.1841,
-7.3384
-],
-"pezzo": "Jakobsweg Saar, Strecke Altheim – Kleinblittersdorf – Saargemünd – Hérapel",
-"km_pezzo": 44
-},
-"km_percorso": 106,
-"gruppo": "santiago",
-"coperto": false,
-"paese": "Germania"
-},
-{
 "percorso": "mary michael pilgrims way",
 "km_salto": 49.6,
 "da": {
@@ -874,7 +250,7 @@
 -3.5078
 ],
 "pezzo": "Mary Michael Pilgrims Way",
-"km_pezzo": 46
+"km_pezzo": 73
 },
 "a": {
 "ll": [
@@ -884,82 +260,34 @@
 "pezzo": "Mary Michael Pilgrims Way",
 "km_pezzo": 7
 },
-"km_percorso": 104,
+"km_percorso": 112,
 "gruppo": "isole",
 "coperto": false,
 "paese": "Regno Unito"
 },
 {
 "percorso": "mary michael pilgrims way",
-"km_salto": 4.4,
+"km_salto": 0.6,
 "da": {
 "ll": [
-50.7583,
--3.7788
+50.7004,
+-3.8878
 ],
 "pezzo": "Mary Michael Pilgrims Way",
-"km_pezzo": 46
+"km_pezzo": 73
 },
 "a": {
 "ll": [
-50.7196,
--3.7928
+50.7039,
+-3.8946
 ],
 "pezzo": "Mary Michael Pilgrims Way",
-"km_pezzo": 21
+"km_pezzo": 32
 },
-"km_percorso": 104,
+"km_percorso": 112,
 "gruppo": "isole",
 "coperto": false,
 "paese": "Regno Unito"
-},
-{
-"percorso": "mary michael pilgrims way",
-"km_salto": 1.1,
-"da": {
-"ll": [
-50.6915,
--4.0104
-],
-"pezzo": "Mary Michael Pilgrims Way",
-"km_pezzo": 21
-},
-"a": {
-"ll": [
-50.6821,
--4.0164
-],
-"pezzo": "Mary Michael Pilgrims Way",
-"km_pezzo": 9
-},
-"km_percorso": 104,
-"gruppo": "isole",
-"coperto": false,
-"paese": "Regno Unito"
-},
-{
-"percorso": "sentiero roma",
-"km_salto": 3.9,
-"da": {
-"ll": [
-46.2373,
-9.7769
-],
-"pezzo": "Sentiero Roma - Tappa 5",
-"km_pezzo": 44
-},
-"a": {
-"ll": [
-46.2483,
-9.8249
-],
-"pezzo": "Sentiero Roma-Tappa 6",
-"km_pezzo": 7
-},
-"km_percorso": 50,
-"gruppo": "italia",
-"coperto": false,
-"paese": "Italia"
 },
 {
 "percorso": "via augusta",
@@ -970,7 +298,7 @@
 -2.148
 ],
 "pezzo": "Via Augusta - Via Heraclea",
-"km_pezzo": 6
+"km_pezzo": 84
 },
 "a": {
 "ll": [
@@ -980,55 +308,7 @@
 "pezzo": "Vía Augusta",
 "km_pezzo": 5
 },
-"km_percorso": 42,
-"gruppo": "santiago",
-"coperto": false,
-"paese": "Spagna"
-},
-{
-"percorso": "via augusta",
-"km_salto": 23.8,
-"da": {
-"ll": [
-38.6906,
--2.7048
-],
-"pezzo": "Via Augusta - Via Heraclea",
-"km_pezzo": 12
-},
-"a": {
-"ll": [
-38.831,
--2.4981
-],
-"pezzo": "Via Augusta - Via Heraclea",
-"km_pezzo": 18
-},
-"km_percorso": 42,
-"gruppo": "santiago",
-"coperto": false,
-"paese": "Spagna"
-},
-{
-"percorso": "via augusta",
-"km_salto": 13.2,
-"da": {
-"ll": [
-38.9384,
--2.3598
-],
-"pezzo": "Via Augusta - Via Heraclea",
-"km_pezzo": 18
-},
-"a": {
-"ll": [
-38.935,
--2.2071
-],
-"pezzo": "Via Augusta - Via Heraclea",
-"km_pezzo": 6
-},
-"km_percorso": 42,
+"km_percorso": 89,
 "gruppo": "santiago",
 "coperto": false,
 "paese": "Spagna"
@@ -1042,7 +322,7 @@
 -1.2217
 ],
 "pezzo": "Camino Ingles to Santiago",
-"km_pezzo": 8
+"km_pezzo": 46
 },
 "a": {
 "ll": [
@@ -1052,104 +332,8 @@
 "pezzo": "Camino Ingles to Santiago",
 "km_pezzo": 7
 },
-"km_percorso": 36,
+"km_percorso": 54,
 "gruppo": "santiago",
-"coperto": false,
-"paese": "Regno Unito"
-},
-{
-"percorso": "camino ingles to santiago",
-"km_salto": 5.8,
-"da": {
-"ll": [
-53.9546,
--1.0827
-],
-"pezzo": "Camino Ingles to Santiago",
-"km_pezzo": 15
-},
-"a": {
-"ll": [
-53.9893,
--1.1492
-],
-"pezzo": "Camino Ingles to Santiago",
-"km_pezzo": 8
-},
-"km_percorso": 36,
-"gruppo": "santiago",
-"coperto": false,
-"paese": "Regno Unito"
-},
-{
-"percorso": "camino ingles to santiago",
-"km_salto": 5.8,
-"da": {
-"ll": [
-53.8376,
--1.056
-],
-"pezzo": "Camino Ingles to Santiago",
-"km_pezzo": 15
-},
-"a": {
-"ll": [
-53.7853,
--1.0641
-],
-"pezzo": "Camino Ingles to Santiago",
-"km_pezzo": 5
-},
-"km_percorso": 36,
-"gruppo": "santiago",
-"coperto": false,
-"paese": "Regno Unito"
-},
-{
-"percorso": "cammino jacopeo d'anaunia",
-"km_salto": 11.1,
-"da": {
-"ll": [
-46.3638,
-11.0716
-],
-"pezzo": "Cammino Jacopeo d'Anaunia - Prima Tappa",
-"km_pezzo": 28
-},
-"a": {
-"ll": [
-46.2643,
-11.0887
-],
-"pezzo": "Cammino Jacopeo d'Anaunia - Sesta Tappa",
-"km_pezzo": 5
-},
-"km_percorso": 33,
-"gruppo": "italia",
-"coperto": false,
-"paese": "Italia"
-},
-{
-"percorso": "st cuthbert's three church trail",
-"km_salto": 1.2,
-"da": {
-"ll": [
-55.207,
--2.1543
-],
-"pezzo": "St Cuthbert's Three Church Trail",
-"km_pezzo": 6
-},
-"a": {
-"ll": [
-55.2039,
--2.173
-],
-"pezzo": "St Cuthbert's Three Church Trail",
-"km_pezzo": 14
-},
-"km_percorso": 20,
-"gruppo": "isole",
 "coperto": false,
 "paese": "Regno Unito"
 },
