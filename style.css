@@ -152,3 +152,7 @@ label.km{flex:1}
 .pin-via{background:#6c747b;border-radius:50%}
 .pin-bivio{background:var(--yellow);border-radius:3px;transform:rotate(45deg)}
 @media(max-width:560px){.tabbar button{font-size:.85rem;padding:6px 4px}.tabbar .n{display:none}}
+
+/* fine tappa trascinabile */
+.stopdot{background:#1e4aa0;border:2px solid #fff;border-radius:50%;box-shadow:0 1px 3px #0006;cursor:grab}
+.stopdot.big{border-width:3px}

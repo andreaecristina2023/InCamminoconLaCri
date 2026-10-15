@@ -406,7 +406,16 @@ function renderPts() {
       ul.appendChild(li);
     }
     const lab = { start: 'Partenza', via: 'Passando per', end: 'Arrivo' }[p.role];
-    L.marker([p.lat, p.lon], { icon: p.role === 'end' ? icon('shell', 'pin-end') : icon('arrow', p.role === 'start' ? 'pin-start' : 'pin-via') }).bindTooltip(lab + ' · ' + p.name).addTo(gPts);
+    const mk = L.marker([p.lat, p.lon], { draggable: !p.loop, icon: p.role === 'end' ? icon('shell', 'pin-end') : icon('arrow', p.role === 'start' ? 'pin-start' : 'pin-via') })
+      .bindTooltip(lab + ' · ' + p.name + (p.loop ? '' : ' — trascina per spostarlo')).addTo(gPts);
+    mk.on('dragend', () => {
+      const ll = mk.getLatLng();
+      const n = (S.allPlaces || []).reduce((b, q) => { const d = hav({ lat: q.la, lon: q.lo }, { lat: ll.lat, lon: ll.lng }); return d < b.d ? { d, q } : b; }, { d: 3, q: null }).q;
+      p.lat = ll.lat; p.lon = ll.lng; p.name = n ? n.n : `${ll.lat.toFixed(4)}, ${ll.lng.toFixed(4)}`; p.auto = false;
+      if (S.anello && p.role === 'start') { const e = S.pts.find(x => x.loop); if (e) Object.assign(e, { lat: p.lat, lon: p.lon, name: p.name + ' (ritorno)' }); }
+      S.forced = []; renderPts();
+      if (S.pts.some(x => x.role === 'start') && S.pts.some(x => x.role === 'end') && G.nodes.length) computeRoute();
+    });
   });
 }
 // suggerimenti mentre si scrive: prima le località lungo i cammini caricati, poi Nominatim
@@ -843,30 +852,39 @@ async function loadPOI() {
   try { await loadPOIReal(); } finally { addGronzeTowns(); }
 }
 async function loadPOIReal() {
-  if (await loadPOIStatic()) return;
+  const ok = await loadPOIStatic().catch(() => false);
+  if (!ok) { S.places = []; S.lodging = []; }
+  // tratti del percorso senza località nei dati scaricati (riquadri ancora da scaricare): si chiedono a OSM al volo
+  const GAP = 12, sm = S.samples, ds = [0, ...S.places.map(p => p.d).sort((x, y) => x - y), sm[sm.length - 1].d];
+  const ranges = [];
+  for (let k = 1; k < ds.length; k++) if (ds[k] - ds[k - 1] > GAP) ranges.push([ds[k - 1], ds[k]]);
+  if (!ranges.length) return;
+  const idx = d => { let lo = 0, hi = sm.length - 1; while (lo < hi) { const m = (lo + hi) >> 1; if (sm[m].d < d) lo = m + 1; else hi = m; } return lo; };
   const step = Math.max(2, Math.round(1 / STEP_KM));
-  const pts = []; for (let i = 0; i < S.samples.length; i += step) pts.push(S.samples[i]);
-  pts.push(S.samples[S.samples.length - 1]);
-  const poly = pts.map(p => p.lat.toFixed(5) + ',' + p.lon.toFixed(5)).join(',');
+  const polys = ranges.map(([d0, d1]) => { const pts = []; for (let i = idx(d0); i <= idx(d1); i += step) pts.push(sm[i]); pts.push(sm[idx(d1)]); return pts.map(p => p.lat.toFixed(5) + ',' + p.lon.toFixed(5)).join(','); })
+    .filter(p => p.split(',').length >= 4);
+  if (!polys.length) return;
   const q = `[out:json][timeout:180];
-(node["place"~"^(city|town|village|hamlet)$"](around:2000,${poly}););
+(${polys.map(pl => `node["place"~"^(city|town|village|hamlet)$"](around:2000,${pl});`).join('\n')});
 out tags center;
-(nwr["tourism"~"^(hostel|guest_house|camp_site)$"](around:1500,${poly});
- nwr["tourism"]["name"~"lbergue|efugio|[Gg][iî]te|lberg|ilgrim"](around:1500,${poly}););
+(${polys.map(pl => `nwr["tourism"~"^(hostel|guest_house|camp_site|alpine_hut)$"](around:1500,${pl});nwr["tourism"]["name"~"lbergue|efugio|[Gg][iî]te|lberg|ilgrim"](around:1500,${pl});`).join('\n')});
 out tags center;`;
-  status('Scarico località e ostelli da OSM (può richiedere un minuto)…');
-  const j = await overpass(q);
+  status(`Località mancanti su ${ranges.length} tratti: le chiedo a OpenStreetMap…`);
+  let j;
+  try { j = await overpass(q); } catch (e) { status('Località non disponibili per alcuni tratti: ' + e.message); return; }
   const cen = e => e.type === 'node' ? { lat: e.lat, lon: e.lon } : e.center;
-  const nearest = p => { let bi = 0, bd = 1e9; for (let i = 0; i < S.samples.length; i++) { const d = Math.abs(S.samples[i].lat - p.lat) * 111 + Math.abs(S.samples[i].lon - p.lon) * 80; if (d < bd) { bd = d; bi = i; } } return bi; };
-  const seen = new Set(), places = [], lodging = [];
+  const nearest = p => { let bi = 0, bd = 1e9; for (let i = 0; i < sm.length; i++) { const d = Math.abs(sm[i].lat - p.lat) * 111 + Math.abs(sm[i].lon - p.lon) * 80; if (d < bd) { bd = d; bi = i; } } return bi; };
+  const seen = new Set();
   for (const e of j.elements) {
     const c = cen(e); if (!c || !e.tags) continue;
     const key = e.type + e.id; if (seen.has(key)) continue; seen.add(key);
-    const i = nearest(c), off = hav(c, S.samples[i]);
-    if (e.tags.place) { if (off <= 2.5 && e.tags.name) places.push({ name: e.tags.name, type: e.tags.place, lat: c.lat, lon: c.lon, i, d: S.samples[i].d, off }); }
-    else if (off <= 1.8) lodging.push({ name: e.tags.name || '(senza nome)', kind: kindOf(e.tags), tags: e.tags, lat: c.lat, lon: c.lon, i, d: S.samples[i].d, off });
+    const i = nearest(c), off = hav(c, sm[i]);
+    if (e.tags.place) {
+      if (off <= 2.5 && e.tags.name && !S.places.some(p => Math.abs(p.d - sm[i].d) < 1 && plain(p.name) === plain(e.tags.name)))
+        S.places.push({ name: e.tags.name, type: e.tags.place, lat: c.lat, lon: c.lon, i, d: sm[i].d, off });
+    } else if (off <= 1.8 && !S.lodging.some(h => Math.abs(h.lat - c.lat) < 1e-4 && Math.abs(h.lon - c.lon) < 1e-4))
+      S.lodging.push({ name: e.tags.name || '(senza nome)', kind: kindOf(e.tags), tags: e.tags, lat: c.lat, lon: c.lon, i, d: sm[i].d, off });
   }
-  S.places = places; S.lodging = lodging;
 }
 function kindOf(t) {
   if (/lbergue|efugio|lberg|ilgrim|[Gg][iî]te/.test(t.name || '')) return 'Albergue/rifugio';
@@ -951,17 +969,38 @@ function computeStages() {
 function moveStageEnd(idx, dir) {
   const g = S.stages[idx], s = S.samples; if (!g || idx === S.stages.length - 1) return;
   const next = S.stages[idx + 1];
-  const cands = S.places.filter(p => (p.type === 'city' || p.type === 'town' || S.lodging.some(h => Math.abs(h.d - p.d) <= 1.5)))
-    .filter(p => dir < 0 ? (p.i < g.to.i - 4 && p.i > g.from.i + 4) : (p.i > g.to.i + 4 && p.i < next.to.i - 4))
-    .sort((x, y) => dir < 0 ? y.i - x.i : x.i - y.i);
-  if (!cands.length) { status('Nessun altro paese con alloggio in quella direzione.'); return; }
+  const inDir = p => dir < 0 ? (p.i < g.to.i - 4 && p.i > g.from.i + 4) : (p.i > g.to.i + 4 && p.i < next.to.i - 4);
+  const ord = (x, y) => dir < 0 ? y.i - x.i : x.i - y.i;
+  // prima i paesi con alloggio, poi qualsiasi paese, altrimenti 3 km più in là
+  let cands = S.places.filter(p => (p.type === 'city' || p.type === 'town' || S.lodging.some(h => Math.abs(h.d - p.d) <= 1.5)) && inDir(p)).sort(ord);
+  let note = '';
+  if (!cands.length) { cands = S.places.filter(inDir).sort(ord); note = ' (nessun alloggio segnato lì: controlla)'; }
+  if (!cands.length) {
+    const target = s[g.to.i].d + dir * 3;
+    let i = g.to.i; while (i > 0 && i < s.length - 1 && (dir < 0 ? s[i].d > target : s[i].d < target)) i += dir;
+    const tmp = { i, name: `Km ${s[i].d.toFixed(0)}` };
+    if (!inDir(tmp)) { status('La tappa non si può spostare oltre in quella direzione.'); return; }
+    cands = [tmp]; note = ' (nessun paese lì)';
+  }
   const c = cands[0];
   S.forced = (S.forced || []).filter(f => f.i <= g.from.i || f.i >= next.to.i);   // toglie la vecchia fine tappa fissata
   S.forced.push({ i: c.i, name: c.name });
   // le tappe precedenti restano come sono: le fisso
   S.stages.slice(0, idx).forEach(x => { if (!S.forced.some(f => f.i === x.to.i)) S.forced.push({ i: x.to.i, name: x.to.name }); });
   S.sel = idx; recompute();
-  status(`Tappa ${g.n}: ora finisce a ${c.name}.`);
+  status(`Tappa ${g.n}: ora finisce a ${c.name}${note}.`);
+}
+// fine della tappa idx al punto i del percorso (trascinando il segnaposto); il nome è il paese più vicino
+function setStageEnd(idx, i) {
+  const g = S.stages[idx], next = S.stages[idx + 1]; if (!g || !next) return;
+  if (i <= g.from.i + 2 || i >= next.to.i - 2) { status('Una fine tappa va lasciata fra l\'inizio di questa tappa e la fine della successiva.'); drawStages(); return; }
+  const near = S.places.reduce((b, p) => Math.abs(p.i - i) < b.k ? { k: Math.abs(p.i - i), p } : b, { k: Math.round(1.5 / STEP_KM), p: null }).p;
+  const name = near ? near.name : `Km ${S.samples[i].d.toFixed(0)}`;
+  S.forced = (S.forced || []).filter(f => f.i <= g.from.i || f.i >= next.to.i);
+  S.forced.push({ i: near ? near.i : i, name });
+  S.stages.slice(0, idx).forEach(x => { if (!S.forced.some(f => f.i === x.to.i)) S.forced.push({ i: x.to.i, name: x.to.name }); });
+  S.sel = idx; recompute();
+  status(`Tappa ${g.n}: ora finisce a ${name}.`);
 }
 function nearestSample(p) { let bi = 0, bd = 1e9; S.samples.forEach((q, i) => { const d = hav(p, q); if (d < bd) { bd = d; bi = i; } }); return bi; }
 
@@ -1032,7 +1071,13 @@ function drawStages() {
     const pl = L.polyline(ll, { color: idx % 2 ? '#17468c' : '#d6408f', weight: idx === S.sel ? 7 : 5 }).addTo(gRoute);
     pl.bindTooltip(`Tappa ${g.n} · ${g.km.toFixed(1)} km`); pl.on('click', () => { S.sel = idx; showTab('tappe'); renderStages(); drawStages(); document.querySelectorAll('.stage')[idx]?.scrollIntoView({ block: 'center' }); });
     const e = S.samples[g.to.i];
-    if (idx < S.stages.length - 1) L.circleMarker([e.lat, e.lon], { radius: idx === S.sel || idx === S.sel - 1 ? 7 : 5, color: '#fff', weight: 2, fillColor: '#1e4aa0', fillOpacity: 1 }).bindTooltip(`Fine tappa ${g.n}: ${g.to.name}`).addTo(gStops);
+    if (idx < S.stages.length - 1) {
+      // fine tappa trascinabile: si lascia dove si vuole e si aggancia al punto più vicino del percorso
+      const big = idx === S.sel || idx === S.sel - 1;
+      const m = L.marker([e.lat, e.lon], { draggable: true, icon: L.divIcon({ className: 'stopdot' + (big ? ' big' : ''), iconSize: big ? [16, 16] : [12, 12] }) })
+        .bindTooltip(`Fine tappa ${g.n}: ${g.to.name} — trascina per spostarla`).addTo(gStops);
+      m.on('dragend', () => setStageEnd(idx, nearestSample({ lat: m.getLatLng().lat, lon: m.getLatLng().lng })));
+    }
     if (idx === 0) (S.bivi || []).forEach(b => { const n = G.nodes[S.path[b.i]]; L.circleMarker([n.lat, n.lon], { radius: 4, color: '#8a6d00', weight: 1.5, fillColor: '#f2c500', fillOpacity: 1 }).bindTooltip(`Bivio: ${b.nameAlt || 'deviazione'} (${(b.alt - b.main) > 0 ? '+' : ''}${(b.alt - b.main).toFixed(1)} km)`).on('click', () => showTab('itinerario')).addTo(gStops); });
     if (idx === S.sel) g.lodging.forEach(h => L.circleMarker([h.lat, h.lon], { radius: 5, color: '#17468c', fillColor: '#f2c500', fillOpacity: .9 }).bindTooltip(h.name).addTo(gLodging));
   });
