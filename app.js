@@ -452,21 +452,106 @@ $('#btnFlip').onclick = () => {
 $('#btnRoute').onclick = () => computeRoute();
 
 /* ---------- calcolo del percorso ---------- */
-async function computeRoute() {
+/* ---------- completamento automatico della rete ----------
+   Su OSM molti cammini finiscono dove si uniscono a un altro (il Primitivo a Melide, il Norte ad Arzúa, la Vía de la
+   Plata ad Astorga…). Se partenza o arrivo sono lontani dai cammini scelti, o i cammini scelti non si toccano, si
+   cercano sulla panoramica i cammini che mancano per collegarli (catena più corta, preferendo i cammini lunghi della
+   stessa famiglia) e si aggiungono da soli. */
+const PC = 0.01;   // celle della panoramica (~1 km)
+function panoGraph() {
+  if (S.pg) return S.pg;
+  const cells = new Map(), adj = new Map();
+  const useGr = [...S.chosen].some(x => (S.bySlug.get(x) || {}).fam === 'gr');
+  for (const [slug, lines] of S.pano) {
+    const c = S.bySlug.get(slug); if (!c || (c.fam === 'gr' && !useGr) || c.km < 3) continue;
+    const seen = new Set();
+    for (const l of lines) for (let i = 0; i < l.length; i++) {
+      const [la, lo] = l[i], [lb, ob] = l[Math.min(i + 1, l.length - 1)];
+      const n = Math.max(1, Math.ceil(Math.max(Math.abs(lb - la), Math.abs(ob - lo)) / PC));
+      for (let k = 0; k < n; k++) {
+        const key = Math.floor((la + (lb - la) * k / n) / PC) + ',' + Math.floor((lo + (ob - lo) * k / n) / PC);
+        if (seen.has(key)) continue; seen.add(key);
+        if (!cells.has(key)) cells.set(key, []); cells.get(key).push(slug);
+      }
+    }
+  }
+  for (const [key, list] of cells) {
+    const [x, y] = key.split(',').map(Number);
+    for (let dx = -1; dx <= 1; dx++) for (let dy = -1; dy <= 1; dy++) {
+      const o = cells.get((x + dx) + ',' + (y + dy)); if (!o) continue;
+      for (const a of list) for (const b of o) if (a !== b) { if (!adj.has(a)) adj.set(a, new Set()); adj.get(a).add(b); }
+    }
+  }
+  return (S.pg = { cells, adj, useGr });
+}
+function panoNear(lat, lon, km = 4) {
+  const { cells } = panoGraph(), out = new Set(), r = Math.ceil(km / 1.1 / (PC * 111) * 1.0) + 1;
+  const cx = Math.floor(lat / PC), cy = Math.floor(lon / PC);
+  for (let dx = -r; dx <= r; dx++) for (let dy = -r; dy <= r; dy++) for (const s of cells.get((cx + dx) + ',' + (cy + dy)) || []) out.add(s);
+  return out;
+}
+// catena di cammini da aggiungere per andare da A a B (null se non c'è)
+function catenaCammini(A, B) {
+  const { adj } = panoGraph();
+  const fams = new Set([...S.chosen].map(x => (S.bySlug.get(x) || {}).fam));
+  const cost = s => {
+    if (S.chosen.has(s)) return 0.01;
+    const c = S.bySlug.get(s); const base = c.fam === 'santiago' || fams.has(c.fam) ? 1 : c.fam === 'gr' ? 4 : 2;
+    return base * (1 + 40 / Math.max(c.km, 5));
+  };
+  const src = panoNear(A.lat, A.lon), dst = panoNear(B.lat, B.lon);
+  if (!src.size || !dst.size) return null;
+  const dist = new Map(), prev = new Map(), done = new Set(), q = [];
+  for (const s of src) { dist.set(s, cost(s)); q.push(s); }
+  while (q.length) {
+    let bi = 0; for (let i = 1; i < q.length; i++) if (dist.get(q[i]) < dist.get(q[bi])) bi = i;
+    const u = q.splice(bi, 1)[0]; if (done.has(u)) continue; done.add(u);
+    if (dst.has(u)) { const path = []; for (let x = u; x; x = prev.get(x)) path.push(x); return path.reverse(); }
+    for (const v of adj.get(u) || []) {
+      const d = dist.get(u) + cost(v);
+      if (d < (dist.get(v) ?? 1e9)) { dist.set(v, d); prev.set(v, u); q.push(v); }
+    }
+  }
+  return null;
+}
+async function completaRete(coppie) {
+  const add = new Set();
+  for (const [A, B] of coppie) for (const s of catenaCammini(A, B) || []) if (!S.chosen.has(s)) add.add(s);
+  if (!add.size) return null;
+  add.forEach(s => S.chosen.add(s)); S.pg = null;
+  renderRoutes(); restyleOver();
+  await loadChosen();
+  return [...add].map(s => S.bySlug.get(s).nome);
+}
+
+async function computeRoute(auto = true) {
+  if (auto) S.autoMsg = '';
   const tk = ++S.token;
   if (!G.nodes.length) { status('Prima scegli i cammini (scheda 1) e premi "Usa i cammini scelti".'); showTab('cammini'); return; }
   if (S.pts.length < 2 || S.pts[0].role !== 'start' || S.pts[S.pts.length - 1].role !== 'end') { status('Servono almeno partenza e arrivo.'); return; }
-  const snaps = [];
-  for (const p of S.pts) {
-    const s = nearestNode(p.lat, p.lon);
-    if (!s) { status(`“${p.name}” è lontano dalla rete (oltre 4 km).`); return; }
-    snaps.push({ ...s, name: p.name });
-  }
+  const snaps = [], rotte = [];
+  for (const p of S.pts) { const s = nearestNode(p.lat, p.lon); snaps.push(s && s.d <= 4 ? { ...s, name: p.name } : null); }
   let nodes = [];
   for (let i = 1; i < snaps.length; i++) {
-    const path = shortest(snaps[i - 1].id, snaps[i].id);
-    if (!path) { status(`Nessun collegamento tra “${snaps[i - 1].name}” e “${snaps[i].name}” (rete non connessa o cammini evitati).`); return; }
+    const path = snaps[i - 1] && snaps[i] ? shortest(snaps[i - 1].id, snaps[i].id) : null;
+    if (!path) { rotte.push([S.pts[i - 1], S.pts[i]]); continue; }
     nodes = nodes.length ? nodes.concat(path.slice(1)) : path;
+  }
+  if (rotte.length) {
+    const [A, B] = rotte[0];
+    if (auto) {
+      status(`I cammini scelti non collegano “${A.name}” e “${B.name}”: cerco i cammini che mancano…`);
+      const aggiunti = await completaRete(rotte);
+      if (aggiunti) {
+        S.autoMsg = `Aggiunti da soli per collegare il percorso: ${aggiunti.join(', ')}.`;
+        await computeRoute(false);
+        return;
+      }
+    }
+    const lontano = S.pts.find((p, i) => !snaps[i]);
+    status(lontano ? `“${lontano.name}” è lontano dai cammini (oltre 4 km) e non trovo cammini che ci arrivano.`
+      : `Nessun collegamento tra “${A.name}” e “${B.name}”, neanche aggiungendo altri cammini.`);
+    return;
   }
   // percorso nodo per nodo (serve per i bivi) e km progressivi
   S.path = nodes; S.pathCum = [0];
@@ -480,7 +565,7 @@ async function computeRoute() {
   recompute();
   try { await loadPOI(); } catch (e) { if (tk === S.token) status('Località/ostelli non disponibili: ' + e.message); }
   if (tk !== S.token) return; recompute();
-  try { await loadElevation(tk); if (tk === S.token) status('Fatto.'); } catch (e) { if (tk === S.token) status('Quote non disponibili: ' + e.message); }
+  try { await loadElevation(tk); if (tk === S.token) status((S.autoMsg ? S.autoMsg + ' ' : '') + 'Fatto.'); } catch (e) { if (tk === S.token) status((S.autoMsg ? S.autoMsg + ' ' : '') + 'Quote non disponibili: ' + e.message); }
   if (tk === S.token) recompute();
 }
 
