@@ -124,106 +124,107 @@
     <img class="logo" src="images/assets/favicon/icon-192.png" alt="In Cammino con La Cri">
     <div class="title">
       <h1>In Cammino con La Cri</h1>
-      <span class="by">By La Cri · Viaggiatrice zaino in spalla</span>
+      <span class="by">Viaggiatrice zaino in spalla</span>
     </div>
-    <svg class="deco" viewBox="0 0 104 148" aria-hidden="true">
-      <use href="#hiker" />
-    </svg>
-    <span id="status">Pronto.</span>
+    <nav class="top">
+      <a class="on" href="index.html">Pianificatore</a>
+      <a href="stato.html">Stato dei cammini</a>
+      <a href="ostelli.html">Ostelli</a>
+    </nav>
   </header>
   <div class="stripe"></div>
 
   <main>
     <div id="map"></div>
-
     <section id="panel">
+      <div id="status" role="status">Pronto.</div>
+      <nav class="tabbar" role="tablist">
+        <button role="tab" data-tab="cammini" class="on"><span class="n">1 · </span>Cammini <span class="badge" id="bCammini"></span></button>
+        <button role="tab" data-tab="itinerario"><span class="n">2 · </span>Itinerario</button>
+        <button role="tab" data-tab="tappe"><span class="n">3 · </span>Tappe <span class="badge" id="bTappe"></span></button>
+        <button class="grow" id="btnSheet" title="Più spazio al pannello">⇕</button>
+      </nav>
 
-      <div class="row small"><a href="ostelli.html">🛏️ Ostelli e paesi lungo i cammini, stato per stato →</a></div>
-      <details open id="s1">
-        <summary>1 · Scegli i cammini</summary>
-        <p class="small">Tocca un cammino sulla mappa o spuntalo nell'elenco: puoi sceglierne più d'uno e
-          verranno uniti in un'unica rete. Si scaricano solo i cammini scelti.</p>
-        <div class="row tabs" id="famTabs"></div>
-        <div class="row">
-          <input id="filter" type="search" placeholder="Cerca per nome (es. Francés, Interior, Podiensis…)" style="flex:1;min-width:12em">
-          <select id="fPaese"><option value="">Tutti i paesi</option></select>
+      <!-- 1 · CAMMINI -->
+      <div class="tab" id="tab-cammini">
+        <div class="chips" id="famTabs"></div>
+        <input id="filter" type="search" placeholder="Cerca per nome: Francés, Interior, Podiensis, Highland…">
+        <div class="chips small" id="statiChips"></div>
+        <div class="row small between">
+          <label><input type="checkbox" id="fBrevi"> anche percorsi brevi (sotto 30 km)</label>
+          <span id="nRisultati"></span>
         </div>
-        <div class="row small"><label><input type="checkbox" id="fBrevi"> mostra anche i percorsi brevi (sotto 30 km)</label></div>
         <ul id="routeList"></ul>
-        <div class="row small" id="chosenBox"></div>
+        <div id="chosenBox" class="small"></div>
         <div class="row">
-          <button id="btnLoad" class="primary">Carica i cammini scelti</button>
-          <button id="btnClearSel">Deseleziona tutti</button>
+          <button id="btnLoad" class="primary">Usa i cammini scelti →</button>
+          <button id="btnClearSel">Deseleziona</button>
         </div>
-      </details>
-      <details id="s2">
-        <summary>2 · Varianti: preferisci o evita</summary>
-        <p class="small">Per ogni cammino caricato puoi preferirlo (il percorso lo seguirà volentieri) o evitarlo del
-          tutto. Poi ricalcola.</p>
-        <ul id="prefList"></ul>
-        <div class="row"><button id="btnReroute" class="primary">Applica e ricalcola</button></div>
-      </details>
+      </div>
 
-      <details id="s3">
-        <summary>3 · Itinerario: partenza, tappe intermedie, arrivo</summary>
-        <div class="row">
-          <input id="place" type="search" placeholder="Cerca località (es. Le Puy-en-Velay)">
+      <!-- 2 · ITINERARIO -->
+      <div class="tab" id="tab-itinerario" hidden>
+        <div class="card">
+          <div class="pt-row"><span class="dot start"></span>
+            <input id="pStart" class="place" type="search" placeholder="Da… (es. Le Puy-en-Velay)" autocomplete="off">
+            <button data-pick="start" title="Tocca la mappa">📍</button></div>
+          <ul id="viaList"></ul>
+          <div class="pt-row"><span class="dot via"></span>
+            <input id="pVia" class="place" type="search" placeholder="Passando per… (facoltativo)" autocomplete="off">
+            <button data-pick="via" title="Tocca la mappa">📍</button></div>
+          <div class="pt-row"><span class="dot end"></span>
+            <input id="pEnd" class="place" type="search" placeholder="A… (es. Santiago de Compostela)" autocomplete="off">
+            <button data-pick="end" title="Tocca la mappa">📍</button></div>
+          <ul id="suggest" class="suggest" hidden></ul>
+          <div class="row between">
+            <label class="km">Km al giorno <b id="kmLabel">25</b>
+              <input id="kmDay" type="range" min="10" max="45" value="25" step="1"></label>
+            <button id="btnFlip" title="Inverti partenza e arrivo">⇅</button>
+          </div>
+          <div class="row">
+            <button id="btnRoute" class="primary">Calcola il percorso</button>
+            <button id="btnClear">Azzera</button>
+          </div>
         </div>
-        <div class="row">
-          <button data-add="start">+ Partenza</button>
-          <button data-add="via">+ Via</button>
-          <button data-add="end">+ Arrivo</button>
-        </div>
-        <div class="row small">Oppure tocca la mappa:
-          <button data-pick="start">📍 Partenza</button>
-          <button data-pick="via">➕ Via</button>
-          <button data-pick="end">🏁 Arrivo</button>
-        </div>
-        <ul id="ptList"></ul>
-        <div class="row">
-          <button id="btnRoute" class="primary">Calcola percorso</button>
-          <button id="btnFlip">⇄ Inverti</button>
-          <button id="btnClear">Azzera punti</button>
-        </div>
-        <div class="row">
-          <label>Km al giorno: <b id="kmLabel">25</b></label>
-          <input id="kmDay" type="range" min="10" max="45" value="25" step="1">
-        </div>
-        <div class="row small" id="totals"></div>
-      </details>
+        <div id="totals" class="small"></div>
+        <h2 class="sec">Linea del cammino <span class="small">— fermate e bivi</span></h2>
+        <p class="small muted" id="metroHint">Calcola il percorso: qui vedrai le fermate di fine tappa e, a ogni bivio, le
+          deviazioni possibili. Scegli bivio per bivio.</p>
+        <ol id="metro" class="metro"></ol>
+        <details class="card" id="netBox">
+          <summary>Cammini nella rete <span class="small">(preferisci o evita)</span></summary>
+          <ul id="prefList"></ul>
+          <div class="row"><button id="btnReroute">Ricalcola</button></div>
+        </details>
+      </div>
 
-      <section id="result" hidden>
-        <h2>Tappe</h2>
-        <canvas id="profile" height="140"></canvas>
-        <div id="stages"></div>
-        <div class="row">
-          <button id="btnGpx">Scarica GPX</button>
-          <button id="btnCsv">Scarica CSV</button>
-          <button id="btnShare">Copia link</button>
-        </div>
-      </section>
+      <!-- 3 · TAPPE -->
+      <div class="tab" id="tab-tappe" hidden>
+        <div id="resultEmpty" class="small muted">Prima calcola il percorso nella scheda Itinerario.</div>
+        <section id="result" hidden>
+          <div id="summary" class="summary"></div>
+          <canvas id="profile" height="140"></canvas>
+          <div id="stages"></div>
+          <div class="row">
+            <button id="btnGpx">Scarica GPX</button>
+            <button id="btnCsv">Scarica CSV</button>
+            <button id="btnShare">Copia link</button>
+          </div>
+        </section>
+      </div>
 
       <footer class="small">
         <b>In Cammino con La Cri</b> · Viaggiatrice zaino in spalla. <svg class="inl" viewBox="-4 -6 128 146">
-          <use href="#feet" />
-        </svg><svg class="inl wide" viewBox="-6 -6 541 277">
-          <use href="#arrow" />
-        </svg><svg class="inl" viewBox="0 0 100 100">
-          <use href="#shell" />
-        </svg><svg class="inl" viewBox="-4 -2 108 144">
-          <use href="#cross" />
-        </svg><br>
-        Tracciati, località e alloggi: © contributori di <a
-          href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (ODbL).
-        Ricerca località: Nominatim. Quote: <a href="https://open-meteo.com/">Open-Meteo</a> (dati Copernicus), stimate.
-        Gli ostelli sono quelli presenti in OSM: verifica sempre apertura e prezzi. I link "Gronze" aprono una ricerca
-        sul sito.
+          <use href="#feet" /></svg><svg class="inl wide" viewBox="-6 -6 541 277"><use href="#arrow" /></svg><svg class="inl"
+          viewBox="0 0 100 100"><use href="#shell" /></svg><br>
+        Tracciati, località e alloggi: © contributori di <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>
+        (ODbL). Tappe di riferimento: <a href="https://www.gronze.com">Gronze</a>. Ricerca località: Nominatim. Quote:
+        <a href="https://open-meteo.com/">Open-Meteo</a>. Gli alloggi sono quelli presenti in OSM: verifica sempre apertura
+        e prezzi.
       </footer>
     </section>
   </main>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
   <script src="app.js"></script>
 </body>
-
 </html>

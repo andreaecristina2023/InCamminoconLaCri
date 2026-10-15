@@ -35,17 +35,19 @@
 <body>
   <header>
     <img class="logo" src="images/assets/favicon/icon-192.png" alt="In Cammino con La Cri">
-    <div class="title">
-      <h1>Ostelli lungo i cammini</h1>
-      <span class="by">In Cammino con La Cri · Viaggiatrice zaino in spalla</span>
-    </div>
-    <span id="status" style="margin-left:auto">Carico…</span>
+    <div class="title"><h1>In Cammino con La Cri</h1><span class="by">Viaggiatrice zaino in spalla</span></div>
+    <nav class="top">
+      <a href="index.html">Pianificatore</a>
+      <a href="stato.html">Stato dei cammini</a>
+      <a class="on" href="ostelli.html">Ostelli</a>
+    </nav>
   </header>
   <div class="stripe"></div>
   <main>
     <div id="map"></div>
     <section id="panel">
-      <nav class="tabs"><a href="index.html">← Pianificatore</a><a class="on" href="ostelli.html">Ostelli</a></nav>
+      <div id="status">Carico…</div>
+      <div class="tab">
       <div class="row">
         <select id="fStato"><option value="">Tutti gli stati</option></select>
         <select id="fReg"><option value="">Tutte le regioni</option></select>
@@ -67,6 +69,7 @@
         Stati e regioni: Natural Earth. Sono solo gli alloggi presenti in OSM entro 1,5 km dai cammini: ne mancano
         sicuramente, e apertura e prezzi vanno sempre verificati. <span id="gen"></span>
       </footer>
+      </div>
     </section>
   </main>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>

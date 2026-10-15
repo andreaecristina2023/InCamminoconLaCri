@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Stato dei cammini · In Cammino con La Cri</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="images/assets/favicon/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="images/assets/favicon/favicon.ico" sizes="any">
+  <meta name="theme-color" content="#1e4aa0">
+  <style>
+    .tot{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:8px 0}
+    .tot div{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:6px 8px;font-size:.75rem;color:var(--muted)}
+    .tot b{display:block;font-size:1.15rem;color:var(--blue)}
+    .stato{margin:12px 0 6px}
+    .stato h2{display:flex;justify-content:space-between;align-items:baseline;color:var(--blue);font-size:1.05rem;margin:0 0 4px;border-bottom:2px solid var(--pink);padding-bottom:3px}
+    .cam{background:var(--card);border:1px solid var(--line);border-radius:10px;margin:5px 0;padding:6px 9px;cursor:pointer}
+    .cam .top{display:flex;gap:6px;align-items:baseline}
+    .cam .top b{flex:1}
+    .cam ul{margin:5px 0 0}
+    .cam li{font-size:.8rem;padding:2px 0;border-top:1px dashed var(--line)}
+    .cam li .e{color:var(--warn);font-weight:600}
+    .cam.sel{box-shadow:0 0 0 3px var(--yellow)}
+    .altri{font-size:.8rem;color:var(--muted);margin:4px 0 8px}
+    .altri summary{cursor:pointer;color:var(--blue)}
+    .altri li{padding:1px 0}
+  </style>
+</head>
+<body>
+  <header>
+    <img class="logo" src="images/assets/favicon/icon-192.png" alt="In Cammino con La Cri">
+    <div class="title"><h1>In Cammino con La Cri</h1><span class="by">Viaggiatrice zaino in spalla</span></div>
+    <nav class="top">
+      <a href="index.html">Pianificatore</a>
+      <a class="on" href="stato.html">Stato dei cammini</a>
+      <a href="ostelli.html">Ostelli</a>
+    </nav>
+  </header>
+  <div class="stripe"></div>
+  <main>
+    <div id="map"></div>
+    <section id="panel">
+      <div id="status">Carico…</div>
+      <div class="tab">
+        <p class="small muted">Per ogni paese: i cammini controllati tappa per tappa (tappe ufficiali di Gronze dove ci sono) e
+          l'esito. <b class="ck ok">✔ completo</b> = tutte le tappe collegate; <b class="ck ko">⚠ buchi</b> = qualche tratto
+          manca o fa un giro troppo lungo (tocca il cammino per vederli sulla mappa). Sotto, i cammini del catalogo non
+          ancora controllati.</p>
+        <div class="tot" id="tot"></div>
+        <div class="chips" id="fStati"></div>
+        <div class="chips small" id="fEsito"></div>
+        <div id="list"></div>
+        <footer class="small">Controllo aggiornato a ogni giro della Action “Genera GeoJSON dei cammini”
+          (<span id="gen"></span>). Tracciati © contributori di OpenStreetMap (ODbL); tappe di riferimento:
+          <a href="https://www.gronze.com">Gronze</a>.</footer>
+      </div>
+    </section>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script>
+  'use strict';
+  const $ = s => document.querySelector(s);
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const plain = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/\bcami(n|nh)o\b/g, 'camino');
+  const map = L.map('map', { preferCanvas: true }).setView([45, 2], 5);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' }).addTo(map);
+  const layer = L.featureGroup().addTo(map);
+  let V = [], CAT = [], filtroStato = '', filtroEsito = '', sel = null;
+
+  // a quale paese appartiene un cammino controllato: il campo "stato" del controllo, più i paesi del catalogo
+  function paesiDi(v) {
+    const n = plain(v.cammino.replace(/\(.*?\)/g, '')).trim();
+    const c = CAT.find(c => plain(c.nome) === n || plain(c.nome).startsWith(n + ' ') || n.startsWith(plain(c.nome) + ' '));
+    return [...new Set([v.stato, ...(c ? c.paesi : [])])];
+  }
+  function draw() {
+    layer.clearLayers();
+    for (const v of V) {
+      if (!vis(v)) continue;
+      for (const t of v.tratti) {
+        if (!t.ll) continue;
+        const bad = t.esito !== 'ok';
+        const l = L.polyline(t.ll, { color: bad ? '#c2307f' : '#2e7d4f', weight: bad ? 5 : 2.5, opacity: bad ? 1 : .6, dashArray: bad ? '6 6' : null });
+        l.bindTooltip(`${v.cammino}: ${t.da} → ${t.a}${bad ? ' — ' + t.esito : ''}`, { sticky: true });
+        l.on('click', () => select(v)); l.addTo(layer);
+        if (bad) t.ll.forEach(p => L.circleMarker(p, { radius: 4, color: '#c2307f', fillColor: '#fff', fillOpacity: 1 }).addTo(layer));
+      }
+    }
+  }
+  const vis = v => (!filtroStato || paesiDi(v).includes(filtroStato)) &&
+    (!filtroEsito || (filtroEsito === 'ko' ? v.problemi > 0 : v.problemi === 0));
+  function select(v) {
+    sel = sel === v ? null : v; render();
+    if (sel) { const pts = v.tratti.flatMap(t => t.ll || []); if (pts.length) map.fitBounds(pts, { padding: [30, 30] }); }
+    const el = document.querySelector('.cam.sel'); if (el) el.scrollIntoView({ block: 'nearest' });
+  }
+  function render() {
+    const vs = V.filter(vis);
+    const ok = vs.filter(v => !v.problemi).length, tr = vs.reduce((a, v) => a + v.tratti.length, 0), ko = vs.reduce((a, v) => a + v.problemi, 0);
+    $('#tot').innerHTML = `<div><b>${vs.length}</b>cammini controllati</div><div><b style="color:var(--ok)">${ok}</b>completi</div>` +
+      `<div><b style="color:var(--warn)">${vs.length - ok}</b>con buchi</div><div><b>${ko}/${tr}</b>tratti con problemi</div>`;
+    const stati = [...new Set(V.flatMap(paesiDi))].sort((a, b) => a.localeCompare(b));
+    $('#fStati').innerHTML = `<button class="${filtroStato ? '' : 'on'}" data-s="">Tutti i paesi</button>` + stati.map(s => `<button class="${s === filtroStato ? 'on' : ''}" data-s="${esc(s)}">${esc(s)}</button>`).join('');
+    $('#fEsito').innerHTML = [['', 'Tutti'], ['ko', '⚠ solo con buchi'], ['ok', '✔ solo completi']].map(([k, l]) => `<button class="${k === filtroEsito ? 'on' : ''}" data-e="${k}">${l}</button>`).join('');
+    const per = new Map();
+    for (const v of vs) { const s = filtroStato || v.stato; if (!per.has(s)) per.set(s, []); per.get(s).push(v); }
+    let html = '';
+    for (const [stato, list] of [...per].sort((a, b) => a[0].localeCompare(b[0]))) {
+      const kk = list.filter(v => v.problemi).length;
+      html += `<div class="stato"><h2>${esc(stato)}<span class="small">${list.length} controllati · ${kk ? `<span class="ck ko">⚠ ${kk} con buchi</span>` : '<span class="ck ok">✔ tutti completi</span>'}</span></h2>`;
+      list.sort((a, b) => b.problemi - a.problemi || a.cammino.localeCompare(b.cammino)).forEach(v => {
+        const i = V.indexOf(v);
+        html += `<div class="cam${v === sel ? ' sel' : ''}" data-i="${i}"><div class="top"><b>${esc(v.cammino)}</b>` +
+          (v.problemi ? `<span class="ck ko">⚠ ${v.problemi} su ${v.tratti.length}</span>` : `<span class="ck ok">✔ ${v.tratti.length} tappe</span>`) + `</div>`;
+        if (v === sel || v.problemi) {
+          const bad = v.tratti.filter(t => t.esito !== 'ok');
+          html += `<ul>${(v === sel ? v.tratti : bad).map(t => `<li>${esc(t.da)} → ${esc(t.a)}: ${t.esito === 'ok' ? `${t.km} km ✔` : `<span class="e">${esc(t.esito)}</span>${t.km ? ` (${t.km} km, in linea d'aria ${t.linea_aria})` : ''}`}${t.nota ? ` · ${esc(t.nota)}` : ''}</li>`).join('')}</ul>`;
+        }
+        if (v.senza_coordinate && v.senza_coordinate.length) html += `<div class="small muted">Tappe senza coordinate: ${esc(v.senza_coordinate.join(', '))}</div>`;
+        html += '</div>';
+      });
+      // cammini del catalogo in questo paese non controllati
+      if (filtroStato || per.size === 1 || true) {
+        const ctrl = new Set(list.map(v => plain(v.cammino.replace(/\(.*?\)/g, '')).trim()));
+        const altri = CAT.filter(c => c.paesi.includes(stato) && c.km >= 50 && ![...ctrl].some(k => plain(c.nome) === k || plain(c.nome).startsWith(k + ' ')));
+        if (altri.length) html += `<details class="altri"><summary>Altri ${altri.length} cammini e percorsi in ${esc(stato)} (non ancora controllati tappa per tappa)</summary><ul>${altri.slice(0, 80).map(c => `<li>${esc(c.nome)} · ${c.km} km</li>`).join('')}${altri.length > 80 ? `<li>… e altri ${altri.length - 80}</li>` : ''}</ul></details>`;
+      }
+      html += '</div>';
+    }
+    $('#list').innerHTML = html || '<p class="small">Nessun cammino con questi filtri.</p>';
+    draw();
+  }
+  $('#fStati').onclick = e => { const b = e.target.closest('[data-s]'); if (b) { filtroStato = b.dataset.s; sel = null; render(); fit(); } };
+  $('#fEsito').onclick = e => { const b = e.target.closest('[data-e]'); if (b) { filtroEsito = b.dataset.e; render(); } };
+  $('#list').onclick = e => { const d = e.target.closest('.cam'); if (d) select(V[+d.dataset.i]); };
+  function fit() { if (layer.getLayers().length) map.fitBounds(layer.getBounds(), { padding: [20, 20] }); }
+  (async () => {
+    try {
+      const [v, c] = await Promise.all([fetch('data/verifica.json'), fetch('data/catalogo.json')]);
+      if (!v.ok) throw new Error('controllo non ancora eseguito');
+      const vj = await v.json(); V = vj.cammini; CAT = c.ok ? (await c.json()).cammini : [];
+      $('#gen').textContent = 'ultimo controllo: ' + vj.generated;
+      $('#status').textContent = `${V.length} cammini controllati tappa per tappa.`;
+      render(); fit();
+    } catch (e) { $('#status').textContent = 'Dati del controllo non disponibili: ' + e.message; }
+  })();
+  </script>
+</body>
+</html>

@@ -3,60 +3,143 @@
   --panel:#e4e7ea;
   --card:#f1f3f5;
   --fg:#23272b;
+  --muted:#5b6268;
   --pink:#c2307f;        /* maglietta rosa (contrasto AA con testo bianco) */
   --pink-soft:#f3c7de;
   --blue:#1e4aa0;        /* blu del segnavia */
   --yellow:#f2c500;      /* freccia gialla */
   --grey:#b7bcc0;        /* zaino grigio */
   --line:#bfc5ca;
+  --ok:#2e7d4f;
+  --warn:#b35c00;
 }
 *{box-sizing:border-box}
 html,body{margin:0;height:100%;font:15px/1.4 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--fg)}
-header{display:flex;align-items:center;gap:10px;padding:6px 12px;background:var(--blue);color:#fff;position:sticky;top:0;z-index:1000}
-header .logo{width:46px;height:46px;flex:none;margin-right:4px;filter:drop-shadow(0 1px 2px #0005)}
-header .title{line-height:1.15}
-header h1{font-size:1.05rem;margin:0}
-header .by{font-size:.72rem;opacity:.9}
-header .deco{width:30px;height:42px;flex:none;margin-left:auto}
-#status{font-size:.75rem;opacity:.95;max-width:38%;text-align:right}
-.stripe{height:5px;background:linear-gradient(90deg,var(--pink) 0 40%,var(--yellow) 40% 70%,var(--grey) 70%)}
-main{display:flex;flex-direction:column;height:calc(100% - 64px)}
-#map{height:45vh;min-height:260px;flex:none}
-#panel{flex:1;overflow:auto;padding:10px;background:var(--panel)}
-@media(min-width:900px){main{flex-direction:row}#map{height:auto;flex:1}#panel{flex:none;width:440px}}
-details{background:var(--card);border:1px solid var(--line);border-radius:10px;margin-bottom:8px;padding:6px 10px}
-summary{cursor:pointer;font-weight:600;padding:4px 0;color:var(--blue);list-style:none;display:flex;align-items:center;gap:8px}
-summary::-webkit-details-marker{display:none}
-summary::before{content:"";width:18px;height:18px;flex:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M2 9h11V4l9 8-9 8v-5H2z' fill='%23f2c500' stroke='%23c9a000' stroke-width='.8'/%3E%3C/svg%3E") center/contain no-repeat;transition:transform .15s}
-details[open]>summary::before{transform:rotate(90deg)}
-h2{color:var(--blue);margin:10px 0 4px}
-.row{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:6px 0}
-.small{font-size:.8rem;color:#555b61}
 a{color:var(--blue)}
+
+/* ---------- testata ---------- */
+header{display:flex;align-items:center;gap:10px;padding:6px 12px;background:var(--blue);color:#fff;position:sticky;top:0;z-index:1000}
+header .logo{width:42px;height:42px;flex:none;filter:drop-shadow(0 1px 2px #0005)}
+header .title{line-height:1.15;min-width:0}
+header h1{font-size:1.05rem;margin:0;white-space:nowrap}
+header .by{font-size:.72rem;opacity:.9}
+nav.top{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}
+nav.top a{color:#fff;text-decoration:none;font-size:.85rem;padding:5px 10px;border-radius:16px;border:1px solid #ffffff55;white-space:nowrap}
+nav.top a.on{background:#fff;color:var(--blue);font-weight:600}
+.stripe{height:5px;background:linear-gradient(90deg,var(--pink) 0 40%,var(--yellow) 40% 70%,var(--grey) 70%)}
+
+/* ---------- impaginazione: telefono (mappa sopra, pannello sotto) ---------- */
+main{display:flex;flex-direction:column;height:calc(100% - 59px)}
+#map{height:42vh;min-height:220px;flex:none;transition:height .2s}
+#panel{flex:1;overflow:auto;background:var(--panel);display:flex;flex-direction:column}
+body.sheet #map{height:18vh;min-height:120px}
+/* PC: pannello a sinistra, mappa a destra */
+@media(min-width:900px){
+  main{flex-direction:row-reverse}
+  #map,body.sheet #map{height:auto;flex:1}
+  #panel{flex:none;width:460px;border-right:1px solid var(--line)}
+  #btnSheet{display:none}
+}
+@media(max-width:560px){nav.top a{padding:4px 7px;font-size:.78rem} header .by{display:none}}
+
+#status{font-size:.8rem;color:var(--muted);padding:6px 12px 0;min-height:1.6em}
+.tabbar{position:sticky;top:0;z-index:5;display:flex;gap:4px;padding:6px 10px;background:var(--panel);border-bottom:1px solid var(--line)}
+.tabbar button{flex:1;border-radius:10px 10px 0 0;border-bottom:3px solid transparent;background:transparent;font-weight:600;color:var(--muted)}
+.tabbar button.on{color:var(--blue);border-bottom-color:var(--pink);background:var(--card)}
+.tabbar button.grow{flex:none;width:40px}
+.badge{display:inline-block;min-width:1.4em;padding:0 5px;border-radius:9px;background:var(--pink);color:#fff;font-size:.72rem;line-height:1.4em}
+.badge:empty{display:none}
+.tab{padding:10px 12px}
+footer{margin:auto 12px 20px;color:var(--muted)}
+.inl{width:16px;height:16px;vertical-align:-3px}
+.inl.wide{width:26px}
+
+/* ---------- elementi comuni ---------- */
+.row{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:8px 0}
+.row.between{justify-content:space-between}
+.small{font-size:.8rem}
+.muted{color:var(--muted)}
+h2.sec{color:var(--blue);font-size:1rem;margin:14px 0 4px}
 button{font:inherit;padding:6px 10px;border:1px solid var(--grey);border-radius:8px;background:#fafbfc;color:var(--fg);cursor:pointer}
 button:hover{background:#fff;border-color:var(--pink)}
-button.primary{background:var(--pink);color:#fff;border-color:var(--pink)}
+button.primary{background:var(--pink);color:#fff;border-color:var(--pink);font-weight:600}
 button.primary:hover{background:#a82569}
 button.on{outline:3px solid var(--yellow);background:var(--pink-soft)}
-input[type=search],input[type=number],select{font:inherit;padding:6px;border:1px solid var(--grey);border-radius:8px;background:#fafbfc;color:var(--fg)}
-input[type=search],input[type=number]{width:100%}
+input[type=search],select{font:inherit;padding:7px 9px;border:1px solid var(--grey);border-radius:8px;background:#fafbfc;color:var(--fg);width:100%}
 input[type=range]{width:100%;accent-color:var(--pink)}
 input[type=checkbox]{accent-color:var(--pink)}
-ul{list-style:none;margin:0;padding:0}
-#routeList,#prefList{max-height:240px;overflow:auto}
-#routeList li,#prefList li,#ptList li{padding:6px 4px;border-bottom:1px solid var(--line)}
-#routeList li:hover{background:#e9d3df}
+ul,ol{list-style:none;margin:0;padding:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 10px;margin:8px 0}
+details.card summary{cursor:pointer;font-weight:600;color:var(--blue)}
+
+/* ---------- scheda Cammini ---------- */
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin:6px 0}
+.chips button{font-size:.8rem;padding:3px 9px;border-radius:14px}
+.chips button.on{background:var(--blue);color:#fff;border-color:var(--blue);outline:none}
+.chips.small button{font-size:.75rem;padding:2px 8px}
+#routeList{margin:6px 0;max-height:46vh;overflow:auto;border-top:1px solid var(--line)}
+#routeList li{padding:6px 4px;border-bottom:1px solid var(--line)}
+#routeList li:hover{background:#fff}
+#routeList label{display:block;cursor:pointer}
+.ck{font-size:.75rem;padding:0 5px;border-radius:6px;margin-left:4px;white-space:nowrap}
+.ck.ok{background:#d6efe0;color:var(--ok)}
+.ck.ko{background:#fde3c8;color:var(--warn)}
+#chosenBox{background:var(--pink-soft);border-radius:8px;padding:5px 8px;margin-top:6px}
+
+/* ---------- scheda Itinerario ---------- */
+.pt-row{display:flex;align-items:center;gap:6px;margin:5px 0}
+.pt-row button{flex:none;padding:6px 8px}
+.dot{width:12px;height:12px;border-radius:50%;flex:none;border:2px solid #fff;box-shadow:0 0 0 1px var(--grey)}
+.dot.start{background:var(--pink)}
+.dot.via{background:#6c747b}
+.dot.end{background:var(--blue)}
+#viaList li{display:flex;align-items:center;gap:6px;margin:3px 0 3px 18px;font-size:.85rem}
+#viaList li span{flex:1}
+#viaList li button{padding:1px 7px}
+.suggest{background:#fff;border:1px solid var(--grey);border-radius:8px;max-height:220px;overflow:auto}
+.suggest li{padding:6px 8px;cursor:pointer;font-size:.85rem;border-bottom:1px solid var(--line)}
+.suggest li:hover{background:var(--pink-soft)}
+label.km{flex:1}
+#totals{margin:6px 0;font-weight:600}
+
+/* linea della metropolitana */
+.metro{position:relative;margin:6px 0 10px;padding-left:4px}
+.metro li{position:relative;padding:4px 0 10px 30px;min-height:30px}
+.metro li::before{content:"";position:absolute;left:11px;top:0;bottom:0;width:6px;background:var(--line-c,var(--pink));border-radius:3px}
+.metro li:first-child::before{top:12px}
+.metro li:last-child::before{bottom:calc(100% - 14px)}
+.metro .st::after{content:"";position:absolute;left:5px;top:5px;width:12px;height:12px;border-radius:50%;background:#fff;border:3px solid var(--blue)}
+.metro .st.end::after{background:var(--blue)}
+.metro .st b{color:var(--blue)}
+.metro .km{float:right;color:var(--muted);font-size:.8rem}
+.metro .bv::after{content:"";position:absolute;left:4px;top:7px;width:14px;height:14px;transform:rotate(45deg);background:var(--yellow);border:2px solid #c99f00}
+.metro .bv .q{font-size:.8rem;color:var(--warn);font-weight:600}
+.metro .opt{display:flex;align-items:center;gap:6px;margin:4px 0 0;padding:5px 8px;border-radius:8px;background:var(--card);border:1px solid var(--line);font-size:.85rem}
+.metro .opt.cur{border-color:var(--pink);background:#fff}
+.metro .opt .sw{width:18px;height:6px;border-radius:3px;flex:none}
+.metro .opt .nm{flex:1}
+.metro .opt .d{color:var(--muted);white-space:nowrap}
+.metro .opt .d.plus{color:var(--warn)}
+.metro .opt .d.minus{color:var(--ok)}
+.metro .opt button{padding:2px 8px;font-size:.8rem}
+.metro .chg{font-size:.78rem;color:var(--muted)}
+
+/* ---------- scheda Tappe ---------- */
+.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:4px 0 8px}
+.summary div{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:6px 8px;font-size:.75rem;color:var(--muted)}
+.summary b{display:block;font-size:1.1rem;color:var(--blue)}
+#profile{width:100%;background:var(--card);border:1px solid var(--line);border-radius:10px}
 .stage{background:var(--card);border:1px solid var(--line);border-left:6px solid var(--pink);border-radius:10px;padding:8px 10px;margin:8px 0;cursor:pointer}
 .stage:nth-child(even){border-left-color:var(--blue)}
 .stage.sel{box-shadow:0 0 0 3px var(--yellow)}
 .stage h3{margin:0 0 2px;font-size:.95rem;color:var(--blue)}
 .stage .meta{font-size:.82rem;color:#4a5056}
+.stage .warn{font-size:.8rem;color:var(--warn);margin-top:3px}
+.stage .mv{display:flex;gap:6px;margin-top:6px}
+.stage .mv button{font-size:.78rem;padding:3px 8px}
 .stage ul{margin-top:6px}
 .stage li{padding:3px 0;font-size:.82rem;border-top:1px dashed var(--line)}
-#profile{width:100%;background:var(--card);border:1px solid var(--line);border-radius:10px}
 .leaflet-container canvas{background:transparent;border:0;border-radius:0}
-footer{margin:12px 0 30px}
-.inl{width:16px;height:16px;vertical-align:-3px}
 
 /* segnaposto in mappa: conchiglia e frecce */
 .pin{display:flex;align-items:center;justify-content:center;border:2px solid #fff;box-shadow:0 1px 4px #0007}
@@ -65,13 +148,5 @@ footer{margin:12px 0 30px}
 .pin-end{background:var(--pink);border-radius:50%}
 .pin-start{background:var(--pink);border-radius:50%}
 .pin-via{background:#6c747b;border-radius:50%}
-
-.inl.wide{width:26px}
-.tabs{gap:4px}
-.tabs button{font-size:.8rem;padding:4px 8px;border-radius:14px}
-.tabs button.on{background:var(--blue);color:#fff;border-color:var(--blue)}
-#fPaese{font:inherit;padding:5px 8px;border:1px solid var(--grey);border-radius:8px;background:#fafbfc}
-#routeList{list-style:none;padding:0;margin:6px 0;max-height:42vh;overflow:auto}
-#routeList li{padding:4px 2px;border-bottom:1px solid var(--line)}
-#routeList li:hover{background:#fff}
-#chosenBox{background:var(--pink-soft);border-radius:8px;padding:4px 8px}
+.pin-bivio{background:var(--yellow);border-radius:3px;transform:rotate(45deg)}
+@media(max-width:560px){.tabbar button{font-size:.85rem;padding:6px 4px}.tabbar .n{display:none}}

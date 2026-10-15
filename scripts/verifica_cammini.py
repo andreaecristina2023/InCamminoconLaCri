@@ -251,7 +251,8 @@ def main():
         bad = []
         for (a, b), (sa, sb) in zip(zip(towns, towns[1:]), zip(snaps, snaps[1:])):
             crow = hav(a[1:], b[1:])
-            leg = {"da": a[0], "a": b[0], "linea_aria": round(crow)}
+            leg = {"da": a[0], "a": b[0], "linea_aria": round(crow),
+                   "ll": [[round(a[1], 4), round(a[2], 4)], [round(b[1], 4), round(b[2], 4)]]}
             if (a[0], b[0]) in battelli.get(nome, ()):
                 leg["esito"] = "ok"
                 leg["nota"] = "in battello"
