@@ -98,30 +98,6 @@
 "paese": "Francia"
 },
 {
-"percorso": "camino de santiago de la lana.senderista",
-"km_salto": 1.5,
-"da": {
-"ll": [
-41.0113,
--2.6599
-],
-"pezzo": "Camino de Santiago de la Lana.Senderista(Var.Sigüenza)",
-"km_pezzo": 450
-},
-"a": {
-"ll": [
-41.0079,
--2.6772
-],
-"pezzo": "Camino de Santiago de la Lana.Senderista(Var.Sigüenza)",
-"km_pezzo": 7
-},
-"km_percorso": 457,
-"gruppo": "santiago",
-"coperto": false,
-"paese": "Spagna"
-},
-{
 "percorso": "svatojakubska cesta",
 "km_salto": 89.0,
 "da": {
