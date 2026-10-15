@@ -98,6 +98,30 @@
 "paese": "Francia"
 },
 {
+"percorso": "grande rota europeia camino do atlantico e9-gr11",
+"km_salto": 59.0,
+"da": {
+"ll": [
+38.4687,
+-9.0449
+],
+"pezzo": "Grande Rota Europeia Caminho do Atlântico E9-GR11, Portugal",
+"km_pezzo": 212
+},
+"a": {
+"ll": [
+38.0141,
+-8.6975
+],
+"pezzo": "Grande Rota Europeia Caminho do Atlântico E9-GR11, Portugal",
+"km_pezzo": 207
+},
+"km_percorso": 420,
+"gruppo": "trekking",
+"coperto": false,
+"paese": "Portogallo"
+},
+{
 "percorso": "svatojakubska cesta",
 "km_salto": 89.0,
 "da": {
@@ -314,6 +338,30 @@
 "paese": "Regno Unito"
 },
 {
+"percorso": "alta via delle dolomiti n.",
+"km_salto": 44.0,
+"da": {
+"ll": [
+46.2701,
+12.2887
+],
+"pezzo": "Alta Via delle Dolomiti n. 3 - VIII Tappa",
+"km_pezzo": 7
+},
+"a": {
+"ll": [
+45.9771,
+11.9054
+],
+"pezzo": "Alta Via delle Dolomiti n. 8",
+"km_pezzo": 40
+},
+"km_percorso": 47,
+"gruppo": "trekking",
+"coperto": false,
+"paese": "Italia"
+},
+{
 "percorso": "via francigena",
 "km_salto": 48.6,
 "da": {
@@ -360,8 +408,183 @@
 "km_percorso": 897,
 "gruppo": "italia",
 "coperto": true,
-"km_coperto": 175.5,
+"km_coperto": 174.9,
 "paese": "Italia"
+},
+{
+"percorso": "via alpina",
+"km_salto": 176.3,
+"da": {
+"ll": [
+46.6377,
+12.3106
+],
+"pezzo": "Via Alpina",
+"km_pezzo": 18
+},
+"a": {
+"ll": [
+47.2922,
+10.1951
+],
+"pezzo": "Via Alpina Stage 52: Mindelheimer Hütte - Schröcken",
+"km_pezzo": 15
+},
+"km_percorso": 854,
+"gruppo": "trekking",
+"coperto": true,
+"km_coperto": 415.7,
+"paese": "Italia"
+},
+{
+"percorso": "via alpina",
+"km_salto": 49.0,
+"da": {
+"ll": [
+46.2832,
+13.7727
+],
+"pezzo": "Via Alpina Stage 10: Črna prst - Dom na Komni",
+"km_pezzo": 121
+},
+"a": {
+"ll": [
+46.5602,
+13.2757
+],
+"pezzo": "Via Alpina Stage 19: Nassfeld - Zollnersee Hütte",
+"km_pezzo": 41
+},
+"km_percorso": 854,
+"gruppo": "trekking",
+"coperto": true,
+"km_coperto": 100.4,
+"paese": "Altri paesi"
+},
+{
+"percorso": "via alpina",
+"km_salto": 37.2,
+"da": {
+"ll": [
+47.2095,
+9.6041
+],
+"pezzo": "Via Alpina Stage 56: Feldkirch - Gafadurahütte",
+"km_pezzo": 559
+},
+"a": {
+"ll": [
+47.2573,
+10.092
+],
+"pezzo": "Via Alpina Stage 52: Mindelheimer Hütte - Schröcken",
+"km_pezzo": 15
+},
+"km_percorso": 854,
+"gruppo": "trekking",
+"coperto": true,
+"km_coperto": 59.7,
+"paese": "Austria"
+},
+{
+"percorso": "via alpina",
+"km_salto": 26.4,
+"da": {
+"ll": [
+46.706,
+12.4062
+],
+"pezzo": "Via Alpina",
+"km_pezzo": 18
+},
+"a": {
+"ll": [
+46.6429,
+12.7402
+],
+"pezzo": "Via Alpina Stage 22: Wolayerseehütte - Hochweißsteinhaus",
+"km_pezzo": 14
+},
+"km_percorso": 854,
+"gruppo": "trekking",
+"coperto": true,
+"km_coperto": 38.9,
+"paese": "Austria"
+},
+{
+"percorso": "via alpina",
+"km_salto": 12.0,
+"da": {
+"ll": [
+45.7578,
+14.0625
+],
+"pezzo": "Via Alpina Stage 4: Razdrto - Predjama",
+"km_pezzo": 121
+},
+"a": {
+"ll": [
+45.6626,
+13.9903
+],
+"pezzo": "Via Alpina Stage 2: Refugio Premuda - Matavun (Divača)",
+"km_pezzo": 41
+},
+"km_percorso": 854,
+"gruppo": "trekking",
+"coperto": true,
+"km_coperto": 16.9,
+"paese": "Altri paesi"
+},
+{
+"percorso": "via alpina",
+"km_salto": 4.7,
+"da": {
+"ll": [
+46.6208,
+12.9278
+],
+"pezzo": "Via Alpina Stage 20: Zollnersee Hütte - Untere Valtelinalm",
+"km_pezzo": 41
+},
+"a": {
+"ll": [
+46.6122,
+12.867
+],
+"pezzo": "Via Alpina Stage 22: Wolayerseehütte - Hochweißsteinhaus",
+"km_pezzo": 14
+},
+"km_percorso": 854,
+"gruppo": "trekking",
+"coperto": true,
+"km_coperto": 6.3,
+"paese": "Austria"
+},
+{
+"percorso": "senda pirenaica",
+"km_salto": 14.6,
+"da": {
+"ll": [
+42.3484,
+2.406
+],
+"pezzo": "Senda Pirenaica - E07",
+"km_pezzo": 165
+},
+"a": {
+"ll": [
+42.4197,
+2.2573
+],
+"pezzo": "Senda Pirenaica - E09",
+"km_pezzo": 650
+},
+"km_percorso": 815,
+"gruppo": "trekking",
+"coperto": true,
+"km_coperto": 20.5,
+"paese": "Spagna"
 },
 {
 "percorso": "szent jakab-utak magyarorszagon",
@@ -414,6 +637,31 @@
 "paese": "Spagna"
 },
 {
+"percorso": "westweg",
+"km_salto": 48.4,
+"da": {
+"ll": [
+48.3368,
+8.1546
+],
+"pezzo": "Westweg (Variante Brandenkopf)",
+"km_pezzo": 6
+},
+"a": {
+"ll": [
+47.9011,
+8.1516
+],
+"pezzo": "Westweg (Östliche Variante)",
+"km_pezzo": 189
+},
+"km_percorso": 195,
+"gruppo": "trekking",
+"coperto": true,
+"km_coperto": 76.4,
+"paese": "Germania"
+},
+{
 "percorso": "camino de levante",
 "km_salto": 45.7,
 "da": {
@@ -462,31 +710,6 @@
 "coperto": true,
 "km_coperto": 54.1,
 "paese": "Germania"
-},
-{
-"percorso": "alta via n. 1 della valle d'aosta",
-"km_salto": 2.3,
-"da": {
-"ll": [
-45.8768,
-7.5935
-],
-"pezzo": "Alta Via n. 1 della Valle d'Aosta - Tappa 10",
-"km_pezzo": 93
-},
-"a": {
-"ll": [
-45.8768,
-7.6227
-],
-"pezzo": "Alta Via n. 1 della Valle d'Aosta - Tappa 8",
-"km_pezzo": 20
-},
-"km_percorso": 113,
-"gruppo": "trekking",
-"coperto": true,
-"km_coperto": 4.5,
-"paese": "Italia"
 },
 {
 "percorso": "neckar-baar-jakobsweg",
@@ -539,6 +762,56 @@
 "paese": "Germania"
 },
 {
+"percorso": "variant gr",
+"km_salto": 72.9,
+"da": {
+"ll": [
+41.3754,
+1.2307
+],
+"pezzo": "Variant GR 7: Conca de Barberà",
+"km_pezzo": 6
+},
+"a": {
+"ll": [
+41.9946,
+1.52
+],
+"pezzo": "Variant GR 7: Olius",
+"km_pezzo": 16
+},
+"km_percorso": 21,
+"gruppo": "trekking",
+"coperto": true,
+"km_coperto": 112.5,
+"paese": "Spagna"
+},
+{
+"percorso": "great glen way high route",
+"km_salto": 1.2,
+"da": {
+"ll": [
+57.2074,
+-4.6141
+],
+"pezzo": "Great Glen Way High Route",
+"km_pezzo": 8
+},
+"a": {
+"ll": [
+57.2181,
+-4.6155
+],
+"pezzo": "Great Glen Way High Route",
+"km_pezzo": 8
+},
+"km_percorso": 16,
+"gruppo": "trekking",
+"coperto": true,
+"km_coperto": 3.2,
+"paese": "Regno Unito"
+},
+{
 "percorso": "via alpina blue d10",
 "km_salto": 1.1,
 "da": {
@@ -562,6 +835,31 @@
 "coperto": true,
 "km_coperto": 1.8,
 "paese": "Italia"
+},
+{
+"percorso": "rennsteig-alternative",
+"km_salto": 19.7,
+"da": {
+"ll": [
+50.3985,
+11.6389
+],
+"pezzo": "Rennsteig-Alternative: Umgehung K101",
+"km_pezzo": 6
+},
+"a": {
+"ll": [
+50.4423,
+11.3698
+],
+"pezzo": "Rennsteig-Alternative: Umgehung Staatsstraße 2209",
+"km_pezzo": 8
+},
+"km_percorso": 14,
+"gruppo": "trekking",
+"coperto": true,
+"km_coperto": 25.2,
+"paese": "Germania"
 }
 ]
 }
