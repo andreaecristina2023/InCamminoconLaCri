@@ -29,8 +29,8 @@
    "key": "italia",
    "label": "Italia",
    "file": "italia.geojson",
-   "count": 623,
-   "mb": 18.8,
+   "count": 624,
+   "mb": 18.81,
    "updated": "2026-10-15"
   },
   {
@@ -117,8 +117,8 @@
    "key": "trekking",
    "label": "Trekking a lunga percorrenza",
    "file": "trekking.geojson",
-   "count": 1014,
-   "mb": 48.55,
+   "count": 1016,
+   "mb": 48.57,
    "updated": "2026-10-15"
   },
   {
