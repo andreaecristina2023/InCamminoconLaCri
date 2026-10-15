@@ -6623,7 +6623,8 @@
        -5.9953
       ]
      ],
-     "esito": "NON COLLEGATO"
+     "km": 53,
+     "esito": "GIRO LUNGO"
     }
    ],
    "problemi": 3
@@ -9767,6 +9768,686 @@
    "problemi": 0
   },
   {
+   "stato": "Francia",
+   "cammino": "Via Francigena (Canterbury - Losanna)",
+   "tratti": [
+    {
+     "da": "Canterbury",
+     "a": "Shepherdswell",
+     "linea_aria": 15,
+     "ll": [
+      [
+       51.28,
+       1.0802
+      ],
+      [
+       51.1856,
+       1.2311
+      ]
+     ],
+     "km": 17,
+     "esito": "ok"
+    },
+    {
+     "da": "Shepherdswell",
+     "a": "Dover",
+     "linea_aria": 9,
+     "ll": [
+      [
+       51.1856,
+       1.2311
+      ],
+      [
+       51.1251,
+       1.3134
+      ]
+     ],
+     "km": 14,
+     "esito": "ok"
+    },
+    {
+     "da": "Dover",
+     "a": "Calais",
+     "linea_aria": 42,
+     "ll": [
+      [
+       51.1251,
+       1.3134
+      ],
+      [
+       50.9525,
+       1.8538
+      ]
+     ],
+     "esito": "ok",
+     "nota": "in battello"
+    },
+    {
+     "da": "Calais",
+     "a": "Wissant",
+     "linea_aria": 15,
+     "ll": [
+      [
+       50.9525,
+       1.8538
+      ],
+      [
+       50.8854,
+       1.6629
+      ]
+     ],
+     "km": 20,
+     "esito": "ok"
+    },
+    {
+     "da": "Wissant",
+     "a": "Guînes",
+     "linea_aria": 9,
+     "ll": [
+      [
+       50.8854,
+       1.6629
+      ],
+      [
+       50.8721,
+       1.7877
+      ]
+     ],
+     "km": 11,
+     "esito": "ok"
+    },
+    {
+     "da": "Guînes",
+     "a": "Licques",
+     "linea_aria": 14,
+     "ll": [
+      [
+       50.8721,
+       1.7877
+      ],
+      [
+       50.7847,
+       1.9318
+      ]
+     ],
+     "km": 24,
+     "esito": "ok"
+    },
+    {
+     "da": "Licques",
+     "a": "Wisques",
+     "linea_aria": 20,
+     "ll": [
+      [
+       50.7847,
+       1.9318
+      ],
+      [
+       50.7228,
+       2.1927
+      ]
+     ],
+     "km": 35,
+     "esito": "ok"
+    },
+    {
+     "da": "Wisques",
+     "a": "Thérouanne",
+     "linea_aria": 11,
+     "ll": [
+      [
+       50.7228,
+       2.1927
+      ],
+      [
+       50.636,
+       2.2577
+      ]
+     ],
+     "km": 22,
+     "esito": "ok"
+    },
+    {
+     "da": "Thérouanne",
+     "a": "Amettes",
+     "linea_aria": 15,
+     "ll": [
+      [
+       50.636,
+       2.2577
+      ],
+      [
+       50.5311,
+       2.3948
+      ]
+     ],
+     "km": 19,
+     "esito": "ok"
+    },
+    {
+     "da": "Amettes",
+     "a": "Bruay-la-Buissière",
+     "linea_aria": 12,
+     "ll": [
+      [
+       50.5311,
+       2.3948
+      ],
+      [
+       50.4822,
+       2.5462
+      ]
+     ],
+     "km": 22,
+     "esito": "ok"
+    },
+    {
+     "da": "Bruay-la-Buissière",
+     "a": "Ablain-Saint-Nazaire",
+     "linea_aria": 15,
+     "ll": [
+      [
+       50.4822,
+       2.5462
+      ],
+      [
+       50.3923,
+       2.712
+      ]
+     ],
+     "km": 26,
+     "esito": "ok"
+    },
+    {
+     "da": "Ablain-Saint-Nazaire",
+     "a": "Arras",
+     "linea_aria": 12,
+     "ll": [
+      [
+       50.3923,
+       2.712
+      ],
+      [
+       50.291,
+       2.7772
+      ]
+     ],
+     "km": 21,
+     "esito": "ok"
+    },
+    {
+     "da": "Arras",
+     "a": "Bapaume",
+     "linea_aria": 21,
+     "ll": [
+      [
+       50.291,
+       2.7772
+      ],
+      [
+       50.1036,
+       2.8494
+      ]
+     ],
+     "km": 26,
+     "esito": "ok"
+    },
+    {
+     "da": "Bapaume",
+     "a": "Péronne",
+     "linea_aria": 20,
+     "ll": [
+      [
+       50.1036,
+       2.8494
+      ],
+      [
+       49.9291,
+       2.9324
+      ]
+     ],
+     "km": 32,
+     "esito": "ok"
+    },
+    {
+     "da": "Péronne",
+     "a": "Trefcon",
+     "linea_aria": 14,
+     "ll": [
+      [
+       49.9291,
+       2.9324
+      ],
+      [
+       49.8586,
+       3.0961
+      ]
+     ],
+     "km": 18,
+     "esito": "ok"
+    },
+    {
+     "da": "Trefcon",
+     "a": "Seraucourt-le-Grand",
+     "linea_aria": 12,
+     "ll": [
+      [
+       49.8586,
+       3.0961
+      ],
+      [
+       49.778,
+       3.2099
+      ]
+     ],
+     "km": 25,
+     "esito": "ok"
+    },
+    {
+     "da": "Seraucourt-le-Grand",
+     "a": "Tergnier",
+     "linea_aria": 15,
+     "ll": [
+      [
+       49.778,
+       3.2099
+      ],
+      [
+       49.6559,
+       3.2919
+      ]
+     ],
+     "km": 18,
+     "esito": "ok"
+    },
+    {
+     "da": "Tergnier",
+     "a": "Laon",
+     "linea_aria": 26,
+     "ll": [
+      [
+       49.6559,
+       3.2919
+      ],
+      [
+       49.5647,
+       3.6207
+      ]
+     ],
+     "km": 39,
+     "esito": "ok"
+    },
+    {
+     "da": "Laon",
+     "a": "Corbeny",
+     "linea_aria": 19,
+     "ll": [
+      [
+       49.5647,
+       3.6207
+      ],
+      [
+       49.4626,
+       3.8235
+      ]
+     ],
+     "km": 30,
+     "esito": "ok"
+    },
+    {
+     "da": "Corbeny",
+     "a": "Hermonville",
+     "linea_aria": 15,
+     "ll": [
+      [
+       49.4626,
+       3.8235
+      ],
+      [
+       49.3356,
+       3.9095
+      ]
+     ],
+     "km": 24,
+     "esito": "ok"
+    },
+    {
+     "da": "Hermonville",
+     "a": "Reims",
+     "linea_aria": 12,
+     "ll": [
+      [
+       49.3356,
+       3.9095
+      ],
+      [
+       49.2578,
+       4.0319
+      ]
+     ],
+     "km": 16,
+     "esito": "ok"
+    },
+    {
+     "da": "Reims",
+     "a": "Trépail",
+     "linea_aria": 20,
+     "ll": [
+      [
+       49.2578,
+       4.0319
+      ],
+      [
+       49.1064,
+       4.1822
+      ]
+     ],
+     "km": 25,
+     "esito": "ok"
+    },
+    {
+     "da": "Trépail",
+     "a": "Châlons-en-Champagne",
+     "linea_aria": 21,
+     "ll": [
+      [
+       49.1064,
+       4.1822
+      ],
+      [
+       48.9566,
+       4.3629
+      ]
+     ],
+     "km": 34,
+     "esito": "ok"
+    },
+    {
+     "da": "Châlons-en-Champagne",
+     "a": "Coole",
+     "linea_aria": 7,
+     "ll": [
+      [
+       48.9566,
+       4.3629
+      ],
+      [
+       48.8945,
+       4.335
+      ]
+     ],
+     "esito": "FUORI RETE: Coole"
+    },
+    {
+     "da": "Coole",
+     "a": "Vitry-le-François",
+     "linea_aria": 26,
+     "ll": [
+      [
+       48.8945,
+       4.335
+      ],
+      [
+       48.7262,
+       4.5851
+      ]
+     ],
+     "esito": "FUORI RETE: Coole"
+    },
+    {
+     "da": "Vitry-le-François",
+     "a": "Saint-Dizier",
+     "linea_aria": 28,
+     "ll": [
+      [
+       48.7262,
+       4.5851
+      ],
+      [
+       48.6371,
+       4.9474
+      ]
+     ],
+     "esito": "FUORI RETE: Saint-Dizier"
+    },
+    {
+     "da": "Saint-Dizier",
+     "a": "Joinville",
+     "linea_aria": 26,
+     "ll": [
+      [
+       48.6371,
+       4.9474
+      ],
+      [
+       48.4433,
+       5.1377
+      ]
+     ],
+     "esito": "FUORI RETE: Saint-Dizier, Joinville"
+    },
+    {
+     "da": "Joinville",
+     "a": "Châteauvillain",
+     "linea_aria": 48,
+     "ll": [
+      [
+       48.4433,
+       5.1377
+      ],
+      [
+       48.0362,
+       4.9175
+      ]
+     ],
+     "esito": "FUORI RETE: Joinville"
+    },
+    {
+     "da": "Châteauvillain",
+     "a": "Langres",
+     "linea_aria": 36,
+     "ll": [
+      [
+       48.0362,
+       4.9175
+      ],
+      [
+       47.864,
+       5.3339
+      ]
+     ],
+     "km": 57,
+     "esito": "ok"
+    },
+    {
+     "da": "Langres",
+     "a": "Champlitte",
+     "linea_aria": 31,
+     "ll": [
+      [
+       47.864,
+       5.3339
+      ],
+      [
+       47.6165,
+       5.5134
+      ]
+     ],
+     "km": 61,
+     "esito": "ok"
+    },
+    {
+     "da": "Champlitte",
+     "a": "Dampierre-sur-Salon",
+     "linea_aria": 14,
+     "ll": [
+      [
+       47.6165,
+       5.5134
+      ],
+      [
+       47.5566,
+       5.6782
+      ]
+     ],
+     "km": 19,
+     "esito": "ok"
+    },
+    {
+     "da": "Dampierre-sur-Salon",
+     "a": "Gy",
+     "linea_aria": 20,
+     "ll": [
+      [
+       47.5566,
+       5.6782
+      ],
+      [
+       47.4068,
+       5.8147
+      ]
+     ],
+     "km": 33,
+     "esito": "ok"
+    },
+    {
+     "da": "Gy",
+     "a": "Cussey-sur-l'Ognon",
+     "linea_aria": 12,
+     "ll": [
+      [
+       47.4068,
+       5.8147
+      ],
+      [
+       47.3369,
+       5.9397
+      ]
+     ],
+     "km": 15,
+     "esito": "ok"
+    },
+    {
+     "da": "Cussey-sur-l'Ognon",
+     "a": "Besançon",
+     "linea_aria": 13,
+     "ll": [
+      [
+       47.3369,
+       5.9397
+      ],
+      [
+       47.238,
+       6.0244
+      ]
+     ],
+     "km": 18,
+     "esito": "ok"
+    },
+    {
+     "da": "Besançon",
+     "a": "Étalans",
+     "linea_aria": 21,
+     "ll": [
+      [
+       47.238,
+       6.0244
+      ],
+      [
+       47.1497,
+       6.2697
+      ]
+     ],
+     "esito": "FUORI RETE: Étalans"
+    },
+    {
+     "da": "Étalans",
+     "a": "Ouhans",
+     "linea_aria": 17,
+     "ll": [
+      [
+       47.1497,
+       6.2697
+      ],
+      [
+       46.9988,
+       6.2937
+      ]
+     ],
+     "esito": "FUORI RETE: Étalans"
+    },
+    {
+     "da": "Ouhans",
+     "a": "Pontarlier",
+     "linea_aria": 12,
+     "ll": [
+      [
+       46.9988,
+       6.2937
+      ],
+      [
+       46.904,
+       6.3546
+      ]
+     ],
+     "km": 16,
+     "esito": "ok"
+    },
+    {
+     "da": "Pontarlier",
+     "a": "Jougne",
+     "linea_aria": 16,
+     "ll": [
+      [
+       46.904,
+       6.3546
+      ],
+      [
+       46.763,
+       6.3884
+      ]
+     ],
+     "km": 22,
+     "esito": "ok"
+    },
+    {
+     "da": "Jougne",
+     "a": "Orbe",
+     "linea_aria": 12,
+     "ll": [
+      [
+       46.763,
+       6.3884
+      ],
+      [
+       46.7241,
+       6.5318
+      ]
+     ],
+     "km": 19,
+     "esito": "ok"
+    },
+    {
+     "da": "Orbe",
+     "a": "Lausanne",
+     "linea_aria": 24,
+     "ll": [
+      [
+       46.7241,
+       6.5318
+      ],
+      [
+       46.5218,
+       6.6327
+      ]
+     ],
+     "km": 52,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 7
+  },
+  {
    "stato": "Italia",
    "cammino": "Via Francigena (Losanna - Roma)",
    "tratti": [
@@ -10641,6 +11322,368 @@
    "problemi": 0
   },
   {
+   "stato": "Italia",
+   "cammino": "Via Francigena del Sud (Roma - Leuca)",
+   "tratti": [
+    {
+     "da": "Roma",
+     "a": "Velletri",
+     "linea_aria": 34,
+     "ll": [
+      [
+       41.8933,
+       12.4829
+      ],
+      [
+       41.6867,
+       12.777
+      ]
+     ],
+     "km": 43,
+     "esito": "ok"
+    },
+    {
+     "da": "Velletri",
+     "a": "Priverno",
+     "linea_aria": 41,
+     "ll": [
+      [
+       41.6867,
+       12.777
+      ],
+      [
+       41.4726,
+       13.1798
+      ]
+     ],
+     "km": 63,
+     "esito": "ok"
+    },
+    {
+     "da": "Priverno",
+     "a": "Terracina",
+     "linea_aria": 21,
+     "ll": [
+      [
+       41.4726,
+       13.1798
+      ],
+      [
+       41.2871,
+       13.2492
+      ]
+     ],
+     "km": 29,
+     "esito": "ok"
+    },
+    {
+     "da": "Terracina",
+     "a": "Fondi",
+     "linea_aria": 17,
+     "ll": [
+      [
+       41.2871,
+       13.2492
+      ],
+      [
+       41.3573,
+       13.43
+      ]
+     ],
+     "km": 22,
+     "esito": "ok"
+    },
+    {
+     "da": "Fondi",
+     "a": "Formia",
+     "linea_aria": 18,
+     "ll": [
+      [
+       41.3573,
+       13.43
+      ],
+      [
+       41.2593,
+       13.608
+      ]
+     ],
+     "km": 27,
+     "esito": "ok"
+    },
+    {
+     "da": "Formia",
+     "a": "Sessa Aurunca",
+     "linea_aria": 27,
+     "ll": [
+      [
+       41.2593,
+       13.608
+      ],
+      [
+       41.2369,
+       13.9347
+      ]
+     ],
+     "km": 30,
+     "esito": "ok"
+    },
+    {
+     "da": "Sessa Aurunca",
+     "a": "Benevento",
+     "linea_aria": 72,
+     "ll": [
+      [
+       41.2369,
+       13.9347
+      ],
+      [
+       41.1296,
+       14.7825
+      ]
+     ],
+     "km": 110,
+     "esito": "ok"
+    },
+    {
+     "da": "Benevento",
+     "a": "Troia",
+     "linea_aria": 51,
+     "ll": [
+      [
+       41.1296,
+       14.7825
+      ],
+      [
+       41.3631,
+       15.3124
+      ]
+     ],
+     "km": 70,
+     "esito": "ok"
+    },
+    {
+     "da": "Troia",
+     "a": "Lucera",
+     "linea_aria": 16,
+     "ll": [
+      [
+       41.3631,
+       15.3124
+      ],
+      [
+       41.5083,
+       15.3377
+      ]
+     ],
+     "km": 21,
+     "esito": "ok"
+    },
+    {
+     "da": "Lucera",
+     "a": "San Severo",
+     "linea_aria": 14,
+     "ll": [
+      [
+       41.5083,
+       15.3377
+      ],
+      [
+       41.5516,
+       15.4902
+      ]
+     ],
+     "esito": "FUORI RETE: San Severo"
+    },
+    {
+     "da": "San Severo",
+     "a": "Monte Sant'Angelo",
+     "linea_aria": 43,
+     "ll": [
+      [
+       41.5516,
+       15.4902
+      ],
+      [
+       41.7054,
+       15.9677
+      ]
+     ],
+     "esito": "FUORI RETE: San Severo"
+    },
+    {
+     "da": "Monte Sant'Angelo",
+     "a": "Siponto",
+     "linea_aria": 12,
+     "ll": [
+      [
+       41.7054,
+       15.9677
+      ],
+      [
+       41.6123,
+       15.8968
+      ]
+     ],
+     "km": 16,
+     "esito": "ok"
+    },
+    {
+     "da": "Siponto",
+     "a": "Barletta",
+     "linea_aria": 46,
+     "ll": [
+      [
+       41.6123,
+       15.8968
+      ],
+      [
+       41.3215,
+       16.2869
+      ]
+     ],
+     "km": 60,
+     "esito": "ok"
+    },
+    {
+     "da": "Barletta",
+     "a": "Trani",
+     "linea_aria": 12,
+     "ll": [
+      [
+       41.3215,
+       16.2869
+      ],
+      [
+       41.2782,
+       16.4186
+      ]
+     ],
+     "km": 15,
+     "esito": "ok"
+    },
+    {
+     "da": "Trani",
+     "a": "Bari",
+     "linea_aria": 41,
+     "ll": [
+      [
+       41.2782,
+       16.4186
+      ],
+      [
+       41.1258,
+       16.862
+      ]
+     ],
+     "km": 51,
+     "esito": "ok"
+    },
+    {
+     "da": "Bari",
+     "a": "Monopoli",
+     "linea_aria": 41,
+     "ll": [
+      [
+       41.1258,
+       16.862
+      ],
+      [
+       40.9522,
+       17.2999
+      ]
+     ],
+     "km": 49,
+     "esito": "ok"
+    },
+    {
+     "da": "Monopoli",
+     "a": "Brindisi",
+     "linea_aria": 65,
+     "ll": [
+      [
+       40.9522,
+       17.2999
+      ],
+      [
+       40.6375,
+       17.9455
+      ]
+     ],
+     "km": 87,
+     "esito": "ok"
+    },
+    {
+     "da": "Brindisi",
+     "a": "Lecce",
+     "linea_aria": 37,
+     "ll": [
+      [
+       40.6375,
+       17.9455
+      ],
+      [
+       40.357,
+       18.1718
+      ]
+     ],
+     "km": 47,
+     "esito": "ok"
+    },
+    {
+     "da": "Lecce",
+     "a": "Otranto",
+     "linea_aria": 36,
+     "ll": [
+      [
+       40.357,
+       18.1718
+      ],
+      [
+       40.1457,
+       18.4908
+      ]
+     ],
+     "km": 50,
+     "esito": "ok"
+    },
+    {
+     "da": "Otranto",
+     "a": "Tricase",
+     "linea_aria": 27,
+     "ll": [
+      [
+       40.1457,
+       18.4908
+      ],
+      [
+       39.9304,
+       18.3553
+      ]
+     ],
+     "km": 39,
+     "esito": "ok"
+    },
+    {
+     "da": "Tricase",
+     "a": "Santa Maria di Leuca",
+     "linea_aria": 15,
+     "ll": [
+      [
+       39.9304,
+       18.3553
+      ],
+      [
+       39.7968,
+       18.3545
+      ]
+     ],
+     "km": 19,
+     "esito": "ok"
+    }
+   ],
+   "problemi": 2
+  },
+  {
    "stato": "Svizzera",
    "cammino": "ViaJacobi (Costanza - Ginevra)",
    "tratti": [
@@ -11005,155 +12048,25 @@
    "problemi": 0
   },
   {
-   "stato": "Francia",
-   "cammino": "Via Francigena (Francia e Svizzera)",
-   "tratti": [
-    {
-     "da": "Arras",
-     "a": "Reims",
-     "linea_aria": 146,
-     "ll": [
-      [
-       50.29,
-       2.78
-      ],
-      [
-       49.258,
-       4.032
-      ]
-     ],
-     "km": 228,
-     "esito": "ok"
-    },
-    {
-     "da": "Reims",
-     "a": "Besançon",
-     "linea_aria": 269,
-     "ll": [
-      [
-       49.258,
-       4.032
-      ],
-      [
-       47.238,
-       6.024
-      ]
-     ],
-     "km": 460,
-     "esito": "ok"
-    },
-    {
-     "da": "Besançon",
-     "a": "Losanna",
-     "linea_aria": 92,
-     "ll": [
-      [
-       47.238,
-       6.024
-      ],
-      [
-       46.52,
-       6.63
-      ]
-     ],
-     "km": 165,
-     "esito": "ok"
-    },
-    {
-     "da": "Losanna",
-     "a": "Gran San Bernardo",
-     "linea_aria": 83,
-     "ll": [
-      [
-       46.52,
-       6.63
-      ],
-      [
-       45.869,
-       7.17
-      ]
-     ],
-     "km": 133,
-     "esito": "ok"
-    }
-   ],
-   "problemi": 0
-  },
-  {
-   "stato": "Regno Unito",
-   "cammino": "Via Francigena (Inghilterra)",
-   "tratti": [
-    {
-     "da": "Canterbury",
-     "a": "Dover",
-     "linea_aria": 24,
-     "ll": [
-      [
-       51.28,
-       1.08
-      ],
-      [
-       51.126,
-       1.313
-      ]
-     ],
-     "km": 32,
-     "esito": "ok"
-    }
-   ],
-   "problemi": 0
-  },
-  {
    "stato": "Austria",
    "cammino": "Via Romea Germanica (Austria)",
    "tratti": [
     {
      "da": "Augusta",
-     "a": "Füssen",
-     "linea_aria": 90,
+     "a": "Innsbruck",
+     "linea_aria": 128,
      "ll": [
       [
        48.366,
        10.894
       ],
       [
-       47.57,
-       10.7
-      ]
-     ],
-     "esito": "FUORI RETE: Füssen"
-    },
-    {
-     "da": "Füssen",
-     "a": "Reutte",
-     "linea_aria": 9,
-     "ll": [
-      [
-       47.57,
-       10.7
-      ],
-      [
-       47.488,
-       10.719
-      ]
-     ],
-     "esito": "FUORI RETE: Füssen, Reutte"
-    },
-    {
-     "da": "Reutte",
-     "a": "Innsbruck",
-     "linea_aria": 57,
-     "ll": [
-      [
-       47.488,
-       10.719
-      ],
-      [
        47.269,
        11.404
       ]
      ],
-     "esito": "FUORI RETE: Reutte"
+     "km": 196,
+     "esito": "ok"
     },
     {
      "da": "Innsbruck",
@@ -11190,7 +12103,7 @@
      "esito": "ok"
     }
    ],
-   "problemi": 3
+   "problemi": 0
   },
   {
    "stato": "Italia",
@@ -11538,10 +12451,11 @@
        -4.417
       ]
      ],
-     "esito": "NON COLLEGATO"
+     "km": 224,
+     "esito": "ok"
     }
    ],
-   "problemi": 1
+   "problemi": 0
   },
   {
    "stato": "Regno Unito",

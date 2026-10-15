@@ -8419,6 +8419,798 @@
 "tipo": "state",
 "nome": "Ginebra, Suiza"
 }
+],
+"Canterbury|46.4,0.9,51.35,7.2": [
+{
+"lat": 51.2800275,
+"lon": 1.0802533,
+"tipo": "city",
+"nome": "Cantorbéry, Cantuária, Kent, Inglaterra, CT1 2JA, Reino Unido"
+},
+{
+"lat": 51.279854,
+"lon": 1.101191,
+"tipo": "city",
+"nome": "Cantuária, Kent, Inglaterra, Reino Unido"
+}
+],
+"Shepherdswell|46.4,0.9,51.35,7.2": [
+{
+"lat": 51.1855875,
+"lon": 1.231137,
+"tipo": "village",
+"nome": "Shepherdswell, Dover, Kent, Inglaterra, CT15 7NP, Reino Unido"
+},
+{
+"lat": 51.1880383,
+"lon": 1.2297861,
+"tipo": "railway",
+"nome": "Shepherdswell, Station Road, Shepherdswell with Coldred, Shepherdswell, Dover, Kent, Inglaterra, CT15 7PD, Reino Unido"
+}
+],
+"Dover|46.4,0.9,51.35,7.2": [
+{
+"lat": 51.1251275,
+"lon": 1.3134228,
+"tipo": "town",
+"nome": "Duvres, Dover, Kent, Inglaterra, CT16 1NB, Reino Unido"
+},
+{
+"lat": 51.2146707,
+"lon": 1.3055825,
+"tipo": "city",
+"nome": "Dover, Kent, Inglaterra, Reino Unido"
+}
+],
+"Calais|46.4,0.9,51.35,7.2": [
+{
+"lat": 50.9524769,
+"lon": 1.8538446,
+"tipo": "city",
+"nome": "Calais, Paso de Calais, Alta Francia, Francia metropolitana, 62100, Francia"
+},
+{
+"lat": 50.8730026,
+"lon": 1.9751479,
+"tipo": "municipality",
+"nome": "Calais, Paso de Calais, Alta Francia, Francia metropolitana, Francia"
+},
+{
+"lat": 50.5144061,
+"lon": 2.2580078,
+"tipo": "county",
+"nome": "Paso de Calais, Alta Francia, Francia metropolitana, Francia"
+},
+{
+"lat": 50.1024606,
+"lon": 2.7247515,
+"tipo": "state",
+"nome": "Alta Francia, Francia metropolitana, Francia"
+}
+],
+"Wissant|46.4,0.9,51.35,7.2": [
+{
+"lat": 50.8853828,
+"lon": 1.6629024,
+"tipo": "village",
+"nome": "Wissant, Bolonha-sobre-o-Mar, Paso de Calais, Alta Francia, Francia metropolitana, 62179, Francia"
+}
+],
+"Guînes|46.4,0.9,51.35,7.2": [
+{
+"lat": 50.8690859,
+"lon": 1.8704408,
+"tipo": "village",
+"nome": "Guînes, Calais, Paso de Calais, Alta Francia, Francia metropolitana, 62340, Francia"
+},
+{
+"lat": 50.8720766,
+"lon": 1.787662,
+"tipo": "village",
+"nome": "Pihen-lès-Guînes, Calais, Paso de Calais, Alta Francia, Francia metropolitana, 62340, Francia"
+}
+],
+"Licques|46.4,0.9,51.35,7.2": [
+{
+"lat": 50.7846615,
+"lon": 1.9317902,
+"tipo": "village",
+"nome": "Licques, Calais, Paso de Calais, Alta Francia, Francia metropolitana, 62850, Francia"
+}
+],
+"Wisques|46.4,0.9,51.35,7.2": [
+{
+"lat": 50.7228271,
+"lon": 2.192666,
+"tipo": "village",
+"nome": "Wisques, Saint-Omer, Paso de Calais, Alta Francia, Francia metropolitana, 62219, Francia"
+}
+],
+"Thérouanne|46.4,0.9,51.35,7.2": [
+{
+"lat": 50.6360072,
+"lon": 2.2577246,
+"tipo": "village",
+"nome": "Thérouanne, Saint-Omer, Paso de Calais, Alta Francia, Francia metropolitana, 62129, Francia"
+}
+],
+"Amettes|46.4,0.9,51.35,7.2": [
+{
+"lat": 50.5311285,
+"lon": 2.3948399,
+"tipo": "village",
+"nome": "Amettes, Béthune, Paso de Calais, Alta Francia, Francia metropolitana, 62260, Francia"
+}
+],
+"Bruay-la-Buissière|46.4,0.9,51.35,7.2": [
+{
+"lat": 50.4821963,
+"lon": 2.5461922,
+"tipo": "town",
+"nome": "Bruay-la-Buissière, Béthune, Paso de Calais, Alta Francia, Francia metropolitana, 62700, Francia"
+}
+],
+"Ablain-Saint-Nazaire|46.4,0.9,51.35,7.2": [
+{
+"lat": 50.3922638,
+"lon": 2.7120107,
+"tipo": "village",
+"nome": "Ablain-Saint-Nazaire, Lens, Paso de Calais, Alta Francia, Francia metropolitana, 62153, Francia"
+}
+],
+"Arras|46.4,0.9,51.35,7.2": [
+{
+"lat": 50.291048,
+"lon": 2.7772211,
+"tipo": "city",
+"nome": "Arrás, Paso de Calais, Alta Francia, Francia metropolitana, 62000, Francia"
+},
+{
+"lat": 50.2847897,
+"lon": 2.5884902,
+"tipo": "municipality",
+"nome": "Arrás, Paso de Calais, Alta Francia, Francia metropolitana, Francia"
+}
+],
+"Bapaume|46.4,0.9,51.35,7.2": [
+{
+"lat": 50.1035984,
+"lon": 2.849369,
+"tipo": "town",
+"nome": "Bapaume, Arrás, Paso de Calais, Alta Francia, Francia metropolitana, 62450, Francia"
+}
+],
+"Péronne|46.4,0.9,51.35,7.2": [
+{
+"lat": 49.9290847,
+"lon": 2.9323535,
+"tipo": "town",
+"nome": "Péronne, Somme, Alta Francia, Francia metropolitana, 80200, Francia"
+},
+{
+"lat": 46.4385322,
+"lon": 4.8096295,
+"tipo": "village",
+"nome": "Péronne, Mâcon, Saona y Loira, Borgoña-Franco Condado, Francia metropolitana, 71260, Francia"
+},
+{
+"lat": 49.9112658,
+"lon": 2.8928769,
+"tipo": "municipality",
+"nome": "Péronne, Somme, Alta Francia, Francia metropolitana, Francia"
+}
+],
+"Trefcon|46.4,0.9,51.35,7.2": [
+{
+"lat": 49.8586111,
+"lon": 3.0961111,
+"tipo": "village",
+"nome": "Trefcon, Saint-Quentin, Aisne, Alta Francia, Francia metropolitana, 02490, Francia"
+}
+],
+"Seraucourt-le-Grand|46.4,0.9,51.35,7.2": [
+{
+"lat": 49.7779578,
+"lon": 3.2099421,
+"tipo": "village",
+"nome": "Seraucourt-le-Grand, Saint-Quentin, Aisne, Alta Francia, Francia metropolitana, 02790, Francia"
+}
+],
+"Tergnier|46.4,0.9,51.35,7.2": [
+{
+"lat": 49.6558465,
+"lon": 3.2918511,
+"tipo": "town",
+"nome": "Tergnier, Laon, Aisne, Alta Francia, Francia metropolitana, 02700, Francia"
+},
+{
+"lat": 49.6456832,
+"lon": 3.2923326,
+"tipo": "city_district",
+"nome": "Tergnier, Laon, Aisne, Alta Francia, Francia metropolitana, 02700, Francia"
+}
+],
+"Laon|46.4,0.9,51.35,7.2": [
+{
+"lat": 49.564665,
+"lon": 3.620686,
+"tipo": "city",
+"nome": "Laon, Aisne, Alta Francia, Francia metropolitana, 02000, Francia"
+},
+{
+"lat": 49.5655888,
+"lon": 3.5989424,
+"tipo": "municipality",
+"nome": "Laon, Aisne, Alta Francia, Francia metropolitana, Francia"
+}
+],
+"Corbeny|46.4,0.9,51.35,7.2": [
+{
+"lat": 49.462554,
+"lon": 3.8234722,
+"tipo": "village",
+"nome": "Corbeny, Laon, Aisne, Alta Francia, Francia metropolitana, 02820, Francia"
+}
+],
+"Hermonville|46.4,0.9,51.35,7.2": [
+{
+"lat": 49.3355571,
+"lon": 3.9095109,
+"tipo": "village",
+"nome": "Hermonville, Reims, Marne, Gran Este, Francia metropolitana, 51220, Francia"
+}
+],
+"Reims|46.4,0.9,51.35,7.2": [
+{
+"lat": 49.2577886,
+"lon": 4.031926,
+"tipo": "city",
+"nome": "Reims, Marne, Gran Este, Francia metropolitana, 51100, Francia"
+},
+{
+"lat": 49.2368732,
+"lon": 4.0803128,
+"tipo": "municipality",
+"nome": "Reims, Marne, Gran Este, Francia metropolitana, Francia"
+}
+],
+"Trépail|46.4,0.9,51.35,7.2": [
+{
+"lat": 49.1064396,
+"lon": 4.1821589,
+"tipo": "village",
+"nome": "Trépail, Reims, Marne, Gran Este, Francia metropolitana, 51380, Francia"
+}
+],
+"Châlons-en-Champagne|46.4,0.9,51.35,7.2": [
+{
+"lat": 48.9566218,
+"lon": 4.3628851,
+"tipo": "city",
+"nome": "Châlons-en-Champagne, Marne, Gran Este, Francia metropolitana, 51000, Francia"
+},
+{
+"lat": 48.9914854,
+"lon": 4.5683382,
+"tipo": "municipality",
+"nome": "Châlons-en-Champagne, Marne, Gran Este, Francia metropolitana, Francia"
+}
+],
+"Coole|46.4,0.9,51.35,7.2": [
+{
+"lat": 48.7411019,
+"lon": 4.392819,
+"tipo": "village",
+"nome": "Coole, Vitry-le-François, Marne, Gran Este, Francia metropolitana, 51320, Francia"
+},
+{
+"lat": 48.8945294,
+"lon": 4.3350379,
+"tipo": "village",
+"nome": "Écury-sur-Coole, Châlons-en-Champagne, Marne, Gran Este, Francia metropolitana, 51240, Francia"
+},
+{
+"lat": 48.8527539,
+"lon": 4.3288633,
+"tipo": "village",
+"nome": "Saint-Quentin-sur-Coole, Châlons-en-Champagne, Marne, Gran Este, Francia metropolitana, 51240, Francia"
+},
+{
+"lat": 48.8597726,
+"lon": 4.3133764,
+"tipo": "village",
+"nome": "Breuvery-sur-Coole, Châlons-en-Champagne, Marne, Gran Este, Francia metropolitana, 51240, Francia"
+},
+{
+"lat": 48.8773219,
+"lon": 4.3111413,
+"tipo": "village",
+"nome": "Nuisement-sur-Coole, Châlons-en-Champagne, Marne, Gran Este, Francia metropolitana, 51240, Francia"
+}
+],
+"Vitry-le-François|46.4,0.9,51.35,7.2": [
+{
+"lat": 48.7261677,
+"lon": 4.5851501,
+"tipo": "town",
+"nome": "Vitry-le-François, Marne, Gran Este, Francia metropolitana, 51300, Francia"
+},
+{
+"lat": 48.7263981,
+"lon": 4.6757591,
+"tipo": "municipality",
+"nome": "Vitry-le-François, Marne, Gran Este, Francia metropolitana, Francia"
+}
+],
+"Saint-Dizier|46.4,0.9,51.35,7.2": [
+{
+"lat": 48.6371125,
+"lon": 4.9473513,
+"tipo": "town",
+"nome": "Saint-Dizier, Alto Marne, Gran Este, Francia metropolitana, 52100, Francia"
+},
+{
+"lat": 48.4677581,
+"lon": 5.0206003,
+"tipo": "municipality",
+"nome": "Saint-Dizier, Alto Marne, Gran Este, Francia metropolitana, Francia"
+}
+],
+"Joinville|46.4,0.9,51.35,7.2": [
+{
+"lat": 48.4433253,
+"lon": 5.1377537,
+"tipo": "town",
+"nome": "Joinville, Saint-Dizier, Alto Marne, Gran Este, Francia metropolitana, 52300, Francia"
+}
+],
+"Châteauvillain|46.4,0.9,51.35,7.2": [
+{
+"lat": 48.036222,
+"lon": 4.9175196,
+"tipo": "village",
+"nome": "Châteauvillain, Chaumont, Alto Marne, Gran Este, Francia metropolitana, 52120, Francia"
+},
+{
+"lat": 48.0266916,
+"lon": 4.9751233,
+"tipo": "city_district",
+"nome": "Châteauvillain, Chaumont, Alto Marne, Gran Este, Francia metropolitana, 52120, Francia"
+}
+],
+"Langres|46.4,0.9,51.35,7.2": [
+{
+"lat": 47.8639612,
+"lon": 5.333947,
+"tipo": "town",
+"nome": "Langres, Alto Marne, Gran Este, Francia metropolitana, 52200, Francia"
+},
+{
+"lat": 47.8242004,
+"lon": 5.3652582,
+"tipo": "municipality",
+"nome": "Langres, Alto Marne, Gran Este, Francia metropolitana, Francia"
+}
+],
+"Champlitte|46.4,0.9,51.35,7.2": [
+{
+"lat": 47.6165239,
+"lon": 5.5134428,
+"tipo": "village",
+"nome": "Champlitte, Vesoul, Alto Saona, Borgoña-Franco Condado, Francia metropolitana, 70600, Francia"
+},
+{
+"lat": 47.6137764,
+"lon": 5.4942376,
+"tipo": "city_district",
+"nome": "Champlitte, Vesoul, Alto Saona, Borgoña-Franco Condado, Francia metropolitana, 70600, Francia"
+}
+],
+"Dampierre-sur-Salon|46.4,0.9,51.35,7.2": [
+{
+"lat": 47.5566446,
+"lon": 5.6781818,
+"tipo": "village",
+"nome": "Dampierre-sur-Salon, Vesoul, Alto Saona, Borgoña-Franco Condado, Francia metropolitana, 70180, Francia"
+}
+],
+"Gy|46.4,0.9,51.35,7.2": [
+{
+"lat": 47.4068,
+"lon": 5.8146609,
+"tipo": "village",
+"nome": "Gy, Vesoul, Alto Saona, Borgoña-Franco Condado, Francia metropolitana, 70700, Francia"
+},
+{
+"lat": 46.252665,
+"lon": 6.2582938,
+"tipo": "village",
+"nome": "Gy, Ginebra, 1251, Suiza"
+}
+],
+"Cussey-sur-l'Ognon|46.4,0.9,51.35,7.2": [
+{
+"lat": 47.3368706,
+"lon": 5.9396547,
+"tipo": "village",
+"nome": "Cussey-sur-l'Ognon, Besançon, Doubs, Borgoña-Franco Condado, Francia metropolitana, 25870, Francia"
+}
+],
+"Besançon|46.4,0.9,51.35,7.2": [
+{
+"lat": 47.2380222,
+"lon": 6.0243622,
+"tipo": "city",
+"nome": "Besanzón, Besançon, Doubs, Borgoña-Franco Condado, Francia metropolitana, 25000, Francia"
+},
+{
+"lat": 47.2283679,
+"lon": 6.0189231,
+"tipo": "municipality",
+"nome": "Besançon, Doubs, Borgoña-Franco Condado, Francia metropolitana, Francia"
+}
+],
+"Étalans|46.4,0.9,51.35,7.2": [
+{
+"lat": 47.1497,
+"lon": 6.2697,
+"tipo": "village",
+"nome": "Étalans, Pontarlier, Doubs, Borgoña-Franco Condado, Francia metropolitana, Francia"
+},
+{
+"lat": 47.157393,
+"lon": 6.2609993,
+"tipo": "city_district",
+"nome": "Étalans, Pontarlier, Doubs, Borgoña-Franco Condado, Francia metropolitana, 25580, Francia"
+}
+],
+"Ouhans|46.4,0.9,51.35,7.2": [
+{
+"lat": 46.9988102,
+"lon": 6.2937303,
+"tipo": "village",
+"nome": "Ouhans, Pontarlier, Doubs, Borgoña-Franco Condado, Francia metropolitana, 25520, Francia"
+}
+],
+"Pontarlier|46.4,0.9,51.35,7.2": [
+{
+"lat": 46.9040348,
+"lon": 6.3546345,
+"tipo": "town",
+"nome": "Pontarlier, Doubs, Borgoña-Franco Condado, Francia metropolitana, 25300, Francia"
+},
+{
+"lat": 46.9202217,
+"lon": 6.210301,
+"tipo": "municipality",
+"nome": "Pontarlier, Doubs, Borgoña-Franco Condado, Francia metropolitana, Francia"
+}
+],
+"Jougne|46.4,0.9,51.35,7.2": [
+{
+"lat": 46.763023,
+"lon": 6.3883634,
+"tipo": "village",
+"nome": "Jougne, Pontarlier, Doubs, Borgoña-Franco Condado, Francia metropolitana, 25370, Francia"
+}
+],
+"Orbe|46.4,0.9,51.35,7.2": [
+{
+"lat": 46.724144,
+"lon": 6.5317943,
+"tipo": "village",
+"nome": "Orbe, District du Jura-Nord vaudois, Valdia, 1350, Suiza"
+}
+],
+"Lausanne|46.4,0.9,51.35,7.2": [
+{
+"lat": 46.5218269,
+"lon": 6.6327025,
+"tipo": "city",
+"nome": "Lausana, District de Lausanne, Valdia, Suiza"
+},
+{
+"lat": 46.5287146,
+"lon": 6.6389575,
+"tipo": "county",
+"nome": "District de Lausanne, Valdia, Suiza"
+}
+],
+"Roma|39.7,12.2,42.1,18.6": [
+{
+"lat": 41.8933203,
+"lon": 12.4829321,
+"tipo": "city",
+"nome": "Roma, Lacio, Italia"
+},
+{
+"lat": 41.8520413,
+"lon": 12.6312117,
+"tipo": "county",
+"nome": "Roma, Lacio, Italia"
+}
+],
+"Velletri|39.7,12.2,42.1,18.6": [
+{
+"lat": 41.6867015,
+"lon": 12.7770433,
+"tipo": "town",
+"nome": "Velletri, Roma, Lacio, 00049, Italia"
+}
+],
+"Priverno|39.7,12.2,42.1,18.6": [
+{
+"lat": 41.4726165,
+"lon": 13.1798388,
+"tipo": "town",
+"nome": "Priverno, Latina, Lacio, 04015, Italia"
+}
+],
+"Terracina|39.7,12.2,42.1,18.6": [
+{
+"lat": 41.2871196,
+"lon": 13.2492009,
+"tipo": "town",
+"nome": "Terracina, Latina, Lacio, Italia"
+}
+],
+"Fondi|39.7,12.2,42.1,18.6": [
+{
+"lat": 41.3572854,
+"lon": 13.430031,
+"tipo": "town",
+"nome": "Fondi, Latina, Lacio, 04022, Italia"
+}
+],
+"Formia|39.7,12.2,42.1,18.6": [
+{
+"lat": 41.259308,
+"lon": 13.6080209,
+"tipo": "town",
+"nome": "Formia, Latina, Lacio, 04023, Italia"
+},
+{
+"lat": 41.2591067,
+"lon": 13.6588621,
+"tipo": "town",
+"nome": "Formia, Latina, Lacio, Italia"
+}
+],
+"Sessa Aurunca|39.7,12.2,42.1,18.6": [
+{
+"lat": 41.2369344,
+"lon": 13.9347304,
+"tipo": "town",
+"nome": "Sessa Aurunca, Caserta, Campania, 81037, Italia"
+}
+],
+"Benevento|39.7,12.2,42.1,18.6": [
+{
+"lat": 41.2476307,
+"lon": 14.7057054,
+"tipo": "county",
+"nome": "Benevento, Campania, Italia"
+},
+{
+"lat": 41.1295587,
+"lon": 14.7824639,
+"tipo": "city",
+"nome": "Bénévent, Benevento, Campania, 82100, Italia"
+}
+],
+"Troia|39.7,12.2,42.1,18.6": [
+{
+"lat": 41.363128,
+"lon": 15.312347,
+"tipo": "village",
+"nome": "Troia, Foggia, Apulia, 71029, Italia"
+}
+],
+"Lucera|39.7,12.2,42.1,18.6": [
+{
+"lat": 41.5082727,
+"lon": 15.3376465,
+"tipo": "town",
+"nome": "Lucera, Foggia, Apulia, 71036, Italia"
+},
+{
+"lat": 41.5567857,
+"lon": 15.224591,
+"tipo": "city",
+"nome": "Pietramontecorvino, Foggia, Apulia, Italia"
+}
+],
+"San Severo|39.7,12.2,42.1,18.6": [
+{
+"lat": 41.6897761,
+"lon": 15.3776211,
+"tipo": "town",
+"nome": "San Severo, Foggia, Apulia, 71016, Italia"
+},
+{
+"lat": 41.5516384,
+"lon": 15.4901969,
+"tipo": "city",
+"nome": "San Severo, Foggia, Apulia, Italia"
+}
+],
+"Monte Sant'Angelo|39.7,12.2,42.1,18.6": [
+{
+"lat": 41.70544,
+"lon": 15.967657,
+"tipo": "town",
+"nome": "Monte Sant'Angelo, Foggia, Apulia, 71037, Italia"
+},
+{
+"lat": 41.1366147,
+"lon": 14.724842,
+"tipo": "peak",
+"nome": "Monte Sant'Angelo, Bénévent, Benevento, Campania, Italia"
+},
+{
+"lat": 39.8259934,
+"lon": 16.1795142,
+"tipo": "peak",
+"nome": "Monte Sant' Angelo, Castrovillari, Cosenza, Calabria, 87012, Italia"
+},
+{
+"lat": 42.1921852,
+"lon": 11.9001889,
+"tipo": "peak",
+"nome": "Monte Sant'Angelo, Allumiere, Roma, Lacio, 00051, Italia"
+},
+{
+"lat": 41.9054881,
+"lon": 14.1943861,
+"tipo": "peak",
+"nome": "Monte Sant'Angelo, Gamberale, Chieti, Abruzos, Italia"
+},
+{
+"lat": 42.0933894,
+"lon": 14.1104485,
+"tipo": "peak",
+"nome": "Monte Sant'Angelo, Fara San Martino, Chieti, Abruzos, Italia"
+},
+{
+"lat": 42.1160579,
+"lon": 12.3352607,
+"tipo": "peak",
+"nome": "Monte Sant'Angelo, Campagnano di Roma, Roma, Lacio, 00063, Italia"
+},
+{
+"lat": 41.2912035,
+"lon": 13.2602223,
+"tipo": "peak",
+"nome": "Monte Sant‘Angelo, Terracina, Latina, Lacio, 04049, Italia"
+}
+],
+"Siponto|39.7,12.2,42.1,18.6": [
+{
+"lat": 41.6096265,
+"lon": 15.8909812,
+"tipo": "historic",
+"nome": "Siponto, Viale degli Eucalipti, Siponto, Manfredonia, Foggia, Apulia, 71043, Italia"
+},
+{
+"lat": 41.6123089,
+"lon": 15.8968249,
+"tipo": "suburb",
+"nome": "Siponto, Manfredonia, Foggia, Apulia, 71043, Italia"
+}
+],
+"Barletta|39.7,12.2,42.1,18.6": [
+{
+"lat": 41.3214976,
+"lon": 16.2868696,
+"tipo": "city",
+"nome": "Barletta, Barletta-Andria-Trani, Apulia, 76121, Italia"
+},
+{
+"lat": 41.180172,
+"lon": 16.1466408,
+"tipo": "province",
+"nome": "Barletta-Andria-Trani, Apulia, Italia"
+}
+],
+"Trani|39.7,12.2,42.1,18.6": [
+{
+"lat": 41.2781809,
+"lon": 16.4186056,
+"tipo": "city",
+"nome": "Trani, Barletta-Andria-Trani, Apulia, 76125, Italia"
+},
+{
+"lat": 41.180172,
+"lon": 16.1466408,
+"tipo": "province",
+"nome": "Barletta-Andria-Trani, Apulia, Italia"
+}
+],
+"Bari|39.7,12.2,42.1,18.6": [
+{
+"lat": 41.1257843,
+"lon": 16.8620293,
+"tipo": "city",
+"nome": "Bari, Apulia, Italia"
+},
+{
+"lat": 40.9612144,
+"lon": 16.771317,
+"tipo": "county",
+"nome": "Bari, Apulia, Italia"
+}
+],
+"Monopoli|39.7,12.2,42.1,18.6": [
+{
+"lat": 40.9522369,
+"lon": 17.299948,
+"tipo": "town",
+"nome": "Monopoli, Bari, Apulia, Italia"
+},
+{
+"lat": 40.8305631,
+"lon": 17.2266986,
+"tipo": "city",
+"nome": "Monopoli, Bari, Apulia, Italia"
+}
+],
+"Brindisi|39.7,12.2,42.1,18.6": [
+{
+"lat": 40.6358599,
+"lon": 17.6884975,
+"tipo": "county",
+"nome": "Bríndisi, Apulia, Italia"
+},
+{
+"lat": 40.6375408,
+"lon": 17.9454957,
+"tipo": "city",
+"nome": "Bríndisi, Apulia, 72100, Italia"
+}
+],
+"Lecce|39.7,12.2,42.1,18.6": [
+{
+"lat": 40.1522173,
+"lon": 18.2260628,
+"tipo": "county",
+"nome": "Lecce, Apulia, Italia"
+},
+{
+"lat": 40.3570373,
+"lon": 18.1718482,
+"tipo": "city",
+"nome": "Lecce, Apulia, 73100, Italia"
+}
+],
+"Otranto|39.7,12.2,42.1,18.6": [
+{
+"lat": 40.1456661,
+"lon": 18.490757,
+"tipo": "town",
+"nome": "Otranto, Lecce, Apulia, 73028, Italia"
+}
+],
+"Tricase|39.7,12.2,42.1,18.6": [
+{
+"lat": 39.93042,
+"lon": 18.355332,
+"tipo": "town",
+"nome": "Tricase, Lecce, Apulia, 73039, Italia"
+}
+],
+"Santa Maria di Leuca|39.7,12.2,42.1,18.6": [
+{
+"lat": 39.7967494,
+"lon": 18.3544897,
+"tipo": "village",
+"nome": "Santa Maria di Leuca, Castrignano del Capo, Lecce, Apulia, 73053, Italia"
+},
+{
+"lat": 39.7936558,
+"lon": 18.3689976,
+"tipo": "cape",
+"nome": "Capo Santa Maria di Leuca, Santa Maria di Leuca, Castrignano del Capo, Lecce, Apulia, 73053, Italia"
+}
 ]
 },
 "tappe": {
@@ -11101,6 +11893,258 @@
 "Genève|46.1,6.1,47.7,9.3": [
 46.20176,
 6.1466
+],
+"Canterbury|46.4,0.9,51.35,7.2": [
+51.28003,
+1.08025
+],
+"Shepherdswell|46.4,0.9,51.35,7.2": [
+51.18559,
+1.23114
+],
+"Dover|46.4,0.9,51.35,7.2": [
+51.12513,
+1.31342
+],
+"Calais|46.4,0.9,51.35,7.2": [
+50.95248,
+1.85384
+],
+"Wissant|46.4,0.9,51.35,7.2": [
+50.88538,
+1.6629
+],
+"Guînes|46.4,0.9,51.35,7.2": [
+50.87208,
+1.78766
+],
+"Licques|46.4,0.9,51.35,7.2": [
+50.78466,
+1.93179
+],
+"Wisques|46.4,0.9,51.35,7.2": [
+50.72283,
+2.19267
+],
+"Thérouanne|46.4,0.9,51.35,7.2": [
+50.63601,
+2.25772
+],
+"Amettes|46.4,0.9,51.35,7.2": [
+50.53113,
+2.39484
+],
+"Bruay-la-Buissière|46.4,0.9,51.35,7.2": [
+50.4822,
+2.54619
+],
+"Ablain-Saint-Nazaire|46.4,0.9,51.35,7.2": [
+50.39226,
+2.71201
+],
+"Arras|46.4,0.9,51.35,7.2": [
+50.29105,
+2.77722
+],
+"Bapaume|46.4,0.9,51.35,7.2": [
+50.1036,
+2.84937
+],
+"Péronne|46.4,0.9,51.35,7.2": [
+49.92908,
+2.93235
+],
+"Trefcon|46.4,0.9,51.35,7.2": [
+49.85861,
+3.09611
+],
+"Seraucourt-le-Grand|46.4,0.9,51.35,7.2": [
+49.77796,
+3.20994
+],
+"Tergnier|46.4,0.9,51.35,7.2": [
+49.65585,
+3.29185
+],
+"Laon|46.4,0.9,51.35,7.2": [
+49.56466,
+3.62069
+],
+"Corbeny|46.4,0.9,51.35,7.2": [
+49.46255,
+3.82347
+],
+"Hermonville|46.4,0.9,51.35,7.2": [
+49.33556,
+3.90951
+],
+"Reims|46.4,0.9,51.35,7.2": [
+49.25779,
+4.03193
+],
+"Trépail|46.4,0.9,51.35,7.2": [
+49.10644,
+4.18216
+],
+"Châlons-en-Champagne|46.4,0.9,51.35,7.2": [
+48.95662,
+4.36289
+],
+"Coole|46.4,0.9,51.35,7.2": [
+48.89453,
+4.33504
+],
+"Vitry-le-François|46.4,0.9,51.35,7.2": [
+48.72617,
+4.58515
+],
+"Saint-Dizier|46.4,0.9,51.35,7.2": [
+48.63711,
+4.94735
+],
+"Joinville|46.4,0.9,51.35,7.2": [
+48.44333,
+5.13775
+],
+"Châteauvillain|46.4,0.9,51.35,7.2": [
+48.03622,
+4.91752
+],
+"Langres|46.4,0.9,51.35,7.2": [
+47.86396,
+5.33395
+],
+"Champlitte|46.4,0.9,51.35,7.2": [
+47.61652,
+5.51344
+],
+"Dampierre-sur-Salon|46.4,0.9,51.35,7.2": [
+47.55664,
+5.67818
+],
+"Gy|46.4,0.9,51.35,7.2": [
+47.4068,
+5.81466
+],
+"Cussey-sur-l'Ognon|46.4,0.9,51.35,7.2": [
+47.33687,
+5.93965
+],
+"Besançon|46.4,0.9,51.35,7.2": [
+47.23802,
+6.02436
+],
+"Étalans|46.4,0.9,51.35,7.2": [
+47.1497,
+6.2697
+],
+"Ouhans|46.4,0.9,51.35,7.2": [
+46.99881,
+6.29373
+],
+"Pontarlier|46.4,0.9,51.35,7.2": [
+46.90403,
+6.35463
+],
+"Jougne|46.4,0.9,51.35,7.2": [
+46.76302,
+6.38836
+],
+"Orbe|46.4,0.9,51.35,7.2": [
+46.72414,
+6.53179
+],
+"Lausanne|46.4,0.9,51.35,7.2": [
+46.52183,
+6.6327
+],
+"Roma|39.7,12.2,42.1,18.6": [
+41.89332,
+12.48293
+],
+"Velletri|39.7,12.2,42.1,18.6": [
+41.6867,
+12.77704
+],
+"Priverno|39.7,12.2,42.1,18.6": [
+41.47262,
+13.17984
+],
+"Terracina|39.7,12.2,42.1,18.6": [
+41.28712,
+13.2492
+],
+"Fondi|39.7,12.2,42.1,18.6": [
+41.35729,
+13.43003
+],
+"Formia|39.7,12.2,42.1,18.6": [
+41.25931,
+13.60802
+],
+"Sessa Aurunca|39.7,12.2,42.1,18.6": [
+41.23693,
+13.93473
+],
+"Benevento|39.7,12.2,42.1,18.6": [
+41.12956,
+14.78246
+],
+"Troia|39.7,12.2,42.1,18.6": [
+41.36313,
+15.31235
+],
+"Lucera|39.7,12.2,42.1,18.6": [
+41.50827,
+15.33765
+],
+"San Severo|39.7,12.2,42.1,18.6": [
+41.55164,
+15.4902
+],
+"Monte Sant'Angelo|39.7,12.2,42.1,18.6": [
+41.70544,
+15.96766
+],
+"Siponto|39.7,12.2,42.1,18.6": [
+41.61231,
+15.89682
+],
+"Barletta|39.7,12.2,42.1,18.6": [
+41.3215,
+16.28687
+],
+"Trani|39.7,12.2,42.1,18.6": [
+41.27818,
+16.41861
+],
+"Bari|39.7,12.2,42.1,18.6": [
+41.12578,
+16.86203
+],
+"Monopoli|39.7,12.2,42.1,18.6": [
+40.95224,
+17.29995
+],
+"Brindisi|39.7,12.2,42.1,18.6": [
+40.63754,
+17.9455
+],
+"Lecce|39.7,12.2,42.1,18.6": [
+40.35704,
+18.17185
+],
+"Otranto|39.7,12.2,42.1,18.6": [
+40.14567,
+18.49076
+],
+"Tricase|39.7,12.2,42.1,18.6": [
+39.93042,
+18.35533
+],
+"Santa Maria di Leuca|39.7,12.2,42.1,18.6": [
+39.79675,
+18.35449
 ]
 }
 }
