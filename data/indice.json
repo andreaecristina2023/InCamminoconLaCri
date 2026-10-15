@@ -21,16 +21,16 @@
    "key": "francia",
    "label": "Francia",
    "file": "francia.geojson",
-   "count": 155,
-   "mb": 11.23,
+   "count": 156,
+   "mb": 11.45,
    "updated": "2026-10-15"
   },
   {
    "key": "italia",
    "label": "Italia",
    "file": "italia.geojson",
-   "count": 622,
-   "mb": 18.54,
+   "count": 623,
+   "mb": 18.8,
    "updated": "2026-10-15"
   },
   {
@@ -77,16 +77,16 @@
    "key": "belgio",
    "label": "Belgio",
    "file": "belgio.geojson",
-   "count": 28,
-   "mb": 1.31,
+   "count": 30,
+   "mb": 1.41,
    "updated": "2026-10-15"
   },
   {
    "key": "paesibassi",
    "label": "Paesi Bassi",
    "file": "paesibassi.geojson",
-   "count": 13,
-   "mb": 0.91,
+   "count": 14,
+   "mb": 0.93,
    "updated": "2026-10-15"
   },
   {
@@ -117,8 +117,8 @@
    "key": "trekking",
    "label": "Trekking a lunga percorrenza",
    "file": "trekking.geojson",
-   "count": 157,
-   "mb": 16.18,
+   "count": 212,
+   "mb": 17.62,
    "updated": "2026-10-15"
   },
   {
