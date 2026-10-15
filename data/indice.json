@@ -21,8 +21,8 @@
    "key": "francia",
    "label": "Francia",
    "file": "francia.geojson",
-   "count": 153,
-   "mb": 10.65,
+   "count": 155,
+   "mb": 11.23,
    "updated": "2026-10-15"
   },
   {
@@ -85,8 +85,8 @@
    "key": "paesibassi",
    "label": "Paesi Bassi",
    "file": "paesibassi.geojson",
-   "count": 11,
-   "mb": 0.47,
+   "count": 13,
+   "mb": 0.91,
    "updated": "2026-10-15"
   },
   {
