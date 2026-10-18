@@ -1,6 +1,78 @@
 {
-"generated": "2026-10-15",
+"generated": "2026-10-18",
 "salti": [
+{
+"percorso": "european long distance path e1",
+"km_salto": 2.0,
+"da": {
+"ll": [
+41.4583,
+14.3405
+],
+"pezzo": "European Long distance path E1 - part Italy - Campania",
+"km_pezzo": 610
+},
+"a": {
+"ll": [
+41.4478,
+14.3596
+],
+"pezzo": "European Long distance path E1 - part Italy - Campania",
+"km_pezzo": 330
+},
+"km_percorso": 3495,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Italia"
+},
+{
+"percorso": "european long distance path e1",
+"km_salto": 1.3,
+"da": {
+"ll": [
+54.4562,
+10.1911
+],
+"pezzo": "European Long distance path E1 - part Germany, Schleswig-Holstein",
+"km_pezzo": 131
+},
+"a": {
+"ll": [
+54.4454,
+10.1817
+],
+"pezzo": "European Long distance path E1 - part Germany, Schleswig-Holstein",
+"km_pezzo": 16
+},
+"km_percorso": 3495,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Germania"
+},
+{
+"percorso": "europaischer fernwanderweg e8",
+"km_salto": 8.6,
+"da": {
+"ll": [
+48.8624,
+15.7845
+],
+"pezzo": "Europäischer Fernwanderweg E8 - Österreich",
+"km_pezzo": 2150
+},
+"a": {
+"ll": [
+48.8243,
+15.8859
+],
+"pezzo": "Europäischer Fernwanderweg E8 - Österreich",
+"km_pezzo": 179
+},
+"km_percorso": 2329,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Austria"
+},
 {
 "percorso": "jakobsweg osterreich",
 "km_salto": 77.1,
@@ -26,28 +98,604 @@
 "paese": "Austria"
 },
 {
-"percorso": "cami de sant jaume",
-"km_salto": 88.8,
+"percorso": "europaischer fernwanderweg e6",
+"km_salto": 77.5,
 "da": {
 "ll": [
-41.0457,
-0.4503
+48.6324,
+14.7375
 ],
-"pezzo": "Camí de Sant Jaume",
-"km_pezzo": 233
+"pezzo": "Europäischer Fernwanderweg E6, Abstecher zum Nebelstein",
+"km_pezzo": 12
 },
 "a": {
 "ll": [
-41.6479,
-1.1488
+48.8538,
+13.7349
 ],
-"pezzo": "Camí de Sant Jaume (l'Hospitalet - Tàrrega)",
-"km_pezzo": 391
+"pezzo": "Europäischer Fernwanderweg E6, Deutschland, Bayerischer Wald",
+"km_pezzo": 28
 },
-"km_percorso": 624,
-"gruppo": "santiago",
+"km_percorso": 1496,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Austria"
+},
+{
+"percorso": "europaischer fernwanderweg e6",
+"km_salto": 1.3,
+"da": {
+"ll": [
+54.4562,
+10.1911
+],
+"pezzo": "Europäischer Fernwanderweg E6, Deutschland, Schleswig-Holstein",
+"km_pezzo": 131
+},
+"a": {
+"ll": [
+54.4454,
+10.1817
+],
+"pezzo": "Europäischer Fernwanderweg E6, Deutschland, Schleswig-Holstein",
+"km_pezzo": 16
+},
+"km_percorso": 1496,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Germania"
+},
+{
+"percorso": "des vosges aux pyrenees",
+"km_salto": 2.9,
+"da": {
+"ll": [
+45.1663,
+4.4543
+],
+"pezzo": "Des Vosges aux Pyrénées 03, La Vaseraie - Signal du Ventalon",
+"km_pezzo": 731
+},
+"a": {
+"ll": [
+45.1432,
+4.4366
+],
+"pezzo": "Des Vosges aux Pyrénées 03, La Vaseraie - Signal du Ventalon",
+"km_pezzo": 740
+},
+"km_percorso": 1471,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Francia"
+},
+{
+"percorso": "european long distance path e7",
+"km_salto": 152.3,
+"da": {
+"ll": [
+40.5442,
+-1.6906
+],
+"pezzo": "European long distance path E7 - part Spain (Mainland)",
+"km_pezzo": 893
+},
+"a": {
+"ll": [
+40.8807,
+-3.4417
+],
+"pezzo": "European long distance path E7 - part Spain (Mainland)",
+"km_pezzo": 47
+},
+"km_percorso": 1153,
+"gruppo": "gr",
 "coperto": false,
 "paese": "Spagna"
+},
+{
+"percorso": "european long distance path e7",
+"km_salto": 50.0,
+"da": {
+"ll": [
+45.8698,
+11.7854
+],
+"pezzo": "European long distance path E7 - part Italy",
+"km_pezzo": 111
+},
+"a": {
+"ll": [
+45.7286,
+11.1733
+],
+"pezzo": "European long distance path E7 - part Italy",
+"km_pezzo": 82
+},
+"km_percorso": 1153,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Italia"
+},
+{
+"percorso": "camino del cid",
+"km_salto": 148.7,
+"da": {
+"ll": [
+39.7816,
+-0.3856
+],
+"pezzo": "Camino del Cid (La Conquista de Valencia)",
+"km_pezzo": 27
+},
+"a": {
+"ll": [
+38.4827,
+-0.7961
+],
+"pezzo": "Camino del Cid (Senderista)",
+"km_pezzo": 36
+},
+"km_percorso": 1017,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Spagna"
+},
+{
+"percorso": "camino del cid",
+"km_salto": 61.2,
+"da": {
+"ll": [
+40.1914,
+-0.65
+],
+"pezzo": "Camino del Cid (La Conquista de Valencia)",
+"km_pezzo": 45
+},
+"a": {
+"ll": [
+40.4395,
+-1.2938
+],
+"pezzo": "Camino del Cid (Senderista)",
+"km_pezzo": 588
+},
+"km_percorso": 1017,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Spagna"
+},
+{
+"percorso": "camino del cid",
+"km_salto": 2.0,
+"da": {
+"ll": [
+38.2566,
+-0.7122
+],
+"pezzo": "Camino del Cid (Senderista)",
+"km_pezzo": 39
+},
+"a": {
+"ll": [
+38.2715,
+-0.6989
+],
+"pezzo": "Camino del Cid (Senderista)",
+"km_pezzo": 36
+},
+"km_percorso": 1017,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Spagna"
+},
+{
+"percorso": "camino del cid",
+"km_salto": 1.4,
+"da": {
+"ll": [
+39.9232,
+-0.5675
+],
+"pezzo": "Camino del Cid (La Conquista de Valencia)",
+"km_pezzo": 20
+},
+"a": {
+"ll": [
+39.9111,
+-0.5689
+],
+"pezzo": "Camino del Cid (La Conquista de Valencia)",
+"km_pezzo": 27
+},
+"km_percorso": 1017,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Spagna"
+},
+{
+"percorso": "camino natural del tajo",
+"km_salto": 3.7,
+"da": {
+"ll": [
+40.0191,
+-3.6534
+],
+"pezzo": "Camino Natural del Tajo",
+"km_pezzo": 419
+},
+"a": {
+"ll": [
+39.9994,
+-3.6878
+],
+"pezzo": "Camino Natural del Tajo",
+"km_pezzo": 7
+},
+"km_percorso": 967,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Spagna"
+},
+{
+"percorso": "camino natural del tajo",
+"km_salto": 2.1,
+"da": {
+"ll": [
+39.6314,
+-7.439
+],
+"pezzo": "Camino Natural del Tajo",
+"km_pezzo": 531
+},
+"a": {
+"ll": [
+39.6321,
+-7.463
+],
+"pezzo": "Camino Natural del Tajo",
+"km_pezzo": 9
+},
+"km_percorso": 967,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Spagna"
+},
+{
+"percorso": "camino natural del tajo",
+"km_salto": 1.2,
+"da": {
+"ll": [
+39.9582,
+-3.7311
+],
+"pezzo": "Camino Natural del Tajo",
+"km_pezzo": 7
+},
+"a": {
+"ll": [
+39.9515,
+-3.7416
+],
+"pezzo": "Camino Natural del Tajo",
+"km_pezzo": 531
+},
+"km_percorso": 967,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Spagna"
+},
+{
+"percorso": "europaischer fernwanderweg e10",
+"km_salto": 17.5,
+"da": {
+"ll": [
+51.5289,
+14.6851
+],
+"pezzo": "Europäischer Fernwanderweg E10, Deutschland, Sachsen",
+"km_pezzo": 604
+},
+"a": {
+"ll": [
+51.3967,
+14.8209
+],
+"pezzo": "Europäischer Fernwanderweg E10, Deutschland, Sachsen",
+"km_pezzo": 96
+},
+"km_percorso": 813,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Germania"
+},
+{
+"percorso": "europaischer fernwanderweg e4",
+"km_salto": 22.5,
+"da": {
+"ll": [
+47.508,
+11.8169
+],
+"pezzo": "Europäischer Fernwanderweg E4, Österreich, Rofan",
+"km_pezzo": 17
+},
+"a": {
+"ll": [
+47.6912,
+11.6904
+],
+"pezzo": "Europäischer Fernwanderweg E4 - Teil Deutschland (Region Tegernsee)",
+"km_pezzo": 69
+},
+"km_percorso": 808,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Austria"
+},
+{
+"percorso": "europaischer fernwanderweg e4",
+"km_salto": 3.0,
+"da": {
+"ll": [
+47.9723,
+17.0895
+],
+"pezzo": "Europäischer Fernwanderweg E4 (Wien - Rattersdorf)",
+"km_pezzo": 33
+},
+"a": {
+"ll": [
+47.9456,
+17.091
+],
+"pezzo": "Europäischer Fernwanderweg E4 (Wien - Rattersdorf)",
+"km_pezzo": 96
+},
+"km_percorso": 808,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Austria"
+},
+{
+"percorso": "europaischer fernwanderweg e4",
+"km_salto": 1.4,
+"da": {
+"ll": [
+47.6703,
+16.4126
+],
+"pezzo": "Europäischer Fernwanderweg E4 (Wien - Rattersdorf)",
+"km_pezzo": 96
+},
+"a": {
+"ll": [
+47.6595,
+16.4018
+],
+"pezzo": "Europäischer Fernwanderweg E4 (Wien - Rattersdorf)",
+"km_pezzo": 49
+},
+"km_percorso": 808,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Austria"
+},
+{
+"percorso": "europaischer fernwanderweg e9",
+"km_salto": 6.9,
+"da": {
+"ll": [
+54.3604,
+12.8632
+],
+"pezzo": "Europäischer Fernwanderweg E9, Deutschland, Mecklenburg-Vorpommern",
+"km_pezzo": 21
+},
+"a": {
+"ll": [
+54.4114,
+12.9229
+],
+"pezzo": "Europäischer Fernwanderweg E9, Deutschland, Mecklenburg-Vorpommern",
+"km_pezzo": 10
+},
+"km_percorso": 627,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Germania"
+},
+{
+"percorso": "europaischer fernwanderweg e9",
+"km_salto": 6.2,
+"da": {
+"ll": [
+53.9961,
+11.0116
+],
+"pezzo": "Europäischer Fernwanderweg E9, Deutschland, Mecklenburg-Vorpommern",
+"km_pezzo": 207
+},
+"a": {
+"ll": [
+54.0117,
+11.1034
+],
+"pezzo": "Europäischer Fernwanderweg E9, Deutschland, Mecklenburg-Vorpommern",
+"km_pezzo": 73
+},
+"km_percorso": 627,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Germania"
+},
+{
+"percorso": "europaischer fernwanderweg e9",
+"km_salto": 5.4,
+"da": {
+"ll": [
+53.7214,
+9.507
+],
+"pezzo": "Europäischer Fernwanderweg E9, Deutschland, Schleswig-Holstein (West)",
+"km_pezzo": 77
+},
+"a": {
+"ll": [
+53.7469,
+9.4371
+],
+"pezzo": "Europäischer Fernwanderweg E9, Deutschland, Schleswig-Holstein (West)",
+"km_pezzo": 8
+},
+"km_percorso": 627,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Germania"
+},
+{
+"percorso": "europaischer fernwanderweg e9",
+"km_salto": 4.6,
+"da": {
+"ll": [
+54.0878,
+11.6282
+],
+"pezzo": "Europäischer Fernwanderweg E9, Deutschland, Mecklenburg-Vorpommern",
+"km_pezzo": 73
+},
+"a": {
+"ll": [
+54.1278,
+11.6457
+],
+"pezzo": "Europäischer Fernwanderweg E9, Deutschland, Mecklenburg-Vorpommern",
+"km_pezzo": 28
+},
+"km_percorso": 627,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Germania"
+},
+{
+"percorso": "europaischer fernwanderweg e9",
+"km_salto": 4.0,
+"da": {
+"ll": [
+54.0547,
+13.7847
+],
+"pezzo": "Europäischer Fernwanderweg E9, Deutschland, Mecklenburg-Vorpommern",
+"km_pezzo": 99
+},
+"a": {
+"ll": [
+54.0858,
+13.8149
+],
+"pezzo": "Europäischer Fernwanderweg E9, Deutschland, Mecklenburg-Vorpommern",
+"km_pezzo": 39
+},
+"km_percorso": 627,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Germania"
+},
+{
+"percorso": "europaischer fernwanderweg e9",
+"km_salto": 4.0,
+"da": {
+"ll": [
+54.4167,
+12.6601
+],
+"pezzo": "Europäischer Fernwanderweg E9, Deutschland, Mecklenburg-Vorpommern",
+"km_pezzo": 29
+},
+"a": {
+"ll": [
+54.3815,
+12.673
+],
+"pezzo": "Europäischer Fernwanderweg E9, Deutschland, Mecklenburg-Vorpommern",
+"km_pezzo": 21
+},
+"km_percorso": 627,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Germania"
+},
+{
+"percorso": "europaischer fernwanderweg e9",
+"km_salto": 2.7,
+"da": {
+"ll": [
+54.3639,
+12.3989
+],
+"pezzo": "Europäischer Fernwanderweg E9, Deutschland, Mecklenburg-Vorpommern",
+"km_pezzo": 31
+},
+"a": {
+"ll": [
+54.3833,
+12.4241
+],
+"pezzo": "Europäischer Fernwanderweg E9, Deutschland, Mecklenburg-Vorpommern",
+"km_pezzo": 29
+},
+"km_percorso": 627,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Germania"
+},
+{
+"percorso": "europaischer fernwanderweg e9",
+"km_salto": 1.8,
+"da": {
+"ll": [
+54.1743,
+11.9979
+],
+"pezzo": "Europäischer Fernwanderweg E9, Deutschland, Mecklenburg-Vorpommern",
+"km_pezzo": 28
+},
+"a": {
+"ll": [
+54.1758,
+12.0258
+],
+"pezzo": "Europäischer Fernwanderweg E9, Deutschland, Mecklenburg-Vorpommern",
+"km_pezzo": 5
+},
+"km_percorso": 627,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Germania"
+},
+{
+"percorso": "europaischer fernwanderweg e9",
+"km_salto": 1.5,
+"da": {
+"ll": [
+54.4251,
+13.0074
+],
+"pezzo": "Europäischer Fernwanderweg E9, Deutschland, Mecklenburg-Vorpommern",
+"km_pezzo": 10
+},
+"a": {
+"ll": [
+54.413,
+13.0183
+],
+"pezzo": "Europäischer Fernwanderweg E9, Deutschland, Mecklenburg-Vorpommern",
+"km_pezzo": 99
+},
+"km_percorso": 627,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Germania"
 },
 {
 "percorso": "svatojakubska cesta na slovensku",
@@ -74,6 +722,150 @@
 "paese": "Altri paesi"
 },
 {
+"percorso": "european long distance path e8",
+"km_salto": 2.1,
+"da": {
+"ll": [
+51.8649,
+-9.5964
+],
+"pezzo": "European long distance path E8 - part Ireland",
+"km_pezzo": 71
+},
+"a": {
+"ll": [
+51.8817,
+-9.5825
+],
+"pezzo": "European long distance path E8 - part Ireland",
+"km_pezzo": 190
+},
+"km_percorso": 601,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Irlanda"
+},
+{
+"percorso": "european long distance path e8",
+"km_salto": 0.8,
+"da": {
+"ll": [
+52.2218,
+-8.1073
+],
+"pezzo": "European long distance path E8 - part Ireland",
+"km_pezzo": 190
+},
+"a": {
+"ll": [
+52.2255,
+-8.0979
+],
+"pezzo": "European long distance path E8 - part Ireland",
+"km_pezzo": 331
+},
+"km_percorso": 601,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Irlanda"
+},
+{
+"percorso": "european long distance path e6",
+"km_salto": 6.3,
+"da": {
+"ll": [
+48.585,
+14.1547
+],
+"pezzo": "European long distance path E6 - Main route Austria",
+"km_pezzo": 17
+},
+"a": {
+"ll": [
+48.575,
+14.2396
+],
+"pezzo": "European long distance path E6 - Main route Austria",
+"km_pezzo": 60
+},
+"km_percorso": 570,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Austria"
+},
+{
+"percorso": "european long distance path e6",
+"km_salto": 4.1,
+"da": {
+"ll": [
+48.6482,
+14.0196
+],
+"pezzo": "European long distance path E6 - Main route Austria",
+"km_pezzo": 12
+},
+"a": {
+"ll": [
+48.6114,
+14.0237
+],
+"pezzo": "European long distance path E6 - Main route Austria",
+"km_pezzo": 17
+},
+"km_percorso": 570,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Altri paesi"
+},
+{
+"percorso": "european long distance path e6",
+"km_salto": 2.8,
+"da": {
+"ll": [
+48.7417,
+13.9084
+],
+"pezzo": "European long distance path E6 - Main route Austria",
+"km_pezzo": 5
+},
+"a": {
+"ll": [
+48.7243,
+13.9367
+],
+"pezzo": "European long distance path E6 - Main route Austria",
+"km_pezzo": 12
+},
+"km_percorso": 570,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Altri paesi"
+},
+{
+"percorso": "european long distance path e6",
+"km_salto": 2.4,
+"da": {
+"ll": [
+48.5675,
+14.6772
+],
+"pezzo": "European long distance path E6 - Main route Austria",
+"km_pezzo": 60
+},
+"a": {
+"ll": [
+48.584,
+14.6978
+],
+"pezzo": "European long distance path E6 - Main route Austria",
+"km_pezzo": 476
+},
+"km_percorso": 570,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Austria"
+},
+{
 "percorso": "chemin du piemont pyreneen",
 "km_salto": 45.9,
 "da": {
@@ -94,6 +886,270 @@
 },
 "km_percorso": 521,
 "gruppo": "santiago",
+"coperto": false,
+"paese": "Francia"
+},
+{
+"percorso": "fernwanderweg ostsee–saaletalsperren",
+"km_salto": 17.4,
+"da": {
+"ll": [
+51.3967,
+14.8209
+],
+"pezzo": "Fernwanderweg Ostsee–Saaletalsperren (Abschnitt Schleife – Niesky)",
+"km_pezzo": 229
+},
+"a": {
+"ll": [
+51.5336,
+14.7001
+],
+"pezzo": "Fernwanderweg Ostsee–Saaletalsperren (Abschnitt Schleife – Niesky)",
+"km_pezzo": 17
+},
+"km_percorso": 516,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Germania"
+},
+{
+"percorso": "fernwanderweg ostsee–saaletalsperren",
+"km_salto": 5.6,
+"da": {
+"ll": [
+50.9091,
+13.3451
+],
+"pezzo": "Fernwanderweg Ostsee–Saaletalsperren (Abschnitt Freiberg – Ziegenrück)",
+"km_pezzo": 269
+},
+"a": {
+"ll": [
+50.959,
+13.3472
+],
+"pezzo": "Fernwanderweg Ostsee–Saaletalsperren (Abschnitt Niesky – Freiberg)",
+"km_pezzo": 229
+},
+"km_percorso": 516,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Germania"
+},
+{
+"percorso": "grenslandpad",
+"km_salto": 9.5,
+"da": {
+"ll": [
+51.3624,
+3.9262
+],
+"pezzo": "Grenslandpad - 27 - Variant Oost Zeeuws-Vlaanderen etappe 6",
+"km_pezzo": 181
+},
+"a": {
+"ll": [
+51.444,
+3.8864
+],
+"pezzo": "Grenslandpad - 04",
+"km_pezzo": 21
+},
+"km_percorso": 499,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Paesi Bassi"
+},
+{
+"percorso": "grenslandpad",
+"km_salto": 6.9,
+"da": {
+"ll": [
+51.3541,
+4.1092
+],
+"pezzo": "Grenslandpad - 26 - Variant Oost Zeeuws-Vlaanderen etappe 5",
+"km_pezzo": 181
+},
+"a": {
+"ll": [
+51.4158,
+4.1033
+],
+"pezzo": "Grenslandpad - 06",
+"km_pezzo": 22
+},
+"km_percorso": 499,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Paesi Bassi"
+},
+{
+"percorso": "zuiderzeepad",
+"km_salto": 2.8,
+"da": {
+"ll": [
+52.4679,
+5.0636
+],
+"pezzo": "Zuiderzeepad - 04",
+"km_pezzo": 489
+},
+"a": {
+"ll": [
+52.4587,
+5.1013
+],
+"pezzo": "Zuiderzeepad - A - Dagwandeling Marken",
+"km_pezzo": 6
+},
+"km_percorso": 495,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Paesi Bassi"
+},
+{
+"percorso": "noaberpad",
+"km_salto": 0.7,
+"da": {
+"ll": [
+52.2076,
+6.9737
+],
+"pezzo": "Noaberpad etappe 13",
+"km_pezzo": 262
+},
+"a": {
+"ll": [
+52.204,
+6.9644
+],
+"pezzo": "Noaberpad etappe 13",
+"km_pezzo": 221
+},
+"km_percorso": 484,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Paesi Bassi"
+},
+{
+"percorso": "fernwanderweg zittau",
+"km_salto": 7.6,
+"da": {
+"ll": [
+50.9972,
+14.2294
+],
+"pezzo": "Fernwanderweg Zittau – Wernigerode (Sachsen Ost)",
+"km_pezzo": 117
+},
+"a": {
+"ll": [
+50.9422,
+14.164
+],
+"pezzo": "Fernwanderweg Zittau – Wernigerode (Sachsen Ost)",
+"km_pezzo": 167
+},
+"km_percorso": 472,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Germania"
+},
+{
+"percorso": "fernwanderweg zittau",
+"km_salto": 1.9,
+"da": {
+"ll": [
+50.5629,
+13.2218
+],
+"pezzo": "Fernwanderweg Zittau – Wernigerode (Sachsen West)",
+"km_pezzo": 28
+},
+"a": {
+"ll": [
+50.5463,
+13.2188
+],
+"pezzo": "Fernwanderweg Zittau – Wernigerode (Sachsen West)",
+"km_pezzo": 20
+},
+"km_percorso": 472,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Altri paesi"
+},
+{
+"percorso": "fernwanderweg zittau",
+"km_salto": 0.8,
+"da": {
+"ll": [
+50.5054,
+13.0193
+],
+"pezzo": "Fernwanderweg Zittau – Wernigerode (Sachsen West)",
+"km_pezzo": 20
+},
+"a": {
+"ll": [
+50.4993,
+13.0126
+],
+"pezzo": "Fernwanderweg Zittau – Wernigerode (Sachsen West)",
+"km_pezzo": 140
+},
+"km_percorso": 472,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Germania"
+},
+{
+"percorso": "sentier de grande randonnee",
+"km_salto": 3.4,
+"da": {
+"ll": [
+43.2166,
+5.3956
+],
+"pezzo": "Sentier de Grande Randonnée 98",
+"km_pezzo": 21
+},
+"a": {
+"ll": [
+43.2468,
+5.396
+],
+"pezzo": "Sentier de grande randonnée 2013",
+"km_pezzo": 372
+},
+"km_percorso": 441,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Francia"
+},
+{
+"percorso": "sentier de grande randonnee",
+"km_salto": 0.8,
+"da": {
+"ll": [
+43.3007,
+5.6808
+],
+"pezzo": "Sentier de Grande Randonnée 98",
+"km_pezzo": 36
+},
+"a": {
+"ll": [
+43.3073,
+5.6778
+],
+"pezzo": "Sentier de grande randonnée 2013",
+"km_pezzo": 372
+},
+"km_percorso": 441,
+"gruppo": "gr",
 "coperto": false,
 "paese": "Francia"
 },
@@ -122,6 +1178,174 @@
 "paese": "Portogallo"
 },
 {
+"percorso": "bizkaiko bira",
+"km_salto": 2.6,
+"da": {
+"ll": [
+43.3549,
+-3.0176
+],
+"pezzo": "Bizkaiko bira",
+"km_pezzo": 232
+},
+"a": {
+"ll": [
+43.3785,
+-3.0133
+],
+"pezzo": "Bizkaiko bira",
+"km_pezzo": 6
+},
+"km_percorso": 389,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Spagna"
+},
+{
+"percorso": "bizkaiko bira",
+"km_salto": 1.4,
+"da": {
+"ll": [
+43.4273,
+-2.9464
+],
+"pezzo": "Bizkaiko bira",
+"km_pezzo": 29
+},
+"a": {
+"ll": [
+43.4153,
+-2.9426
+],
+"pezzo": "Bizkaiko bira",
+"km_pezzo": 5
+},
+"km_percorso": 389,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Spagna"
+},
+{
+"percorso": "bizkaiko bira",
+"km_salto": 0.9,
+"da": {
+"ll": [
+43.4078,
+-2.9603
+],
+"pezzo": "Bizkaiko bira",
+"km_pezzo": 5
+},
+"a": {
+"ll": [
+43.4052,
+-2.9703
+],
+"pezzo": "Bizkaiko bira",
+"km_pezzo": 6
+},
+"km_percorso": 389,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Spagna"
+},
+{
+"percorso": "groot frieslandpad",
+"km_salto": 1.4,
+"da": {
+"ll": [
+52.6983,
+4.6482
+],
+"pezzo": "Groot Frieslandpad - 01",
+"km_pezzo": 375
+},
+"a": {
+"ll": [
+52.6864,
+4.6414
+],
+"pezzo": "Groot Frieslandpad - 01",
+"km_pezzo": 5
+},
+"km_percorso": 380,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Paesi Bassi"
+},
+{
+"percorso": "sentiero europeo e5",
+"km_salto": 4.4,
+"da": {
+"ll": [
+46.4762,
+11.3704
+],
+"pezzo": "Sentiero Europeo E5, Italia",
+"km_pezzo": 237
+},
+"a": {
+"ll": [
+46.5143,
+11.3525
+],
+"pezzo": "Sentiero Europeo E5, Italia",
+"km_pezzo": 72
+},
+"km_percorso": 309,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Italia"
+},
+{
+"percorso": "de juan vich a casas del rio",
+"km_salto": 1.2,
+"da": {
+"ll": [
+39.477,
+-1.4659
+],
+"pezzo": "De Juan Vich a Casas del Río",
+"km_pezzo": 130
+},
+"a": {
+"ll": [
+39.4846,
+-1.4554
+],
+"pezzo": "De Juan Vich a Casas del Río",
+"km_pezzo": 8
+},
+"km_percorso": 302,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Spagna"
+},
+{
+"percorso": "de juan vich a casas del rio",
+"km_salto": 1.1,
+"da": {
+"ll": [
+39.5482,
+-1.2797
+],
+"pezzo": "De Juan Vich a Casas del Río",
+"km_pezzo": 130
+},
+"a": {
+"ll": [
+39.5577,
+-1.2814
+],
+"pezzo": "De Juan Vich a Casas del Río",
+"km_pezzo": 164
+},
+"km_percorso": 302,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Spagna"
+},
+{
 "percorso": "svatojakubska cesta",
 "km_salto": 89.0,
 "da": {
@@ -142,6 +1366,198 @@
 },
 "km_percorso": 275,
 "gruppo": "santiago",
+"coperto": false,
+"paese": "Altri paesi"
+},
+{
+"percorso": "european walking route e9",
+"km_salto": 40.1,
+"da": {
+"ll": [
+50.7915,
+0.2143
+],
+"pezzo": "European walking route E9, Queen Elizabeth Country Park to Jevington",
+"km_pezzo": 134
+},
+"a": {
+"ll": [
+50.9497,
+0.7282
+],
+"pezzo": "European walking route E9, Rye to Dover",
+"km_pezzo": 58
+},
+"km_percorso": 266,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Regno Unito"
+},
+{
+"percorso": "european walking route e9",
+"km_salto": 15.8,
+"da": {
+"ll": [
+50.7215,
+-1.1097
+],
+"pezzo": "European walking route E9, Isle of Wight alternative",
+"km_pezzo": 45
+},
+"a": {
+"ll": [
+50.846,
+-1.0025
+],
+"pezzo": "European walking route E9, Milford on Sea to Queen Elizabeth Country Park",
+"km_pezzo": 134
+},
+"km_percorso": 266,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Regno Unito"
+},
+{
+"percorso": "european walking route e9",
+"km_salto": 9.9,
+"da": {
+"ll": [
+50.6701,
+-1.4844
+],
+"pezzo": "European walking route E9, Isle of Wight alternative",
+"km_pezzo": 45
+},
+"a": {
+"ll": [
+50.7544,
+-1.5298
+],
+"pezzo": "European walking route E9, Milford on Sea to Queen Elizabeth Country Park",
+"km_pezzo": 29
+},
+"km_percorso": 266,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Regno Unito"
+},
+{
+"percorso": "sentier du littoral",
+"km_salto": 12.1,
+"da": {
+"ll": [
+50.2161,
+1.563
+],
+"pezzo": "Sentier du Littoral",
+"km_pezzo": 47
+},
+"a": {
+"ll": [
+50.3244,
+1.5483
+],
+"pezzo": "Sentier du Littoral",
+"km_pezzo": 18
+},
+"km_percorso": 252,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Altri paesi"
+},
+{
+"percorso": "sentier du littoral",
+"km_salto": 11.2,
+"da": {
+"ll": [
+50.3781,
+1.6007
+],
+"pezzo": "Sentier du Littoral",
+"km_pezzo": 18
+},
+"a": {
+"ll": [
+50.4773,
+1.575
+],
+"pezzo": "Sentier du Littoral",
+"km_pezzo": 6
+},
+"km_percorso": 252,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Altri paesi"
+},
+{
+"percorso": "sentier du littoral",
+"km_salto": 3.3,
+"da": {
+"ll": [
+50.9853,
+1.9631
+],
+"pezzo": "Sentier du Littoral",
+"km_pezzo": 43
+},
+"a": {
+"ll": [
+50.9949,
+2.0074
+],
+"pezzo": "Sentier du Littoral",
+"km_pezzo": 87
+},
+"km_percorso": 252,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Francia"
+},
+{
+"percorso": "sentier du littoral",
+"km_salto": 3.0,
+"da": {
+"ll": [
+50.5694,
+1.5912
+],
+"pezzo": "Sentier du Littoral",
+"km_pezzo": 15
+},
+"a": {
+"ll": [
+50.5953,
+1.5794
+],
+"pezzo": "Sentier du Littoral",
+"km_pezzo": 35
+},
+"km_percorso": 252,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Francia"
+},
+{
+"percorso": "sentier du littoral",
+"km_salto": 1.6,
+"da": {
+"ll": [
+50.8132,
+1.5969
+],
+"pezzo": "Sentier du Littoral",
+"km_pezzo": 35
+},
+"a": {
+"ll": [
+50.8271,
+1.5932
+],
+"pezzo": "Sentier du Littoral",
+"km_pezzo": 43
+},
+"km_percorso": 252,
+"gruppo": "gr",
 "coperto": false,
 "paese": "Altri paesi"
 },
@@ -194,6 +1610,54 @@
 "paese": "Spagna"
 },
 {
+"percorso": "chemin de stevenson",
+"km_salto": 17.0,
+"da": {
+"ll": [
+44.3639,
+3.7437
+],
+"pezzo": "Chemin de Stevenson - Part 6",
+"km_pezzo": 164
+},
+"a": {
+"ll": [
+44.2183,
+3.8089
+],
+"pezzo": "Chemin de Stevenson - Part 9",
+"km_pezzo": 45
+},
+"km_percorso": 209,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Francia"
+},
+{
+"percorso": "fernwanderweg harz",
+"km_salto": 1.1,
+"da": {
+"ll": [
+51.748,
+10.8342
+],
+"pezzo": "Fernwanderweg Harz – Eichsfeld – Thüringer Wald (HET)",
+"km_pezzo": 176
+},
+"a": {
+"ll": [
+51.7527,
+10.8477
+],
+"pezzo": "Fernwanderweg Harz – Eichsfeld – Thüringer Wald (HET)",
+"km_pezzo": 27
+},
+"km_percorso": 203,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Germania"
+},
+{
 "percorso": "jakobs-pilgerweg heidenstraße",
 "km_salto": 74.8,
 "da": {
@@ -216,6 +1680,366 @@
 "gruppo": "santiago",
 "coperto": false,
 "paese": "Germania"
+},
+{
+"percorso": "gr 56 sentiers de l'est de la belgique | parcours principal",
+"km_salto": 1.7,
+"da": {
+"ll": [
+50.223,
+6.1738
+],
+"pezzo": "GR 56 Sentiers de l'Est de la Belgique | Parcours principal : Sentier des Frontières",
+"km_pezzo": 19
+},
+"a": {
+"ll": [
+50.2373,
+6.184
+],
+"pezzo": "GR 56 Sentiers de l'Est de la Belgique | Parcours principal : Sentier des Frontières",
+"km_pezzo": 135
+},
+"km_percorso": 155,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Germania"
+},
+{
+"percorso": "sendero del mediterraneo",
+"km_salto": 6.4,
+"da": {
+"ll": [
+37.49,
+-1.4592
+],
+"pezzo": "Sendero del Mediterráneo - Murcia",
+"km_pezzo": 7
+},
+"a": {
+"ll": [
+37.4365,
+-1.4848
+],
+"pezzo": "Sendero del Mediterráneo - Murcia",
+"km_pezzo": 15
+},
+"km_percorso": 148,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Spagna"
+},
+{
+"percorso": "sendero del mediterraneo",
+"km_salto": 4.9,
+"da": {
+"ll": [
+37.5425,
+-1.3663
+],
+"pezzo": "Sendero del Mediterráneo - Murcia",
+"km_pezzo": 15
+},
+"a": {
+"ll": [
+37.5095,
+-1.4039
+],
+"pezzo": "Sendero del Mediterráneo - Murcia",
+"km_pezzo": 7
+},
+"km_percorso": 148,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Spagna"
+},
+{
+"percorso": "sendero del mediterraneo",
+"km_salto": 4.1,
+"da": {
+"ll": [
+37.7626,
+-0.8211
+],
+"pezzo": "Sendero del Mediterráneo - Murcia",
+"km_pezzo": 17
+},
+"a": {
+"ll": [
+37.736,
+-0.8542
+],
+"pezzo": "Sendero del Mediterráneo - Murcia",
+"km_pezzo": 17
+},
+"km_percorso": 148,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Altri paesi"
+},
+{
+"percorso": "sendero del mediterraneo",
+"km_salto": 3.7,
+"da": {
+"ll": [
+37.5842,
+-1.0745
+],
+"pezzo": "Sendero del Mediterráneo - Murcia",
+"km_pezzo": 44
+},
+"a": {
+"ll": [
+37.5716,
+-1.1132
+],
+"pezzo": "Sendero del Mediterráneo - Murcia",
+"km_pezzo": 23
+},
+"km_percorso": 148,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Spagna"
+},
+{
+"percorso": "sendero del mediterraneo",
+"km_salto": 1.8,
+"da": {
+"ll": [
+37.6411,
+-0.7553
+],
+"pezzo": "Sendero del Mediterráneo - Murcia",
+"km_pezzo": 17
+},
+"a": {
+"ll": [
+37.6318,
+-0.7384
+],
+"pezzo": "Sendero del Mediterráneo - Murcia",
+"km_pezzo": 10
+},
+"km_percorso": 148,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Spagna"
+},
+{
+"percorso": "sendero del mediterraneo",
+"km_salto": 0.9,
+"da": {
+"ll": [
+37.5995,
+-0.7548
+],
+"pezzo": "Sendero del Mediterráneo - Murcia",
+"km_pezzo": 10
+},
+"a": {
+"ll": [
+37.598,
+-0.7652
+],
+"pezzo": "Sendero del Mediterráneo - Murcia",
+"km_pezzo": 44
+},
+"km_percorso": 148,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Altri paesi"
+},
+{
+"percorso": "sendero del mediterraneo",
+"km_salto": 0.6,
+"da": {
+"ll": [
+37.5786,
+-1.2375
+],
+"pezzo": "Sendero del Mediterráneo - Murcia",
+"km_pezzo": 23
+},
+"a": {
+"ll": [
+37.5771,
+-1.2445
+],
+"pezzo": "Sendero del Mediterráneo - Murcia",
+"km_pezzo": 15
+},
+"km_percorso": 148,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Spagna"
+},
+{
+"percorso": "canada conquense o de los serranos",
+"km_salto": 0.8,
+"da": {
+"ll": [
+38.898,
+-3.049
+],
+"pezzo": "Cañada Conquense o De Los Serranos",
+"km_pezzo": 19
+},
+"a": {
+"ll": [
+38.8977,
+-3.0586
+],
+"pezzo": "Cañada Conquense o De Los Serranos",
+"km_pezzo": 23
+},
+"km_percorso": 127,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Spagna"
+},
+{
+"percorso": "canada conquense o de los serranos",
+"km_salto": 0.7,
+"da": {
+"ll": [
+38.7784,
+-3.2318
+],
+"pezzo": "Cañada Conquense o De Los Serranos",
+"km_pezzo": 23
+},
+"a": {
+"ll": [
+38.7726,
+-3.2338
+],
+"pezzo": "Cañada Conquense o De Los Serranos",
+"km_pezzo": 42
+},
+"km_percorso": 127,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Spagna"
+},
+{
+"percorso": "cami de cavalls",
+"km_salto": 5.6,
+"da": {
+"ll": [
+39.8288,
+4.292
+],
+"pezzo": "Camí de Cavalls",
+"km_pezzo": 22
+},
+"a": {
+"ll": [
+39.8233,
+4.2267
+],
+"pezzo": "Camí de Cavalls",
+"km_pezzo": 28
+},
+"km_percorso": 119,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Spagna"
+},
+{
+"percorso": "cami de cavalls",
+"km_salto": 3.4,
+"da": {
+"ll": [
+40.0224,
+4.1204
+],
+"pezzo": "Camí de Cavalls",
+"km_pezzo": 15
+},
+"a": {
+"ll": [
+40.0299,
+4.1597
+],
+"pezzo": "Camí de Cavalls",
+"km_pezzo": 24
+},
+"km_percorso": 119,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Spagna"
+},
+{
+"percorso": "cami de cavalls",
+"km_salto": 2.7,
+"da": {
+"ll": [
+40.0552,
+4.0082
+],
+"pezzo": "Camí de Cavalls",
+"km_pezzo": 22
+},
+"a": {
+"ll": [
+40.0558,
+4.0399
+],
+"pezzo": "Camí de Cavalls",
+"km_pezzo": 15
+},
+"km_percorso": 119,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Spagna"
+},
+{
+"percorso": "cami de cavalls",
+"km_salto": 0.6,
+"da": {
+"ll": [
+39.9172,
+4.0333
+],
+"pezzo": "Camí de Cavalls",
+"km_pezzo": 28
+},
+"a": {
+"ll": [
+39.92,
+4.0269
+],
+"pezzo": "Camí de Cavalls",
+"km_pezzo": 8
+},
+"km_percorso": 119,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Spagna"
+},
+{
+"percorso": "cami de cavalls",
+"km_salto": 0.6,
+"da": {
+"ll": [
+39.9462,
+4.2651
+],
+"pezzo": "Camí de Cavalls",
+"km_pezzo": 22
+},
+"a": {
+"ll": [
+39.9517,
+4.2632
+],
+"pezzo": "Camí de Cavalls",
+"km_pezzo": 24
+},
+"km_percorso": 119,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Spagna"
 },
 {
 "percorso": "via romea nonantolana occidentale",
@@ -290,6 +2114,126 @@
 "paese": "Regno Unito"
 },
 {
+"percorso": "grand tour de paris",
+"km_salto": 20.6,
+"da": {
+"ll": [
+48.5509,
+2.3691
+],
+"pezzo": "Grand Tour de Paris, variante par Ballancourt",
+"km_pezzo": 23
+},
+"a": {
+"ll": [
+48.5787,
+2.0927
+],
+"pezzo": "Grand Tour de Paris, variante par Bonnelles",
+"km_pezzo": 20
+},
+"km_percorso": 108,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Francia"
+},
+{
+"percorso": "grand tour de paris",
+"km_salto": 12.0,
+"da": {
+"ll": [
+48.7762,
+2.1007
+],
+"pezzo": "Grand Tour de Paris, liaison Pont d’Austerlitz",
+"km_pezzo": 64
+},
+"a": {
+"ll": [
+48.6701,
+2.0678
+],
+"pezzo": "Grand Tour de Paris, variante par Bonnelles",
+"km_pezzo": 20
+},
+"km_percorso": 108,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Francia"
+},
+{
+"percorso": "canada real segoviana",
+"km_salto": 1.7,
+"da": {
+"ll": [
+38.8222,
+-4.267
+],
+"pezzo": "Cañada Real Segoviana",
+"km_pezzo": 52
+},
+"a": {
+"ll": [
+38.8146,
+-4.2841
+],
+"pezzo": "Cañada Real Segoviana",
+"km_pezzo": 49
+},
+"km_percorso": 101,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Spagna"
+},
+{
+"percorso": "sendeiro das greas",
+"km_salto": 8.0,
+"da": {
+"ll": [
+42.2531,
+-8.5564
+],
+"pezzo": "Sendeiro das Greas",
+"km_pezzo": 58
+},
+"a": {
+"ll": [
+42.3026,
+-8.4865
+],
+"pezzo": "Sendeiro das Greas",
+"km_pezzo": 36
+},
+"km_percorso": 94,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Spagna"
+},
+{
+"percorso": "e2 ouest france",
+"km_salto": 2.7,
+"da": {
+"ll": [
+50.9853,
+1.9631
+],
+"pezzo": "E2 Ouest France: Section Route du Littoral",
+"km_pezzo": 9
+},
+"a": {
+"ll": [
+50.9945,
+1.9995
+],
+"pezzo": "E2 Ouest France: Section Route du Littoral",
+"km_pezzo": 84
+},
+"km_percorso": 94,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Francia"
+},
+{
 "percorso": "via augusta",
 "km_salto": 167.8,
 "da": {
@@ -310,6 +2254,174 @@
 },
 "km_percorso": 89,
 "gruppo": "santiago",
+"coperto": false,
+"paese": "Spagna"
+},
+{
+"percorso": "gr 57 sentier de l'ourthe orientale",
+"km_salto": 0.6,
+"da": {
+"ll": [
+50.1528,
+6.021
+],
+"pezzo": "GR 57 Sentier de l'Ourthe orientale",
+"km_pezzo": 65
+},
+"a": {
+"ll": [
+50.1477,
+6.0253
+],
+"pezzo": "GR 57 Sentier de l'Ourthe orientale",
+"km_pezzo": 9
+},
+"km_percorso": 75,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Belgio"
+},
+{
+"percorso": "rundwanderweg erbach",
+"km_salto": 0.9,
+"da": {
+"ll": [
+49.6201,
+9.0224
+],
+"pezzo": "Rundwanderweg Erbach 8",
+"km_pezzo": 15
+},
+"a": {
+"ll": [
+49.6148,
+9.0126
+],
+"pezzo": "Rundwanderweg Erbach 9",
+"km_pezzo": 7
+},
+"km_percorso": 73,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Germania"
+},
+{
+"percorso": "sendero europeo arco atlantico",
+"km_salto": 5.2,
+"da": {
+"ll": [
+36.0937,
+-5.8037
+],
+"pezzo": "Sendero Europeo Arco Atlantico - Etapa 1",
+"km_pezzo": 26
+},
+"a": {
+"ll": [
+36.1295,
+-5.8413
+],
+"pezzo": "Sendero Europeo Arco Atlantico - Etapa 1",
+"km_pezzo": 11
+},
+"km_percorso": 69,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Spagna"
+},
+{
+"percorso": "sendero europeo arco atlantico",
+"km_salto": 4.5,
+"da": {
+"ll": [
+36.1894,
+-6.0252
+],
+"pezzo": "Sendero Europeo Arco Atlantico - Etapa 3",
+"km_pezzo": 9
+},
+"a": {
+"ll": [
+36.2178,
+-6.0604
+],
+"pezzo": "Sendero Europeo Arco Atlantico - Etapa 4",
+"km_pezzo": 7
+},
+"km_percorso": 69,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Spagna"
+},
+{
+"percorso": "sendero europeo arco atlantico",
+"km_salto": 3.7,
+"da": {
+"ll": [
+36.2709,
+-6.0878
+],
+"pezzo": "Sendero Europeo Arco Atlantico - Etapa 4",
+"km_pezzo": 7
+},
+"a": {
+"ll": [
+36.2954,
+-6.1165
+],
+"pezzo": "Sendero Europeo Arco Atlantico - Etapa 5",
+"km_pezzo": 17
+},
+"km_percorso": 69,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Spagna"
+},
+{
+"percorso": "sendero europeo arco atlantico",
+"km_salto": 2.2,
+"da": {
+"ll": [
+36.1908,
+-5.9123
+],
+"pezzo": "Sendero Europeo Arco Atlantico - Etapa 2",
+"km_pezzo": 11
+},
+"a": {
+"ll": [
+36.1861,
+-5.9367
+],
+"pezzo": "Sendero Europeo Arco Atlantico - Etapa 3",
+"km_pezzo": 9
+},
+"km_percorso": 69,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Spagna"
+},
+{
+"percorso": "sendero iberico soriano",
+"km_salto": 43.6,
+"da": {
+"ll": [
+41.375,
+-3.0814
+],
+"pezzo": "Sendero Ibérico Soriano",
+"km_pezzo": 5
+},
+"a": {
+"ll": [
+41.5738,
+-2.6305
+],
+"pezzo": "Sendero Ibérico Soriano (Ramal de Almazán: Almazán-Tardelcuende)",
+"km_pezzo": 59
+},
+"km_percorso": 64,
+"gruppo": "gr",
 "coperto": false,
 "paese": "Spagna"
 },
@@ -338,6 +2450,30 @@
 "paese": "Regno Unito"
 },
 {
+"percorso": "bad emstal",
+"km_salto": 1.1,
+"da": {
+"ll": [
+51.2469,
+9.2714
+],
+"pezzo": "Bad Emstal, E1 - Burgenweg",
+"km_pezzo": 33
+},
+"a": {
+"ll": [
+51.2545,
+9.2608
+],
+"pezzo": "Bad Emstal, E10 - Erzebergweg",
+"km_pezzo": 17
+},
+"km_percorso": 50,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Germania"
+},
+{
 "percorso": "alta via delle dolomiti n.",
 "km_salto": 44.0,
 "da": {
@@ -360,6 +2496,613 @@
 "gruppo": "trekking",
 "coperto": false,
 "paese": "Italia"
+},
+{
+"percorso": "rundweg eltmann e",
+"km_salto": 0.6,
+"da": {
+"ll": [
+49.9456,
+10.6718
+],
+"pezzo": "Rundweg Eltmann E 3",
+"km_pezzo": 36
+},
+"a": {
+"ll": [
+49.9411,
+10.6765
+],
+"pezzo": "Rundweg Eltmann E 5",
+"km_pezzo": 9
+},
+"km_percorso": 45,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Germania"
+},
+{
+"percorso": "ruta de la trahumancia en la sierra del segura",
+"km_salto": 1.0,
+"da": {
+"ll": [
+38.1455,
+-2.6835
+],
+"pezzo": "Ruta de la trahumancia en la Sierra del Segura",
+"km_pezzo": 38
+},
+"a": {
+"ll": [
+38.1545,
+-2.6812
+],
+"pezzo": "Ruta de la trahumancia en la Sierra del Segura",
+"km_pezzo": 5
+},
+"km_percorso": 44,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Spagna"
+},
+{
+"percorso": "european long distance path e12",
+"km_salto": 32.4,
+"da": {
+"ll": [
+40.1285,
+15.1818
+],
+"pezzo": "European long distance path E12 - part Italia",
+"km_pezzo": 5
+},
+"a": {
+"ll": [
+40.3863,
+15.003
+],
+"pezzo": "European long distance path E12 - part Italia",
+"km_pezzo": 10
+},
+"km_percorso": 43,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Italia"
+},
+{
+"percorso": "european long distance path e12",
+"km_salto": 21.0,
+"da": {
+"ll": [
+40.0275,
+15.4419
+],
+"pezzo": "European long distance path E12 - part Italia",
+"km_pezzo": 9
+},
+"a": {
+"ll": [
+40.1104,
+15.2199
+],
+"pezzo": "European long distance path E12 - part Italia",
+"km_pezzo": 5
+},
+"km_percorso": 43,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Italia"
+},
+{
+"percorso": "european long distance path e12",
+"km_salto": 11.8,
+"da": {
+"ll": [
+40.0519,
+15.4907
+],
+"pezzo": "European long distance path E12 - part Italia",
+"km_pezzo": 9
+},
+"a": {
+"ll": [
+40.06,
+15.6287
+],
+"pezzo": "European long distance path E12 - part Italia",
+"km_pezzo": 19
+},
+"km_percorso": 43,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Italia"
+},
+{
+"percorso": "sendero europeo arco mediteraneo",
+"km_salto": 12.3,
+"da": {
+"ll": [
+36.104,
+-5.4404
+],
+"pezzo": "Sendero Europeo Arco Mediteraneo - Etapa 1",
+"km_pezzo": 20
+},
+"a": {
+"ll": [
+36.1762,
+-5.3362
+],
+"pezzo": "Sendero Europeo Arco Mediteraneo - Etapa 5",
+"km_pezzo": 7
+},
+"km_percorso": 35,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Spagna"
+},
+{
+"percorso": "sendero europeo arco mediteraneo",
+"km_salto": 3.7,
+"da": {
+"ll": [
+36.0967,
+-5.451
+],
+"pezzo": "Sendero Europeo Arco Mediteraneo - Etapa 1",
+"km_pezzo": 20
+},
+"a": {
+"ll": [
+36.1204,
+-5.48
+],
+"pezzo": "Sendero Europeo Arco Mediteraneo - Etapa 2",
+"km_pezzo": 9
+},
+"km_percorso": 35,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Spagna"
+},
+{
+"percorso": "campillos",
+"km_salto": 0.9,
+"da": {
+"ll": [
+37.0451,
+-4.8606
+],
+"pezzo": "Campillos - Embalses del Guadalhorce",
+"km_pezzo": 24
+},
+"a": {
+"ll": [
+37.0433,
+-4.8706
+],
+"pezzo": "Campillos - Teba",
+"km_pezzo": 11
+},
+"km_percorso": 35,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Spagna"
+},
+{
+"percorso": "fernwanderweg erzgebirge-vogtland",
+"km_salto": 5.7,
+"da": {
+"ll": [
+50.5772,
+12.3086
+],
+"pezzo": "Fernwanderweg Erzgebirge-Vogtland",
+"km_pezzo": 20
+},
+"a": {
+"ll": [
+50.6197,
+12.2639
+],
+"pezzo": "Fernwanderweg Erzgebirge-Vogtland",
+"km_pezzo": 5
+},
+"km_percorso": 32,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Germania"
+},
+{
+"percorso": "fernwanderweg erzgebirge-vogtland",
+"km_salto": 3.2,
+"da": {
+"ll": [
+50.6201,
+12.238
+],
+"pezzo": "Fernwanderweg Erzgebirge-Vogtland",
+"km_pezzo": 5
+},
+"a": {
+"ll": [
+50.6015,
+12.2034
+],
+"pezzo": "Fernwanderweg Erzgebirge-Vogtland",
+"km_pezzo": 8
+},
+"km_percorso": 32,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Germania"
+},
+{
+"percorso": "tredrez",
+"km_salto": 4.1,
+"da": {
+"ll": [
+48.6653,
+-3.6052
+],
+"pezzo": "Trédrez - Le Vieux-Marché",
+"km_pezzo": 13
+},
+"a": {
+"ll": [
+48.6526,
+-3.5525
+],
+"pezzo": "Trédrez - Le Vieux-Marché",
+"km_pezzo": 16
+},
+"km_percorso": 30,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Francia"
+},
+{
+"percorso": "pizarra",
+"km_salto": 1.5,
+"da": {
+"ll": [
+36.7496,
+-4.7016
+],
+"pezzo": "Pizarra - Estación de Cártama",
+"km_pezzo": 13
+},
+"a": {
+"ll": [
+36.7632,
+-4.6979
+],
+"pezzo": "Pizarra - Álora",
+"km_pezzo": 16
+},
+"km_percorso": 30,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Spagna"
+},
+{
+"percorso": "ortswanderweg esselbach",
+"km_salto": 1.3,
+"da": {
+"ll": [
+49.8678,
+9.5432
+],
+"pezzo": "Ortswanderweg Esselbach 2",
+"km_pezzo": 10
+},
+"a": {
+"ll": [
+49.8568,
+9.5465
+],
+"pezzo": "Ortswanderweg Esselbach 4",
+"km_pezzo": 19
+},
+"km_percorso": 29,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Germania"
+},
+{
+"percorso": "rota dos vinhos da europa",
+"km_salto": 0.6,
+"da": {
+"ll": [
+41.143,
+-7.3257
+],
+"pezzo": "Rota dos Vinhos da Europa",
+"km_pezzo": 5
+},
+"a": {
+"ll": [
+41.1425,
+-7.3333
+],
+"pezzo": "Rota dos Vinhos da Europa",
+"km_pezzo": 10
+},
+"km_percorso": 28,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Portogallo"
+},
+{
+"percorso": "estepona",
+"km_salto": 0.7,
+"da": {
+"ll": [
+36.4522,
+-5.0571
+],
+"pezzo": "Estepona - Marbella",
+"km_pezzo": 17
+},
+"a": {
+"ll": [
+36.4504,
+-5.0642
+],
+"pezzo": "Estepona - Marbella",
+"km_pezzo": 8
+},
+"km_percorso": 25,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Altri paesi"
+},
+{
+"percorso": "alora",
+"km_salto": 1.3,
+"da": {
+"ll": [
+36.8179,
+-4.7015
+],
+"pezzo": "Álora - Pizarra",
+"km_pezzo": 8
+},
+"a": {
+"ll": [
+36.8289,
+-4.7046
+],
+"pezzo": "Álora - Valle de Abdalajís",
+"km_pezzo": 15
+},
+"km_percorso": 22,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Spagna"
+},
+{
+"percorso": "ermsdorf",
+"km_salto": 2.3,
+"da": {
+"ll": [
+49.8343,
+6.1723
+],
+"pezzo": "Ermsdorf 8",
+"km_pezzo": 6
+},
+"a": {
+"ll": [
+49.8421,
+6.2022
+],
+"pezzo": "Ermsdorf 9",
+"km_pezzo": 6
+},
+"km_percorso": 20,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Lussemburgo"
+},
+{
+"percorso": "velez-malaga",
+"km_salto": 0.9,
+"da": {
+"ll": [
+36.7452,
+-4.0497
+],
+"pezzo": "Vélez-Málaga - Torrox",
+"km_pezzo": 8
+},
+"a": {
+"ll": [
+36.7442,
+-4.0396
+],
+"pezzo": "Vélez-Málaga - Torrox",
+"km_pezzo": 8
+},
+"km_percorso": 16,
+"gruppo": "gr",
+"coperto": false,
+"paese": "Spagna"
+},
+{
+"percorso": "european long distance path e1",
+"km_salto": 81.9,
+"da": {
+"ll": [
+49.5175,
+8.7342
+],
+"pezzo": "European Long distance path E1 - part Germany, Baden-Wuerttemberg (region Forest of Odes south)",
+"km_pezzo": 808
+},
+"a": {
+"ll": [
+50.2109,
+8.3478
+],
+"pezzo": "European Long distance path E1 - part Germany, Hessen (region Taunus centre)",
+"km_pezzo": 848
+},
+"km_percorso": 3495,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 145.6,
+"paese": "Germania"
+},
+{
+"percorso": "european long distance path e1",
+"km_salto": 16.2,
+"da": {
+"ll": [
+40.2822,
+15.4961
+],
+"pezzo": "European Long distance path E1 - part Italy - Campania",
+"km_pezzo": 5
+},
+"a": {
+"ll": [
+40.1953,
+15.6487
+],
+"pezzo": "European Long distance path E1 - part Italy - Campania",
+"km_pezzo": 8
+},
+"km_percorso": 3495,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 26.5,
+"paese": "Italia"
+},
+{
+"percorso": "european long distance path e1",
+"km_salto": 11.5,
+"da": {
+"ll": [
+40.3922,
+15.4349
+],
+"pezzo": "European Long distance path E1 - part Italy - Campania",
+"km_pezzo": 330
+},
+"a": {
+"ll": [
+40.2917,
+15.4672
+],
+"pezzo": "European Long distance path E1 - part Italy - Campania",
+"km_pezzo": 5
+},
+"km_percorso": 3495,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 26.0,
+"paese": "Italia"
+},
+{
+"percorso": "european long distance path e1",
+"km_salto": 2.7,
+"da": {
+"ll": [
+44.439,
+9.4481
+],
+"pezzo": "European Long distance path E1 - part Italy - Liguria",
+"km_pezzo": 367
+},
+"a": {
+"ll": [
+44.4153,
+9.4434
+],
+"pezzo": "European Long distance path E1 - part Italy - Liguria",
+"km_pezzo": 33
+},
+"km_percorso": 3495,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 3.1,
+"paese": "Italia"
+},
+{
+"percorso": "european long distance path e1",
+"km_salto": 2.6,
+"da": {
+"ll": [
+54.3276,
+10.1829
+],
+"pezzo": "European Long distance path E1 - part Germany, Schleswig-Holstein",
+"km_pezzo": 338
+},
+"a": {
+"ll": [
+54.3447,
+10.1544
+],
+"pezzo": "European Long distance path E1 - part Germany, Schleswig-Holstein",
+"km_pezzo": 16
+},
+"km_percorso": 3495,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 3.6,
+"paese": "Germania"
+},
+{
+"percorso": "european long distance path e1",
+"km_salto": 1.0,
+"da": {
+"ll": [
+45.905,
+8.9018
+],
+"pezzo": "European Long distance path E1 - part Switzerland",
+"km_pezzo": 808
+},
+"a": {
+"ll": [
+45.9115,
+8.8923
+],
+"pezzo": "European Long distance path E1 - part Italy - Lombardy",
+"km_pezzo": 367
+},
+"km_percorso": 3495,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 1.7,
+"paese": "Svizzera"
+},
+{
+"percorso": "european long distance path e1",
+"km_salto": 0.8,
+"da": {
+"ll": [
+53.5545,
+9.8162
+],
+"pezzo": "European Long distance path E1 - part Germany, Hamburg",
+"km_pezzo": 338
+},
+"a": {
+"ll": [
+53.5559,
+9.8047
+],
+"pezzo": "European Long distance path E1 - part Germany, Hamburg",
+"km_pezzo": 848
+},
+"km_percorso": 3495,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 1.0,
+"paese": "Altri paesi"
 },
 {
 "percorso": "via francigena",
@@ -387,6 +3130,331 @@
 "paese": "Italia"
 },
 {
+"percorso": "europaischer fernwanderweg e6",
+"km_salto": 75.0,
+"da": {
+"ll": [
+49.3788,
+12.702
+],
+"pezzo": "Europäischer Fernwanderweg E6, Deutschland, Bayerischer Wald",
+"km_pezzo": 9
+},
+"a": {
+"ll": [
+50.0036,
+12.3086
+],
+"pezzo": "Europäischer Fernwanderweg E6, Deutschland, Fichtelgebirge",
+"km_pezzo": 324
+},
+"km_percorso": 1496,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 129.8,
+"paese": "Germania"
+},
+{
+"percorso": "europaischer fernwanderweg e6",
+"km_salto": 14.0,
+"da": {
+"ll": [
+49.0367,
+13.3665
+],
+"pezzo": "Europäischer Fernwanderweg E6, Deutschland, Bayerischer Wald",
+"km_pezzo": 8
+},
+"a": {
+"ll": [
+48.9386,
+13.4866
+],
+"pezzo": "Europäischer Fernwanderweg E6, Deutschland, Bayerischer Wald",
+"km_pezzo": 28
+},
+"km_percorso": 1496,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 25.3,
+"paese": "Germania"
+},
+{
+"percorso": "europaischer fernwanderweg e6",
+"km_salto": 11.3,
+"da": {
+"ll": [
+50.4967,
+10.0384
+],
+"pezzo": "Europäischer Fernwanderweg E6, Deutschland, Bayrische Rhön",
+"km_pezzo": 324
+},
+"a": {
+"ll": [
+50.5459,
+9.899
+],
+"pezzo": "Europäischer Fernwanderweg E6, Deutschland, Hessische Rhön",
+"km_pezzo": 899
+},
+"km_percorso": 1496,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 22.5,
+"paese": "Germania"
+},
+{
+"percorso": "europaischer fernwanderweg e6",
+"km_salto": 2.8,
+"da": {
+"ll": [
+54.3261,
+10.1838
+],
+"pezzo": "Europäischer Fernwanderweg E6, Deutschland, Schleswig-Holstein",
+"km_pezzo": 899
+},
+"a": {
+"ll": [
+54.3447,
+10.1544
+],
+"pezzo": "Europäischer Fernwanderweg E6, Deutschland, Schleswig-Holstein",
+"km_pezzo": 16
+},
+"km_percorso": 1496,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 3.9,
+"paese": "Germania"
+},
+{
+"percorso": "europaischer fernwanderweg e6",
+"km_salto": 2.8,
+"da": {
+"ll": [
+49.1167,
+13.1876
+],
+"pezzo": "Europäischer Fernwanderweg E6, Deutschland, Bayerischer Wald",
+"km_pezzo": 57
+},
+"a": {
+"ll": [
+49.1045,
+13.2214
+],
+"pezzo": "Europäischer Fernwanderweg E6, Deutschland, Bayerischer Wald",
+"km_pezzo": 10
+},
+"km_percorso": 1496,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 6.0,
+"paese": "Altri paesi"
+},
+{
+"percorso": "europaischer fernwanderweg e6",
+"km_salto": 1.9,
+"da": {
+"ll": [
+49.0884,
+13.3127
+],
+"pezzo": "Europäischer Fernwanderweg E6, Deutschland, Bayerischer Wald",
+"km_pezzo": 10
+},
+"a": {
+"ll": [
+49.0744,
+13.3279
+],
+"pezzo": "Europäischer Fernwanderweg E6, Deutschland, Bayerischer Wald",
+"km_pezzo": 8
+},
+"km_percorso": 1496,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 3.5,
+"paese": "Altri paesi"
+},
+{
+"percorso": "europaischer fernwanderweg e6",
+"km_salto": 1.6,
+"da": {
+"ll": [
+49.3339,
+12.7746
+],
+"pezzo": "Europäischer Fernwanderweg E6, Deutschland, Bayerischer Wald",
+"km_pezzo": 9
+},
+"a": {
+"ll": [
+49.328,
+12.7943
+],
+"pezzo": "Europäischer Fernwanderweg E6, Deutschland, Bayerischer Wald",
+"km_pezzo": 57
+},
+"km_percorso": 1496,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 4.9,
+"paese": "Germania"
+},
+{
+"percorso": "european long distance path limes",
+"km_salto": 164.9,
+"da": {
+"ll": [
+50.5088,
+7.328
+],
+"pezzo": "European long distance path Limes",
+"km_pezzo": 753
+},
+"a": {
+"ll": [
+51.7903,
+6.1375
+],
+"pezzo": "European long distance path Limes",
+"km_pezzo": 303
+},
+"km_percorso": 1194,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 282.6,
+"paese": "Germania"
+},
+{
+"percorso": "sendero historico",
+"km_salto": 81.4,
+"da": {
+"ll": [
+42.9265,
+-3.2545
+],
+"pezzo": "Sendero Histórico: Burgos",
+"km_pezzo": 740
+},
+"a": {
+"ll": [
+42.6339,
+-2.3399
+],
+"pezzo": "Sendero Histórico: Navarra",
+"km_pezzo": 441
+},
+"km_percorso": 1180,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 144.8,
+"paese": "Spagna"
+},
+{
+"percorso": "european long distance path e7",
+"km_salto": 186.4,
+"da": {
+"ll": [
+40.1968,
+-5.8066
+],
+"pezzo": "European long distance path E7 - part Spain (Mainland)",
+"km_pezzo": 20
+},
+"a": {
+"ll": [
+40.8081,
+-3.7535
+],
+"pezzo": "European long distance path E7 - part Spain (Mainland)",
+"km_pezzo": 47
+},
+"km_percorso": 1153,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 453.5,
+"paese": "Spagna"
+},
+{
+"percorso": "europaischer fernwanderweg e3",
+"km_salto": 10.9,
+"da": {
+"ll": [
+50.5037,
+10.0438
+],
+"pezzo": "Europäischer Fernwanderweg E3, Bayrische Rhön",
+"km_pezzo": 717
+},
+"a": {
+"ll": [
+50.5332,
+9.8967
+],
+"pezzo": "Europäischer Fernwanderweg E3, Hessische Rhön (Fulda - Milseburg)",
+"km_pezzo": 303
+},
+"km_percorso": 1020,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 25.0,
+"paese": "Germania"
+},
+{
+"percorso": "camino del cid",
+"km_salto": 1.8,
+"da": {
+"ll": [
+41.2783,
+-2.9749
+],
+"pezzo": "Camino del Cid (Senderista)",
+"km_pezzo": 588
+},
+"a": {
+"ll": [
+41.2942,
+-2.9765
+],
+"pezzo": "Camino del Cid (Senderista)",
+"km_pezzo": 262
+},
+"km_percorso": 1017,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 2.0,
+"paese": "Spagna"
+},
+{
+"percorso": "camino del cid",
+"km_salto": 1.5,
+"da": {
+"ll": [
+40.0296,
+-0.5933
+],
+"pezzo": "Camino del Cid (La Conquista de Valencia)",
+"km_pezzo": 20
+},
+"a": {
+"ll": [
+40.0354,
+-0.5775
+],
+"pezzo": "Camino del Cid (La Conquista de Valencia)",
+"km_pezzo": 45
+},
+"km_percorso": 1017,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 1.9,
+"paese": "Spagna"
+},
+{
 "percorso": "cammino di assisi",
 "km_salto": 74.1,
 "da": {
@@ -408,7 +3476,7 @@
 "km_percorso": 897,
 "gruppo": "italia",
 "coperto": true,
-"km_coperto": 174.9,
+"km_coperto": 173.9,
 "paese": "Italia"
 },
 {
@@ -433,7 +3501,7 @@
 "km_percorso": 854,
 "gruppo": "trekking",
 "coperto": true,
-"km_coperto": 415.7,
+"km_coperto": 410.9,
 "paese": "Italia"
 },
 {
@@ -583,7 +3651,532 @@
 "km_percorso": 815,
 "gruppo": "trekking",
 "coperto": true,
-"km_coperto": 20.5,
+"km_coperto": 20.4,
+"paese": "Spagna"
+},
+{
+"percorso": "europaischer fernwanderweg e4",
+"km_salto": 58.0,
+"da": {
+"ll": [
+47.7249,
+12.9076
+],
+"pezzo": "Europäischer Fernwanderweg E4 (von Salzburg nach Gresten)",
+"km_pezzo": 544
+},
+"a": {
+"ll": [
+47.739,
+12.1326
+],
+"pezzo": "Europäischer Fernwanderweg E4 - Teil Deutschland (Region Wendelstein)",
+"km_pezzo": 69
+},
+"km_percorso": 808,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 95.0,
+"paese": "Austria"
+},
+{
+"percorso": "europaischer fernwanderweg e4",
+"km_salto": 2.5,
+"da": {
+"ll": [
+48.1692,
+16.9735
+],
+"pezzo": "Europäischer Fernwanderweg E4 (Wien - Rattersdorf)",
+"km_pezzo": 544
+},
+"a": {
+"ll": [
+48.156,
+17.001
+],
+"pezzo": "Europäischer Fernwanderweg E4 (Wien - Rattersdorf)",
+"km_pezzo": 33
+},
+"km_percorso": 808,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 2.7,
+"paese": "Austria"
+},
+{
+"percorso": "european long distance path e3",
+"km_salto": 1.2,
+"da": {
+"ll": [
+49.5758,
+6.3524
+],
+"pezzo": "European long distance path E3 - part Luxembourg",
+"km_pezzo": 399
+},
+"a": {
+"ll": [
+49.5659,
+6.3574
+],
+"pezzo": "European long distance path E3 - part Luxembourg",
+"km_pezzo": 5
+},
+"km_percorso": 673,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 1.5,
+"paese": "Lussemburgo"
+},
+{
+"percorso": "european long distance path e3",
+"km_salto": 0.9,
+"da": {
+"ll": [
+49.535,
+6.3499
+],
+"pezzo": "European long distance path E3 - part Luxembourg",
+"km_pezzo": 248
+},
+"a": {
+"ll": [
+49.5418,
+6.3568
+],
+"pezzo": "European long distance path E3 - part Luxembourg",
+"km_pezzo": 5
+},
+"km_percorso": 673,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 1.2,
+"paese": "Germania"
+},
+{
+"percorso": "nederlands kustpad deel",
+"km_salto": 17.9,
+"da": {
+"ll": [
+51.3816,
+3.3978
+],
+"pezzo": "Nederlands Kustpad deel 1 - 01",
+"km_pezzo": 14
+},
+"a": {
+"ll": [
+51.5392,
+3.4497
+],
+"pezzo": "Nederlands Kustpad deel 1 - 03",
+"km_pezzo": 7
+},
+"km_percorso": 650,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 44.1,
+"paese": "Paesi Bassi"
+},
+{
+"percorso": "nederlands kustpad deel",
+"km_salto": 13.8,
+"da": {
+"ll": [
+51.5893,
+3.6453
+],
+"pezzo": "Nederlands Kustpad deel 1 - 04a",
+"km_pezzo": 15
+},
+"a": {
+"ll": [
+51.7006,
+3.7338
+],
+"pezzo": "Nederlands Kustpad deel 1 - 06",
+"km_pezzo": 16
+},
+"km_percorso": 650,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 22.5,
+"paese": "Paesi Bassi"
+},
+{
+"percorso": "nederlands kustpad deel",
+"km_salto": 9.1,
+"da": {
+"ll": [
+52.752,
+4.6563
+],
+"pezzo": "Nederlands Kustpad deel 2 - 10",
+"km_pezzo": 69
+},
+"a": {
+"ll": [
+52.8318,
+4.6887
+],
+"pezzo": "Nederlands Kustpad deel 2 - 10",
+"km_pezzo": 78
+},
+"km_percorso": 650,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 10.6,
+"paese": "Paesi Bassi"
+},
+{
+"percorso": "nederlands kustpad deel",
+"km_salto": 8.1,
+"da": {
+"ll": [
+51.7409,
+3.8259
+],
+"pezzo": "Nederlands Kustpad deel 1 - 06",
+"km_pezzo": 16
+},
+"a": {
+"ll": [
+51.7962,
+3.9015
+],
+"pezzo": "Nederlands Kustpad deel 1 - 07",
+"km_pezzo": 13
+},
+"km_percorso": 650,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 12.4,
+"paese": "Paesi Bassi"
+},
+{
+"percorso": "nederlands kustpad deel",
+"km_salto": 8.1,
+"da": {
+"ll": [
+51.8177,
+3.9828
+],
+"pezzo": "Nederlands Kustpad deel 1 - 07",
+"km_pezzo": 13
+},
+"a": {
+"ll": [
+51.8784,
+4.0478
+],
+"pezzo": "Nederlands Kustpad deel 1 - 09",
+"km_pezzo": 61
+},
+"km_percorso": 650,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 14.5,
+"paese": "Paesi Bassi"
+},
+{
+"percorso": "nederlands kustpad deel",
+"km_salto": 7.5,
+"da": {
+"ll": [
+51.57,
+3.5196
+],
+"pezzo": "Nederlands Kustpad deel 1 - 03",
+"km_pezzo": 7
+},
+"a": {
+"ll": [
+51.5837,
+3.6251
+],
+"pezzo": "Nederlands Kustpad deel 1 - 04a",
+"km_pezzo": 15
+},
+"km_percorso": 650,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 11.5,
+"paese": "Paesi Bassi"
+},
+{
+"percorso": "nederlands kustpad deel",
+"km_salto": 6.0,
+"da": {
+"ll": [
+53.1489,
+5.4117
+],
+"pezzo": "Nederlands Kustpad deel 3, sectie 03",
+"km_pezzo": 48
+},
+"a": {
+"ll": [
+53.1945,
+5.4606
+],
+"pezzo": "Nederlands Kustpad deel 3, sectie 04",
+"km_pezzo": 74
+},
+"km_percorso": 650,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 13.8,
+"paese": "Paesi Bassi"
+},
+{
+"percorso": "nederlands kustpad deel",
+"km_salto": 4.3,
+"da": {
+"ll": [
+52.0021,
+4.1358
+],
+"pezzo": "Nederlands Kustpad deel 2 - 01",
+"km_pezzo": 61
+},
+"a": {
+"ll": [
+52.0324,
+4.1751
+],
+"pezzo": "Nederlands Kustpad deel 2 - 01",
+"km_pezzo": 10
+},
+"km_percorso": 650,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 5.7,
+"paese": "Paesi Bassi"
+},
+{
+"percorso": "nederlands kustpad deel",
+"km_salto": 3.8,
+"da": {
+"ll": [
+53.2654,
+7.071
+],
+"pezzo": "Nederlands Kustpad deel 3, sectie 14",
+"km_pezzo": 21
+},
+"a": {
+"ll": [
+53.2996,
+7.0693
+],
+"pezzo": "Nederlands Kustpad deel 3, sectie 14",
+"km_pezzo": 137
+},
+"km_percorso": 650,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 5.3,
+"paese": "Paesi Bassi"
+},
+{
+"percorso": "nederlands kustpad deel",
+"km_salto": 2.3,
+"da": {
+"ll": [
+53.4083,
+6.1559
+],
+"pezzo": "Nederlands Kustpad deel 3, sectie 08",
+"km_pezzo": 74
+},
+"a": {
+"ll": [
+53.4114,
+6.1895
+],
+"pezzo": "Nederlands Kustpad deel 3, sectie 08",
+"km_pezzo": 137
+},
+"km_percorso": 650,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 2.5,
+"paese": "Paesi Bassi"
+},
+{
+"percorso": "nederlands kustpad deel",
+"km_salto": 1.5,
+"da": {
+"ll": [
+52.29,
+4.4661
+],
+"pezzo": "Nederlands Kustpad deel 2 - 04",
+"km_pezzo": 44
+},
+"a": {
+"ll": [
+52.3014,
+4.4781
+],
+"pezzo": "Nederlands Kustpad deel 2 - 04",
+"km_pezzo": 38
+},
+"km_percorso": 650,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 1.8,
+"paese": "Paesi Bassi"
+},
+{
+"percorso": "nederlands kustpad deel",
+"km_salto": 1.4,
+"da": {
+"ll": [
+52.0656,
+4.2189
+],
+"pezzo": "Nederlands Kustpad deel 2 - 02",
+"km_pezzo": 10
+},
+"a": {
+"ll": [
+52.0732,
+4.2359
+],
+"pezzo": "Nederlands Kustpad deel 2 - 02",
+"km_pezzo": 6
+},
+"km_percorso": 650,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 2.1,
+"paese": "Paesi Bassi"
+},
+{
+"percorso": "nederlands kustpad deel",
+"km_salto": 1.1,
+"da": {
+"ll": [
+53.1023,
+5.3819
+],
+"pezzo": "Nederlands Kustpad deel 3, sectie 00",
+"km_pezzo": 78
+},
+"a": {
+"ll": [
+53.1112,
+5.3886
+],
+"pezzo": "Nederlands Kustpad deel 3, sectie 00",
+"km_pezzo": 48
+},
+"km_percorso": 650,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 1.4,
+"paese": "Altri paesi"
+},
+{
+"percorso": "nederlands kustpad deel",
+"km_salto": 1.0,
+"da": {
+"ll": [
+52.1046,
+4.2675
+],
+"pezzo": "Nederlands Kustpad deel 2 - 02",
+"km_pezzo": 6
+},
+"a": {
+"ll": [
+52.1115,
+4.2776
+],
+"pezzo": "Nederlands Kustpad deel 2 - 02",
+"km_pezzo": 44
+},
+"km_percorso": 650,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 1.0,
+"paese": "Altri paesi"
+},
+{
+"percorso": "nederlands kustpad deel",
+"km_salto": 0.8,
+"da": {
+"ll": [
+52.4275,
+4.5575
+],
+"pezzo": "Nederlands Kustpad deel 2 - 06",
+"km_pezzo": 38
+},
+"a": {
+"ll": [
+52.4334,
+4.5642
+],
+"pezzo": "Nederlands Kustpad deel 2 - 06",
+"km_pezzo": 69
+},
+"km_percorso": 650,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 1.1,
+"paese": "Altri paesi"
+},
+{
+"percorso": "europaischer fernwanderweg e9",
+"km_salto": 2.7,
+"da": {
+"ll": [
+53.5544,
+9.8198
+],
+"pezzo": "Europäischer Fernwanderweg E9, Deutschland, Hamburg",
+"km_pezzo": 207
+},
+"a": {
+"ll": [
+53.5641,
+9.7821
+],
+"pezzo": "Europäischer Fernwanderweg E9, Deutschland, Hamburg",
+"km_pezzo": 77
+},
+"km_percorso": 627,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 3.3,
+"paese": "Altri paesi"
+},
+{
+"percorso": "cami de sant jaume",
+"km_salto": 88.8,
+"da": {
+"ll": [
+41.0457,
+0.4503
+],
+"pezzo": "Camí de Sant Jaume",
+"km_pezzo": 233
+},
+"a": {
+"ll": [
+41.6479,
+1.1488
+],
+"pezzo": "Camí de Sant Jaume (l'Hospitalet - Tàrrega)",
+"km_pezzo": 391
+},
+"km_percorso": 624,
+"gruppo": "santiago",
+"coperto": true,
+"km_coperto": 168.7,
 "paese": "Spagna"
 },
 {
@@ -612,6 +4205,256 @@
 "paese": "Austria"
 },
 {
+"percorso": "grenslandpad",
+"km_salto": 0.9,
+"da": {
+"ll": [
+51.4593,
+4.297
+],
+"pezzo": "Grenslandpad - 07",
+"km_pezzo": 22
+},
+"a": {
+"ll": [
+51.4677,
+4.2964
+],
+"pezzo": "Grenslandpad - 07",
+"km_pezzo": 275
+},
+"km_percorso": 499,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 2.2,
+"paese": "Paesi Bassi"
+},
+{
+"percorso": "fernwanderweg zittau",
+"km_salto": 2.3,
+"da": {
+"ll": [
+50.6341,
+13.3716
+],
+"pezzo": "Fernwanderweg Zittau – Wernigerode (Sachsen West)",
+"km_pezzo": 167
+},
+"a": {
+"ll": [
+50.6192,
+13.3495
+],
+"pezzo": "Fernwanderweg Zittau – Wernigerode (Sachsen West)",
+"km_pezzo": 28
+},
+"km_percorso": 472,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 3.3,
+"paese": "Germania"
+},
+{
+"percorso": "sentier de grande randonnee",
+"km_salto": 2.8,
+"da": {
+"ll": [
+43.3275,
+5.77
+],
+"pezzo": "Sentier de Grande Randonnée 98",
+"km_pezzo": 36
+},
+"a": {
+"ll": [
+43.3521,
+5.7756
+],
+"pezzo": "Sentier de grande randonnée 9A",
+"km_pezzo": 13
+},
+"km_percorso": 441,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 6.5,
+"paese": "Francia"
+},
+{
+"percorso": "european walking route e2 west",
+"km_salto": 1.1,
+"da": {
+"ll": [
+51.4945,
+-1.0937
+],
+"pezzo": "European walking route E2 west, UK, South East England",
+"km_pezzo": 148
+},
+"a": {
+"ll": [
+51.4861,
+-1.085
+],
+"pezzo": "European walking route E2 west, UK, South East England",
+"km_pezzo": 293
+},
+"km_percorso": 440,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 1.4,
+"paese": "Regno Unito"
+},
+{
+"percorso": "bizkaiko bira",
+"km_salto": 0.7,
+"da": {
+"ll": [
+43.0853,
+-2.5484
+],
+"pezzo": "Bizkaiko bira",
+"km_pezzo": 232
+},
+"a": {
+"ll": [
+43.0913,
+-2.5449
+],
+"pezzo": "Bizkaiko bira",
+"km_pezzo": 117
+},
+"km_percorso": 389,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 0.8,
+"paese": "Spagna"
+},
+{
+"percorso": "europaischer fernwanderweg e5",
+"km_salto": 34.7,
+"da": {
+"ll": [
+47.4783,
+10.0517
+],
+"pezzo": "Europäischer Fernwanderweg E5, Deutschland",
+"km_pezzo": 96
+},
+"a": {
+"ll": [
+47.4686,
+9.5901
+],
+"pezzo": "Europäischer Fernwanderweg E5, Schweiz",
+"km_pezzo": 233
+},
+"km_percorso": 374,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 61.2,
+"paese": "Germania"
+},
+{
+"percorso": "europaischer fernwanderweg e5",
+"km_salto": 25.8,
+"da": {
+"ll": [
+47.1673,
+10.7299
+],
+"pezzo": "Europäischer Fernwanderweg E5, Österreich Tirol",
+"km_pezzo": 14
+},
+"a": {
+"ll": [
+46.9583,
+10.8765
+],
+"pezzo": "Europäischer Fernwanderweg E5, Österreich Tirol",
+"km_pezzo": 30
+},
+"km_percorso": 374,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 31.8,
+"paese": "Austria"
+},
+{
+"percorso": "europaischer fernwanderweg e5",
+"km_salto": 3.1,
+"da": {
+"ll": [
+47.1581,
+10.5896
+],
+"pezzo": "Europäischer Fernwanderweg E5, Österreich Tirol",
+"km_pezzo": 96
+},
+"a": {
+"ll": [
+47.1461,
+10.6264
+],
+"pezzo": "Europäischer Fernwanderweg E5, Österreich Tirol",
+"km_pezzo": 14
+},
+"km_percorso": 374,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 8.0,
+"paese": "Austria"
+},
+{
+"percorso": "gipuzkoako bira",
+"km_salto": 2.3,
+"da": {
+"ll": [
+43.3325,
+-1.9364
+],
+"pezzo": "Gipuzkoako bira",
+"km_pezzo": 294
+},
+"a": {
+"ll": [
+43.3352,
+-1.9083
+],
+"pezzo": "Gipuzkoako bira",
+"km_pezzo": 16
+},
+"km_percorso": 310,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 4.8,
+"paese": "Spagna"
+},
+{
+"percorso": "european long distance path e",
+"km_salto": 42.7,
+"da": {
+"ll": [
+47.6804,
+11.5757
+],
+"pezzo": "European Long distance path E 4 - part Germany (region Oberammergau)",
+"km_pezzo": 142
+},
+"a": {
+"ll": [
+47.7404,
+12.1391
+],
+"pezzo": "European Long distance path E 4 - part Germany (region Chiemgau)",
+"km_pezzo": 107
+},
+"km_percorso": 249,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 64.7,
+"paese": "Germania"
+},
+{
 "percorso": "via augusta de cadiz a sevilla",
 "km_salto": 4.7,
 "da": {
@@ -637,6 +4480,31 @@
 "paese": "Spagna"
 },
 {
+"percorso": "pelgrimspad",
+"km_salto": 94.0,
+"da": {
+"ll": [
+51.6528,
+5.2661
+],
+"pezzo": "Pelgrimspad 1 - 12",
+"km_pezzo": 214
+},
+"a": {
+"ll": [
+50.8499,
+5.6875
+],
+"pezzo": "Pelgrimspad 2 - 13b Aanlooproute Maastricht",
+"km_pezzo": 7
+},
+"km_percorso": 221,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 178.1,
+"paese": "Paesi Bassi"
+},
+{
 "percorso": "westweg",
 "km_salto": 48.4,
 "da": {
@@ -658,8 +4526,33 @@
 "km_percorso": 195,
 "gruppo": "trekking",
 "coperto": true,
-"km_coperto": 76.4,
+"km_coperto": 76.3,
 "paese": "Germania"
+},
+{
+"percorso": "european long distance path e2",
+"km_salto": 1.1,
+"da": {
+"ll": [
+49.5757,
+6.3519
+],
+"pezzo": "European long distance path E2 - part Luxemburg",
+"km_pezzo": 155
+},
+"a": {
+"ll": [
+49.5662,
+6.357
+],
+"pezzo": "European long distance path E2 - part Luxemburg",
+"km_pezzo": 23
+},
+"km_percorso": 177,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 1.4,
+"paese": "Lussemburgo"
 },
 {
 "percorso": "camino de levante",
@@ -712,6 +4605,56 @@
 "paese": "Germania"
 },
 {
+"percorso": "sendero de la alpujarra",
+"km_salto": 3.7,
+"da": {
+"ll": [
+36.9315,
+-3.2536
+],
+"pezzo": "Sendero de la Alpujarra",
+"km_pezzo": 116
+},
+"a": {
+"ll": [
+36.9366,
+-3.2953
+],
+"pezzo": "Sendero de la Alpujarra",
+"km_pezzo": 30
+},
+"km_percorso": 146,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 8.2,
+"paese": "Spagna"
+},
+{
+"percorso": "canada conquense o de los serranos",
+"km_salto": 0.7,
+"da": {
+"ll": [
+38.9773,
+-2.8902
+],
+"pezzo": "Cañada Conquense o De Los Serranos",
+"km_pezzo": 43
+},
+"a": {
+"ll": [
+38.9715,
+-2.8889
+],
+"pezzo": "Cañada Conquense o De Los Serranos",
+"km_pezzo": 19
+},
+"km_percorso": 127,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 1.4,
+"paese": "Spagna"
+},
+{
 "percorso": "neckar-baar-jakobsweg",
 "km_salto": 28.6,
 "da": {
@@ -735,6 +4678,81 @@
 "coperto": true,
 "km_coperto": 47.1,
 "paese": "Germania"
+},
+{
+"percorso": "gr226",
+"km_salto": 10.2,
+"da": {
+"ll": [
+39.5644,
+3.205
+],
+"pezzo": "GR226 - Ruta del Lievant Etapa 1",
+"km_pezzo": 24
+},
+"a": {
+"ll": [
+39.5892,
+3.3199
+],
+"pezzo": "GR226 - Ruta del Lievant Etapa 3",
+"km_pezzo": 47
+},
+"km_percorso": 71,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 23.9,
+"paese": "Spagna"
+},
+{
+"percorso": "european long distance path e9 east asturies",
+"km_salto": 0.6,
+"da": {
+"ll": [
+43.4247,
+-4.7574
+],
+"pezzo": "European long distance path E9 east Asturies",
+"km_pezzo": 38
+},
+"a": {
+"ll": [
+43.4257,
+-4.7653
+],
+"pezzo": "European long distance path E9 east Asturies",
+"km_pezzo": 28
+},
+"km_percorso": 66,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 1.9,
+"paese": "Spagna"
+},
+{
+"percorso": "gran senda de la serrania de ronda",
+"km_salto": 3.1,
+"da": {
+"ll": [
+36.5964,
+-5.2733
+],
+"pezzo": "Gran Senda de la Serrania de Ronda",
+"km_pezzo": 30
+},
+"a": {
+"ll": [
+36.5979,
+-5.3082
+],
+"pezzo": "Gran Senda de la Serrania de Ronda",
+"km_pezzo": 35
+},
+"km_percorso": 65,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 4.5,
+"paese": "Spagna"
 },
 {
 "percorso": "gebietswanderweg rotes x",
@@ -762,6 +4780,56 @@
 "paese": "Germania"
 },
 {
+"percorso": "newrota vicentina",
+"km_salto": 23.6,
+"da": {
+"ll": [
+37.653,
+-8.7925
+],
+"pezzo": "NEWRota Vicentina - Trilho dos Pescadores - 3",
+"km_pezzo": 15
+},
+"a": {
+"ll": [
+37.4407,
+-8.7981
+],
+"pezzo": "NEWRota Vicentina - Trilho dos Pescadores - 6",
+"km_pezzo": 23
+},
+"km_percorso": 38,
+"gruppo": "trekking",
+"coperto": true,
+"km_coperto": 43.4,
+"paese": "Portogallo"
+},
+{
+"percorso": "rvn pieterpad deel",
+"km_salto": 110.7,
+"da": {
+"ll": [
+51.8505,
+6.1028
+],
+"pezzo": "RvN Pieterpad deel 2 - 16 - variant voor Ronde van Nederland",
+"km_pezzo": 11
+},
+"a": {
+"ll": [
+50.8717,
+5.8116
+],
+"pezzo": "RvN Pieterpad deel 2 - 26 - Variant voor Ronde van Nederland",
+"km_pezzo": 12
+},
+"km_percorso": 23,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 191.6,
+"paese": "Germania"
+},
+{
 "percorso": "variant gr",
 "km_salto": 72.9,
 "da": {
@@ -785,6 +4853,31 @@
 "coperto": true,
 "km_coperto": 112.5,
 "paese": "Spagna"
+},
+{
+"percorso": "ermsdorf",
+"km_salto": 0.8,
+"da": {
+"ll": [
+49.8386,
+6.2327
+],
+"pezzo": "Ermsdorf 6",
+"km_pezzo": 8
+},
+"a": {
+"ll": [
+49.8407,
+6.2214
+],
+"pezzo": "Ermsdorf 9",
+"km_pezzo": 6
+},
+"km_percorso": 20,
+"gruppo": "gr",
+"coperto": true,
+"km_coperto": 6.1,
+"paese": "Lussemburgo"
 },
 {
 "percorso": "great glen way high route",
