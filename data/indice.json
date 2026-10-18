@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-17",
+ "generated": "2026-10-18",
  "areas": [
   {
    "key": "spagna",
@@ -133,25 +133,25 @@
    "key": "gr-spagna",
    "label": "GR e sentieri europei - Spagna",
    "file": "gr-spagna.geojson",
-   "count": 1,
-   "mb": 2.45,
-   "updated": "2026-10-17"
+   "count": 58,
+   "mb": 10.37,
+   "updated": "2026-10-18"
   },
   {
    "key": "gr-francia",
    "label": "GR e sentieri europei - Francia",
    "file": "gr-francia.geojson",
-   "count": 3,
-   "mb": 0.47,
-   "updated": "2026-10-15"
+   "count": 39,
+   "mb": 5.09,
+   "updated": "2026-10-18"
   },
   {
    "key": "gr-italia",
    "label": "GR e sentieri europei - Italia",
    "file": "gr-italia.geojson",
-   "count": 1,
-   "mb": 0.39,
-   "updated": "2026-10-17"
+   "count": 47,
+   "mb": 2.63,
+   "updated": "2026-10-18"
   },
   {
    "key": "gr-svizzera",
@@ -165,9 +165,9 @@
    "key": "gr-inghilterra",
    "label": "GR e sentieri europei - Regno Unito",
    "file": "gr-inghilterra.geojson",
-   "count": 2,
-   "mb": 0.33,
-   "updated": "2026-10-17"
+   "count": 6,
+   "mb": 0.53,
+   "updated": "2026-10-18"
   },
   {
    "key": "gr-irlanda",
@@ -181,25 +181,41 @@
    "key": "gr-germania",
    "label": "GR e sentieri europei - Germania",
    "file": "gr-germania.geojson",
-   "count": 54,
-   "mb": 5.22,
-   "updated": "2026-10-17"
+   "count": 88,
+   "mb": 9.46,
+   "updated": "2026-10-18"
   },
   {
    "key": "gr-austria",
    "label": "GR e sentieri europei - Austria",
    "file": "gr-austria.geojson",
-   "count": 12,
-   "mb": 2.23,
-   "updated": "2026-10-17"
+   "count": 21,
+   "mb": 3.39,
+   "updated": "2026-10-18"
   },
   {
    "key": "gr-belgio",
    "label": "GR e sentieri europei - Belgio",
    "file": "gr-belgio.geojson",
-   "count": 1,
-   "mb": 0.09,
-   "updated": "2026-10-17"
+   "count": 30,
+   "mb": 4.19,
+   "updated": "2026-10-18"
+  },
+  {
+   "key": "gr-paesibassi",
+   "label": "GR e sentieri europei - Paesi Bassi",
+   "file": "gr-paesibassi.geojson",
+   "count": 28,
+   "mb": 0.85,
+   "updated": "2026-10-18"
+  },
+  {
+   "key": "gr-lussemburgo",
+   "label": "GR e sentieri europei - Lussemburgo",
+   "file": "gr-lussemburgo.geojson",
+   "count": 2,
+   "mb": 0.36,
+   "updated": "2026-10-18"
   }
  ]
 }
