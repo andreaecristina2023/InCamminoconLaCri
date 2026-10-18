@@ -133,16 +133,16 @@
    "key": "gr-spagna",
    "label": "GR e sentieri europei - Spagna",
    "file": "gr-spagna.geojson",
-   "count": 202,
-   "mb": 18.77,
+   "count": 215,
+   "mb": 20.53,
    "updated": "2026-10-18"
   },
   {
    "key": "gr-francia",
    "label": "GR e sentieri europei - Francia",
    "file": "gr-francia.geojson",
-   "count": 77,
-   "mb": 8.48,
+   "count": 103,
+   "mb": 10.39,
    "updated": "2026-10-18"
   },
   {
@@ -181,8 +181,8 @@
    "key": "gr-germania",
    "label": "GR e sentieri europei - Germania",
    "file": "gr-germania.geojson",
-   "count": 90,
-   "mb": 9.56,
+   "count": 94,
+   "mb": 9.59,
    "updated": "2026-10-18"
   },
   {
@@ -197,16 +197,16 @@
    "key": "gr-belgio",
    "label": "GR e sentieri europei - Belgio",
    "file": "gr-belgio.geojson",
-   "count": 39,
-   "mb": 4.51,
+   "count": 56,
+   "mb": 4.97,
    "updated": "2026-10-18"
   },
   {
    "key": "gr-paesibassi",
    "label": "GR e sentieri europei - Paesi Bassi",
    "file": "gr-paesibassi.geojson",
-   "count": 63,
-   "mb": 1.35,
+   "count": 335,
+   "mb": 5.51,
    "updated": "2026-10-18"
   },
   {
